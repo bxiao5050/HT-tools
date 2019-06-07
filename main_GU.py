@@ -78,6 +78,14 @@ class Tools(SomeTool):
         # self.f11.pack(padx = (5,5), pady=(5,5), anchor = 'w')
         # self.f12.pack(padx = (5,5), pady=(5,5), anchor = 'w')
         # self.f19.pack(padx = (5,5), pady=(5,5), anchor = 'w')
+    def call_func(self, title, func):
+        self.root.withdraw()
+        self.w = Toplevel()
+        self.w.title(title)
+        self.w.iconphoto(False, self.logo)
+        self.w.protocol("WM_DELETE_WINDOW", self.on_closing)
+        func(self.w).pack(fill = 'both', expand = True)
+
 
     def on_closing(self):
         self.w.withdraw()
@@ -93,14 +101,6 @@ class Tools(SomeTool):
         self.call_func('Wafer comparison',TwoWafers)
 
 
-
-    def call_func(self, title, func):
-        self.root.withdraw()
-        self.w = Toplevel()
-        self.w.title(title)
-        self.w.iconphoto(False, self.logo)
-        self.w.protocol("WM_DELETE_WINDOW", self.on_closing)
-        func(self.w).pack(fill = 'both', expand = True)
 
 
 
