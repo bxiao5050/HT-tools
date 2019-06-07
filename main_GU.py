@@ -66,18 +66,18 @@ class Tools(SomeTool):
 
         Button(self.f19, text = n[13], command = self.on_sputterconcentration).pack(side = 'left', padx = (5,5), pady=(5,5))
         Button(self.f19, text = n[14], command = self.on_waferphotoRGB).pack(side = 'left', padx = (5,5), pady=(5,5))
-        try:
-            self.b1.config(command =self.on_edxcomposition)
-            self.b2.config(command =self.on_edxadjust)
-            self.b3.config(command =self.on_librariescomparison)
-        except:
-            return
+        # try:
+        #     self.b1.config(command =self.on_edxcomposition)
+        #     self.b2.config(command =self.on_edxadjust)
+        #     self.b3.config(command =self.on_librariescomparison)
+        # except:
+        #     return
 
-        self.f_edx.pack(padx = (5,5), pady=(5,5), anchor = 'w')
-        self.f1.pack(padx = (5,5), pady=(5,5), anchor = 'w')
-        self.f11.pack(padx = (5,5), pady=(5,5), anchor = 'w')
-        self.f12.pack(padx = (5,5), pady=(5,5), anchor = 'w')
-        self.f19.pack(padx = (5,5), pady=(5,5), anchor = 'w')
+        # self.f_edx.pack(padx = (5,5), pady=(5,5), anchor = 'w')
+        # self.f1.pack(padx = (5,5), pady=(5,5), anchor = 'w')
+        # self.f11.pack(padx = (5,5), pady=(5,5), anchor = 'w')
+        # self.f12.pack(padx = (5,5), pady=(5,5), anchor = 'w')
+        # self.f19.pack(padx = (5,5), pady=(5,5), anchor = 'w')
 
 
         self.root.mainloop()
