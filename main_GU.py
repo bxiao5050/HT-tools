@@ -57,7 +57,6 @@ class Tools(SomeTool):
         Button(self.f1, text = n[6], command = self.on_thickness).pack(side = 'left', padx = (5,5), pady=(5,5))
 
 
-        Button(self.f11, text = n[7], command = self.on_twoD1Dconvert).pack(side = 'left', padx = (5,5), pady=(5,5))
         Button(self.f11, text = n[8], command = self.on_baselinesubtraction).pack(side = 'left', padx = (5,5), pady=(5,5))
         Button(self.f11, text = n[9], command = self.on_phaseidentification).pack(side = 'left', padx = (5,5), pady=(5,5))
         Button(self.f11, text = n[10], command = self.on_referencerename).pack(side = 'left', padx = (5,5), pady=(5,5))
