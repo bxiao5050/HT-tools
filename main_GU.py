@@ -55,14 +55,14 @@ class Tools(SomeTool):
         self.f12 = LabelFrame(self.root, text =n[4], fg = 'blue')
         self.f19 = LabelFrame(self.root, text = n[5], fg = 'blue')
         Button(self.f1, text = n[6], command = self.on_thickness).pack(side = 'left', padx = (5,5), pady=(5,5))
-
+        Button(self.f12, text = n[11], command = self.on_bandgap).pack(side = 'left', padx = (5,5), pady=(5,5))
+        Button(self.f12, text = n[12], command = self.on_resistance).pack(side = 'left', padx = (5,5), pady=(5,5))
 
         Button(self.f11, text = n[8], command = self.on_baselinesubtraction).pack(side = 'left', padx = (5,5), pady=(5,5))
         Button(self.f11, text = n[9], command = self.on_phaseidentification).pack(side = 'left', padx = (5,5), pady=(5,5))
         Button(self.f11, text = n[10], command = self.on_referencerename).pack(side = 'left', padx = (5,5), pady=(5,5))
 
-        Button(self.f12, text = n[11], command = self.on_bandgap).pack(side = 'left', padx = (5,5), pady=(5,5))
-        Button(self.f12, text = n[12], command = self.on_resistance).pack(side = 'left', padx = (5,5), pady=(5,5))
+
 
         Button(self.f19, text = n[13], command = self.on_sputterconcentration).pack(side = 'left', padx = (5,5), pady=(5,5))
         Button(self.f19, text = n[14], command = self.on_waferphotoRGB).pack(side = 'left', padx = (5,5), pady=(5,5))
