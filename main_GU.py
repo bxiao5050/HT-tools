@@ -105,20 +105,7 @@ class Tools(SomeTool):
 
 
 
-    def on_thickness(self):
-        self.call_func('Thickness',ImportPanel)
 
-    def on_twoD1Dconvert(self):
-        self.call_func('2D to 1D convert', Automation)
-
-    def on_baselinesubtraction(self):
-        self.call_func('Baseline subtraction',Baseline_subtraction)
-
-    def on_phaseidentification(self):
-        self.call_func('Phase Identification', MainAutoMenu)
-
-    def on_referencerename(self):
-        self.call_func('Rename .cif files', Ren)
 
     def on_bandgap(self):
         self.call_func('Bandgap calculation', P_import)
