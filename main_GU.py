@@ -79,7 +79,9 @@ class Tools(SomeTool):
         # self.f12.pack(padx = (5,5), pady=(5,5), anchor = 'w')
         # self.f19.pack(padx = (5,5), pady=(5,5), anchor = 'w')
 
-
+    def on_closing(self):
+        self.w.withdraw()
+        self.root.destroy()
         self.root.mainloop()
     def on_edxcomposition(self):
         self.call_func('EDX composition', Myc)
@@ -90,9 +92,7 @@ class Tools(SomeTool):
     def on_librariescomparison(self):
         self.call_func('Wafer comparison',TwoWafers)
 
-    def on_closing(self):
-        self.w.withdraw()
-        self.root.destroy()
+
 
     def call_func(self, title, func):
         self.root.withdraw()
