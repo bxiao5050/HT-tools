@@ -28,7 +28,7 @@ from GUIs.twoDtoOneD.automation import Automation
 from GUIs.base.mainn import Baseline_subtraction
 from GUIs.cifb.Phase_ import MainAutoMenu
 from GUIs.tools.rename_ import Ren
-from GUIs.base.main_bandgap import P_import
+from GUIs.base.main_bandgap import P_import1
 from GUIs.bdase.main_resistance import Maink
 from GUIs.cifb.concentration_main import Main_concentration
 from GUIs.cifb.widg import M
