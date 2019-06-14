@@ -98,7 +98,9 @@ class Tools(SomeTool):
     def on_librariescomparison(self):
         self.call_func('Wafer comparison',TwoWafers)
 
-
+class Main(Tools):
+    def __init__(self):
+        super().__init__()
 
 
 
@@ -117,9 +119,7 @@ class Tools(SomeTool):
     def on_waferphotoRGB(self):
         self.call_func('Extract photo RGB', M)
 
-class Main(Tools):
-    def __init__(self):
-        super().__init__()
+
 
 
 
