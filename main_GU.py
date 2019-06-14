@@ -12,8 +12,8 @@ paths.append(os.path.join(os.path.abspath(root_dir), 'mybu'))
 
 for path in paths:
     if not path in sys.path:
-        sys.path.insert(1, path)
-sys.path.insert(1, root_dir)
+        sys.path.insert(0, path)
+sys.path.insert(0, root_dir)
 del path
 
 import datatime
