@@ -65,7 +65,7 @@ class Tools(SomeTool):
 
 
         Button(self.f19, text = n[13], command = self.on_sputterconcentration).pack(side = 'left', padx = (5,5), pady=(5,5))
-        Button(self.f19, text = n[14], command = self.on_waferphotoRGB).pack(side = 'left', padx = (5,5), pady=(5,5))
+        Button(self.f19, text = n[12], command = self.on_waferphotoRGB).pack(side = 'left', padx = (5,5), pady=(5,5))
         # try:
         #     self.b1.config(command =self.on_edxcomposition)
         #     self.b2.config(command =self.on_edxadjust)
