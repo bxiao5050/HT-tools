@@ -3,7 +3,7 @@ import sys
 
 
 paths = []
-root_dir = os.path.join(os.path.dirname(__file__), 'GUIs')
+root_dir = os.path.join(os.path.dirname(__file__), 'MyGUI')
 paths.append(os.path.join(os.path.abspath(root_dir), 'position'))
 paths.append(os.path.join(os.path.abspath(root_dir), 'GUI_tools'))
 paths.append(os.path.join(os.path.abspath(root_dir), 'otherGUI'))
