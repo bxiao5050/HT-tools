@@ -32,7 +32,7 @@ from GUIs.base.main_bandgap import P_import
 from GUIs.bdase.main_resistance import Maink
 from GUIs.cifb.concentration_main import Main_concentration
 from GUIs.cifb.widg import M
-from GUIs.tools.mytools.other import SomeTool
+from GUIs.tools.mytools.other import SomeTools
 from GUIs.qixiank import NName
 class Tools(SomeTool):
     def __init__(self):
