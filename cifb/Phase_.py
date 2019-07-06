@@ -72,7 +72,17 @@ class MainAutoMenu(Frame):
 
 
     def import_xy_files(self):
-        files = askopenfilenames(parent=self,title='Choose a file', filetypes =[('xy file', '.xy')])
+        #popular the wafer buttons
+        if self.app.dataExpPanel.expData is not None:
+            x = self.app.dataExpPanel.expData.iloc[:, 0]
+            xlim1, xlim2 = [min(x), max(x)]
+            self.app.pCanvas.setXlim(xlim1, xlim2)
+            self.app.pCanvas.useCursor()# cross cursor
+            self.app.pCanvas.canvas_line.draw()
+            for i in range(len(self.app.dataExpPanel.expData.columns) -1):
+                pos = i + 1
+                self.app.waferPanel.wafer.pAB[pos].config(state = 'normal', relief = 'raised')
+            self.app.expData = self.app.dataExpPanel.expData        files = askopenfilenames(parent=self,title='Choose a file', filetypes =[('xy file', '.xy')])
         sortedfile = sorted([f for f in self.tk.splitlist(files)])
 
         if len(sortedfile) == 0:
@@ -93,17 +103,7 @@ class MainAutoMenu(Frame):
         for k, col in enumerate(self.app.dataExpPanel.expData.columns):
             if k != 0:
                 self.app.dataExpPanel.insertItem(col)
-        #popular the wafer buttons
-        if self.app.dataExpPanel.expData is not None:
-            x = self.app.dataExpPanel.expData.iloc[:, 0]
-            xlim1, xlim2 = [min(x), max(x)]
-            self.app.pCanvas.setXlim(xlim1, xlim2)
-            self.app.pCanvas.useCursor()# cross cursor
-            self.app.pCanvas.canvas_line.draw()
-            for i in range(len(self.app.dataExpPanel.expData.columns) -1):
-                pos = i + 1
-                self.app.waferPanel.wafer.pAB[pos].config(state = 'normal', relief = 'raised')
-            self.app.expData = self.app.dataExpPanel.expData
+
 
 
     #Auto Match button
