@@ -54,7 +54,7 @@ class Main_concentration(Frame):
 
     def on_screenshot(self):
         subprocess.call(r'print.exe')
-        
+
     def focus_leave(self, e):
         v = 0
         for row in self.nAR.values():
@@ -94,28 +94,7 @@ class Main_concentration(Frame):
     #parse the formular
 
 
-    def on_cal(self):
-        if len(self.thickness.get()) > 0 and len(self.thickness.get()) > 0:
-            D = float(self.thickness.get())
-            T = float(self.time.get())
-        #1. get normalized PV_i = Per_i*V_i
-        pvi = []
-        pv = 0
-        try:
-            for i, row in enumerate(self.nAR.values()):
-                pvi.append(float(row.ele_per.get())*float(row.ele_V.cget('text')))
-                pv += pvi[i]
 
-            for i, row in enumerate(self.nAR.values()):
-                ri = float(row.ele_R.get()) # get Rate
-                if ri < 0.00001:
-                    break
-                di = round(pvi[i]/pv*D, 4) #thickness
-                pi = round(di/T/ri, 4) #power
-                row.ele_D.config(text = di)
-                row.ele_W.config(text = pi)
-        except:
-            pass
 
 
 
