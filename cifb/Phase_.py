@@ -16,25 +16,6 @@ from auto.autoResult import autoRes
 from auto.phaseCom import Auto
 from auto.showStatus import PhaseResultStatus
 
-from auto.main_panel import MainResult
-from auto.notebook_auto import Notebook_auto
-from auto.autoMannually import AutoMannually
-from usefulModules.waferCanvas import WaferCanvas
-from menu.showeds import ShowEDS
-from menu.showXRDPatterns import ShowXRDPatterns
-from menu.showResult import ShowResult
-from menu.unnormalized import Unnormalized
-from menu.findReference.findReferenceFromPeak import FindReferenceFromPeak
-
-from matplotlib import colors
-from tkinter import *
-from tkinter import ttk
-from tkinter.filedialog import askopenfilenames
-import pandas as pd
-import numpy as np
-import threading
-import time
-import os
 
 from datetime import *
 
