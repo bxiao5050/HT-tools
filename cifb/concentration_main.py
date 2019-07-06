@@ -54,6 +54,14 @@ class Main_concentration(Frame):
 
     def on_screenshot(self):
         subprocess.call(r'print.exe')
+        
+    def focus_leave(self, e):
+        v = 0
+        for row in self.nAR.values():
+            v += float(row.ele_per.get())
+        text = 100 - v
+        self.remainder.config(text = text)
+        self.on_cal()
 
 
     def on_addrow(self):
@@ -70,13 +78,6 @@ class Main_concentration(Frame):
         self.addB.grid(row = 3 + self.rowN, column = 0)
         self.calB.grid(row = 3 + self.rowN, column = 5)
 
-    def focus_leave(self, e):
-        v = 0
-        for row in self.nAR.values():
-            v += float(row.ele_per.get())
-        text = 100 - v
-        self.remainder.config(text = text)
-        self.on_cal()
 
     def focus_leaveVolumn(self, e, rowN):
         ele = e.widget.get()
