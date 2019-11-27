@@ -24,3 +24,10 @@
   - 用户名：wxfwh@9266.com
   - 密码： Aa123456!
 
+- ### SVN - business
+  - Repository：svn://svn01.royal.sz/business
+  - 用户名：域账号
+  - 密码：域密码
+
+  
+
