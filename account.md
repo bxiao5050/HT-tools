@@ -19,3 +19,8 @@
   - 端口：16333
   - 用户名：域账号
   - 密码：域密码
+
+- ### 公司微信公众号 [```https://mp.weixin.qq.com/```](https://mp.weixin.qq.com/)
+  - 用户名：wxfwh@9266.com
+  - 密码： Aa123456!
+
