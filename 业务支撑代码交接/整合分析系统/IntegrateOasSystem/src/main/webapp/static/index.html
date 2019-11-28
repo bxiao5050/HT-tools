@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <titleContent>Title</titleContent>
+    <script src="./sockjs.min.js"></script>
+    <script src="./stomp.min.js"></script>
+</head>
+<body>
+<script type="application/javascript">
+    var socket = new SockJS('/message');
+    stompClient = Stomp.over(socket);
+    stompClient.connect({}, function (frame) {
+        console.log('Connected: ' + frame);
+        stompClient.subscribe('/topic/info', function (greeting) {
+           console.log(greeting);
+        });
+        stompClient.subscribe('/user/info', function (greeting) {
+            console.log(greeting);
+        });
+    });
+    function sendMessage(url,value) {
+        stompClient.send(url,{} ,value);
+    }
+    function subscribe(url) {
+        stompClient.subscribe(url, function (greeting) {
+            console.log(greeting);
+        });
+    }
+    function disconnect() {
+        if (stompClient != null) {
+            stompClient.disconnect();
+        }
+        console.log("Disconnected");
+    }
+
+</script>
+
+</body>
+</html>

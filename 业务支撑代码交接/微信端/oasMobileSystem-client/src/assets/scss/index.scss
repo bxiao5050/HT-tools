@@ -1,0 +1,375 @@
+header {
+  z-index: 100;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  .header {
+    position: relative;
+    padding: $gap 0;
+    box-sizing: border-box;
+    background-color: #716CA8;
+    .header-left {
+      width: 1.3rem;
+      left: 0px;
+    }
+    .header-right {
+      width: 1.3rem;
+      right: 0px;
+    }
+    .header-left,
+    .header-right {
+      position: absolute;
+      top: $gap;
+      height: 40px;
+      display: block;
+      font-size: 14px;
+      line-height: 0.56rem;
+      color: #ccc;
+      padding-top: 10px;
+      padding-left: 0.37rem;
+    }
+    .header-title,
+    h1 {
+      margin: 0 2.34rem;
+      margin-left: 2.66rem;
+      line-height: 40px;
+      text-align: center;
+      height: 40px;
+      @include font-dpr(18px) font-weight: 400;
+      width: auto;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: #fff;
+    }
+  }
+}
+
+.sideBar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: -200px;
+  width: 200px;
+  background-color: #fff;
+  color: #313131;
+  transition: all .3s ease;
+  z-index: 100;
+  &.show {
+    -webkit-transform: translateX(200px);
+    transform: translateX(200px);
+  }
+  .list-ul {
+    margin: 0 24px;
+    //border-top: 1px solid #d4d4d4;
+    overflow: hidden;
+    padding-top: 9%;
+  }
+  .list-ul .item {
+    display: block;
+    @include font-dpr(14px);
+    font-weight: 200;
+    padding: $gap *4 0;
+    text-align: left;
+    text-indent: 1px;
+    line-height: 15px;
+    color: #313131;
+    i {
+      margin-right: $gap * 3;
+    }
+  }
+}
+
+.page-cover {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, .4);
+  z-index: 7;
+}
+
+.user-info {
+  padding: 15px;
+  font-size: 15px;
+  color: #313131;
+  overflow: hidden;
+  position: relative;
+  .avertar {
+    width: 40px;
+    height: 40px;
+    background: url("../images/user.png") no-repeat center center;
+    background-size: 40px 40px;
+    border-radius: 20px;
+    overflow: hidden;
+    float: left;
+    &>img {
+      width: 40px;
+      height: 40px;
+      display: block;
+    }
+  }
+  .info {
+    margin-left: 10px;
+    overflow: hidden;
+    float: left;
+  }
+  p {
+    width: 85px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 12px;
+    line-height: 12px;
+    line-height: 40px;
+    &.lh20 {
+      line-height: 20px;
+    }
+  }
+}
+
+.page-body {
+  padding: 46px 0.4rem;
+  // min-height: 10.6rem;
+  background-color: #fff;
+  text-align: center;
+}
+
+.bind-page {
+  .page-body {
+    .tips {
+      width: 80%;
+      @include font-dpr(12px);
+      color: $colora0;
+      text-align: left;
+      margin: 0 auto;
+      margin-top: 0.26rem;
+      p {
+        line-height: 0.42rem;
+      }
+    }
+    .label {
+      position: relative;
+      width: 80%;
+      margin: 0 auto;
+      margin-top: 0.26rem;
+      line-height: 0.37rem;
+      i {
+        position: absolute;
+        left: $gap;
+        top: 0.32rem;
+      }
+      input {
+        padding: 0.37rem 0px 0.37rem 0.8rem;
+        width: 100%;
+      }
+      .button {
+        display: inline-block;
+        width: 100%;
+        height: 1.12rem;
+        line-height: 1.12rem;
+        border-radius: 3px;
+        color: #fff;
+        @include font-dpr(16px);
+        background-color: #4fc08d;
+        border: none;
+        border-bottom: 2px solid #3aa373;
+        text-align: center;
+        vertical-align: middle;
+      }
+      .link {
+        color: $colora0;
+        @include font-dpr(14px);
+      }
+    }
+    .logo {
+      width: 3rem;
+      height: 1rem;
+      background: url("../images/7road_logo.png")no-repeat;
+      background-size: 100% 100%;
+      margin-top: 30%;
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+.login-page {
+  // height: 15.7rem;
+  .page-body {
+    min-height: 10.6rem;
+    .pwd-box {
+      width: 192px;
+      padding-left: 1px;
+      position: relative;
+      border-radius: 3px;
+      margin: 0 auto;
+      margin-top: 10px;
+    }
+    .pwd-box input[type="tel"] {
+      width: 99%;
+      height: 45px;
+      color: transparent;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border: none;
+      @include font-dpr(18px);
+      opacity: 0;
+      z-index: 1;
+      letter-spacing: 35px;
+    }
+    .fake-box input {
+      width: 44px;
+      height: 48px;
+      border: none;
+      //border-right: 1px solid #e5e5e5;
+      text-align: center;
+      @include font-dpr(20px)
+    }
+    .label {
+      margin-top: 10px;
+      a {
+        color: $colora0;
+        @include font-dpr(14px);
+      }
+    }
+    .tips {
+      width: 80%;
+      @include font-dpr(12px);
+      // color: $colora0;
+      color: #FFB90F;
+      text-align: left;
+      margin: 0 auto;
+      // margin-top: 100%;
+      position: absolute;
+      left: 50%;
+      bottom: 10%;
+      transform: translateX(-50%);
+      p {
+        line-height: 0.42rem;
+      }
+    }
+    // .logo {
+    //   width: 3rem;
+    //   height: 1rem;
+    //   background: url("../images/7road_logo.png")no-repeat;
+    //   background-size: 100% 100%;
+    //   // margin-left: 50%;
+    //   position: absolute;
+    //   left: 50%;
+    //   bottom: 20%;
+    //   transform: translateX(-50%);
+    //   transform: translateX(-50%);
+    // }
+  }
+}
+
+.game-content {
+  width: 100%;
+  top: 1.33rem;
+  left: 0;
+  overflow-y: auto;
+  // -webkit-overflow-scrolling: touch;
+  .game-group {
+    width: 100%;
+    font-family: '微软雅黑';
+    //box-shadow: 0px 5px #CFCFCF;
+    margin-bottom: 0.13rem;
+    .game-type-header {
+      width: 100%;
+      height: 1.06rem;
+      line-height: 1.06rem;
+      /*border-bottom: 1px solid #CFCFCF;*/
+      i {
+        float: left;
+      }
+      .game-header-text {
+        float: left;
+        font-weight: bold;
+      }
+    }
+    .game-box {
+      width: 100%;
+      display: -webkit-flex;
+      /* Safari */
+      display: flex;
+      flex-wrap: wrap;
+      -webkit-flex-wrap: wrap;
+      flex-direction: row;
+      -webkit-flex-direction: row;
+      justify-content: flex-start;
+      -webkit-justify-content: flex-start;
+      align-items: center;
+      -webkit-align-items: center;
+      text-align: left;
+      .game-item {
+        width: 25%;
+        display: inline-block;
+        padding: 0.26rem 0.13rem 0 0.13rem;
+        text-align: center;
+        .game-icon {
+          width: 100%;
+          display: block;
+        }
+        .game-name {
+          height: 0.53rem;
+          line-height: 0.53rem;
+          @include font-dpr(12px);
+          display: block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+  }
+}
+
+.table {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  tr {
+    height: 0.6rem;
+    line-height: 0.6rem;
+    th {
+      font-weight: bold;
+      padding: 0.13rem;
+      border-bottom: 1px solid #E2E2E2;
+    }
+    td {
+      padding: 0.13rem;
+      border-top: 1px solid #E2E2E2;
+    }
+  }
+}
+
+.table.table-border {
+  /*border: 1px solid #ddd;*/
+  border-collapse: collapse;
+  border: none;
+  tr {
+    border-color: inherit;
+    th {
+      border: 1px solid #ddd;
+    }
+    td {
+      border: 1px solid #ddd;
+    }
+  }
+}
+
+.table.table-striped {
+  tr:nth-child(odd) {
+    background-color: #f9f9f9;
+  }
+}
+
+.table.table-hover {
+  tr:hover {
+    background-color: #F5F5F5;
+  }
+}

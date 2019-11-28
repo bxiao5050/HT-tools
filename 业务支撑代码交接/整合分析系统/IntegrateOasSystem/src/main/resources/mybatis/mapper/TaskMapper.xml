@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sevenroad.oas.dao.mapper.TaskMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.sevenroad.oas.dao.entity.Task">
+		<id column="id" property="id" />
+		<result column="task_interval" property="taskInterval" />
+		<result column="description" property="description" />
+		<result column="params" property="params" />
+		<result column="start_time" property="startTime" />
+		<result column="next_time" property="nextTime" />
+		<result column="state" property="state" />
+	</resultMap>
+
+</mapper>

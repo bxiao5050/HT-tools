@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .level1{
+            background-color: rgb(249, 104, 106);
+        }
+        .level2{
+            background-color: rgb(255, 192, 203);
+        }
+        .level3{
+            background-color: rgb(255, 235, 133);
+        }
+        .level4{
+            background-color: rgb(152, 251, 152);
+        }
+        .level5{
+            background-color: rgb(34, 139, 34);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <span class="text-center">
+        <h3>
+             2018-4-1投放日报
+        </h3></span>
+
+    <div class="row">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">游戏类别</th>
+                <th scope="col">游戏名</th>
+                <th scope="col">当日花费</th>
+                <th scope="col">本月累计</th>
+                <th scope="col">本月预算</th>
+                <th scope="col">占比</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+
+                    <th scope="row" class="align-middle" rowspan="2">手游</th>
+                    <td>总计</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        var report = JSON.parse("{\"countDate\":\"2018-4-1\",\"titleContent\":\"2018-4-1投放日报\",\"totalData\":{\"mobileGame\":[{\"gameName\":\"总计\",\"todayCost\":0.0,\"monthCost\":0.0,\"monthBudget\":0.0,\"percent\":0.0}]},\"gameData\":[]}");
+        var chartData = [];
+        for(var i = 0;i< report.gameData.length;i++){
+            var gameItem = report.gameData[i];
+            var gameData = {
+                titleContent:gameItem.gameName,
+                chartData:gameItem.chartData
+            };
+            chartData.push(gameData);
+        }
+        for(var i = 0;i<chartData.length;i++){
+            $('#chart'+ i).highcharts({
+                title: {
+                    text: chartData[i].titleContent +'投放数据'
+                },
+                subtitle: {
+                    text: '数据来源: data.7road.com'
+                },
+                xAxis: [{
+                    categories: report.dateList,
+                    crosshair: true
+                }],
+                yAxis: [{ // Primary yAxis
+                    labels: {
+                        format: '{value}',
+                        style: {
+                            color: Highcharts.getOptions().colors[0]
+                        }
+                    },
+                    titleContent: {
+                        text: '数值',
+                        style: {
+                            color: Highcharts.getOptions().colors[1]
+                        }
+                    }
+                }, { // Secondary yAxis
+                    titleContent: {
+                        format: '{value}',
+                        style: {
+                            color: Highcharts.getOptions().colors[2]
+                        }
+                    },
+                    labels: {
+                        format: '百分比',
+                        style: {
+                            color: Highcharts.getOptions().colors[3]
+                        }
+                    },
+                    opposite: true
+                }],
+                tooltip: {
+                    shared: true
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'left',
+                    x: 120,
+                    verticalAlign: 'top',
+                    y: 100,
+                    floating: true,
+                    backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+                },
+                series: [{
+                    name: '激活',
+                    type: 'column',
+                    yAxis: 1,
+                    data: chartData[i].chartData.install
+                },{
+                    name: '注册',
+                    type: 'column',
+                    yAxis: 1,
+                    data: chartData[i].chartData.regs
+                },{
+                    name: '创角',
+                    type: 'column',
+                    yAxis: 1,
+                    data: chartData[i].chartData.roles
+                }]
+            });
+        }
+
+    });
+
+</script>
+</html>

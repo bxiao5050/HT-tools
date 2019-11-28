@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Class-Path: logback-core-1.1.2.jar mchange-commons-java-0.2.11.jar qua
+ rtz-2.3.0.jar junit-4.12.jar hamcrest-core-1.3.jar postgresql-42.1.1.
+ jre7.jar hutool-all-3.0.3.jar HikariCP-java6-2.3.13.jar logback-class
+ ic-1.1.2.jar slf4j-api-1.7.10.jar gson-2.5.jar facebook-java-ads-sdk-
+ 2.9.0.jar c3p0-0.9.5.2.jar mybatis-3.4.4.jar
+Main-Class: com.sevenroad.facebook.mainServer
+

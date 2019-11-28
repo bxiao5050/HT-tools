@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean class="com.sevenroad.oas.dao.ConnectionManager">
+        <constructor-arg name="driver" value="com.mysql.jdbc.Driver"/>
+        <constructor-arg name="url" value="jdbc:mysql://10.10.3.144:3306/integrate_oas_system?allowMultiQueries=true"/>
+        <constructor-arg name="userName" value="root"/>
+        <constructor-arg name="password" value="a123456!" />
+        <constructor-arg name="getConnection" value="select * from t_e_connection"/>
+    </bean>
+    <bean class="com.sevenroad.oas.cache.RedisProvider">
+        <constructor-arg name="ip" value="172.16.1.171"/>
+        <constructor-arg name="db" value="3"/>
+        <!--<constructor-arg name="password" value="jQ4ZWU4YjQ2MDUg" />-->
+        <constructor-arg name="password" value="" />
+        <constructor-arg name="port" value="6379" />
+    </bean>
+    <!--com.sevenroad.oas.cache bean-->
+    <bean class="com.sevenroad.oas.cache.Imp.ConnectionCache" init-method="refleshCache">
+        <constructor-arg name="getData" value="select game_id,connection_id from t_e_game"/>
+    </bean>
+    <bean class="com.sevenroad.oas.cache.Imp.DataViewCache" init-method="refleshCache">
+        <constructor-arg name="getData" value="select * from t_e_dataview"/>
+    </bean>
+
+    <bean class="com.sevenroad.oas.cache.Imp.DataViewMapComponentCache" init-method="refleshCache">
+        <constructor-arg name="getData" value="select b.dataview_id,c.* from t_e_dataview a join t_e_dataview_component b on a.dataview_id = b.dataview_id join t_e_component c on b.component_id = c.component_id"/>
+    </bean>
+    <bean class="com.sevenroad.oas.cache.Imp.MenuMapDataViewCache" init-method="refleshCache">
+        <constructor-arg name="getDataSql" value="select DISTINCT c.game_id,c.menu_id,a.dataview_id,dataview_name from t_e_game_menu_dataview a join t_e_dataview b on a.dataview_id = b.dataview_id join t_e_game_menu c on a.game_menu_id = c.game_menu_id" />
+    </bean>
+    <bean class="com.sevenroad.oas.cache.Imp.PermissKeyCache" init-method="refleshCache">
+        <constructor-arg name="getDataSql" value="select * from t_e_premiss_key" />
+    </bean>
+    <bean class="com.sevenroad.oas.cache.Imp.TableResultCache"></bean>
+    <bean class="com.sevenroad.oas.cache.Imp.ColumnNameCache" init-method="refleshCache"></bean>
+    <bean class="com.sevenroad.oas.cache.Imp.TranslateColumnCache" init-method="refleshCache"></bean>
+    <bean class="com.sevenroad.oas.cache.Imp.MessageCache"></bean>
+    <bean class="com.sevenroad.oas.cache.Imp.TokenCache" init-method="refleshCache">
+        <constructor-arg name="getDataSql" value="select a.user_name,a.user_id,b.token from t_e_user a join t_e_user_token b on a.user_id = b.user_id" />
+    </bean>
+    <bean class="com.sevenroad.oas.cache.Imp.GameZoneCache" >
+        <constructor-arg name="getData" value="select * from sc_sdklog_platform_0002.t_p_zone_info where app_id = #gameId# " />
+    </bean>
+</beans>

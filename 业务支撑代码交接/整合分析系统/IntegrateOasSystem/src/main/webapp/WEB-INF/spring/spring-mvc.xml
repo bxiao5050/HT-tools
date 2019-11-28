@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+               http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+               http://www.springframework.org/schema/mvc
+				 http://www.springframework.org/schema/mvc/spring-mvc.xsd
+
+               http://www.springframework.org/schema/context
+               http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+    <context:component-scan base-package="com.sevenroad.oas.web.controllers"/>
+    <mvc:resources location="/static/" mapping="/static/**"/>
+    <bean id="interceptor" class="com.sevenroad.oas.web.common.UserPermissInterceptor">
+        <property name="ignoreList">
+            <list>
+                <value>/static</value>
+                <value>/api/v1.0/user/login</value>
+                <value>/api/v1.0/admin/login</value>
+                <value>/api/v1.0/user/OALogin</value>
+                <value>/api/v1.0/permiss/promise</value>
+                <value>/api/v1.0/permiss/reject</value>
+                <value>/api/v1.0/permiss/check</value>
+                <value>/api/v1.0/import/fn_oas_budget_costs</value>
+            </list>
+        </property>
+    </bean>
+
+    <mvc:interceptors>
+        <ref bean="interceptor" />
+    </mvc:interceptors>
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/plain;charset=UTF-8</value>
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 上传文件大小上限，单位为字节（10MB） -->
+        <property name="maxUploadSize">
+            <value>10485760</value>
+        </property>
+        <!-- 请求的编码格式，必须和jSP的pageEncoding属性一致，以便正确读取表单的内容，默认为ISO-8859-1 -->
+        <property name="defaultEncoding">
+            <value>UTF-8</value>
+        </property>
+    </bean>
+
+</beans>

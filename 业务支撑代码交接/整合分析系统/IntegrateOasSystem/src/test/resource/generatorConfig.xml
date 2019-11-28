@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <classPathEntry
+            location="D:\linlin.zhang\Project\supportSystem 2.0-master\integrateOasSystem\IntegrateOasSystem\src\main\resources\mysql-connector-java-5.1.6.jar" />
+    <context id="context1" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://121.10.140.56:3306/integrate_oas_system"
+                        userId="root" password="love7road!" />
+        <javaModelGenerator targetPackage="com.sevenroad.oas.dao.entity"
+                            targetProject="D:\linlin.zhang\Project\supportSystem 2.0-master\integrateOasSystem\IntegrateOasSystem\src\main\java" />
+
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject="D:\linlin.zhang\Project\supportSystem 2.0-master\integrateOasSystem\IntegrateOasSystem\src\main\resources\mybatis" />
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.sevenroad.oas.dao.mapper"
+                             targetProject="D:\linlin.zhang\Project\supportSystem 2.0-master\integrateOasSystem\IntegrateOasSystem\src\main\java">
+        </javaClientGenerator>
+
+        <table tableName="t_e_task" domainObjectName="Task"
+               enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" selectByExampleQueryId="true" >
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+    </context>
+</generatorConfiguration>

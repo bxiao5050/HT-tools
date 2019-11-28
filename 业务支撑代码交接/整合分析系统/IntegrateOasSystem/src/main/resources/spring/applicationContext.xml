@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:ws="http://www.springframework.org/schema/websocket"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+              http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd
+              http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+              http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+    <context:component-scan base-package="com.sevenroad.oas"/>
+    <context:annotation-config />
+    <!--<bean id="websocket" class="com.sevenroad.oas.web.handler.WebSocketHandle"/>-->
+    <!--<ws:handlers allowed-origins="*">-->
+        <!--<ws:mapping path="/message" handler="websocket"/>-->
+        <!--<ws:handshake-interceptors>-->
+            <!--<bean class="com.sevenroad.oas.web.common.HandshakeInterceptor"/>-->
+        <!--</ws:handshake-interceptors>-->
+        <!--<ws:sockjs session-cookie-needed="true"/>-->
+    <!--</ws:handlers>-->
+
+    <ws:message-broker application-destination-prefix="/app" user-destination-prefix="/user">
+
+        <ws:stomp-endpoint path="/message" allowed-origins="*">
+
+                <ws:handshake-interceptors>
+                    <bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
+                </ws:handshake-interceptors>
+            <ws:sockjs session-cookie-needed="true" suppress-cors="*"  client-library-url="https://cdn.jsdelivr.net/sockjs/1.1.4/sockjs.min.js"/>
+        </ws:stomp-endpoint>
+        <ws:stomp-broker-relay relay-host="172.16.1.171" prefix="/topic,/user" />
+
+        <ws:client-inbound-channel>
+            <ws:executor core-pool-size="100" max-pool-size="200" keep-alive-seconds="600"/>
+            <ws:interceptors >
+                <bean class="com.sevenroad.oas.web.handler.ChannleInterceptor" />
+            </ws:interceptors>
+        </ws:client-inbound-channel>
+    </ws:message-broker>
+    <bean class="org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory">
+        <property name="database" value="4"/>
+        <property name="hostName" value="172.16.1.171"/>
+        <!--<property name="password" value="jQ4ZWU4YjQ2MDUg" />-->
+    </bean>
+    <bean id="GenericJackson2JsonRedisSerializer" class="org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer"/>
+    <bean class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration">
+        <property name="defaultRedisSerializer" ref="GenericJackson2JsonRedisSerializer"/>
+    </bean>
+
+    <bean class="com.sevenroad.oas.web.model.WebSocketClientManage"></bean>
+    <!--config bean-->
+    <bean class="com.sevenroad.oas.web.common.SystemConfig">
+        <constructor-arg name="setPath" value="resources/IntegrateOasSystem.properties"/>
+    </bean>
+    <bean class="com.sevenroad.oas.web.common.SystemLanguage">
+        <constructor-arg name="setPath" value="resources/Language.properties"/>
+    </bean>
+    <!--缓存bean-->
+    <import resource="spring-cache.xml"/>
+    <!--任务调度-->
+    <!--<import resource="spring-task.xml"/>-->
+
+    <import resource="classpath:mybatis/mybatis.xml"/>
+</beans>

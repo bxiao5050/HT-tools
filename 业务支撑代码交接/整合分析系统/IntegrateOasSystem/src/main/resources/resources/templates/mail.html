@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .level1{
+            background-color: rgb(249, 104, 106);
+        }
+        .level2{
+            background-color: rgb(255, 192, 203);
+        }
+        .level3{
+            background-color: rgb(255, 235, 133);
+        }
+        .level4{
+            background-color: rgb(152, 251, 152);
+        }
+        .level5{
+            background-color: rgb(34, 139, 34);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <span class="text-center">
+        <h3>
+             ${report.titleContent}
+        </h3></span>
+
+    <div class="row">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">游戏类别</th>
+                <th scope="col">游戏名</th>
+                <th scope="col">当日花费</th>
+                <th scope="col">本月累计</th>
+                <th scope="col">本月预算</th>
+                <th scope="col">占比</th>
+            </tr>
+            </thead>
+            <tbody>
+            <#list report.totalData.mobileGame as x>
+            <tr>
+
+                <#if x_index=0>
+                    <th scope="row" class="align-middle" rowspan="${report.totalData.mobileGame?size+1}">手游</th>
+                </#if>
+                    <td>${x.gameName}</td>
+                    <td>${x.todayCost}</td>
+                    <td>${x.monthCost}</td>
+                    <td>${x.monthBudget}</td>
+                    <td>${x.percent+'%'}</td>
+            </tr>
+            </#list>
+            </tbody>
+        </table>
+    </div>
+    <#list report.gameData as x>
+    <p class="bg-dark">.text-white</p>
+
+        <span class="text-center"><h4>${x.gameName}</h4></span>
+        <div class="row">
+        <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">序号</th>
+                        <th scope="col">媒体</th>
+                        <th scope="col">系统</th>
+                        <th scope="col">激活</th>
+                        <th scope="col">注册</th>
+                        <th scope="col">创角</th>
+                        <th scope="col">花费</th>
+                        <th scope="col">注册率</th>
+                        <th scope="col">创角率</th>
+                        <th scope="col">激活成本</th>
+                        <th scope="col">注册成本</th>
+                        <th scope="col">创角成本</th>
+                    </tr>
+                    </thead>
+                <#list x.rows as row>
+                    <tr>
+                        <#if (x.rows?size>row_index+1)>
+                            <th scope="row">${row_index+1}</th>
+                            <td>${row.mediaSource}</td>
+                            <td>${row.system}</td>
+                            <td>${row.install}</td>
+                            <td>${row.reg}</td>
+                            <td>${row.roles}</td>
+                            <td>${row.cost}</td>
+                            <td class="${row.regsColor}">${row.regPercent+'%'}</td>
+                            <td class="${row.rolesColor}">${row.rolesPercent+'%'}</td>
+                            <td class="${row.installCostColor}">${row.installCost}</td>
+                            <td class="${row.regCostColor}">${row.regCost}</td>
+                            <td class="${row.rolesCostColor}">${row.rolesCost}</td>
+                            <#else>
+                                <th scope="row"></th>
+                                <th colspan="2">${row.mediaSource}</th>
+                                <th>${row.install}</th>
+                                <th>${row.reg}</th>
+                                <th>${row.roles}</th>
+                                <th>${row.cost}</th>
+                                <th>${row.regPercent+'%'}</th>
+                                <th>${row.rolesPercent+'%'}</th>
+                                <th>${row.installCost}</th>
+                                <th>${row.regCost}</th>
+                                <th>${row.rolesCost}</th>
+                         </#if>
+                    </tr>
+                </#list>
+                </table>
+    </div>
+
+         <div id="chart${x_index}"  style="height:400px"></div>
+    </#list>
+</div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        var report = JSON.parse("${chartData}");
+
+        var chartData = [];
+        for(var i = 0;i< report.gameData.length;i++){
+            var gameItem = report.gameData[i];
+            var gameData = {
+                titleContent:gameItem.gameName,
+                chartData:gameItem.chartData
+            };
+            chartData.push(gameData);
+        }
+        for(var i = 0;i<chartData.length;i++){
+            //判断是否为泰国攻城掠地
+            const tl = chartData[i].titleContent.indexOf('泰国攻城掠地')
+            const vt = chartData[i].titleContent.indexOf('越南攻城掠地')
+            if(tl!=-1||vt!=-1){
+                $('#chart'+ i).highcharts({
+                    title: {
+                        text: ""
+                    },
+                    // subtitle: {
+                    //     text: '数据来源: data.7road.com'
+                    // },
+                    xAxis: [{
+                        categories: report.dateList,
+                        crosshair: true
+                    }],
+                    yAxis: [{ // Primary yAxis
+                        labels: {
+                            format: '{value}',
+                            style: {
+                                color: Highcharts.getOptions().colors[0]
+                            }
+                        },
+                        title: {
+                            text: '',
+                            style: {
+                                color: Highcharts.getOptions().colors[1]
+                            }
+                        }
+                    }, { // Secondary yAxis
+                        title: {
+                            text: '',
+                            style: {
+                                color: Highcharts.getOptions().colors[2]
+                            }
+                        },
+                        labels: {
+                            format: '{value}',
+                            style: {
+                                color: Highcharts.getOptions().colors[3]
+                            }
+                        },
+                        opposite: true
+                    }],
+                    tooltip: {
+                        shared: true
+                    },
+                    legend: {
+                        layout: 'horizontal',
+                        align: 'center',
+                        x: 0,
+                        verticalAlign: 'top',
+                        y: 0,
+                        floating: true,
+                        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+                    },
+                    series: [{
+                        name: '激活',
+                        type: 'column',
+                        yAxis: 0,
+                        data: chartData[i].chartData.install
+                    },{
+                        name: '注册',
+                        type: 'column',
+                        yAxis: 0,
+                        data: chartData[i].chartData.regs
+                    },{
+                        name: '创角',
+                        type: 'column',
+                        yAxis: 0,
+                        data: chartData[i].chartData.roles
+                    },{
+                        name: '充值',
+                        type: 'column',
+                        yAxis: 0,
+                        data: chartData[i].chartData.recharge
+                    },{
+                        name: '激活成本',
+                        type: 'spline',
+                        yAxis: 1,
+                        data: chartData[i].chartData.installCosts
+                    },{
+                        name: '注册成本',
+                        type: 'spline',
+                        yAxis: 1,
+                        data: chartData[i].chartData.regCosts
+                    }]
+                });
+            }else{
+            $('#chart'+ i).highcharts({
+                title: {
+                    text: ""
+                },
+                // subtitle: {
+                //     text: '数据来源: data.7road.com'
+                // },
+                xAxis: [{
+                    categories: report.dateList,
+                    crosshair: true
+                }],
+                yAxis: [{ // Primary yAxis
+                    labels: {
+                        format: '{value}',
+                        style: {
+                            color: Highcharts.getOptions().colors[0]
+                        }
+                    },
+                    title: {
+                        text: '',
+                        style: {
+                            color: Highcharts.getOptions().colors[1]
+                        }
+                    }
+                }, { // Secondary yAxis
+                    title: {
+                        text: '',
+                        style: {
+                            color: Highcharts.getOptions().colors[2]
+                        }
+                    },
+                    labels: {
+                        format: '{value}',
+                        style: {
+                            color: Highcharts.getOptions().colors[3]
+                        }
+                    },
+                    opposite: true
+                }],
+                tooltip: {
+                    shared: true
+                },
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    x: 0,
+                    verticalAlign: 'top',
+                    y: 0,
+                    floating: true,
+                    backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+                },
+                series: [{
+                    name: '激活',
+                    type: 'column',
+                    yAxis: 0,
+                    data: chartData[i].chartData.install
+                },{
+                    name: '注册',
+                    type: 'column',
+                    yAxis: 0,
+                    data: chartData[i].chartData.regs
+                },{
+                    name: '创角',
+                    type: 'column',
+                    yAxis: 0,
+                    data: chartData[i].chartData.roles
+                },{
+                    name: '充值',
+                    type: 'column',
+                    yAxis: 0,
+                    data: chartData[i].chartData.recharge
+                },{
+                    name: '激活成本',
+                    type: 'spline',
+                    yAxis: 1,
+                    data: chartData[i].chartData.installCosts
+                },{
+                    name: '注册成本',
+                    type: 'spline',
+                    yAxis: 1,
+                    data: chartData[i].chartData.regCosts
+                },{
+                    name: '创角成本',
+                    type: 'spline',
+                    yAxis: 1,
+                    data: chartData[i].chartData.roleCosts
+                }]
+            });
+        }
+        }
+
+    });
+
+</script>
+</html>
