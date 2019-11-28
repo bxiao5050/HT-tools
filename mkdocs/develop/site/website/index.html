@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>官网 - 开发文档</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u5b98\u7f51";
+    var mkdocs_page_input_path = "website.md";
+    var mkdocs_page_url = "/website/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> 开发文档</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">官网</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#_1">官网</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#_2">开发流程</a></li>
+        
+            <li><a class="toctree-l3" href="#_7">附录</a></li>
+        
+            <li><a class="toctree-l3" href="#fis3">fis3打包的官网</a></li>
+        
+            <li><a class="toctree-l3" href="#_10">游戏域名</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../server/">活动后台</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../system/">数据与权限</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../sdk/">sdk文档</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">开发文档</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>官网</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="_1">官网</h1>
+<p>开发前确认素材无误，确认官网域名等已申请</p>
+<p>例子：  </p>
+<blockquote>
+<blockquote>
+<p><strong>H5独步江域名信息</strong><br />
+<strong>官网域名</strong>:　　　　　　<code>docbogiangho.bilivfun.com</code><br />
+<strong>服务器目录</strong>:　　　　　<code>/data/web/sites/dbjh-vn</code><br />
+<strong>静态资源CDN地址</strong>:　　<code>http://images-cdn.bilivfun.com/docbogiangho/</code><br />
+<strong>CDK域名</strong>:　　　　　　<code>cdk.bilivfun.com</code>   </p>
+</blockquote>
+</blockquote>
+<hr />
+<h2 id="_2">开发流程</h2>
+<h3 id="_3">* 根据素材制作页面；</h3>
+<blockquote>
+<p>静态资源放官网目录下<code>static</code>文件夹下，其地址为静态资源cdn地址</p>
+</blockquote>
+<h3 id="_4">* 配置活动后台</h3>
+<blockquote>
+<ul>
+<li>页面开发完成，在<a href="http://admin.changicth.com">官网管理后台</a>上配置官网信息；  <ol>
+<li><code>站点管理</code> -&gt; <code>增加站点</code> -&gt; <code>填写站点信息</code></li>
+<li><code>站点管理</code> -&gt; <code>查询站点</code> -&gt; <code>指定模板</code> -&gt; <code>勾选活动模板、新闻模板和首页模板</code></li>
+<li><code>文章种类</code> -&gt; <code>文章类型</code> -&gt; <code>新增两个文章类型，一个活动，一个新闻（所属种类为news）</code></li>
+<li><code>权限管理</code> -&gt; <code>查询角色</code> -&gt; <code>增加两个角色，一个运营，一个管理员，并为对应账号配置角色，否则对应账号无法查看该游戏；</code></li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<p>添加新闻时，新闻状态设置为热点，状态有效时间尽可能的长一些，发布时间要比当前时间提前1小时  </p>
+</li>
+<li>
+<p>账号： panda.z　　密码： 123@asdf</p>
+</li>
+<li>账号会过期，重置密码后默认密码为： changic</li>
+</ul>
+<h3 id="_5">* 修改新闻代码</h3>
+<blockquote>
+<ul>
+<li>活动后台配置完成后，根据后台配置信息修改html为ftl  </li>
+</ul>
+</blockquote>
+<h3 id="_6">* 生成新闻代码</h3>
+<blockquote>
+<ul>
+<li>将修改好的ftl文件放到对应的模板目录下（在站点中配置），<br />
+    点击<code>生成全站HTML</code>，对应官网目录下会生成对应的新闻代码，  <br />
+   模板文件存放路径： <code>业务支持</code> -&gt; <code>游戏官网服</code> -&gt; <code>/data/web/web-changic/WEB-INF/template/目录名称</code><br />
+   官网文件存放路径：<code>业务支持</code> -&gt; <code>游戏官网服</code> -&gt; <code>/data/web/sites/</code></li>
+</ul>
+</blockquote>
+<hr />
+<h2 id="_7">附录</h2>
+<h4 id="_8">首页新闻列表代码</h4>
+<pre><code>    &lt;@directive_article_list site=站点序号 size=显示文章数量 type=类型简称 kind=1&gt;
+        &lt;#list _list_entity_article as article&gt;
+           &lt;li&gt;
+               &lt;p class=&quot;tit&quot;&gt;
+                 &lt;a target=&quot;_blank&quot; href=&quot;&lt;#if article.url?exists || article.url !=''&gt;${article.url} &lt;#else&gt;${serverHost}/news/detail/${article.ID?c}.html&lt;/#if&gt;&quot;&gt;
+                      &lt;span class=&quot;content&quot;&gt;
+                          [&lt;#list article.typeList as type&gt;&lt;#if type_index == 0&gt;${type.typeName}&lt;#else&gt;&lt;#break /&gt;&lt;/#if&gt;&lt;/#list&gt;]
+                          &lt;#if article.title?length gt 50&gt;${article.title?substring(0,48)}... &lt;#else&gt;${article.title} &lt;/#if&gt;
+                      &lt;/span&gt;
+                 &lt;/a&gt;
+               &lt;/p&gt;
+               &lt;p class=&quot;date&quot;&gt;${article.createTime?string(&quot;yyyy-MM-dd&quot;)}&lt;/p&gt;
+           &lt;/li&gt;
+       &lt;/#list&gt;
+    &lt;/@directive_article_list&gt;
+</code></pre>
+
+<h4 id="_9">新闻内页代码</h4>
+<ul>
+<li><strong>列表</strong></li>
+</ul>
+<pre><code>&lt;ul class=&quot;list active&quot; id=&quot;list&quot;&gt;
+     &lt;#include &quot;/luna-sg/news/listContent.ftl&quot;&gt;
+&lt;/ul&gt;
+
+</code></pre>
+
+<ul>
+<li><strong>listContent.ftl(填充到列表中，15条每页)</strong></li>
+</ul>
+<pre><code>&lt;#list newsList as news&gt;
+        &lt;li&gt;
+            &lt;div class=&quot;left&quot;&gt;
+                &lt;a target=&quot;_blank&quot; href=&quot;&lt;#if news.url?exists || news.url !=''&gt;${news.url}&lt;#else&gt;${serverHost}/news/detail/${news.ID?c}.html&lt;/#if&gt;&quot;&gt;
+                    &lt;span class=&quot;style&quot;&gt;[NEWS]&lt;/span&gt;&lt;span class=&quot;tit&quot;&gt;${news.title}&lt;/span&gt;
+                &lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;right&quot;&gt;
+                &lt;span class=&quot;date&quot;&gt;${news.createTime?string(&quot;yyyy-MM-dd&quot;)}&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/li&gt;
+&lt;/#list&gt;
+
+&lt;#if (currentPage==1 ) &amp;&amp; (currentPage &lt; totalPage)&gt;
+    &lt;div class=&quot;pageNum&quot; id=&quot;page_1&quot;&gt;
+        &lt;a href=&quot;javascript:void(0)&quot; onclick=&quot;changePage('list/${typeId}_1.html?ver=${version}');&quot;&gt;First&lt;/a&gt;
+        &lt;a href=&quot;javascript:void(0)&quot;&gt;&amp;lt;&amp;nbsp;Pre&lt;/a&gt;
+        &amp;nbsp;&amp;nbsp;${currentPage}/${totalPage}&amp;nbsp;&amp;nbsp;
+        &lt;a href=&quot;javascript:void(0)&quot; onclick=&quot;changePage('list/${typeId}_${currentPage + 1}.html?ver=${version}')&quot;&gt;Next&amp;nbsp;&amp;gt;&lt;/a&gt;
+        &lt;a href=&quot;javascript:void(0)&quot; onclick=&quot;changePage('list/${typeId}_${totalPage}.html?ver=${version}')&quot;&gt;Last&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/#if&gt;
+
+&lt;#if (currentPage&gt;1) &amp;&amp; (currentPage &lt; totalPage)&gt;
+    &lt;div class=&quot;pageNum&quot;&gt;
+        &lt;a href=&quot;javascript:void(0)&quot; onclick=&quot;changePage('list/${typeId}_1.html?ver=${version}');&quot;&gt;First&lt;/a&gt;
+        &lt;a href=&quot;javascript:void(0)&quot; onclick=&quot;changePage('list/${typeId}_${currentPage - 1}.html?ver=${version}')&quot; href=&quot;javascript:void(0)&quot;&gt;&amp;lt;&amp;nbsp;Pre&lt;/a&gt;
+        &amp;nbsp;&amp;nbsp;${currentPage}/${totalPage}&amp;nbsp;&amp;nbsp;
+        &lt;a href=&quot;javascript:void(0)&quot; onclick=&quot;changePage('list/${typeId}_${currentPage + 1}.html?ver=${version}')&quot; href=&quot;javascript:void(0)&quot;&gt;Next&amp;nbsp;&amp;gt;&lt;/a&gt;
+        &lt;a href=&quot;javascript:void(0)&quot; onclick=&quot;changePage('list/${typeId}_${totalPage}.html?ver=${version}')&quot;&gt;Last&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/#if&gt;
+
+&lt;#if (currentPage&gt;1) &amp;&amp; (currentPage == totalPage)&gt;
+    &lt;div class=&quot;pageNum&quot;&gt;
+        &lt;a href=&quot;javascript:void(0)&quot; onclick=&quot;changePage('list/${typeId}_1.html?ver=${version}');&quot;&gt;First&lt;/a&gt;
+        &lt;a href=&quot;javascript:void(0)&quot; onclick=&quot;changePage('list/${typeId}_${currentPage - 1}.html?ver=${version}')&quot;&gt;&amp;lt;&amp;nbsp;Pre&lt;/a&gt;
+        &amp;nbsp;&amp;nbsp;${currentPage}/${totalPage}&amp;nbsp;&amp;nbsp;
+        &lt;a href=&quot;javascript:void(0)&quot;&gt;Next&amp;nbsp;&amp;gt;&lt;/a&gt;
+        &lt;a href=&quot;javascript:void(0)&quot;&gt;Last&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/#if&gt;
+</code></pre>
+
+<ul>
+<li><strong>文章内容</strong></li>
+</ul>
+<pre><code>&lt;div class=&quot;list-content&quot;&gt;
+    &lt;div class=&quot;content&quot;&gt;
+        &lt;p class=&quot;tit&quot;&gt;${news.title}（标题）&lt;/p&gt;
+        &lt;p class=&quot;date&quot;&gt;POST ON&lt;span&gt;&lt;#if news.publishTime?exists || news.publishTime != ''&gt;${news.publishTime?string(&quot;yyyy-MM-dd&quot;)} &lt;#else&gt;${news.createTime?string(&quot;yyyy-MM-dd&quot;)}&lt;/#if&gt;&lt;/span&gt; (发布时间)&lt;/p&gt;
+        &lt;p class=&quot;detail&quot;&gt;
+            文章内容
+            ${news.content}
+        &lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<ul>
+<li><strong>切换不同类型文章按钮代码</strong></li>
+</ul>
+<pre><code>&lt;div class=&quot;link&quot;&gt;
+    &lt;a href=&quot;javascript:void(0);&quot; class=&quot;guide acts&quot; data-id=&quot;61&quot; data-version=&quot;${version}&quot;&gt;news&lt;/a&gt;
+    &lt;a href=&quot;javascript:void(0);&quot; class=&quot;guide news&quot; data-id=&quot;62&quot; data-version=&quot;${version}&quot;&gt;events&lt;/a&gt;
+&lt;/div&gt;    
+
+
+$(&quot;.guide&quot;).click(function(){
+    var id = $(this).attr(&quot;data-id&quot;); //对应文章类型id
+    var version = $(this).attr(&quot;data-version&quot;); //页面生成的版本号
+    var url = '/news/list/'+id+'_1.html?ver='+version; 
+    $.get(url, function(data){
+        $(&quot;.list-menu&quot;).html(data);
+    });
+});
+</code></pre>
+
+<h2 id="fis3">fis3打包的官网</h2>
+<ul>
+<li>
+<p>以前使用的是fis3打包，若需维护则需要重新打包更新，打包指令</p>
+<p><code>fis3 release production -d output</code></p>
+</li>
+<li>
+<p><code>fis-conf.js</code>为打包配置文件，若地址等有更新，则需到这里面更改</p>
+</li>
+<li>
+<p>打包完毕之后，将output中<strong>static</strong>打包为<strong>zip</strong>文件,替换官网<strong>static</strong></p>
+</li>
+<li>
+<p>更新tpl文件，生成官网</p>
+</li>
+</ul>
+<h2 id="_10">游戏域名</h2>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="left">域名</th>
+<th align="center">对应服务器文件名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">iPocket</td>
+<td align="left"><a href="http://www.ipocketgames.com/">http://www.ipocketgames.com/</a></td>
+<td align="center">www</td>
+</tr>
+<tr>
+<td align="center">bilivfun</td>
+<td align="left"><a href="http://www.bilivfun.com/">http://www.bilivfun.com/</a></td>
+<td align="center">bilivfun</td>
+</tr>
+<tr>
+<td align="center">公司官网</td>
+<td align="left"><a href="http://xiaoyao.pocketgamesol.com/">http://xiaoyao.pocketgamesol.com/</a></td>
+<td align="center">xiaoyao</td>
+</tr>
+<tr>
+<td align="center">luna-新马</td>
+<td align="left"><a href="http://luna.pocketgamesol.com/">http://luna.bilivfun.com/</a></td>
+<td align="center">luna-sg</td>
+</tr>
+<tr>
+<td align="center">数码宝贝-泰国</td>
+<td align="left"><a href="http://dd.pocketgamesol.com/">http://dd.pocketgamesol.com/</a></td>
+<td align="center">smbb-th</td>
+</tr>
+<tr>
+<td align="center">口袋3ds-印尼</td>
+<td align="left"><a href="http://pkid.pocketgamesol.com/">http://pkid.pocketgamesol.com/</a></td>
+<td align="center">kdyg3ds-id</td>
+</tr>
+<tr>
+<td align="center">口袋3ds-法国</td>
+<td align="left"><a href="http://pmfr.pocketgamesol.com/">http://pmfr.pocketgamesol.com/</a></td>
+<td align="center">kdyg3ds-fr</td>
+</tr>
+<tr>
+<td align="center">口袋3ds-韩国</td>
+<td align="left"><a href="http://kor.pocketgamesol.com/">http://kor.pocketgamesol.com/</a></td>
+<td align="center">kdyg3ds-kr</td>
+</tr>
+<tr>
+<td align="center">口袋3ds-港台</td>
+<td align="left"><a href="http://pokeko.88box.com/">http://pokeko.pocketgamesol.com/</a></td>
+<td align="center">kdyg3ds-tw</td>
+</tr>
+<tr>
+<td align="center">口袋3ds-德国</td>
+<td align="left"><a href="http://pkde.pocketgamesol.com/">http://pkde.pocketgamesol.com/</a></td>
+<td align="center">kdyg3ds-de</td>
+</tr>
+<tr>
+<td align="center">口袋3ds-越南</td>
+<td align="left"><a href="http://pokedaichien.pocketgamesol.com/">http://pokedaichien.pocketgamesol.com/</a></td>
+<td align="center">kdyg3ds-vn</td>
+</tr>
+<tr>
+<td align="center">口袋3ds-泰国</td>
+<td align="left"><a href="http://pokesaga.pocketgamesol.com/">http://pokesaga.pocketgamesol.com/</a></td>
+<td align="center">kdyg3ds-th</td>
+</tr>
+<tr>
+<td align="center">超级英雄-越南</td>
+<td align="left"><a href="http://sieuanhhung.pocketgamesol.com/">http://sieuanhhung.pocketgamesol.com/</a></td>
+<td align="center">super-hero</td>
+</tr>
+<tr>
+<td align="center">全球超英-越南</td>
+<td align="left"><a href="http://www.funheroesfight.com/">http://www.funheroesfight.com/</a></td>
+<td align="center">heroesfight</td>
+</tr>
+<tr>
+<td align="center">攻城略地-泰国</td>
+<td align="left"><a href="http://k.changicth.com/">http://k.changicth.com/</a></td>
+<td align="center">k</td>
+</tr>
+<tr>
+<td align="center">攻城略地-越南</td>
+<td align="left"><a href="http://t.changicvn.com/">http://t.changicvn.com/</a></td>
+<td align="center">t</td>
+</tr>
+<tr>
+<td align="center">全民主公-越南</td>
+<td align="left"><a href="http://tamquoc.pocketgamesol.com/">http://tamquoc.pocketgamesol.com/</a></td>
+<td align="center">qmzg-vn</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../server/" class="btn btn-neutral float-right" title="活动后台">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../server/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>

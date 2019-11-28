@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>sdk文档 - 开发文档</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "sdk\u6587\u6863";
+    var mkdocs_page_input_path = "sdk.md";
+    var mkdocs_page_url = "/sdk/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> 开发文档</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../website/">官网</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../server/">活动后台</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../system/">数据与权限</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">sdk文档</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#sdk">sdk文档</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#_1">登录</a></li>
+        
+            <li><a class="toctree-l3" href="#_2">绑定区服</a></li>
+        
+            <li><a class="toctree-l3" href="#_3">支付</a></li>
+        
+            <li><a class="toctree-l3" href="#_4">重点</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">开发文档</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>sdk文档</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="sdk">sdk文档</h1>
+<p>为游戏提供sdk方便对接，包含登录，注册和支付，以及FB分享，调起messenger等方法；<br />
+具体方法可查看<a href="http://sdk-test.changic.net.cn:8191/docs/sdk/index.html">游戏对接文档</a><br />
+下面主要介绍部分重点：  </p>
+<h2 id="_1">登录</h2>
+<p>登录分为<strong>平台登录</strong>和<strong>FB登录</strong>  </p>
+<ul>
+<li>
+<p>平台登录调用登录接口<code>user/v3/login</code>即可；</p>
+</li>
+<li>
+<p>FB登录分为两步：</p>
+<ul>
+<li>授权并登录<strong>facebook</strong>，获取<strong>fbId</strong>；</li>
+<li>使用<strong>fbId</strong>调用注册接口<code>user/v3/register</code>进行登录。  </li>
+</ul>
+</li>
+</ul>
+<p><strong>注:</strong> FB登录方式有两种：</p>
+<ul>
+<li>1.直接使用JSSDK中FB.login方法调起登录窗，    </li>
+<li>2.跳到授权页，授权后返回code回来，调接口<code>https://graph.facebook.com/oauth/access_token</code>，获取accessToken，再通过接口<code>https://graph.facebook.com/me?access_token</code>接口获取fbId</li>
+</ul>
+<h2 id="_2">绑定区服</h2>
+<p>接口:&nbsp;&nbsp;&nbsp;<code>user/v3/bindZone</code><br />
+这个看起来没有并什么用的接口，必须要让游戏调用后台才有数据，切记切记~</p>
+<h2 id="_3">支付</h2>
+<p>支付sdk只进行获取支付方式和下单；</p>
+<ul>
+<li>
+<p>获取支付方式接口：<code>config/paymentConfig/v4.0</code></p>
+</li>
+<li>
+<p>下单接口：<code>order/create/v4.0</code></p>
+</li>
+</ul>
+<p><strong>注：</strong> <code>showMethod</code>决定页面展现方式</p>
+<h2 id="_4">重点</h2>
+<h3 id="pcfb">PC端FB登录方式</h3>
+<ul>
+<li>
+<p>由于<a href="http://docbogiangho.bilivfun.com/dbjh/index.html">PC端</a>游戏页面嵌套在iframe标签中
+而授权页无法再iframe中打开，因此，使用第一种FB登录方式，即调用JSSDK的FB.Login登录方法；</p>
+</li>
+<li>
+<p>由于微端（即在webview中），FB的JSSDK无法调起登录窗口，因此必须用第二种登录方式，跳转到授权页，授权回来再进行登录;</p>
+</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../system/" class="btn btn-neutral" title="数据与权限"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../system/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>

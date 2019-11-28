@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>活动页 - 活动管理平台</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u6d3b\u52a8\u9875";
+    var mkdocs_page_input_path = "activity.md";
+    var mkdocs_page_url = "/activity/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> 活动管理平台</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">登录</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">活动页</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#_1">活动接口</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_2">累计登录达成</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_3">活跃人数达成</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_4">累计充值达成</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_5">直接领取类活动</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_6">预约活动</a></li>
+    
+
+    <li class="toctree-l2"><a href="#_7">许愿活动</a></li>
+    
+
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">活动管理平台</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>活动页</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="_1">活动接口</h2>
+<ul>
+<li>基本接口：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="left">URL</th>
+<th align="center">请求方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">活动信息</td>
+<td align="left">${ipport}/activity/info</td>
+<td align="center">GET</td>
+</tr>
+<tr>
+<td align="center">领奖历史</td>
+<td align="left">${ipport}/activity/cdKeys</td>
+<td align="center">GET</td>
+</tr>
+<tr>
+<td align="center">参与活动</td>
+<td align="left">${ipport}/activity/join</td>
+<td align="center">GET</td>
+</tr>
+</tbody>
+</table>
+<p><code>/activity/cdKeys</code>接口传递参数：</p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="left">类型</th>
+<th align="center">是否必需</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">groupId</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">活动组id</td>
+</tr>
+<tr>
+<td align="center">actId</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">活动id</td>
+</tr>
+<tr>
+<td align="center">token</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">用户认证令牌</td>
+</tr>
+</tbody>
+</table>
+<p>请求返回数据格式：</p>
+<pre><code>{
+    &quot;code&quot;: 200,
+    &quot;state&quot;: [
+        {
+            &quot;goodId&quot;: &quot;299fb11f-2e5a-4792-ae6f-85011ee3319b&quot;,
+            &quot;type&quot;: 0,
+            &quot;historyId&quot;: &quot;5b2b23d4856f3e50998aeb86&quot;,
+            &quot;actId&quot;: &quot;5afd2f0f90bf7f08a0446bcf&quot;,
+            &quot;rewardId&quot;: &quot;5afd3bf090bf7f08a0446c29&quot;, //奖励id，根据此id为对应奖励按钮设置领取状态
+            &quot;rewardName&quot;: &quot;累登1天&quot;,
+            &quot;getDate&quot;: &quot;2018-06-21 11:04:36&quot;,
+            &quot;userId&quot;: &quot;25587683&quot;,
+            &quot;userName&quot;: &quot;kitkat@9266.com&quot;,
+            &quot;thirdGameZoneId&quot;: &quot;1&quot;,
+            &quot;playerName&quot;: &quot;katty0&quot;,
+            &quot;isGet&quot;: true
+        },
+        ...
+    ]
+}
+
+</code></pre>
+
+<p><code>/activity/join</code>接口传递参数：</p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="left">类型</th>
+<th align="center">是否必需</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">groupId</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">活动组id</td>
+</tr>
+<tr>
+<td align="center">actId</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">活动id</td>
+</tr>
+<tr>
+<td align="center">rewardId</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">奖励id</td>
+</tr>
+<tr>
+<td align="center">token</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">用户认证令牌</td>
+</tr>
+</tbody>
+</table>
+<p>请求返回数据格式：</p>
+<pre><code>{
+    code:200
+    state:{
+        actId:&quot;5acb098890bf7f158cb8711e&quot;
+        getDate:&quot;2018-06-26 13:50:17&quot;
+        goodId:&quot;dc6e8f04-5a28-47cb-9d21-2ca5ae4915bf&quot;
+        historyId:&quot;5b31e22990bf7f07b476f559&quot;
+        isGet:true
+        playerName:&quot;oopsgg&quot;
+        rewardId:&quot;5acb098890bf7f158cb8712b&quot;
+        rewardName:&quot;รางวัลล็อกอิน 1 วัน&quot;
+        thirdGameZoneId:&quot;1&quot;
+        type:0
+        userId:&quot;123759623&quot;
+        userName:&quot;smiler119&quot;
+
+        //若奖励类型为激活码，state中将含有cdkeys字段
+    }
+}
+</code></pre>
+
+<h2 id="_2">累计登录达成</h2>
+<ul>
+<li>
+<p>说明： </p>
+<ol>
+<li>通过<code>/activity/info</code>接口获取用户登录天数； </li>
+<li>通过<code>/activity/cdKeys</code>获取用户领取历史；</li>
+<li>通过1,2条件设置按钮状态；</li>
+<li>用户领取累积登录，通过<code>/activity/join</code>获取奖励。</li>
+</ol>
+</li>
+<li>
+<p>参数信息</p>
+</li>
+</ul>
+<p><code>/activity/info</code>接口传递参数：</p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="left">类型</th>
+<th align="center">是否必需</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">groupId</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">活动组id</td>
+</tr>
+<tr>
+<td align="center">actId</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">活动id</td>
+</tr>
+<tr>
+<td align="center">rewardId</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">奖励id（通常使用累积登录条件最后一个条件的rewardId）</td>
+</tr>
+<tr>
+<td align="center">token</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">用户认证令牌</td>
+</tr>
+</tbody>
+</table>
+<p>请求返回数据格式：</p>
+<pre><code>{
+    &quot;code&quot;: 200,
+    &quot;state&quot;: {
+        &quot;joinTime&quot;: { //没有用
+            &quot;dayTime&quot;: 1,
+            &quot;sumTime&quot;: 1
+        },
+        //登录数据
+        &quot;gameLogin&quot;: [
+            {
+                &quot;countDate&quot;: &quot;2018-07-04&quot;, //登录时间
+                &quot;count&quot;: 16                //当天登录次数 
+            },
+            {
+                &quot;countDate&quot;: &quot;2018-07-05&quot;,
+                &quot;count&quot;: 4
+            },
+           ...
+        ]
+    }
+}
+
+</code></pre>
+
+<h2 id="_3">活跃人数达成</h2>
+<ul>
+<li>
+<p>说明： </p>
+<ol>
+<li>通过<code>/activity/info</code>接口获取活跃人数</li>
+<li>通过<code>/activity/cdKeys</code>接口获取活跃奖励领取历史</li>
+<li>根据活跃人数和领取历史设置个梯度活跃奖励领取按钮状态</li>
+<li>通过<code>/activity/join</code>接口获取活跃奖励</li>
+</ol>
+</li>
+<li>
+<p><code>/activity/info</code>参数信息</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="left">类型</th>
+<th align="center">是否必需</th>
+<th align="left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">actId</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="left">活动Id</td>
+</tr>
+<tr>
+<td align="center">groupId</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="left">活动组Id</td>
+</tr>
+<tr>
+<td align="center">token</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="left">用户认证令牌</td>
+</tr>
+</tbody>
+</table>
+<p>数据返回格式</p>
+<pre><code>{
+    code:200
+    state:{
+        ActJoin:0   //活跃人数
+        countTimes:5000，
+        ...
+    }
+}
+</code></pre>
+
+<h2 id="_4">累计充值达成</h2>
+<p>说明： 
+1. 通过<code>/activity/info</code>接口获取充值金额
+2. 通过<code>/activity/cdKeys</code>接口获取领取记录
+3. 根据充值金额和领取记录设置充值奖励状态</p>
+<ul>
+<li><code>/activity/info</code>参数信息</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="left">类型</th>
+<th align="center">是否必需</th>
+<th align="left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">actId</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="left">活动Id</td>
+</tr>
+<tr>
+<td align="center">groupId</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="left">活动组Id</td>
+</tr>
+<tr>
+<td align="center">rewardId</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="left">礼包Id</td>
+</tr>
+<tr>
+<td align="center">token</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="left">用户认证令牌</td>
+</tr>
+</tbody>
+</table>
+<p>数据返回格式</p>
+<pre><code>{
+    code:200
+    state:{
+        PayCharge:0   //充值金额
+        ...
+    }
+}
+</code></pre>
+
+<h2 id="_5">直接领取类活动</h2>
+<p>说明：<br />
+ 1. 通过<code>/activity/cdKeys</code>接口获取领取记录<br />
+ 2. 根据充值金额和领取记录设置充值奖励状态<br />
+ 3. 通过<code>/activity/join</code>接口获取奖励  </p>
+<p><strong>注意：</strong> <br />
+<strong>转盘活动</strong>根据<code>/activity/join</code>接口获取到的<strong>rewardId</strong>判断指针指向</p>
+<h2 id="_6">预约活动</h2>
+<p>说明： </p>
+<ol>
+<li>通过<code>/activity/info</code>获取预约人数；</li>
+<li>通过<code>/activity/advance/join</code>提交预约手机号</li>
+</ol>
+<p><code>/activity/advance/join</code> 参数说明</p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="left">类型</th>
+<th align="center">是否必需</th>
+<th align="left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">groupId</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="left">活动组Id</td>
+</tr>
+<tr>
+<td align="center">actId</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="left">活动Id</td>
+</tr>
+<tr>
+<td align="center">phone</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="left">格式为 086-xxxxx</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_7">许愿活动</h2>
+<p>说明：</p>
+<p>活动需要配置两个活动，一个许愿次数，一个许愿奖励  </p>
+<ol>
+<li>通过<code>/activity/join</code>获取许愿次数奖励的<code>goodsId</code></li>
+<li>通过<code>/activity/submit/info</code>进行许愿</li>
+<li>通过<code>/activity/recently/cdkeys</code>获取愿望列表，条数根据<code>limit</code>参数控制</li>
+<li>最终中奖许愿玩家通过<code>/activity/lottery/list</code>获取</li>
+</ol>
+<p><code>/activity/submit/info</code> 传递参数说明</p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="left">类型</th>
+<th align="center">是否必需</th>
+<th align="left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">groupId</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="left">活动组Id</td>
+</tr>
+<tr>
+<td align="center">goodsId</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="left">许愿次数奖励获取到的goodsId</td>
+</tr>
+<tr>
+<td align="center">userInfo</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="left">用户愿望</td>
+</tr>
+<tr>
+<td align="center">token</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="left">用户认证令牌</td>
+</tr>
+</tbody>
+</table>
+<p><code>/activity/recently/cdkeys</code>传递参数说明</p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="left">类型</th>
+<th align="center">是否必需</th>
+<th align="left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">groupId</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="left">活动组Id</td>
+</tr>
+<tr>
+<td align="center">actId</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="left">活动Id</td>
+</tr>
+<tr>
+<td align="center">limit</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="left">愿望条数</td>
+</tr>
+<tr>
+<td align="center">token</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="left">用户认证令牌</td>
+</tr>
+</tbody>
+</table>
+<p>返回参数格式：</p>
+<pre><code>{
+    code: 200,
+    state: [
+        userName：&quot;用户名&quot;
+        userInfo: {
+            wish: &quot;愿望&quot;
+        }
+    ]
+}
+</code></pre>
+
+<p><code>/activity/lottery/list</code>参数说明：</p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="left">类型</th>
+<th align="center">是否必需</th>
+<th align="left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">groupId</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="left">活动组Id</td>
+</tr>
+<tr>
+<td align="center">actId</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="left">活动Id</td>
+</tr>
+<tr>
+<td align="center">token</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="left">用户认证令牌</td>
+</tr>
+</tbody>
+</table>
+<p>返回参数格式：</p>
+<pre><code>{
+    code: 200,
+    state: [
+        {
+            historyBase: {
+                thirdGameZoneId: &quot;三方区服id&quot;，
+                playerName: &quot;用户名&quot;
+            }
+        }
+        ...
+    ]
+}
+
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href=".." class="btn btn-neutral" title="登录"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>

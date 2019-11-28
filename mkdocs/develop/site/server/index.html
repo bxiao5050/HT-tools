@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>活动后台 - 开发文档</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u6d3b\u52a8\u540e\u53f0";
+    var mkdocs_page_input_path = "server.md";
+    var mkdocs_page_url = "/server/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> 开发文档</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../website/">官网</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">活动后台</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#_1">活动后台</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#_2">测试服</a></li>
+        
+            <li><a class="toctree-l3" href="#_3">正式服</a></li>
+        
+            <li><a class="toctree-l3" href="#_4">常见问题</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../system/">数据与权限</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../sdk/">sdk文档</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">开发文档</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>活动后台</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="_1">活动后台</h1>
+<p>活动后台分为测试服和正式服，其中各个游戏信息、活动信息以及游戏接口配置在mongodb中,<br />
+系统逐渐完善，常见问题主要有活动接口更换，游戏接口问题，筛选手机号码等...  </p>
+<hr />
+<h2 id="_2">测试服</h2>
+<p>mongodb地址： <code>172.16.172:27017/test</code> <br />
+服务器地址: 　　<code>10.10.3.144</code><br />
+项目目录：　　<code>E:\linlin.zhang\activity3.0</code><br />
+日志目录：　　<code>C:\logs</code><br />
+活动管理平台： <a href="http://172.16.1.171:9100/">http://172.16.1.171:9100/</a></p>
+<h2 id="_3">正式服</h2>
+<p>mongodb地址： <code>52.76.137.89:27017/activity_db</code>  <br />
+服务器地址：　<code>gms业务支持</code>-&gt;<code>活动后台服</code>-&gt;<code>/data/activities</code><br />
+活动管理平台： <a href="http://172.16.1.171:9200/">http://172.16.1.171:9200/</a><br />
+查看活动日志：</p>
+<blockquote>
+<ul>
+<li>服务器地址下执行<code>history | grep mysql</code></li>
+<li>进入最新一个mysql <code>mysql -usdk_linlin180102 -p'sdk_linlin20180102@_132'  -h10.10.2.192  -P2433</code></li>
+<li>切换到库 <code>activity_log</code></li>
+<li>其中，表<code>t_p_page_login</code> 为登录日志（可导出参与人数登信息）<br />
+   表<code>t_p_join_activity</code> 为活动日志（可导出对应活动领奖人数等信息）</li>
+<li>例： 查询活动参与人数
+   <code>select count(user_id) from t_p_join_activity where act_id='5b0f9b5f90bf7f14c86ce34e' and message like '{"code":200%' and count_date &gt; '2018-06-15';</code></li>
+</ul>
+</blockquote>
+<hr />
+<h2 id="_4">常见问题</h2>
+<h3 id="_5">更换或新增游戏接口</h3>
+<blockquote>
+<p>游戏接口更换，在<code>mongodb</code>的<code>apps</code>表中找到对应的app配置，更换API    <br />
+    * <code>PLAYER_INFO</code>　　　获取角色信息接口<br />
+    * <code>APP_SECERT</code>　　　　app Secret    <br />
+    * <code>SEND_EMAIL_NEW</code>　发送邮件奖励接口<br />
+    * <code>PLAYER_TASK</code>　　　查询任务完成接口（不常用）  </p>
+</blockquote>
+<h3 id="_6">所有条件配置正确却领取条件满足，领取时报不满足条件</h3>
+<blockquote>
+<p>如果活动有当天登录游戏要求，<br />
+  需查看登录后游戏接口返回最新时间lastLogin是否为当天时间，<br />
+  若时间仍满足条件，需到项目中进行调试  </p>
+</blockquote>
+<h3 id="1m">导入超过1M固定用户</h3>
+<blockquote>
+<p>在活动管理平台中导入测试用户.txt（不超过1M）,    <br />
+  到<code>mongdb</code>中查看<code>activities</code>中对应活动含有的条件id -&gt; <code>andList</code>，<br />
+  再根据条件id查到对应资源文件目录，到服务器上替换文件再保存目录即可  </p>
+</blockquote>
+<h3 id="_7">预约电话号码筛选</h3>
+<blockquote>
+<p>到Activity3.0项目中<code>ACtivity-RPC &gt; src/main/java/test.com.activity.rpc.admin/imp &gt; AdminServiceTest</code>
+  运行测试例子  </p>
+</blockquote>
+<pre><code>@Test
+public void validPhone() {
+  List&lt;String&gt; list = FileUtil.readLines(&quot;D:\\phone.txt&quot;, &quot;utf-8&quot;);
+  ValidPhoneTask.ValidPhoneResult result = toolsService.validPhones(list);
+  Joiner joiner = Joiner.on(&quot;\n&quot;);
+  String validString = joiner.join(result.getValidPhone());
+  FileUtil.writeString(validString, &quot;D:\\phone-tn.txt&quot;, &quot;utf-8&quot;);
+}
+
+</code></pre>
+
+<h3 id="_8">获取不到区服</h3>
+<blockquote>
+<p>有可能是数据库那边的问题，可以试着重启，一般都能解决问题~</p>
+</blockquote>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../system/" class="btn btn-neutral float-right" title="数据与权限">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../website/" class="btn btn-neutral" title="官网"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../website/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../system/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="None">
+  
+  <link rel="shortcut icon" href="./img/favicon.ico">
+  <title>登录 - 活动管理平台</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="./css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u767b\u5f55";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = "/";
+  </script>
+  
+  <script src="./js/jquery-2.1.1.min.js"></script>
+  <script src="./js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="./js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> 活动管理平台</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href=".">登录</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#_1">登录</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#_2">登录流程</a></li>
+        
+            <li><a class="toctree-l3" href="#_3">接口</a></li>
+        
+            <li><a class="toctree-l3" href="#sdk">SDK账号登录</a></li>
+        
+            <li><a class="toctree-l3" href="#facebook">facebook登录</a></li>
+        
+            <li><a class="toctree-l3" href="#_4">获取区服</a></li>
+        
+            <li><a class="toctree-l3" href="#_5">获取角色信息</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="activity/">活动页</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">活动管理平台</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>登录</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="_1">登录</h1>
+<p>测试服 <code>http://10.10.3.144:8081/</code>  <br />
+正式服 <code>https://activity.pocketgamesol.com/</code></p>
+<h2 id="_2">登录流程</h2>
+<p><img alt="login" src="./img/login.png" /></p>
+<h2 id="_3">接口</h2>
+<table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="left">URL</th>
+<th align="center">请求方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">SDK账号登录</td>
+<td align="left">${ipport}/user/sdk/login</td>
+<td align="center">GET</td>
+</tr>
+<tr>
+<td align="center">facebook登录</td>
+<td align="left">${ipport}/user/fb/login</td>
+<td align="center">GET</td>
+</tr>
+<tr>
+<td align="center">区服获取</td>
+<td align="left">${ipport}/user/sdk/zones</td>
+<td align="center">GET</td>
+</tr>
+<tr>
+<td align="center">角色信息获取</td>
+<td align="left">${ipport}/user/player/list</td>
+<td align="center">GET</td>
+</tr>
+</tbody>
+</table>
+<h2 id="sdk">SDK账号登录</h2>
+<ul>
+<li>参数信息</li>
+</ul>
+<p>请求参数： </p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="left">类型</th>
+<th align="center">是否必需</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">userName</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">用户名</td>
+</tr>
+<tr>
+<td align="center">password</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">账号密码</td>
+</tr>
+<tr>
+<td align="center">version</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">版本信息,除法国，德国使用<code>de</code>外其余用<code>v3</code></td>
+</tr>
+</tbody>
+</table>
+<p>返回参数：</p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="left">类型</th>
+<th align="center">是否必需</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">token</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">用户认证令牌</td>
+</tr>
+<tr>
+<td align="center">userId</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">角色Id</td>
+</tr>
+<tr>
+<td align="center">userName</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">用户名</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>请求：</li>
+</ul>
+<pre><code class="js">$.ajax({
+    type: &quot;GET&quot;,
+    url: config.api.server + config.api.login,
+    data: {
+        userName: username,
+        password: md5(password),
+        version: config.data.version
+    },
+    success: function (result) {
+        handleLogin(result);
+    },
+    error: function (err) {
+        console.log(err);
+    }
+})
+
+</code></pre>
+
+<ul>
+<li>返回数据格式：</li>
+</ul>
+<pre><code>{
+    code: 200,
+    state: {
+        &quot;userId&quot;:&quot;67750133&quot;,
+        &quot;userName&quot;:&quot;Qiong@9266.com&quot;,
+        &quot;token&quot;:&quot;6b65bc6c-5f46-4dbb-893f-107fdfb613f5&quot;
+    }
+}
+
+</code></pre>
+
+<hr />
+<h2 id="facebook">facebook登录</h2>
+<ul>
+<li>参数信息</li>
+</ul>
+<p>请求参数： </p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="left">类型</th>
+<th align="center">是否必需</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">clientId</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">appId</td>
+</tr>
+<tr>
+<td align="center">redirectUrl</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">facebook回调地址</td>
+</tr>
+<tr>
+<td align="center">code</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">FB授权返回的code值</td>
+</tr>
+</tbody>
+</table>
+<p>返回参数同sdk登录</p>
+<ul>
+<li>跳转授权页：</li>
+</ul>
+<pre><code>    var random = Math.random() * 1000;
+    var loginURL = &quot;https://www.facebook.com/v2.6/dialog/oauth?client_id=&quot; + config.data.fbId
+        + &quot;&amp;redirect_uri=&quot; + encodeURIComponent(config.api.redirectUrl) + &quot;&amp;r=&quot; + random;
+    window.location.href = loginURL;
+    //fbId 位应用id，redirect_uri为回调地址（需在应用内配置）
+
+</code></pre>
+
+<ul>
+<li>请求：</li>
+</ul>
+<pre><code>$.ajax({
+    type: &quot;GET&quot;,
+    url: config.api.server+config.api.fbLogin,
+    data: {
+        clientId: config.data.appId,
+        redirectUrl: config.api.redirectUrl,
+        code: FB_CODE  //FB授权返回时带回的code
+    },
+    beforeSend: function(){
+        $(&quot;#loading&quot;).show();
+    },
+    success: function (result) {
+        handleLogin(result);
+    },
+    error: function (err) {
+        console.log(err);
+    }
+});
+
+</code></pre>
+
+<hr />
+<h2 id="_4">获取区服</h2>
+<ul>
+<li>参数信息</li>
+</ul>
+<p>请求参数： </p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="left">类型</th>
+<th align="center">是否必需</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">appId</td>
+<td align="left">number</td>
+<td align="center">true</td>
+<td align="center">appId</td>
+</tr>
+<tr>
+<td align="center">token</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">用户认证令牌</td>
+</tr>
+</tbody>
+</table>
+<p>返回参数：</p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="left">类型</th>
+<th align="center">是否必需</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">appId</td>
+<td align="left">number</td>
+<td align="center">true</td>
+<td align="center">appId</td>
+</tr>
+<tr>
+<td align="center">gameZoneId</td>
+<td align="left">number</td>
+<td align="center">true</td>
+<td align="center">区服Id</td>
+</tr>
+<tr>
+<td align="center">localName</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">区服名称（部分游戏没有配置）</td>
+</tr>
+<tr>
+<td align="center">mainGameZoneId</td>
+<td align="left">number</td>
+<td align="center">true</td>
+<td align="center">主区id（获取角色时传这个）</td>
+</tr>
+<tr>
+<td align="center">thirdGameZoneId</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">三方区服id(通常展示这个)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>请求</li>
+</ul>
+<pre><code>$.ajax({
+    type: &quot;GET&quot;,
+    url: config.api.server+config.api.zone,
+    async: false,
+    data: {
+        appId: config.data.appId,
+        token: localStorage.token
+    },
+    success: function (result) {
+        //to do
+    },
+    error: function (err) {
+        console.log(JSON.stringify(err));
+    }
+});
+
+</code></pre>
+
+<ul>
+<li>返回数据格式：</li>
+</ul>
+<pre><code>{
+    code: 200,
+    state: [
+        {
+            appId: 10052
+            gameZoneId: 5,
+            localName: &quot;&quot;,
+            mainGameZoneId: 5,
+            thirdGameZoneId:&quot;1&quot;
+        }
+        ...
+    ]
+
+}
+</code></pre>
+
+<hr />
+<h2 id="_5">获取角色信息</h2>
+<ul>
+<li>参数信息</li>
+</ul>
+<p>请求参数： </p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="left">类型</th>
+<th align="center">是否必需</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">appId</td>
+<td align="left">number</td>
+<td align="center">true</td>
+<td align="center">appId</td>
+</tr>
+<tr>
+<td align="center">gameZoneId</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">区服Id</td>
+</tr>
+<tr>
+<td align="center">token</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">用户认证令牌</td>
+</tr>
+</tbody>
+</table>
+<p>返回参数： </p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="left">类型</th>
+<th align="center">是否必需</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">createDate</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">账号创建日期</td>
+</tr>
+<tr>
+<td align="center">lastLoginDate</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">账号最后一次登录日期</td>
+</tr>
+<tr>
+<td align="center">level</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">角色等级</td>
+</tr>
+<tr>
+<td align="center">playerId</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">角色Id</td>
+</tr>
+<tr>
+<td align="center">playerName</td>
+<td align="left">string</td>
+<td align="center">true</td>
+<td align="center">角色名</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>请求</li>
+</ul>
+<pre><code>$.ajax({
+    type: &quot;GET&quot;,
+    url: config.api.server+config.api.role,
+    data: {
+        appId: config.data.appId,
+        gameZoneId: zoneId,
+        token: localStorage.token
+    },
+    success: function (result) {
+      //to do
+    },
+    error: function (err) {
+        console.log(JSON.stringify(err));
+    }
+});
+</code></pre>
+
+<ul>
+<li>返回数据格式：</li>
+</ul>
+<pre><code>{
+    code: 200,
+    state: [
+        {
+            createDate: &quot;2016-12-27 11:24:04&quot;,
+            lastLoginDate: &quot;018-07-10 19:28:44&quot;,
+            level: 12,
+            playerId: &quot;c9f88296-734a-4d06-9316-15c93b0d2148&quot;,
+            playerName: &quot;jia&quot;
+        }
+        ...
+    ]
+}
+
+</code></pre>
+
+<hr />
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="activity/" class="btn btn-neutral float-right" title="活动页">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+        <span style="margin-left: 15px"><a href="activity/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="./js/theme.js"></script>
+      <script src="./search/require.js"></script>
+      <script src="./search/search.js"></script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 0.17.4
+Build Date UTC : 2019-11-28 02:58:18
+-->

@@ -1,0 +1,8 @@
+site_name: 开发文档
+theme: readthedocs
+pages:
+    - Home: index.md
+    - 官网: website.md
+    - 活动后台: server.md
+    - 数据与权限: system.md
+    - sdk文档: sdk.md

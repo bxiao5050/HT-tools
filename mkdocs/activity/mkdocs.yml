@@ -1,0 +1,7 @@
+site_name: 活动管理平台
+pages:
+- 登录: index.md
+- 活动页: activity.md
+
+
+theme: readthedocs

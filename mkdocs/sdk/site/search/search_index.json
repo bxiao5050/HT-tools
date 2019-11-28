@@ -1,0 +1,54 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "SDK \u5bf9\u63a5\u6587\u6863\n\n\nSDK\u6587\u6863\u4e3a\u6e38\u620f\u63a5\u5165\u63d0\u4f9b\u767b\u5f55\uff0c\u652f\u4ed8\u7b49\u65b9\u6cd5\n\n\n\u5f15\u5165SDK\n\n\n\u5728html\u4e2d\u5f15\u5165sdk.js\u6587\u4ef6\uff0csdk\u4f1a\u5411html\u4e2d\u6dfb\u52a0\u5fc5\u8981\u7684dom\u5143\u7d20\n\n\n\n\nbody\n\n    \nscript type=\ntext/javascript\n src=\n./sdk.js\n/script\n\n\n/body\n\n\n\n\n\n\n\u767b\u5f55\n\n\n\n\nSDK.Login\n\n\n\n\n\u65b9\u6cd5\u8bf4\u660e\uff1a\n\n\n\u8c03\u8d77\u767b\u5f55\u5f39\u7a97\uff0c\u7528\u6237\u53ef\u5728\u5f39\u7a97\u4e2d\u8fdb\u884c\u767b\u5f55\u6ce8\u518c\u64cd\u4f5c\uff0c\u767b\u5f55\u6ce8\u518c\u5b8c\u6bd5\u540e\u4f1a\u5c06\u6570\u636e\u4fdd\u5b58\u5728\u672c\u5730localstorage\u4e2d\n\n\n\u4f7f\u7528\u65b9\u6cd5SDK.Login()\n\n\n\n\n\u83b7\u53d6\u7528\u6237\u4fe1\u606f\n\n\n\n\nSDK.GetUserInfo\n\n\n\n\n\u65b9\u6cd5\u8bf4\u660e\uff1a\n\n\n\n\n\u83b7\u53d6\u7528\u6237\u4fe1\u606f\n\n\n\n\n\u8fd4\u56de\u53c2\u6570\u8bf4\u660e\uff1a\n\n\n\n\nuserId\n: \u7528\u6237id\u3000\u3000\n\n\nuserName\n: \u7528\u6237\u540d\u3000\u3000\n\n\ntoken\n: \u7528\u6237\u53e3\u4ee4\u3000\u3000\n\n\n\n\n\u4f7f\u7528\u65b9\u6cd5SDK.GetUserInfo()\n\n\n\n\n\u7ed1\u5b9a\u533a\u670d\n\n\n\n\nSDK.BindZone\n\n\n\n\n\u65b9\u6cd5\u8bf4\u660e\uff1a\n\n\n\n\n\u6e38\u620f\u5728\u7528\u6237\u767b\u5f55\u521b\u89d2\u540e\u9700\u8fdb\u884c\u533a\u670d\u7ed1\u5b9a\u64cd\u4f5c\uff0c\u5426\u5219\u540e\u53f0\u65e0\u6570\u636e\n\n\n\n\n\u4e3b\u8981\u53c2\u6570\u8bf4\u660e\uff1a\n\n\n\n\nuserId\n: \u7528\u6237id\n\n\ngameZoneId\n: \u533a\u670did\n\n\ncreateRole\n: \u662f\u5426\u521b\u89d2\uff0c0\u4e3a\u5426\uff0c1\u4e3a\u662f\n\n\nroleId\n: \u89d2\u8272id\n\n\nlevel\n: \u89d2\u8272\u7b49\u7ea7\n\n\n\n\n\u4f7f\u7528\u65b9\u6cd5\uff1a\n    var data = {\n        userId: 25086659,\n        gameZoneId: 1,\n        createRole: 0,\n        roleId: 123,\n        level: 1\n    }\n    SDK.BindZone(data);\n\n\n\n\n\u8c03\u8d77\u652f\u4ed8\n\n\n\n\nSDK.Pay\n\n\n\n\n\u65b9\u6cd5\u8bf4\u660e\uff1a\n\n\n\n\n\u8c03\u8d77\u652f\u4ed8\u5f39\u7a97\n\n\n\n\n\u4e3b\u8981\u53c2\u6570\u8bf4\u660e\uff1a\n\n\n\n\nuserId\n: \u7528\u6237id\n\n\ngameZoneId\n: \u533a\u670did\n\n\ngameOrderId\n: \u6e38\u620f\u8ba2\u5355id\n\n\nroleId\n: \u89d2\u8272id\n\n\nroleName\n: \u89d2\u8272\u540d\n\n\nlevel\n: \u89d2\u8272\u7b49\u7ea7\n\n\ngameCoin\n: \u652f\u4ed8\u91d1\u989d\n\n\n\n\n\u4f7f\u7528\u65b9\u6cd5\uff1a\n     var data = {\n        userId: 25086659,\n        gameOrderId: Math.floor(Math.random()*100000000),//\u5047\u8bbe\u7684\u8ba2\u5355id\n        gameZoneId: 1,\n        roleId: 1001,\n        roleName: \nkarl\n,\n        level: 12,\n        gameCoin: 100\n    }\n    SDK.Pay(data);\n\n\n\n\n\u8c03\u8d77fb\u5206\u4eab\n\n\n\n\nSDK.Share\n\n\n\n\n\u65b9\u6cd5\u8bf4\u660e\uff1a\n\n\n\n\n\u8c03\u8d77fb\u5206\u4eab\n\n\n\n\n\u4f7f\u7528\u65b9\u6cd5SDK.Share()\n\n\n\n\nFB\u8df3\u8f6c\n\n\n\n\nSDK.Fb\n\n\n\n\n\u65b9\u6cd5\u8bf4\u660e\uff1a\n\n\n\n\n\u5f53\u7528\u6237\u5b89\u88c5\u6709FB app\u65f6\uff0c\u8c03\u8d77FB app\uff1b\u5426\u5219\uff0c\u8df3\u8f6c\u7c89\u4e1d\u9875\n\n\n\n\n\u4f7f\u7528\u65b9\u6cd5SDK.Fb()\n\n\n\n\nMessenger\u8df3\u8f6c\n\n\n\n\nSDK.Messager\n\n\n\n\n\u65b9\u6cd5\u8bf4\u660e\uff1a\n\n\n\n\n\u5f53\u7528\u6237\u5b89\u88c5\u6709messenger app\u65f6\uff0c\u8c03\u8d77messenger app\uff1b\u5426\u5219\uff0c\u8df3\u8f6c\u7c89\u4e1d\u9875\n\n\n\n\n\u4f7f\u7528\u65b9\u6cd5SDK.Messager()", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#sdk", 
+            "text": "SDK\u6587\u6863\u4e3a\u6e38\u620f\u63a5\u5165\u63d0\u4f9b\u767b\u5f55\uff0c\u652f\u4ed8\u7b49\u65b9\u6cd5", 
+            "title": "SDK \u5bf9\u63a5\u6587\u6863"
+        }, 
+        {
+            "location": "/#sdk_1", 
+            "text": "\u5728html\u4e2d\u5f15\u5165sdk.js\u6587\u4ef6\uff0csdk\u4f1a\u5411html\u4e2d\u6dfb\u52a0\u5fc5\u8981\u7684dom\u5143\u7d20   body \n     script type= text/javascript  src= ./sdk.js /script  /body", 
+            "title": "\u5f15\u5165SDK"
+        }, 
+        {
+            "location": "/#_1", 
+            "text": "SDK.Login   \u65b9\u6cd5\u8bf4\u660e\uff1a  \u8c03\u8d77\u767b\u5f55\u5f39\u7a97\uff0c\u7528\u6237\u53ef\u5728\u5f39\u7a97\u4e2d\u8fdb\u884c\u767b\u5f55\u6ce8\u518c\u64cd\u4f5c\uff0c\u767b\u5f55\u6ce8\u518c\u5b8c\u6bd5\u540e\u4f1a\u5c06\u6570\u636e\u4fdd\u5b58\u5728\u672c\u5730localstorage\u4e2d  \u4f7f\u7528\u65b9\u6cd5SDK.Login()", 
+            "title": "\u767b\u5f55"
+        }, 
+        {
+            "location": "/#_2", 
+            "text": "SDK.GetUserInfo   \u65b9\u6cd5\u8bf4\u660e\uff1a   \u83b7\u53d6\u7528\u6237\u4fe1\u606f   \u8fd4\u56de\u53c2\u6570\u8bf4\u660e\uff1a   userId : \u7528\u6237id\u3000\u3000  userName : \u7528\u6237\u540d\u3000\u3000  token : \u7528\u6237\u53e3\u4ee4\u3000\u3000   \u4f7f\u7528\u65b9\u6cd5SDK.GetUserInfo()", 
+            "title": "\u83b7\u53d6\u7528\u6237\u4fe1\u606f"
+        }, 
+        {
+            "location": "/#_3", 
+            "text": "SDK.BindZone   \u65b9\u6cd5\u8bf4\u660e\uff1a   \u6e38\u620f\u5728\u7528\u6237\u767b\u5f55\u521b\u89d2\u540e\u9700\u8fdb\u884c\u533a\u670d\u7ed1\u5b9a\u64cd\u4f5c\uff0c\u5426\u5219\u540e\u53f0\u65e0\u6570\u636e   \u4e3b\u8981\u53c2\u6570\u8bf4\u660e\uff1a   userId : \u7528\u6237id  gameZoneId : \u533a\u670did  createRole : \u662f\u5426\u521b\u89d2\uff0c0\u4e3a\u5426\uff0c1\u4e3a\u662f  roleId : \u89d2\u8272id  level : \u89d2\u8272\u7b49\u7ea7   \u4f7f\u7528\u65b9\u6cd5\uff1a\n    var data = {\n        userId: 25086659,\n        gameZoneId: 1,\n        createRole: 0,\n        roleId: 123,\n        level: 1\n    }\n    SDK.BindZone(data);", 
+            "title": "\u7ed1\u5b9a\u533a\u670d"
+        }, 
+        {
+            "location": "/#_4", 
+            "text": "SDK.Pay   \u65b9\u6cd5\u8bf4\u660e\uff1a   \u8c03\u8d77\u652f\u4ed8\u5f39\u7a97   \u4e3b\u8981\u53c2\u6570\u8bf4\u660e\uff1a   userId : \u7528\u6237id  gameZoneId : \u533a\u670did  gameOrderId : \u6e38\u620f\u8ba2\u5355id  roleId : \u89d2\u8272id  roleName : \u89d2\u8272\u540d  level : \u89d2\u8272\u7b49\u7ea7  gameCoin : \u652f\u4ed8\u91d1\u989d   \u4f7f\u7528\u65b9\u6cd5\uff1a\n     var data = {\n        userId: 25086659,\n        gameOrderId: Math.floor(Math.random()*100000000),//\u5047\u8bbe\u7684\u8ba2\u5355id\n        gameZoneId: 1,\n        roleId: 1001,\n        roleName:  karl ,\n        level: 12,\n        gameCoin: 100\n    }\n    SDK.Pay(data);", 
+            "title": "\u8c03\u8d77\u652f\u4ed8"
+        }, 
+        {
+            "location": "/#fb", 
+            "text": "SDK.Share   \u65b9\u6cd5\u8bf4\u660e\uff1a   \u8c03\u8d77fb\u5206\u4eab   \u4f7f\u7528\u65b9\u6cd5SDK.Share()", 
+            "title": "\u8c03\u8d77fb\u5206\u4eab"
+        }, 
+        {
+            "location": "/#fb_1", 
+            "text": "SDK.Fb   \u65b9\u6cd5\u8bf4\u660e\uff1a   \u5f53\u7528\u6237\u5b89\u88c5\u6709FB app\u65f6\uff0c\u8c03\u8d77FB app\uff1b\u5426\u5219\uff0c\u8df3\u8f6c\u7c89\u4e1d\u9875   \u4f7f\u7528\u65b9\u6cd5SDK.Fb()", 
+            "title": "FB\u8df3\u8f6c"
+        }, 
+        {
+            "location": "/#messenger", 
+            "text": "SDK.Messager   \u65b9\u6cd5\u8bf4\u660e\uff1a   \u5f53\u7528\u6237\u5b89\u88c5\u6709messenger app\u65f6\uff0c\u8c03\u8d77messenger app\uff1b\u5426\u5219\uff0c\u8df3\u8f6c\u7c89\u4e1d\u9875   \u4f7f\u7528\u65b9\u6cd5SDK.Messager()", 
+            "title": "Messenger\u8df3\u8f6c"
+        }
+    ]
+}
