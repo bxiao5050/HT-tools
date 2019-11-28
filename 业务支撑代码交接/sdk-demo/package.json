@@ -1,0 +1,46 @@
+{
+  "name": "webpack-spritesmith",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack-dev-server --mode development",
+    "devs": "webpack-dev-server --https --mode development",
+    "test": "webpack --mode development --isTest true"
+  },
+  "dependencies": {
+    "md5": "^2.2.1",
+    "react": "^15.5.0",
+    "react-dom": "^15.5.0",
+    "react-redux": "^5.0.7",
+    "react-router": "^2.0.0",
+    "redux": "^4.0.0",
+    "reset.css": "^2.0.2",
+    "vconsole": "^3.2.0",
+    "yargs": "^11.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.0.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-react": "^6.5.0",
+    "chalk": "^2.4.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^0.28.4",
+    "extract-text-webpack-plugin": "^2.1.2",
+    "file-loader": "^1.1.11",
+    "html-webpack-plugin": "^3.2.0",
+    "html-withimg-loader": "^0.1.16",
+    "px2rem-loader": "^0.1.7",
+    "style-loader": "^0.18.2",
+    "uglifyjs-webpack-plugin": "^1.2.5",
+    "webpack": "^4.8.1",
+    "webpack-cli": "^2.1.3",
+    "webpack-dev-server": "^3.1.4",
+    "webpack-encoding-plugin": "^0.2.1",
+    "webpack-md5-hash": "0.0.5",
+    "webpack-spritesmith": "^0.3.3"
+  }
+}

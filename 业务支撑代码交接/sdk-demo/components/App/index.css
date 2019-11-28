@@ -1,0 +1,36 @@
+html,body{
+    background: black;
+}
+
+#sdk,
+.container {
+    width: 0;
+    height: 0;
+    top: 50%;
+    left: 50%;
+    position: relative;
+    z-index: 999999;
+}
+
+.container{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.WrapDragger{
+    top: 0;
+    right: .5rem;
+    position: fixed;
+}
+
+.drag{
+    display: none;
+}
+
+.drag.active{
+    display: block;
+}

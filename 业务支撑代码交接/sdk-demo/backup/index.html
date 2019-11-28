@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <!--<meta name="viewport" content="width=device-width,user-scalable=no">-->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <!--<meta name="viewport" content="width=1334,target-densitydpi=device-dpi,user-scalable=no">-->
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <button onclick="Login()">登录</button>
+        <button onclick="BindZone()">绑定区服</button>
+        <button onclick="Pay()">支付</button>
+        <button onclick="Logout()">退出</button>
+        <button onclick="share()">分享</button>
+        <a></a>
+    </div>
+    <div id=sdk></div>
+
+    <script src="sdk.js"></script>
+</body>
+    <script>
+        //登录
+        function Login(){
+            SDK.Login2();
+        }
+
+        //绑定区服
+        function BindZone(){
+            var data = {
+                userId: 25086659,
+                gameZoneId: 1,
+                createRole: 0,
+                roleId: 123,
+                level: 1
+            }
+            SDK.BindZone(data);
+        }
+
+        //支付
+        function Pay(){
+            var data = {
+                userId: 186036312,
+                gameOrderId: Math.floor(Math.random()*100000000),//假设的订单id
+                gameZoneId: 1,
+                roleId: 1001,
+                roleName: "karl",
+                level: 12,
+                gameCoin: 100
+            }
+            SDK.Pay(data);
+        }
+
+        //退出
+        function Logout(){
+            SDK.Logout();
+        }
+    </script>
+</html>

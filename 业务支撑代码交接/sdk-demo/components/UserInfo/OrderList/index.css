@@ -1,0 +1,75 @@
+.order-list{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.order{
+    width: 95%;
+    margin: .1rem auto 0;
+    padding: .1rem;
+    border-radius: .1rem;
+    position: relative;
+    background: white;
+}
+
+.order-line{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    line-height: .4rem;
+    height: .55rem;
+    font-size: .16rem;
+    color: #758096;
+    position: relative;
+}
+
+.order-line p{
+    margin-left: .2rem;
+}
+
+.order-red,
+.order-blue{
+    width: 1.5rem;
+    color: white;
+    border-radius: .05rem;
+    border: solid 1px #dedede;
+}
+
+.order-blue{
+    background: #1eafe5;
+}
+
+.order-red{
+    background: #fe842a;
+}
+
+.order-result{
+    border-top: solid 1px #dedede;
+}
+
+.order-status{
+    width: 0.66rem;
+    height: 0.6rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: url(../../../images/order_success.png) center no-repeat;
+    background-size: contain;
+}
+
+.order-status.red{
+    background: url(../../../images/order_fail.png) center no-repeat;
+    background-size: contain;
+}
+
+.order-time{
+    position: absolute;
+    right: .1rem;
+    top: .05rem;
+}

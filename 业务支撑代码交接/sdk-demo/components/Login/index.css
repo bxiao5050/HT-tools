@@ -1,0 +1,75 @@
+.wrap,
+.login{
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+.container .wrap{
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    display: block;
+    filter: alpha(opacity=80);
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: black;
+}
+
+.content{
+    width: 6.8rem;
+    /*height: 5.5rem;*/
+    padding-bottom: .2rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -2.75rem 0 0 -3.4rem;
+    border-radius: .05rem;
+    border: solid 2px #dedede;
+    -webkit-box-shadow: 0 0 .4rem white;
+    -moz-box-shadow: 0 0 .4rem rgba(255,255,255,0.3);
+    box-shadow: 0 0 .4rem white;
+    background: rgba(255,255,255,0.3);
+}
+
+.block{
+    font-size: 0;
+    display: block;
+    text-indent: -9999px;
+}
+
+input::-webkit-input-placeholder{
+    color:#b3b3b3;
+}
+input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+    color:#b3b3b3;
+}
+input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+    color:#b3b3b3;
+}
+input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
+    color:#b3b3b3;
+}
+
+/**
+* 竖版
+*/
+/*@media screen and (min-width: 376px){*/
+    /*.content{*/
+        /*width: 3.89rem;*/
+        /*height: 3.14rem;*/
+        /*position: absolute;*/
+        /*left: 50%;*/
+        /*top: 50%;*/
+        /*margin: -1.57rem 0 0 -1.94rem;*/
+        /*border-radius: 0.03rem;*/
+        /*border: solid 0.01rem #dedede;*/
+        /*-webkit-box-shadow: 0 0 0.23rem white;*/
+        /*-moz-box-shadow: 0 0 0.23rem rgba(255,255,255,0.3);*/
+        /*box-shadow: 0 0 0.23rem white;*/
+        /*background: rgba(255,255,255,0.3);*/
+    /*}*/
+/*}*/

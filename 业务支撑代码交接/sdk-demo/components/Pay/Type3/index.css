@@ -1,0 +1,83 @@
+.description{
+    /*width: 3.43rem;*/
+    display: inline-block;
+    height: 1.03rem;
+    font-size: 0.18rem;
+    border-radius: 0.06rem;
+    text-align: left;
+    border-bottom: dashed 2px #b3b3b3;
+    margin: 0.63rem auto 0;
+}
+
+.des-right,
+.des-cnt,
+.des-left{
+    display: table-cell;
+}
+
+.des-left img{
+    width: 0.67rem;
+    height: 0.67rem;
+    display: block;
+    float: left;
+    border-radius: 0.23rem;
+    background: black;
+}
+
+.des-left{
+    width: 0.8rem;
+}
+
+.des-cnt{
+    width: 2.29rem;
+    color: #727272;
+    padding: 0 0.17rem;
+    vertical-align: top;
+}
+
+.des-right{
+    width: 1.31rem;
+    color: black;
+    font-size: 0.17rem;
+    white-space: nowrap;
+    vertical-align: top;
+}
+
+.des-right p,
+.des-cnt p,
+.des-left p{
+    display: block;
+}
+
+.des-right p{
+    padding-left: 0.11rem;
+    border-left: dashed 0.03rem #b3b3b3;
+}
+
+.tip-buy{
+    width: 3.43rem;
+    height: 0.63rem;
+    clear: both;
+    margin: 0.17rem auto 0;
+    line-height: 0.29rem;
+    font-size: 0.18rem;
+    position: relative;
+}
+
+.tip-buy p{
+    display: block;
+    float: left;
+}
+
+.btn-buy{
+    width: 1.31rem;
+    padding: 0.06rem 0.2rem;
+    display: block;
+    color: white;
+    white-space: nowrap;
+    text-decoration: none;
+    position: relative;
+    float: right;
+    border-radius: 0.06rem;
+    background: #33a4e6;
+}

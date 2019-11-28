@@ -1,0 +1,51 @@
+.scale-box{
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9;
+    display: none;
+    position: absolute;
+    background: rgba(0,0,0,0.6);
+}
+
+.scale-box.active{
+    display: block;
+}
+
+.scale-list{
+    height: 90%;
+    width: 580px;
+    margin: 20px auto 0;
+    position: relative;
+    z-index: 9;
+    border-radius: 20px;
+    background: white;
+}
+
+.scale-close{
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+    font-size: 30px;
+    color: #00a0d8;
+    text-decoration: none;
+    display: block;
+    border-top: solid 2px #1eafe5;
+    border-radius: 0 0 20px 20px;
+    position: absolute;
+    bottom: 0;
+    z-index: 9;
+    background: white;
+}
+
+.scale-list ul{
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    padding-bottom: 80px;
+    z-index: 8;
+    position: absolute;
+}

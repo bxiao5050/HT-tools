@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta property="og:url"           content="http://pkde.pocketgamesol.com/activity/lottery/"/>
+    <meta property="og:type"          content="website"/>
+    <meta property="og:title"         content="Neue legendäre Pokemons kommen im Sicht!"/>
+    <meta property="og:description"   content="Begrüßte die neue Version des klassischen Abenteuerspieles &lt;Trainer Go&gt;, wird dieses Update neue Pokemons, neue Art und Weise und Features bringen als auch die Champions Liga, auf die die Trainer lange gewartet haben. Nehmt Ihr die Veranstaltung teil um viele attraktive Geschenke zu bekommen: Diamant, normales Fragment, Blitz-Münze, Pokemons-Fragment....." />
+    <meta property="og:image"         content="http://pkde.pocketgamesol.com/activity/lottery/img/fb-share.png" />
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <button onclick="share()">分享</button>
+        <!--<a href="fb://profile/240684486398850" class="facebook">My Fanpage</a>-->
+        <a href="https://www.facebook.com/trainer3ds/">调起facebook</a>
+        <a href="https://m.me/zhengyl36">调起messager</a>
+    </div>
+    <div id=sdk></div>
+
+</body>
+    <script>
+//        http://pkde.pocketgamesol.com/test/demo.html
+
+        /*初始化JSSDK start*/
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '1170290033098881',
+                xfbml      : true,
+                version    : 'v2.6'
+            });
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        /*初始化JSSDK end*/
+
+        /*分享 start*/
+        function share(){
+            FB.ui({
+                method: 'feed',
+                link: 'http://pkde.pocketgamesol.com/test/demo.html',
+            }, function(response){
+                if(response){
+                    console.log("分享完成");
+                }
+            });
+        }
+        /*分享 end*/
+
+
+
+
+    </script>
+
+
+
+</html>

@@ -1,0 +1,101 @@
+.win-loading .logo{
+    width: 2.9rem;
+    height: 0.9rem;
+    background: url(../../../images/icon-logo.png) center no-repeat;
+    background-size: contain;
+}
+
+.win-loading h2{
+    margin: -0.3rem auto 0;
+}
+
+.content.win-loading{
+    height: 3.66rem;
+    margin: -1.83rem 0 0 -3.4rem;
+    font-size: 0.26rem;
+    color: #ccc;
+    line-height: 0.5rem;
+}
+
+.info p{
+    width: 70%;
+    margin: 0.1rem auto 0;
+    text-align: left;
+}
+
+.info p span{
+    color: #1eafe5;
+}
+
+.win-loading .line{
+    width: 90%;
+    margin: 0.1rem auto 0;
+    border-bottom: solid 1px #dedede;
+}
+
+.change{
+    width: 90%;
+    height: 0.7rem;
+    display: block;
+    line-height: 0.7rem;
+    color: white;
+    font-size: 0.28rem;
+    text-decoration: none;
+    margin: 0.2rem auto 0;
+    border-radius: 0.1rem;
+    background: #1eafe5;
+}
+
+.change span{
+    display: block;
+    float: left;
+}
+
+.change span.switch{
+    width: 1.03rem;
+    height: 0.5rem;
+    margin: 0.1rem 0 0 1.26rem;
+    background: url(../../../images/entry_switch_account.png) center no-repeat;
+    background-size: contain;
+}
+
+/*@media screen and (min-width: 376px){*/
+    /*.win-loading .logo{*/
+        /*width: 1.66rem;*/
+        /*height: 0.51rem;*/
+    /*}*/
+
+    /*.win-loading h2{*/
+        /*margin: -0.17rem auto 0;*/
+    /*}*/
+
+    /*.content.win-loading{*/
+        /*height: 2.09rem;*/
+        /*margin: -1.05rem 0 0 -1.94rem;*/
+        /*font-size: 0.15rem;*/
+        /*line-height: 0.29rem;*/
+    /*}*/
+
+    /*.info p{*/
+        /*width: 60%;*/
+        /*margin: 0.06rem auto 0;*/
+    /*}*/
+
+    /*.win-loading .line{*/
+        /*margin: 0.06rem auto 0;*/
+    /*}*/
+
+    /*.change{*/
+        /*height: 0.4rem;*/
+        /*line-height: 0.4rem;*/
+        /*font-size: 0.16rem;*/
+        /*margin: 0.11rem auto 0;*/
+        /*border-radius: 0.06rem;*/
+    /*}*/
+
+    /*.change span.switch{*/
+        /*width: 0.59rem;*/
+        /*height: 0.29rem;*/
+        /*margin: 0.06rem 0 0 0.72rem;*/
+    /*}*/
+/*}*/

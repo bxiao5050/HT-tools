@@ -1,0 +1,9 @@
+.web{
+    width: 100%;
+    height: 100%;
+}
+
+.payment-nav{
+    -webkit-overflow-scrolling: touch;
+    overflow-y: scroll;
+}

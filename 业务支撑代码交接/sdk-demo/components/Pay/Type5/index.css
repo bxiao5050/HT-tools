@@ -1,0 +1,59 @@
+.product{
+    width: 90%;
+    margin: 0.29rem auto 0;
+    text-align: left;
+    position: relative;
+}
+
+.product p.tip{
+    color: #b3b3b3;
+    font-size: 0.17rem;
+}
+
+.productions{
+    width: 100%;
+    display: block;
+    margin: 0.06rem auto 0;
+    color: black;
+    font-size: 0.16rem;
+    text-align: center;
+    border-radius: 0.03rem;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-left: 0.23rem;
+    background: white;
+}
+
+.payment .icon-down{
+    position: absolute;
+    margin-top: 0.15rem;
+    right: -0.05rem;
+}
+
+.result{
+    width: 90%;
+    color: #4b5156;
+    margin: 0.11rem auto 0;
+    font-size: 0.23rem;
+    line-height: 0.34rem;
+    text-align: left;
+}
+
+.result span{
+    color: #b3b3b3;
+    font-size: 0.17rem;
+}
+
+.buy-goods{
+    width: 60%;
+    height: 0.45rem;
+    line-height: 0.45rem;
+    display: block;
+    color: white;
+    font-size: 0.17rem;
+    text-decoration: none;
+    margin: 0.11rem auto 0;
+    border-radius: 0.06rem;
+    background: #29acf0;
+}

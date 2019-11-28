@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <title>Độc Bộ Giang Hồ</title>
+</head>
+
+<body>
+  <div>
+    <!--登录 start-->
+    <button onclick="Login()">登录</button>
+    <!--登录 end-->
+    <!--绑定区服 start-->
+    <button onclick="BindZone()">绑定区服</button>
+    <!--绑定区服 end-->
+    <!--调起支付 start-->
+    <button onclick="Pay()">支付</button>
+    <!--调起支付 end-->
+    <!--退出登录 start-->
+    <button onclick="Logout()">退出</button>
+    <!--退出登录 end-->
+    <!--facebook分享 start-->
+    <button onclick="Share()">分享</button>
+    <!--facebook分享 end-->
+    <!--跳转facebook粉丝页 start-->
+    <button onclick="Fb()">跳转fb</button>
+    <!--跳转facebook粉丝页 end-->
+    <!--跳转messenger start-->
+    <button onclick="Messager()">跳转messenger</button>
+    <!--跳转messenger end-->
+    <!--获取用户信息 start-->
+    <button onclick="GetUserInfo()">获取用户信息</button>
+    <!--获取用户信息 end-->
+  </div>
+  <div id="sdk"></div>
+  <script>
+    window.onload = function () {
+      /**初始化**/
+      SDK.FbInit();
+    }
+
+
+    /**
+     * 登录 调起登录窗口 等待用户进行登录操作
+     * **/
+    function Login() {
+      SDK.Login();
+    }
+
+    /**
+     * 绑定区服
+     * 参数说明
+     *      userId 用户id
+     *      gameZoneId 区服id
+     *      createRole  是否创角 0=否 1=是
+     *      roleId  角色id
+     *      level 角色等级
+     * **/
+    function BindZone() {
+      var data = {
+        userId: 25086659,
+        gameZoneId: 1,
+        createRole: 0,
+        roleId: 123,
+        level: 1
+      }
+      SDK.BindZone(data);
+    }
+
+    /**
+     * 调起支付窗口 等待用户完成支付操作
+     * 参数说明
+     *      userId 用户id
+     *      gameOrderId 订单id
+     *      gameZoneId 区服id
+     *      roleId 角色id
+     *      roleName 角色名
+     *      level 角色等级
+     *      gameCoin 充值金额
+     * **/
+    function Pay() {
+      var data = {
+        userId: 186036312,
+        gameOrderId: Math.floor(Math.random() * 100000000), //假设的订单id
+        gameZoneId: 1,
+        roleId: 1001,
+        roleName: "karl36",
+        level: 12,
+        gameCoin: 100
+      }
+      SDK.Pay(data);
+    }
+
+    /**
+     * 调起退出登录窗口
+     * **/
+    function Logout() {
+      SDK.Logout();
+    }
+
+    /**分享 start**/
+    function Share() {
+      SDK.Share();
+    }
+
+    /**跳转 Fb**/
+    function Fb() {
+      SDK.Fb();
+    }
+
+    /**跳转 Messager**/
+    function Messager() {
+      SDK.Messager();
+    }
+
+    /**
+     * 获取用户登录信息
+     * 返回信息
+     *      accountType  账户类型 0=游客账户 1=平台账户 2=fb账户
+     *      activeTime  登录时间戳
+     *      password 用户密码
+     *      userId 用户id
+     *      username 用户名
+     *      userType 用户类型
+     *      token
+     * **/
+    function GetUserInfo() {
+      console.log(SDK.GetUserInfo());
+    }
+
+    /***
+     * 打点 Point
+     * */
+    function point(name) {
+      SDK.Point(name);
+    }
+  </script>
+</body>
+
+
+</html>

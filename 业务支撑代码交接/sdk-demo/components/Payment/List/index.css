@@ -1,0 +1,46 @@
+.payment-nav{
+    width: 95%;
+    height: 100%;
+    margin: 0 auto;
+    border-radius: .1rem;
+    overflow: auto;
+    background: white;
+}
+
+.payment-nav li{
+    height: 1.55rem;
+    line-height: 1.55rem;
+    font-size: .26rem;
+    color: #717174;
+    position: relative;
+    border-bottom: solid 1px #717174;
+}
+
+.payment-nav li.active{
+    color: #1eafe5;
+}
+
+.payment-nav li span{
+    width: .20rem;
+    height: .32rem;
+    position: absolute;
+    display: none;
+    right: 1.2rem;
+    top: .6rem;
+    background: url(../../../images/ui_right_arrow.png) center no-repeat;
+    background-size: contain;
+}
+
+.payment-nav li.active span{
+    display: block;
+}
+
+.payment-nav .name{
+    width: 100%;
+    color: white;
+    font-size: .36rem;
+    line-height: 1.1rem;
+    height: 1.1rem;
+    background: #1eafe5;
+}
+

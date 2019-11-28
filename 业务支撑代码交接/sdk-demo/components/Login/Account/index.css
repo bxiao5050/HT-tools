@@ -1,0 +1,291 @@
+.header{
+    width: 100%;
+    height: .9rem;
+    margin: 0 auto;
+    overflow: hidden;
+    background: rgba(255,255,255,0.8);
+    border-bottom: solid .04rem #1eafe5;
+    -webkit-box-shadow: 0 .05rem .02rem gray;
+    -moz-box-shadow: 0 .05rem .02rem gray;
+    box-shadow: 0 .05rem .02rem gray;
+}
+
+.icon-head{
+    width: 1.8rem;
+    height: .56rem;
+    margin: .17rem 0 0 .2rem;
+    background: url(../../../images/icon-logo.png) center no-repeat;
+    background-size: contain;
+}
+
+.box-input{
+    width: 95%;
+    border-radius: .1rem;
+    position: relative;
+    margin: .23rem auto 0;
+    padding-top: 1px;
+    background: white;
+}
+
+.line-input{
+    padding: .28rem 0;
+    overflow: hidden;
+}
+
+.line-input .icon{
+    width: .38rem;
+    height: .38rem;
+    display: block;
+    float: left;
+    margin: 0 .24rem;
+}
+
+.username .icon{
+    background: url(../../../images/ui_account.png) center no-repeat;
+    background-size: contain;
+}
+
+.password .icon{
+    background: url(../../../images/ui_password.png) center no-repeat;
+    background-size: contain;
+}
+
+.username{
+    border-bottom: solid 1px #b3b3b3;
+}
+
+.line-input input{
+    width: 4rem;
+    color: #b3b3b3;
+    display: block;
+    float: left;
+    font-size: .26rem;
+    line-height: .38rem;
+    text-indent: .20rem;
+    border: none;
+    border-left: solid 1px #00a0d8;
+    outline: none;
+}
+
+.line-input .icon-close{
+    width: .38rem;
+    height: .38rem;
+    float: left;
+    display: none;
+    z-index: 2;
+    position: relative;
+    background: url(../../../images/ui_close.png) center no-repeat;
+    background-size: contain;
+}
+
+.line-input .icon-close.active{
+    display: block;
+}
+
+.icon-down{
+    width: .42rem;
+    height: .42rem;
+    float: right;
+    margin-right: .15rem;
+    background: url(../../../images/ui_pull_down.png) center no-repeat;
+    background-size: contain;
+}
+
+.forget{
+    display: block;
+    float: right;
+    color: #b3b3b3;
+    font-size: .26rem;
+    text-decoration: none;
+    margin-right: .15rem;
+}
+
+
+.win-account .btn-login{
+    width: 95%;
+    height: .9rem;
+    display: block;
+    line-height: .9rem;
+    text-decoration: none;
+    margin: .3rem auto 0;
+    position: relative;
+    font-size: .32rem;
+    color: white;
+    border-radius: 10px;
+    filter:alpha(opacity=100 finishopacity=50 style=1 startx=0,starty=0,finishx=75%,finishy=40) progid:DXImageTransform.Microsoft.gradient(startcolorstr=#45b1f0,endcolorstr=#33a4e5,gradientType=0);
+    -ms-filter:alpha(opacity=100 finishopacity=50 style=1 startx=0,starty=0,finishx=75%,finishy=40) progid:DXImageTransform.Microsoft.gradient(startcolorstr=#45b1f0,endcolorstr=#33a4e5,gradientType=0);/*IE8*/
+    background:#33a4e5; /* 一些不支持背景渐变的浏览器 */
+    background:-moz-linear-gradient(top, #45b1f0, #33a4e5);
+    background:-webkit-gradient(linear, 0 0, 0 bottom, from(#45b1f0), to(#33a4e5));
+    background:-o-linear-gradient(top, #45b1f0, #33a4e5);
+}
+
+.box-link{
+    width: 95%;
+    margin: .35rem auto 0;
+}
+
+.box-link a{
+    display: block;
+    width: 2.97rem;
+    height: .6rem;
+    line-height: .6rem;
+    color: #648095;
+    font-size: .24rem;
+    text-decoration: none;
+}
+
+.link-change{
+    float: left;
+    text-align: left;
+}
+
+.link-register{
+    float: right;
+    border-radius: .3rem;
+    border: solid 1px #648095;
+}
+
+.accounts{
+    width: 100%;
+    overflow: hidden;
+    top: .97rem;
+    z-index: 9;
+    color: gray;
+    font-size: .24rem;
+    text-align: left;
+    text-indent: .1rem;
+    position: absolute;
+    border-radius: 0 0 .1rem .1rem;
+    background: white;
+}
+
+.box-input .list-account{
+    width: 95%;
+    height: auto;
+    margin: 0 auto;
+    overflow: hidden;
+    display: none;
+}
+
+.box-input .list-account.active{
+    display: block;
+}
+
+.box-input .list-account p{
+    display: block;
+    float: left;
+    cursor: pointer;
+}
+
+.list-account li{
+    width: 100%;
+    height: .97rem;
+    line-height: .97rem;
+    font-size: .24rem;
+    position: relative;
+    border-top: solid 1px #b3b3b3;
+}
+
+.list-account .icon-close{
+    display: block;
+    right: 0;
+    top: .33rem;
+    position: absolute;
+}
+
+/*@media screen and (min-width: 376px) {*/
+    /*.header{*/
+        /*height: 0.51rem;*/
+        /*border-bottom: solid 0.02rem #1eafe5;*/
+        /*-webkit-box-shadow: 0 0.03rem 0.01rem gray;*/
+        /*-moz-box-shadow: 0 0.03rem 0.01rem gray;*/
+        /*box-shadow: 0 0.03rem 0.01rem gray;*/
+    /*}*/
+
+    /*.icon-head{*/
+        /*width: 1.03rem;*/
+        /*height: 0.32rem;*/
+        /*margin: 0.1rem 0 0 0.11rem;*/
+    /*}*/
+
+    /*.box-input{*/
+        /*border-radius: 0.06rem;*/
+        /*margin: 0.13rem auto 0;*/
+    /*}*/
+
+    /*.line-input{*/
+        /*padding: 0.16rem 0;*/
+    /*}*/
+
+    /*.line-input .icon{*/
+        /*width: 0.22rem;*/
+        /*height: 0.22rem;*/
+        /*margin: 0 0.14rem;*/
+    /*}*/
+
+    /*.line-input input{*/
+        /*width: 2.29rem;*/
+        /*font-size: 0.15rem;*/
+        /*line-height: 0.22rem;*/
+        /*text-indent: 0.11rem;*/
+    /*}*/
+
+    /*.line-input .icon-close{*/
+        /*width: 0.22rem;*/
+        /*height: 0.22rem;*/
+    /*}*/
+
+    /*.icon-down{*/
+        /*width: 0.24rem;*/
+        /*height: 0.24rem;*/
+        /*margin-right: 0.09rem;*/
+    /*}*/
+
+    /*.forget{*/
+        /*font-size: 0.15rem;*/
+        /*margin-right: 0.09rem;*/
+    /*}*/
+
+
+    /*.win-account .btn-login{*/
+        /*height: 0.51rem;*/
+        /*line-height: 0.51rem;*/
+        /*margin: 0.17rem auto 0;*/
+        /*font-size: 0.18rem;*/
+        /*border-radius: 0.06rem;*/
+    /*}*/
+
+    /*.box-link{*/
+        /*margin: 0.2rem auto 0;*/
+    /*}*/
+
+    /*.box-link a{*/
+        /*width: 1.7rem;*/
+        /*height: 0.34rem;*/
+        /*line-height: 0.34rem;*/
+        /*font-size: 0.14rem;*/
+    /*}*/
+
+    /*.link-register{*/
+        /*border-radius: 0.17rem;*/
+        /*border: solid 0.01rem #648095;*/
+    /*}*/
+
+    /*.accounts{*/
+        /*top: 0.55rem;*/
+        /*font-size: 0.14rem;*/
+        /*text-indent: 0.06rem;*/
+        /*border-radius: 0 0 0.06rem 0.06rem;*/
+    /*}*/
+
+    /*.list-account li{*/
+        /*height: 0.55rem;*/
+        /*line-height: 0.55rem;*/
+        /*font-size: 0.14rem;*/
+    /*}*/
+
+    /*.list-account .icon-close{*/
+        /*top: 0.19rem;*/
+    /*}*/
+/*}*/

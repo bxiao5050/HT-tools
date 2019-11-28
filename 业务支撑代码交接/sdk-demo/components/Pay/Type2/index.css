@@ -1,0 +1,42 @@
+.card-head{
+    height: 0.51rem;
+    margin: 0.34rem auto 0;
+}
+
+.card-inputs{
+    height: 0.46rem;
+    width: 90%;
+    font-size: 0.17rem;
+    line-height: 0.46rem;
+    text-align: left;
+    margin: 0.11rem auto 0;
+    border-radius: 0.06rem;
+    border: solid 1px #b3b3b3;
+    background: white;
+}
+
+.card-inputs span{
+    width: 0.57rem;
+    color: #727272;
+    padding: 0 0.11rem 0 0.23rem;
+}
+
+.card-inputs input{
+    width: 78%;
+    color: #727272;
+    border:none;
+    outline: none;
+}
+
+.btn-pay{
+    width: 90%;
+    height: 0.49rem;
+    line-height: 0.49rem;
+    color: white;
+    font-size: 0.18rem;
+    display: block;
+    margin: 0.11rem auto 0;
+    border-radius: 0.06rem;
+    text-decoration: none;
+    background: #33a4e6;
+}

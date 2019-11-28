@@ -1,0 +1,14 @@
+.payment-nav .cards li{
+    width: 45%;
+    height: 1.5rem;
+    float: left;
+    border: solid 1px #c7c8ca;
+    border-radius: 0.03rem;
+    margin: 0.1rem;
+}
+
+.payment-nav .cards li img{
+    height: 0.8rem;
+    margin: 0.35rem auto 0;
+    display: block;
+}

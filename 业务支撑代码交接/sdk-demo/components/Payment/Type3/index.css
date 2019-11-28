@@ -1,0 +1,99 @@
+.description{
+    /*width: 3.43rem;*/
+    display: inline-block;
+    height: 1.03rem;
+    font-size: 0.24rem;
+    border-radius: 0.06rem;
+    text-align: left;
+    margin: 0.63rem auto 0;
+}
+
+.des-right,
+.des-cnt,
+.des-left{
+    display: table-cell;
+}
+
+.des-left img{
+    width: 1rem;
+    height: 1rem;
+    display: block;
+    float: left;
+    border-radius: 0.23rem;
+    background: black;
+}
+
+.des-left{
+    width: 0.8rem;
+}
+
+.des-cnt{
+    width: 2.29rem;
+    font-size: .32rem;
+    color: #727272;
+    padding: 0 0.17rem;
+    vertical-align: middle;
+}
+
+.des-right{
+    width: 1.31rem;
+    color: black;
+    font-size: 0.17rem;
+    white-space: nowrap;
+    vertical-align: top;
+}
+
+.des-right p,
+.des-cnt p,
+.des-left p{
+    display: block;
+}
+
+.des-right p{
+    padding-left: 0.11rem;
+    border-left: dashed 0.03rem #b3b3b3;
+}
+
+.cost{
+    color: #727272;
+    font-size: .36rem;
+}
+
+.tip-buy span,
+.cost span{
+    padding: 0 0.2rem;
+    display: block;
+    text-align: left;
+}
+
+.cost p{
+    font-size: .5rem;
+    text-align: center;
+}
+
+
+.tip-buy{
+    color: #727272;
+    clear: both;
+    margin: 0.17rem auto 0;
+    line-height: 0.29rem;
+    font-size: .36rem;
+    position: relative;
+}
+
+.tip-buy p{
+    text-align: center;
+}
+
+.btn-buy{
+    width: 60%;
+    height: 0.72rem;
+    line-height: 0.72rem;
+    display: block;
+    color: white;
+    font-size: 0.36rem;
+    text-decoration: none;
+    margin: 1rem auto 0;
+    border-radius: 0.1rem;
+    background: #29acf0;
+}

@@ -1,0 +1,114 @@
+.floatBall{
+    width: 1.2rem;
+    height: 1.2rem;
+    position: fixed;
+    opacity: 0.6;
+    left: 0;
+    top: 0;
+    display: none;
+}
+
+.floatBall.active{
+    display: block;
+}
+
+.ball{
+    width: 1.2rem;
+    height: 1.2rem;
+    z-index: 2;
+    position: absolute;
+    background: url(../../../images/float_button.png) center no-repeat;
+    background-size: contain;
+}
+
+.menu{
+    height: 1.2rem;
+    width: 3.84rem;
+    display: none;
+    /*display: flex;*/
+    justify-content: center;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: absolute;
+    border-radius: .6rem;
+    padding: 0 .96rem 0 0.24rem;
+    right: 0;
+    background: white;
+}
+
+.menu.active{
+    display: flex;
+}
+
+.icon-account{
+    width: 1.37rem;
+    height: .9rem;
+    margin: .15rem 0;
+    background: url(../../../images/fb_user_center_3.png) center no-repeat;
+    background-size: contain;
+}
+
+.icon-cs p,
+.icon-account p{
+    width: 1.08rem;
+    bottom: .12rem;
+    line-height: .36rem;
+    font-size: .264rem;
+    color: #1eafe5;
+    text-align: center;
+    position: absolute;
+}
+
+.icon-cs{
+    width: .61rem;
+    height: .9rem;
+    margin: .15rem 0;
+    background: url(../../../images/fb_cs_3.png) center no-repeat;
+    background-size: contain;
+}
+
+/*@media screen and (min-width: 376px) {*/
+    /*.floatBall{*/
+        /*width: 0.57rem;*/
+        /*height: 0.57rem;*/
+    /*}*/
+
+    /*.ball{*/
+        /*width: 0.57rem;*/
+        /*height: 0.57rem;*/
+    /*}*/
+
+    /*.menu{*/
+        /*height: 0.57rem;*/
+        /*width: 2rem;*/
+        /*border-radius: 0.29rem;*/
+        /*padding: 0 .6rem 0 0.24rem;*/
+    /*}*/
+
+    /*.menu.right{*/
+        /*padding: 0 0.46rem 0 0.11rem;*/
+    /*}*/
+
+    /*.menu.left{*/
+        /*padding: 0 0.11rem 0 0.46rem;*/
+    /*}*/
+
+    /*.icon-account{*/
+        /*height: 0.4rem;*/
+        /*margin: .1rem 0;*/
+    /*}*/
+
+    /*.icon-cs p,*/
+    /*.icon-account p{*/
+        /*width: 0.51rem;*/
+        /*bottom: 0.06rem;*/
+        /*line-height: 0.17rem;*/
+        /*font-size: 0.14rem;*/
+    /*}*/
+
+    /*.icon-cs{*/
+        /*height: 0.4rem;*/
+        /*margin: .1rem 0;*/
+    /*}*/
+/*}*/

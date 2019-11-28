@@ -1,0 +1,91 @@
+.info-account{
+    position: relative;
+    padding: 0.11rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.info-head{
+    width: 0.51rem;
+    height: 0.51rem;
+    background: url(../../../images/ui_portrait.png) center no-repeat;
+    background-size: contain;
+}
+
+.info-msg{
+    padding: 0 0.11rem;
+    font-size: 0.14rem;
+    text-align: left;
+}
+
+.info-name{
+    color: black;
+}
+
+.info-id{
+    color: #758096;
+}
+
+.info-id .copy{
+    padding: 0.01rem 0.11rem;
+    border: solid 1px #758096;
+    margin-left: 0.11rem;
+    border-radius: 0.03rem;
+}
+
+.pay-his{
+    padding: 0.03rem 0.11rem;
+    right: 0.11rem;
+    text-decoration: none;
+    bottom: 0;
+    position: absolute;
+    color: #42aae6;
+    border: solid 1px #42aae6;
+    border-radius: 0.03rem;
+}
+
+.others{
+    padding: 0.11rem 0;
+}
+
+.item-other{
+    height: 0.57rem;
+    line-height: 0.57rem;
+    display: flex;
+    font-size: 0.16rem;
+    color: #42aae6;
+    text-decoration: none;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: solid 1px #758096;
+}
+
+.item-other img{
+    width: 0.27rem;
+    margin: 0 0.23rem;
+    display: block;
+}
+
+.item-other img.right{
+    width: 0.2rem;
+    justify-content: flex-end;
+}
+
+.item-other p{
+    width: 100%;
+    text-align: left;
+}
+
+.item-other.setting{
+    color: #cfcfd1;
+}
+
+.item-other p.right{
+    position: absolute;
+    right: 0.69rem;
+    text-align: right;
+}
