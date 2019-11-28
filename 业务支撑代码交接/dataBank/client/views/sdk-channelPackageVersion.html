@@ -1,0 +1,151 @@
+<div class="row" ng-controller="sdkPackageVersionController">
+    <div class="col-sm-12 col-md-12">
+        <toaster-container
+                toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div class="col-sm-12 col-md-12">
+        <div class="scrollable">
+            <div class="widget flat radius-bordered">
+                <div class="widget-header bg-blue">
+                    <span class="widget-caption">渠道管理:</span>
+                </div>
+                <div class="widget-body">
+                    <div class="portlet-body">
+                        <span class="col-md-1 col">选择游戏：</span>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <div class="btn-group">
+                                    <a class="btn btn-default shiny">
+                                        {{choseApp.appName}}
+                                    </a>
+                                    <a class="btn btn-default  dropdown-toggle shiny" data-toggle="dropdown"
+                                       href="javascript:void(0);" aria-expanded="false"><i class="fa fa-angle-down"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li ng-repeat="item in apps">
+                                            <a ng-click="setChoseApp(item)"
+                                               href="javascript:void(0);">{{item.appName}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="col-md-1 col">渠道包：</span>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <div class="btn-group">
+                                    <a class="btn btn-default shiny">
+                                        {{chosePackage.name}}
+                                    </a>
+                                    <a class="btn btn-default  dropdown-toggle shiny" data-toggle="dropdown"
+                                       href="javascript:void(0);" aria-expanded="false"><i class="fa fa-angle-down"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li ng-repeat="item in packages">
+                                            <a ng-click="setChosePackage(item)"
+                                               href="javascript:void(0);">{{item.name}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <button href="" class="btn blue" ng-click="open('','packageVersion.html','small')">
+                            <i class="fa fa-plus"></i> 添加
+                        </button>
+                    </div>
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>版本名称</th>
+                            <th>更新地址</th>
+                            <th>更新方式(关闭，不强更，强更)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in packageVersions">
+                            <td>{{item.versionName}}</td>
+                            <td>{{item.packagePath}}</td>
+                            <td>{{item.updateWay==0?'关闭':(item.updateWay ==1 ? '不强更':'强更')}}</td>
+                        </tr>
+                        <tr ng-if="noData">
+                            <td class="danger" colspan="5">无数据</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--渠道包版本-->
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div lass="widget">
+                    <script type="text/ng-template" id="packageVersion.html">
+                        <div class="modal-header">
+                            <h3 class="modal-title">渠道包版本</h3>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label><span class="tip">*</span>版本名称:</label>
+                                <input type="text" class="form-control ng-binding"
+                                       placeholder="版本名称"
+                                       ng-model="package.versionName"
+                                       value="{{package.versionName}}">
+                            </div>
+                            <div class="form-group">
+                                <label><span class="tip">*</span>版本号</label>
+                                <input type="text" class="form-control ng-binding"
+                                       placeholder="版本号"
+                                       ng-model="package.versionCode"
+                                       value="{{package.versionCode}}">
+                            </div>
+                            <div class="form-group">
+                                <label><span class="tip">*</span>上传地址:</label>
+                                <input type="text" class="form-control ng-binding"
+                                       placeholder="上传地址"
+                                       ng-model="package.packagePath"
+                                       value="{{package.packagePath}}">
+                            </div>
+                            <div class="form-group">
+                                <label><span class="tip">*</span>更新方式:</label>
+                                <br>
+
+                                <div class="control-group">
+                                    <div class="radio">
+                                        <label>
+                                            <input name="form-field-radio" type="radio" value="0" class="colored-blue"
+                                                   ng-model="package.updateWay">
+                                            <span class="text">关闭</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="radio">
+                                        <label>
+                                            <input name="form-field-radio" type="radio" value="1" class="colored-danger"
+                                                   ng-model="package.updateWay">
+                                            <span class="text">不强更</span>
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input name="form-field-radio" type="radio" value="2"
+                                                   class="colored-success" ng-model="package.updateWay">
+                                            <span class="text">强更</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-blue" ng-click="save()">保存</button>
+                            <button class="btn btn-warning" ng-click="cancel()">取消</button>
+                        </div>
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

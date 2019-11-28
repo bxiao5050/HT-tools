@@ -1,0 +1,94 @@
+--#region 五分钟在线脚本
+/*
+	五分钟注册脚本，自动补全数据
+	@DATE1		:第一个时间参数;
+	@DATE2		:第二个时间参数;  
+	@DATE3		:第三个时间参数; 
+	@AGENT_ID	:代理商字符串，需含“,”;
+	@GAME_ID	:游戏ID;
+	@CHANNEL_ID	:父级渠道ID;
+	@SUB_CHANNEL_ID :子用户渠道(即SDK的app_id)
+	@PACKAGE_ID  :包名(即adv_channel)
+
+*/
+
+--DECLARE @DATE1 DATE = ?, @DATE2 DATE = ?, @DATE3 DATE = ?,
+--		@AGENT_ID INT = ?, @GAME_ID INT = ?,
+--		@CHANNEL_ID INT= ?,@SUB_CHANNEL_ID INT = ?,@PACKAGE_ID INT = ?
+
+
+--DECLARE @DATE1 DATE = '2015-05-11', @DATE2 DATE = '2015-05-12', @DATE3 DATE = '2015-05-14',
+--		@AGENT_ID INT = 1, @GAME_ID INT = 10002,
+--		@CHANNEL_ID INT= NULL, @SUB_CHANNEL_ID INT = NULL, @PACKAGE_ID INT = NULL
+
+
+DECLARE @TITLE_DATE_1 date, @TITLE_DATE_2 date, @TITLE_DATE_3 date, @TITLE VARCHAR(MAX) = '', @NAME VARCHAR(MAX) = '';
+/*获取五分钟数据最新的时间  延迟15分钟*/
+DECLARE @LAST_DATA_TIME DATETIME;
+SELECT @LAST_DATA_TIME = DATEADD(n,-10,DATEADD(hh, time_zone -8,GETDATE())) FROM db_utils.dbo.t_app_extended_config WHERE app_id = @game_Id;
+SET @LAST_DATA_TIME = isnull(db_utils.dbo.f_get5minDate(@LAST_DATA_TIME),dateadd(MINUTE,-10,dateadd(hour,-1,getdate())))
+
+
+DECLARE @DATE TABLE(START_TIME DATETIME, END_TIME DATETIME);
+INSERT INTO @DATE 
+SELECT DATEADD(ms,0,DATEADD(dd, DATEDIFF(dd,0,@DATE1), 0)), DATEADD(ms,-1,DATEADD(dd, DATEDIFF(dd,-1,@DATE1), 0))
+UNION ALL
+SELECT DATEADD(ms,0,DATEADD(dd, DATEDIFF(dd,0,@DATE2), 0)), DATEADD(ms,-1,DATEADD(dd, DATEDIFF(dd,-1,@DATE2), 0))
+UNION ALL
+SELECT DATEADD(ms,0,DATEADD(dd, DATEDIFF(dd,0,@DATE3), 0)), DATEADD(ms,-1,DATEADD(dd, DATEDIFF(dd,-1,@DATE3), 0));
+
+/*STEP 1、获取所有的代理商 */
+/*游戏代理商表*/
+CREATE TABLE #AGENT_TABLE(agent_id INT PRIMARY KEY(agent_id));
+	INSERT INTO #AGENT_TABLE
+	SELECT distinct agent_id FROM [oas_system_2_0].[dbo].[v_agent]
+	where (region_id in (select col from [dbo].[f_split](','+@agent_id,',')) or
+	plat_id in (select col from [dbo].[f_split](','+@agent_id,',')) or
+	agent_id in (select col from [dbo].[f_split](','+@agent_id,','))) and
+	game_id = @game_id
+/*STEP 2、创建各个代理商五分钟时间点临时表 00：00 ~ 23：55 */
+CREATE TABLE #AGENT_COUNT_TIME(COUNT_TIME VARCHAR(8),agent_id VARCHAR(50), PRIMARY KEY(COUNT_TIME, agent_id));
+	INSERT INTO #AGENT_COUNT_TIME
+	SELECT B.COUNT_TIME, A.agent_id FROM (select distinct agent_id from #AGENT_TABLE) A 
+		CROSS JOIN (SELECT CAST(DATEADD(MINUTE, 5* id, 0) AS TIME) COUNT_TIME FROM t_e_ordinal A WHERE id < 288) B;  
+
+/*STEP 3、获取五分钟数据 */
+CREATE TABLE #DATA(TITLE VARCHAR(250), count_date VARCHAR(20), [REG] INT);
+SELECT @TITLE_DATE_1 = CAST(@DATE1 AS date), @TITLE_DATE_2 = CAST(@DATE2 AS date), @TITLE_DATE_3 = CAST(@DATE3 AS date);
+SELECT @TITLE = '['+CONVERT(VARCHAR(10),@TITLE_DATE_1)+'],' + '['+CONVERT(VARCHAR(10),@TITLE_DATE_2)+'],' + '['+CONVERT(VARCHAR(10),@TITLE_DATE_3)+']';
+
+
+
+		SET @name = ',[' + CONVERT(VARCHAR(10), @TITLE_DATE_1) + ']' + ',[' + CONVERT(VARCHAR(10), @TITLE_DATE_2) + ']' + ',[' + CONVERT(VARCHAR(10), @TITLE_DATE_3) + ']';
+		;WITH _T AS
+		(
+			SELECT COUNT_TIME, count_date FROM (SELECT CAST(DATEADD(MINUTE, 5* id, 0) AS TIME) COUNT_TIME FROM t_e_ordinal A WHERE id < 288) A
+				CROSS JOIN(SELECT @TITLE_DATE_1 count_date UNION ALL SELECT @TITLE_DATE_2 UNION ALL SELECT @TITLE_DATE_3) B
+			WHERE CAST(count_date AS VARCHAR(10)) +' ' + CAST(count_time AS VARCHAR(10)) <= @LAST_DATA_TIME
+		)
+
+		,_online_DATA AS(
+				SELECT  count_date, A.game_zone_id, [online] 
+				FROM [db_mobile_dw_1.1].[dbo].[t_p_5min_online] A WITH(NOLOCK) 
+				JOIN @DATE B ON A.count_date >= START_TIME AND A.count_date < END_TIME AND A.app_id = @GAME_ID
+				--GROUP BY count_date,A.game_zone_id
+		)
+
+		,_DATA AS (
+			SELECT    CAST(count_date AS date) count_date, CAST(count_date AS TIME) count_time, SUM([online]) [online]
+				FROM #AGENT_COUNT_TIME A 
+				JOIN _online_DATA B WITH(NOLOCK) ON B.game_zone_id = A.agent_id AND A.count_time = CONVERT(VARCHAR(8),B.count_date,108)
+			GROUP BY count_date
+		)
+
+ 		INSERT INTO #DATA
+		SELECT  a.count_date,a.count_time, max(ISNULL([online],0)) FROM _DATA b
+	
+	RIGHT JOIN _T a ON a.count_date = b.count_date AND a.count_time = b.count_time
+		GROUP BY a.count_date,a.count_time
+		ORDER BY a. count_date,a.count_time ;
+
+EXEC('SELECT  left(count_date,8) count_date '+@name+'  FROM #data a PIVOT (sum(REG) FOR title in ('+@title+')) AS p ORDER BY p.count_DATE');
+DROP TABLE #DATA, #AGENT_TABLE, #AGENT_COUNT_TIME;
+--#endregion
+

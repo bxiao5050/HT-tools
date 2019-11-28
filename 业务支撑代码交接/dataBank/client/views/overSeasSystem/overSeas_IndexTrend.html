@@ -1,0 +1,69 @@
+<div class="row" ng-controller="overSeasIndexTrendController" ng-cloak>
+	<div class="col-sm-12 col-md-12">
+		<toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+	</div>
+	<div data-ng-include=" 'views/overSeasSystem/overSeasHeader.html' "></div>
+
+	<div class="col-md-12 m-t-20">
+		<div class="widget">
+			<div class="widget-header">
+				<span class="widget-caption">图表数据</span>
+				<div class="widget-buttons">
+					<a href="" widget-collapse></a>
+					<a href="" widget-maximize></a>
+				</div>
+			</div>
+			<div class="widget-body">
+				<div class="chartcontainer">
+					<div id="indexTrendChart1" class="chart chart-lg"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-12">
+		<div class="well with-header with-footer">
+			<div class="header bordered-sky">
+
+				<span class="widget-caption">表格</span>
+				<label class="export-btn pull-right" style="margin-right: 20px;" ng-click="export()"><i class="fa fa-download"></i>&nbsp;导出xlsx文件</label>
+			</div>
+			<div class="scrollable font-12" style="max-height: 500px;overflow-y:auto">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>日期</th>
+							<th>注册人数</th>
+							<th>登录人数</th>
+							<th>活跃人数</th>
+							<th>在线峰值</th>
+							<th>总付费人数</th>
+							<th>网页付费人数</th>
+							<th>总付费金额</th>
+							<th>网页付费金额</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in tableData">
+							<td>{{item.count_date}}</td>
+							<td>{{item['reg_count']}}</td>
+							<td>{{item['login_count']}}</td>
+							<td>{{item['active_count']}}</td>
+							<td>0</td>
+							<td>{{item['pay_count']}}</td>
+							<td>{{item['web_pay_count']}}</td>
+							<td>{{item['pay_money']}}</td>
+							<td>{{item['web_pay_money']}}</td>
+						</tr>
+						<tr ng-if="noData">
+							<td class="danger" colspan="6">no data</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="footer">
+
+			</div>
+		</div>
+	</div>
+</div>

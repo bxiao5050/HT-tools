@@ -1,0 +1,141 @@
+<div class="row" ng-controller="fbDataAnalysisController" ng-cloak xmlns="http://www.w3.org/1999/html">
+    <div class="text-center"><h1>FaceBook数据分析</h1></div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="form-inline pull-left m-l-20">
+                    <label class="control-label">选择时间: </label>
+                    <!--<div id="dateControl" class="chose-list-content controls">-->
+                    <!--<div class="form-group">-->
+                    <input id="rangDateControl" date-range-picker class="form-control date-picker" type="text"
+                           ng-model="initData.rangeDate" ng-if="!singleDatePicker"  style="width:300px;" options = "dt_options"/>
+
+                    <p class="input-group" ng-if="singleDatePicker">
+                        <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd"
+                               ng-model="initData.curDate"
+                               is-open="initData.opened"
+                               date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"
+                               style="position: static;"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open($event)">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+                                    </span>
+                    </p>
+                    <!--</div>-->
+                    <!--</div>-->
+                </div>
+                <button class="btn btn-default m-l-20" ng-click="query()"> 查询</button>
+                <button class="btn btn-default m-l-20" ng-click="export()"> 导出</button>
+            </div>
+            <div class="form-horizontal m-l-20">
+
+                <div class="form-group">
+                    <label class="control-label">跨度：</label>
+                    <label class="radio-inline">
+                        <input type="radio" ng-model="viewData.timeType" name="timeType" ng-checked="true" btn-radio="0"> 年度
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" ng-model="viewData.timeType" name="timeType" btn-radio="1"> 月度
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" ng-model="viewData.timeType" name="timeType" btn-radio="2"> 每日
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">地区：</label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="viewData.selectedAll"  ng-click="selectedAll(viewData.selectedAll)"> 全选
+                    </label>
+                    <label class="checkbox-inline" ng-repeat="item in viewData.countrys">
+                        <input type="checkbox" ng-model="item.checked" ng-click="selectCountry()"> {{item.country_name}}
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">游戏：</label>
+                    <label class="checkbox-inline" ng-repeat="item in viewData.games">
+                        <input type="checkbox" ng-model="item.checked"> {{item.game_name}}
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-12 m-t-20">
+                <div class="widget">
+                    <div class="widget-header">
+                        <span class="widget-caption">图表数据</span>
+                        <!--<div class="btn-group">-->
+                        <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'day'">日</label>-->
+                        <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'week'">周</label>-->
+                        <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'month'">月</label>-->
+                        <!--</div>-->
+                        <div class="widget-buttons">
+                            <a href="" widget-collapse></a>
+                            <a href="" widget-maximize></a>
+                        </div>
+                    </div>
+                    <div class="widget-body">
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="button"
+                                    ng-class="{'btn-primary':viewData.currentPoint == 1,'btn-default':viewData.currentPoint != 1}"
+                                    class="btn" ng-click="switchPoint(1)">花费
+                            </button>
+                            <button type="button"
+                                    ng-class="{'btn-primary':viewData.currentPoint == 2,'btn-default':viewData.currentPoint != 2}"
+                                    class="btn" ng-click="switchPoint(2)">激活
+                            </button>
+                            <button type="button"
+                                    ng-class="{'btn-primary':viewData.currentPoint == 3,'btn-default':viewData.currentPoint != 3}"
+                                    class="btn" ng-click="switchPoint(3)">注册
+                            </button>
+                        </div>
+                        <div class="chartcontainer">
+                            <div id="fbDataAnalysisChart" style="width: 100%;height: 400px"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 m-t-20">
+                <div class="widget">
+                    <div class="widget-header">
+                        <span class="widget-caption">图表数据</span>
+                        <!--<div class="btn-group">-->
+                        <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'day'">日</label>-->
+                        <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'week'">周</label>-->
+                        <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'month'">月</label>-->
+                        <!--</div>-->
+                        <div class="widget-buttons">
+                            <a href="" widget-collapse></a>
+                            <a href="" widget-maximize></a>
+                        </div>
+                    </div>
+                    <div class="widget-body">
+                        <div id="fbValueChart" style="width: 100%;height: 400px"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 m-t-20">
+                <div class="widget">
+                    <div class="widget-header">
+                        <span class="widget-caption">图表数据</span>
+                        <!--<div class="btn-group">-->
+                        <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'day'">日</label>-->
+                        <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'week'">周</label>-->
+                        <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'month'">月</label>-->
+                        <!--</div>-->
+                        <div class="widget-buttons">
+                            <a href="" widget-collapse></a>
+                            <a href="" widget-maximize></a>
+                        </div>
+                    </div>
+                    <div class="widget-body">
+                        <div id="fbPercentChart" style="width: 100%;height: 400px"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="lib/controls/echarts.js"></script>
+    <script src="lib/modules/angular-daterangepicker/moment.js"></script>
+    <script src="lib/modules/angular-daterangepicker/daterangepicker.js"></script>
+    <script src="lib/modules/angular-daterangepicker/angular-daterangepicker.js"></script>
+</div>

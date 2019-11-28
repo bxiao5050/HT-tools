@@ -1,0 +1,14 @@
+{
+  "source": "./src/components/",
+  "destination": "./esdoc",
+  "manual": {
+    "globalIndex": false,
+    "asset": "./manual/asset",
+    "overview": ["./manual/overview.md"]
+  },
+  "styles": ["./esdoc/style.css"],
+  "includes": ["\\.(js|vue)$"],
+  "plugins": [
+    { "name": "esdoc-vue-plugin" }
+  ]
+}

@@ -1,0 +1,73 @@
+<div class="row" ng-controller="overSeasRetainUserController" ng-cloak>
+    <div class="col-sm-12 col-md-12">
+        <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div data-ng-include=" 'views/overSeasSystem/overSeasHeader.html' "></div>
+
+    <div class="col-md-12 m-t-20">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption">图表数据</span>
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="chartcontainer">
+                    <div id="retainUserChart1" class="chart chart-lg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+
+                <span class="widget-caption">表格</span>
+                <label class="export-btn pull-right" style="margin-right: 20px;" ng-click="export()"><i class="fa fa-download"></i>&nbsp;导出xlsx文件</label>
+            </div>
+            <div class="scrollable font-12" style="max-height: 500px;overflow-y:auto">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>日期</th>
+                        <th>+1日留存率</th>
+                        <th>+2日留存率</th>
+                        <th>+3日留存率</th>
+                        <th>+4日留存率</th>
+                        <th>+5日留存率</th>
+                        <th>+6日留存率</th>
+                        <th>+7日留存率</th>
+                        <th>+14日留存率</th>
+                        <th>+30日留存率</th>
+                        <th>注册人数</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in tableData">
+                        <td>{{item.count_date}}</td>
+                        <td>{{item['+1'] == '0' ? '--' : item['+1']}}</td>
+                        <td>{{item['+2'] == '0' ? '--' : item['+2']}}</td>
+                        <td>{{item['+3'] == '0' ? '--' : item['+3']}}</td>
+                        <td>{{item['+4'] == '0' ? '--' : item['+4']}}</td>
+                        <td>{{item['+5'] == '0' ? '--' : item['+5']}}</td>
+                        <td>{{item['+6'] == '0' ? '--' : item['+6']}}</td>
+                        <td>{{item['+7'] == '0' ? '--' : item['+7']}}</td>
+                        <td>{{item['+14'] == '0' ? '--' : item['+14']}}</td>
+                        <td>{{item['+30'] == '0' ? '--' : item['+30']}}</td>
+                        <td>{{item.reg_count}}</td>
+                    </tr>
+                    <tr ng-if="noData">
+                        <td class="danger"  colspan="6">no data</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="footer">
+
+            </div>
+        </div>
+    </div>
+</div>

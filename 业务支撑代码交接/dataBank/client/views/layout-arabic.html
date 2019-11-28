@@ -1,0 +1,43 @@
+﻿<link href="http://fonts.googleapis.com/earlyaccess/droidarabickufi.css" rel="stylesheet" type="text/css" />
+
+<!-- Loading Container -->
+<div class="loading-container" data-ng-include=" 'views/partials/loading.html' "></div>
+<!--  /Loading Container -->
+
+<!-- Navbar -->
+<div class="navbar {{settings.fixed.navbar ? 'navbar-fixed-top' : ''}}" data-ng-include=" 'views/partials/arabic/navbar.html' "></div>
+<!-- /Navbar -->
+
+<div class="main-container container-fluid" ng-init="$root.settings.rtl=true">
+    <!-- Page Container -->
+    <div class="page-container">
+        <!-- Page Sidebar -->
+        <div class="page-sidebar {{settings.fixed.sidebar ? 'sidebar-fixed' : ''}}" id="sidebar" data-ng-include=" 'views/partials/arabic/sidebar.html' ">
+        </div>
+        <!-- /Page Sidebar -->
+        <!-- Chat Bar -->
+        <div id="chatbar" class="page-chatbar" data-ng-include=" 'views/partials/chatbar.html' ">
+        </div>
+        <!-- /Chat Bar -->
+        <!-- Page Content -->
+        <div class="page-content">
+            <!-- Page Breadcrumb -->
+            <div class="page-breadcrumbs {{settings.fixed.breadcrumbs ? 'breadcrumbs-fixed' : ''}}" data-ng-include=" 'views/partials/breadcrumbs.html' ">
+            </div>
+            <!-- /Page Breadcrumb -->
+            <!-- Page Header -->
+            <div class="page-header position-relative {{settings.fixed.header ? 'page-header-fixed' : ''}}" data-ng-include=" 'views/partials/header.html' ">
+            </div>
+            <!-- /Page Header -->
+            <!-- Page Body -->
+            <div class="page-body" ui-view>
+                <!-- Your Content Goes Here -->
+            </div>
+            <!-- /Page Body -->
+        </div>
+        <!-- /Page Content -->
+    </div>
+    <!-- /Page Container -->
+    <!-- Main Container -->
+
+</div>

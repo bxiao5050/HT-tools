@@ -1,0 +1,28 @@
+<div class="pay-channel-list" v-if="data">
+  <Row>
+    <div class="title-list">付费渠道</div>
+  </Row>
+  <Card class="card">
+    <Row>
+      <div @click="toggle(data)">
+        <Checkbox :state="data.len===data.selected?2:data.selected===0?0:1">
+          <label>全选</label>
+        </Checkbox>
+      </div>
+      <Search class="search" :params="{click: searching}"></Search>
+    </Row>
+    <Row>
+      <div class="box box-fixed">
+        <div class="btn btn-secondary" :class="" v-for="e in data" v-if="typeof(e)==='object'&&searchFilter(e.name.toLowerCase())">
+          <div @click="toggle(e)">
+            <Checkbox :state="data.len===data.selected?2:data.selected===0?0:e.select"></Checkbox>
+          </div>
+          <span :title="e.name">{{e.name}}</span>
+        </div>
+      </div>
+    </Row>
+  </Card>
+  <Row>
+    <button class="btn confirm" @click="toConfirm">确 定</button>
+  </Row>
+</div>

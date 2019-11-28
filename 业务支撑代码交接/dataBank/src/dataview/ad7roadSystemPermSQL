@@ -1,0 +1,33 @@
+
+--system_id = 3
+select * from (
+select system_id "node_id",description "node_name",-999 parent_id,'system' "node_type",''"node_info"  from sc_oas_db_mobile.t_oas_system
+where system_id = 3
+union 
+select c.id,c.game_name,b.system_id,'game' "node_type",''"node_info" from sc_oas_db_mobile.t_oas_system_game a 
+left join sc_oas_db_mobile.t_oas_system b on a.system_id = b.system_id
+left join sc_oas_db_mobile.t_oas_game c on a.game_id = c.id
+where b.system_id = 3
+union 
+select c.id,c.menu_name,b.game_id,'menu',case c.menu_url when '' then a.id::varchar else c.menu_url end "node_info" 
+from sc_oas_db_mobile.t_oas_system_game_menu a
+left join sc_oas_db_mobile.t_oas_system_game b on a.game_id = b.id
+join sc_oas_db_mobile.t_oas_menu c on a.menu_id = c.id and c.parent_menu_id = 0
+where b.system_id = 3 and c.menu_status in (0,1)
+union
+select c.id,c.menu_name,e.id,'second_menu',case c.menu_url when '' then a.id::varchar else c.menu_url end "node_info" 
+from sc_oas_db_mobile.t_oas_system_game_menu a
+left join sc_oas_db_mobile.t_oas_system_game b on a.game_id = b.id
+left join sc_oas_db_mobile.t_oas_menu c on a.menu_id = c.id
+join sc_oas_db_mobile.t_oas_menu d on c.parent_menu_id = d.id and d.parent_menu_id = 0
+join sc_oas_db_mobile.t_oas_system_game_menu e on d.id = e.menu_id and e.game_id = a.game_id
+where b.system_id = 3 and d.menu_status in (0,1)
+union
+select c.id,c.menu_name,b.game_id,'third_menu',c.menu_url "node_info" from sc_oas_db_mobile.t_oas_system_game_menu a 
+left join sc_oas_db_mobile.t_oas_system_game b on a.game_id = b.id
+join sc_oas_db_mobile.t_oas_menu c on a.menu_id = c.id
+join sc_oas_db_mobile.t_oas_menu d on c.parent_menu_id = d.id
+join sc_oas_db_mobile.t_oas_menu e on d.parent_menu_id = e.id and e.parent_menu_id = 0
+where b.system_id = 3 and e.menu_status in (0,1)
+) a
+order by node_type,node_id

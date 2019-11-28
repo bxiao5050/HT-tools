@@ -1,0 +1,43 @@
+@import "variables";
+@import "mixins/index";
+// components
+@import "header";
+@import "sidebar";
+@import "main";
+@import "aside";
+@import "login";
+@import "language";
+@import "loader";
+@import "tables";
+@import "charts";
+@import "icon";
+// layout
+@import "layout";
+// global init
+html{
+  width:100%;
+  height:100%;
+}
+body {
+  width:100%;
+  height:100%;
+  color: #fff;
+  overflow: hidden;
+}
+
+*:not(i) {
+  font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.core-show {
+  display: block !important;
+}
+
+.core-hide {
+  display: none !important;
+}
+
+span[noselect], img[noselect], div[noselect] {
+  -webkit-user-select: none;
+  user-select: none;
+}

@@ -1,0 +1,21 @@
+{
+  "presets": [
+    "es2015"
+  ],
+  "plugins": [
+    "transform-runtime",
+    "transform-class-properties",
+    "syntax-jsx",
+    "transform-vue-jsx",
+    "transform-es2015-spread",
+    [
+      "component",
+      [
+        {
+          "libraryName": "element-ui",
+          "styleLibraryName": "theme-chalk"
+        }
+      ]
+    ]
+  ]
+}

@@ -1,0 +1,208 @@
+<div class="row" ng-controller="promotionTotalController" ng-cloak>
+    <div class="col-sm-12 col-md-12">
+        <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div data-ng-include=" 'views/7RoadReport/Report_Header.html' "></div>
+
+    <div class="col-md-12 m-t-20">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption"></span>
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="chartcontainer">
+                    <div id="chart1" class="chart chart-lg" style="position: static;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption"></span>
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="chartcontainer">
+                    <div id="chart2" class="chart chart-lg"  style="position: static;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption"></span>
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="chartcontainer">
+                    <div id="chart3" class="chart chart-lg"  style="position: static;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+
+                <span class="widget-caption">表格</span>
+                <label class="export-btn pull-right" style="margin-right: 20px;" ng-click="export()"><i class="fa fa-download"></i>&nbsp;导出xlsx文件</label>
+            </div>
+            <div class="scrollable font-12">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th ng-click="col='channel_name';desc=!desc">渠道
+                         <span ng-if="col=='channel_name'"
+                               ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span></th>
+                        <th ng-click="col='installs';desc=!desc">激活
+                            <span ng-if="col=='installs'"
+                                     ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span></th>
+                        <th ng-click="col='regs';desc=!desc">注册
+                         <span ng-if="col=='regs'"
+                               ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span></th>
+                        <th ng-click="col='roles';desc=!desc">创角
+                         <span ng-if="col=='roles'"
+                               ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span></th>
+                        <th ng-click="col='login';desc=!desc">登录
+                         <span ng-if="col=='login'"
+                               ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span></th>
+                        <th ng-click="col='costs';desc=!desc">消耗
+                         <span ng-if="col=='costs'"
+                               ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span></th>
+                        <th ng-click="col='money';desc=!desc">充值
+                         <span ng-if="col=='money'"
+                               ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span></th>
+                        <th ng-click="col='reg_rate';desc=!desc">注册率
+                         <span ng-if="col=='reg_rate'"
+                               ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span></th>
+                        <th ng-click="col='role_rate';desc=!desc">创角率
+                         <span ng-if="col=='role_rate'"
+                               ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span></th>
+                        <th ng-click="col='install_cpa';desc=!desc">激活cpa
+                         <span ng-if="col=='install_cpa'"
+                               ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span></th>
+                        <th ng-click="col='reg_cpa';desc=!desc">注册cpa
+                         <span ng-if="col=='reg_cpa'"
+                               ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span></th>
+                        <th ng-click="col='role_cpa';desc=!desc">创角cpa
+                         <span ng-if="col=='role_cpa'"
+                               ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span></th>
+                        <th ng-click="col='roi_total';desc=!desc">累计roi
+                         <span ng-if="col=='roi_total'"
+                               ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span></th>
+                        <th ng-click="col='roi_7';desc=!desc">7日roi
+                         <span ng-if="col=='roi_7'"
+                               ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span></th>
+                        <th ng-click="col='roi_15';desc=!desc">15日roi
+                         <span ng-if="col=='roi_15'"
+                               ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span></th>
+                        <th ng-click="col='roi_30';desc=!desc">30日roi
+                         <span ng-if="col=='roi_30'"
+                               ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span></th>
+                        <th ng-click="col='roi_60';desc=!desc">60日roi
+                         <span ng-if="col=='roi_60'"
+                               ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span></th>
+                        <th ng-click="col='roi_90';desc=!desc">90日roi
+                         <span ng-if="col=='roi_90'"
+                               ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span></th>
+                        <th ng-click="col='pay_count';desc=!desc">付费人数
+                         <span ng-if="col=='pay_count'"
+                               ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span></th>
+                        <th ng-click="col='pay_costs';desc=!desc">付费用户成本
+                         <span ng-if="col=='pay_costs'"
+                               ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in tableData| orderBy : col : desc" ng-if="item['channel_name']!='汇总'">
+                        <td>{{item["channel_name"]}}</td>
+                        <td>{{item["installs"]}}</td>
+                        <td>{{item["regs"]}}</td>
+                        <td>{{item["roles"]}}</td>
+                        <td>{{item["login"]}}</td>
+                        <td>{{item["costs"]}}</td>
+                        <td>{{item["money"]}}</td>
+                        <td>{{item["reg_rate"]+"%"}}</td>
+                        <td>{{item["role_rate"]+"%"}}</td>
+                        <td>{{item["install_cpa"]}}</td>
+                        <td>{{item["reg_cpa"]}}</td>
+                        <td>{{item["role_cpa"]}}</td>
+                        <td>{{item["roi_total"]+"%"}}</td>
+                        <td>{{item["roi_7"]+"%"}}</td>
+                        <td>{{item["roi_15"]+"%"}}</td>
+                        <td>{{item["roi_30"]+"%"}}</td>
+                        <td>{{item["roi_60"]+"%"}}</td>
+                        <td>{{item["roi_90"]+"%"}}</td>
+                        <td>{{item["pay_count"]}}</td>
+                        <td>{{item["pay_costs"]}}</td>
+                    </tr>
+                    <tr ng-if="noData">
+                        <td class="danger" colspan="6">no data</td>
+                    </tr>
+                    <tr ng-repeat="item in tableData" ng-if="item['channel_name']=='汇总'">
+                        <td>{{item["channel_name"]}}</td>
+                        <td>{{item["installs"]}}</td>
+                        <td>{{item["regs"]}}</td>
+                        <td>{{item["roles"]}}</td>
+                        <td>{{item["login"]}}</td>
+                        <td>{{item["costs"]}}</td>
+                        <td>{{item["money"]}}</td>
+                        <td>{{item["reg_rate"]+"%"}}</td>
+                        <td>{{item["role_rate"]+"%"}}</td>
+                        <td>{{item["install_cpa"]}}</td>
+                        <td>{{item["reg_cpa"]}}</td>
+                        <td>{{item["role_cpa"]}}</td>
+                        <td>{{item["roi_total"]+"%"}}</td>
+                        <td>{{item["roi_7"]+"%"}}</td>
+                        <td>{{item["roi_15"]+"%"}}</td>
+                        <td>{{item["roi_30"]+"%"}}</td>
+                        <td>{{item["roi_60"]+"%"}}</td>
+                        <td>{{item["roi_90"]+"%"}}</td>
+                        <td>{{item["pay_count"]}}</td>
+                        <td>{{item["pay_costs"]}}</td>
+                    </tr>
+                  <!--  <tr>
+                        <td>汇总</td>
+                        <td>{{totalData["installs"]}}</td>
+                        <td>{{totalData["regs"]}}</td>
+                        <td>{{totalData["roles"]}}</td>
+                        <td>{{totalData["login"]}}</td>
+                        <td>{{totalData["costs"]}}</td>
+                        <td>{{totalData["money"]}}</td>
+                        <td>{{totalData["reg_rate"]+"%"}}</td>
+                        <td>{{totalData["role_rate"]+"%"}}</td>
+                        <td>{{totalData["install_cpa"]}}</td>
+                        <td>{{totalData["reg_cpa"]}}</td>
+                        <td>{{totalData["role_cpa"]}}</td>
+                        <td>{{totalData["roi_total"]}}</td>
+                        <td>{{totalData["roi_7"]+"%"}}</td>
+                        <td>{{totalData["roi_15"]+"%"}}</td>
+                        <td>{{totalData["roi_30"]+"%"}}</td>
+                        <td>{{totalData["roi_60"]+"%"}}</td>
+                        <td>{{totalData["roi_90"]+"%"}}</td>
+                        <td>{{totalData["pay_count"]}}</td>
+                        <td>{{totalData["pay_costs"]}}</td>
+                    </tr>-->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="footer">
+
+            </div>
+        </div>
+    </div>
+</div>

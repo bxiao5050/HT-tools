@@ -1,0 +1,178 @@
+<div class="row" ng-controller="sdkAppListController">
+    <div class="col-sm-12 col-md-12">
+        <toaster-container
+                toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div class="col-sm-12 col-md-12" ng-if="showList">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <a class="btn btn-default" style="margin-bottom:15px" href="javascript:void(0);" ng-click="addListener()"><i
+                                class="fa fa-plus"></i>添加游戏</a>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="col-md-3">-->
+                <!--<div class="form-group" ng-class="{true:'has-error'}[packageNameValidateFail]">-->
+                    <!--<div class=" input-group">-->
+                        <!--<span class="input-group-addon">接入状态</span>-->
+                        <!--<input type="text" class="form-control" placeholder="必填" ng-model="formData.packageName">-->
+                    <!--</div>-->
+
+                <!--</div>-->
+            <!--</div>-->
+
+        </div>
+    </div>
+    <div class="col-sm-12" ng-if="showList">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+                表格
+            </div>
+            <div class="scrollable" style="max-height: 500px;overflow-y:auto">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>应用名称</th>
+                        <th>应用ID</th>
+                        <th>应用appkey</th>
+                        <th>应用appSecret</th>
+                        <th>横竖屏</th>
+                        <th>在线渠道总数</th>
+                        <th>所有渠道总数</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in apps">
+                        <td style="cursor: pointer" ng-click="showDetail(item)">{{item.appName}}</td>
+                        <td>{{item.appId}}</td>
+                        <td>
+                            {{item.appKey}}
+                        </td>
+                        <td>{{item.appSecret}}</td>
+                        <td>{{item.screen}}</td>
+                        <td>{{item.onLineChannel}}</td>
+                        <td>{{item.allChannel}}</td>
+                        <td><a ng-click="synchroData(item)"><i class="fa fa-cube">同步数据</i></a>&emsp;
+                            <a ng-click="showDateDetail(item)"><i class="fa fa-database">查看同步数据</i></a>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="footer">
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-12" ng-if="ShowGameDetail">
+        <div class="row">
+            <div class="widget">
+                <div class="widget-header bordered-bottom bordered-lightred">
+                    <span class="widget-caption">产品基本信息</span>
+                </div>
+                <div class="widget-body">
+                    <div class="collapse in">
+                        <form role="form" class="ng-pristine ng-valid" name="listForm">
+                            <div class="form-group"
+                                 ng-class="{ 'has-error' : listForm.required.$invalid && !listForm.required.$pristine }">
+                                <label>应用ID:</label>
+                                <input type="number" class="form-control" ng-model="choseApp.appId"
+                                       ng-disabled="!isAllowChanged" value="{{choseApp.appId}}" required/>
+                            </div>
+                            <p ng-show="listForm.choseApp.appId.$invalid && !listForm.choseApp.appId.$pristine"
+                               class="help-block">This field is required.</p>
+
+                            <div class="form-group"
+                                 ng-class="{ 'has-error' : listForm.required.$invalid && !listForm.required.$pristine}">
+                                <label>应用名称:</label>
+                                <input class="form-control" ng-disabled="!isAllowChanged" ng-model="choseApp.appName"
+                                       value="{{choseApp.appName}}" required/>
+                            </div>
+                            <p ng-show="listForm.choseApp.appName.$invalid && !listForm.choseApp.appName.$pristine"
+                               class="help-block">This field is required.</p>
+
+                            <div class="form-group"
+                                 ng-class="{'has-error':listForm.required.$invalid && !listForm.required.$pristine}">
+                                <label>应用描述:</label>
+                                <input class="form-control" ng-disabled="!isAllowChanged" ng-model="choseApp.appDesc"
+                                       value="{{choseApp.appDesc}}" required/>
+                            </div>
+                            <p ng-show="listForm.required.$invalid && !listForm.required.$pristine"
+                               class="help-block">This field is required.</p>
+
+                            <div class="form-group">
+                                <label>横竖屏设置:</label>
+                                <label>
+                                    <input class="form-control" name="radio" ng-model="choseApp.screen" type="radio"
+                                           value="0">
+                                    <span class="text">横屏</span>
+                                </label>
+                                <label>
+                                    <input class="form-control" name="radio" ng-model="choseApp.screen" type="radio"
+                                           value="1">
+                                    <span class="text">竖屏</span>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label>产品icon:</label>
+                                <input type="file" ngf-select="" ng-model="choseApp.appIcon" name="file"
+                                       accept="keystore/*"
+                                       required="">
+                                <img ngf-src="choseApp.appIcon" class="icon">
+                            </div>
+                        </form>
+                        <div class="form-group">
+                            <button class="btn" ng-click="switchShow()"><i class="fa fa-arrow-left"></i>返回列表
+                            </button>
+                            <a class="btn btn-default" ng-click="changedClick()" ng-if="isShowEditBtn">
+                                <i class="fa fa-plus"></i>修改产品信息</a>
+                            <button type="submit" class="btn" ng-if="isShowAddBtn" ng-click="addSubmit()">
+                                <i class="fa fa-save"></i>添加产品
+                            </button>
+                            <button type="submit" class="btn" ng-if="isShowSaveBtn" ng-click="updateSubmit()"><i
+                                    class="fa fa-save"></i>保存产品
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--查看同步数据-->
+    <div class="col-sm-12 col-md-12" ng-if="showData">
+        <div class="scrollable" style="max-height: 500px;overflow-y:auto">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>应用名称</th>
+                    <th>同步内容</th>
+                    <th>接入状态</th>
+                    <th>同步时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in data">
+                    <td>{{item.appName}}</td>
+                    <td>{{item.appId}}</td>
+                    <td>
+                        {{item.appKey}}
+                    </td>
+                    <td>{{item.appSecret}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="form-group">
+            <button class="btn" ng-click="switchShow()"><i class="fa fa-arrow-left"></i>返回游戏列表
+            </button>
+        </div>
+    </div>
+
+</div>
+
+

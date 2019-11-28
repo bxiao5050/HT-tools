@@ -1,0 +1,306 @@
+<div ng-controller="AdActivityListController" ng-cloak>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 oa-header-row"><toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container></div>
+        <div class="col-sm-12 col-md-12">
+            <div class="row">
+                <!--时间选择-->
+                <div class="pull-left m-l-20">
+                    <div class="form-group chose-list">
+                        <label class="chose-list-label control-label">时间: </label>
+
+                        <div class="chose-list-content controls">
+                            <div>
+                                <input date-range-picker class="form-control date-picker" type="text"  ng-if="!singleDatePicker"
+                                       ng-model="initData.rangeDate"/>
+                                <p class="input-group" ng-if="singleDatePicker">
+                                    <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="initData.curDate"
+                                           is-open="initData.opened_1"
+                                           date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open_1($event)">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--时间选择 end-->
+
+                <!--统计日期-->
+                <div class="pull-left" ng-if="!hideCountDate">
+                    <div class="form-group chose-list">
+                        <label class="chose-list-label control-label" ng-if="!realtimeCompareDate">统计日期: </label>
+                        <label class="chose-list-label control-label" ng-if="realtimeCompareDate">对比日期: </label>
+                        <div class="chose-list-content controls">
+                            <div>
+                                <p class="input-group">
+                                    <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd"
+                                           ng-model="caculateData.count_date"
+                                           is-open="caculateData.opened_2"
+                                           date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                                                    <span class="input-group-btn">
+                                                        <button type="button" class="btn btn-default"
+                                                                ng-click="open_2($event)">
+                                                            <i class="glyphicon glyphicon-calendar"></i>
+                                                        </button>
+                                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--媒体下拉列表-->
+                <!--            <div class="pull-left" style="width:230px">
+                                <div class="form-group chose-list">
+                                    <label class="chose-list-label control-label" style="margin-top: 5px">媒体： </label>
+
+                                    <div class="chose-list-content controls">
+                                        <ui-select ng-model="media.selected" theme="bootstrap" style=" width: 170px;">
+                                            <ui-select-match placeholder="Select">
+                                                {{$select.selected.name}}
+                                            </ui-select-match>
+                                            <ui-select-choices
+                                                    repeat="item in medias | filter: $select.search">
+                                                <span>{{item.name}}</span>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                </div>
+                            </div>-->
+
+                <!--渠道下拉列表-->
+
+
+                <!--游戏选择下拉列表-->
+                <div class="pull-left" style="width:230px">
+                    <div class="form-group chose-list">
+                        <label class="chose-list-label control-label" style="margin-top: 5px">游戏： </label>
+
+                        <div class="chose-list-content">
+                            <ui-select ng-model="game.selected" theme="bootstrap" style=" width: 170px;">
+                                <ui-select-match placeholder="Select">
+                                    {{$select.selected.game_name}}
+                                </ui-select-match>
+                                <ui-select-choices repeat="item in games | filter: $select.search">
+                                    <span>{{item.game_name}}</span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                </div>
+                <!--游戏选择下拉列表 end-->
+
+                <!--系统选择下拉列表-->
+                <div class="pull-left" style="width:230px">
+                    <div class="form-group chose-list">
+                        <label class="chose-list-label control-label" style="margin-top: 5px;">系统: </label>
+
+                        <div class="chose-list-content">
+                            <ui-select ng-model="os.selected" theme="bootstrap" style=" width: 170px;">
+                                <ui-select-match placeholder="Select">
+                                    <span>{{item.name}}</span>
+                                    {{$select.selected.name}}
+                                    <i ng-if="$select.selected.os==1" class="fa fa-android"></i>
+                                    <i ng-if="$select.selected.os==0" class="fa fa-apple"></i>
+                                </ui-select-match>
+                                <ui-select-choices repeat="item in AppOS | filter: $select.search">
+                                    <span>{{item.name}}</span>
+                                    <i ng-if="item.os==1" class="fa fa-android green"></i>
+                                    <i ng-if="item.os==0" class="fa fa-apple orange"></i>
+                                </ui-select-choices>
+                            </ui-select>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="pull-left" style="width:230px">
+                    <div class="form-group chose-list">
+                        <label class="chose-list-label control-label" style="margin-top: 5px">渠道： </label>
+
+                        <div class="chose-list-content controls">
+                            <!--     <ui-select ng-model="channel.selected" theme="bootstrap" style=" width: 170px;">
+                                     <ui-select-match placeholder="Select">
+                                        {{$select.selected.name}}
+                                     </ui-select-match>
+                                     <ui-select-choices
+                                             repeat="item in channels | filter: $select.search">
+                                         <span>{{item.name}}</span>
+                                     </ui-select-choices>
+                                 </ui-select>
+                                 -->
+                            <div id="choseChannelBtn" style="width:170px;padding: 0;">
+                                <!--                            <h6 id="channelBtnText" data-toggle="modal"
+                                                                data-target="#channelModel"
+                                                                style="margin: 0;cursor: pointer; width: 170px;white-space: nowrap; overflow:hidden;text-overflow: ellipsis;"
+                                                                class="row-title"><i
+                                                                    class="fa fa-expand"></i><label>{{ SelectedChannelName }}</label></h6>-->
+                                <input id="channelBtnText" type="text" readonly="readonly" data-toggle="modal"
+                                       value="{{ SelectedChannelName }}" tooltip="{{ SelectedChannelName }}"
+                                       data-target="#channelModel"
+                                       style="padding-left:10px;margin: 0;cursor: pointer; width: 170px;height:33px;white-space: nowrap; overflow:hidden;text-overflow: ellipsis;"/>
+                            </div>
+                            <div class="modal fade" id="channelModel" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel"
+                                 style="width: 100%;">
+                                <div class="modal-dialog" role="document" style="width: 600px;height:300px;top:120px;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close"><span
+                                                    aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="myModalLabel">选择渠道</h4>
+                                        </div>
+                                        <div class="modal-body"
+                                             style="width: 600px;padding-left: 40px;padding-right: 40px;">
+                                            <label style="margin: 10px;"><input type="checkbox" ng-model="selectAllChannel">全选</label>
+                                            <ul style="padding: 0px;">
+                                                <li ng-repeat="item in channelNameData"
+                                                    style="list-style-type:none;width:100px;display: inline;cursor: pointer;margin: 10px;">
+                                                    <label id="channelCheck{{$index}}label" for="channelCheck{{$index}}"
+                                                           style="font-size: 12px;cursor: pointer;" content="{{item.name}}">
+                                                        <input id="channelCheck{{$index}}" ng-model="item.selected"
+                                                               class="channelCheckInput" ng-checked="item.selected"
+                                                               type="checkbox" value="{{item.name}}"/>
+                                                        {{item.name}}</label>
+
+                                                </li>
+                                            </ul>
+                                            <!--      <ul style="padding: 0px;" ng-if="!IsStillLook">
+                                                      <li ng-repeat="item in channelNameData"
+                                                          style="list-style-type:none;width:100px;display: inline;cursor: pointer;margin: 10px;">
+                                                          <label id="channelCheck{{$index}}label" for="channelCheck{{$index}}"
+                                                                 style="font-size: 12px;cursor: pointer;" content="{{item.name}}">
+                                                              <input id="channelCheck{{$index}}" ng-model="item.selected"
+                                                                     class="channelCheckInput" ng-checked="item.selected"
+                                                                     type="checkbox" value="{{item.name}}"/>
+                                                              {{item.name}}</label>
+
+                                                      </li>
+                                                  </ul>-->
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="#" class="btn btn-success" ng-click="channelOK()">确定</a>
+                                            <a href="#" class="btn" data-dismiss="modal" ng-click="channelCancel()">取消</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 m-t-20">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption"></span>
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="chartcontainer">
+                    <div id="chart1" class="chart chart-lg" style="position: static;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 m-t-20">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption"></span>
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="chartcontainer">
+                    <div id="chart2" class="chart chart-lg" style="position: static;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 m-t-20">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+
+                <span class="widget-caption">表格</span>
+                <label class="export-btn pull-right" style="margin-right: 20px;" ng-click="export()"><i class="fa fa-download"></i>&nbsp;导出xlsx文件</label>
+            </div>
+            <div class="scrollable font-12">
+                <!--<table class="table table-bordered table-hover">-->
+                    <!--<thead>-->
+                    <!--<tr>-->
+                        <!--<th>推广活动</th>-->
+                        <!--<th>系统</th>-->
+                        <!--<th>激活</th>-->
+                        <!--<th>注册</th>-->
+                        <!--<th>创角</th>-->
+                        <!--<th>登录</th>-->
+                        <!--<th>消耗</th>-->
+                        <!--<th>充值</th>-->
+                        <!--<th>注册率</th>-->
+                        <!--<th>创角率</th>-->
+                        <!--<th>激活cpa</th>-->
+                        <!--<th>注册cpa</th>-->
+                        <!--<th>创角cpa</th>-->
+                        <!--<th>累计roi</th>-->
+                        <!--<th>7日roi</th>-->
+                        <!--<th>15日roi</th>-->
+                        <!--<th>30日roi</th>-->
+                        <!--<th>60日roi</th>-->
+                        <!--<th>90日roi</th>-->
+                        <!--<th>付费人数</th>-->
+                        <!--<th>付费用户成本</th>-->
+                    <!--</tr>-->
+                    <!--</thead>-->
+                    <!--<tbody>-->
+                    <!--<tr ng-repeat="item in viewData.dataTable">-->
+                        <!--<td>{{item.channel_name}}</td>-->
+                        <!--<td>{{item["os"]}}</td>-->
+                        <!--<td>{{item["installs"]}}</td>-->
+                        <!--<td>{{item["regs"]}}</td>-->
+                        <!--<td>{{item["roles"]}}</td>-->
+                        <!--<td>{{item["login"]}}</td>-->
+                        <!--<td>{{item["costs"]}}</td>-->
+                        <!--<td>{{item["money"]}}</td>-->
+                        <!--<td>{{item["reg_rate"]+"%"}}</td>-->
+                        <!--<td>{{item["role_rate"]+"%"}}</td>-->
+                        <!--<td>{{item["install_cpa"]}}</td>-->
+                        <!--<td>{{item["reg_cpa"]}}</td>-->
+                        <!--<td>{{item["role_cpa"]}}</td>-->
+                        <!--<td>{{item["roi_total"]+"%"}}</td>-->
+                        <!--<td>{{item["roi_7"]+"%"}}</td>-->
+                        <!--<td>{{item["roi_15"]+"%"}}</td>-->
+                        <!--<td>{{item["roi_30"]+"%"}}</td>-->
+                        <!--<td>{{item["roi_60"]+"%"}}</td>-->
+                        <!--<td>{{item["roi_90"]+"%"}}</td>-->
+                        <!--<td>{{item["pay_count"]}}</td>-->
+                        <!--<td>{{item["pay_costs"]}}</td>-->
+                    <!--</tr>-->
+                    <!--<tr ng-if="noData">-->
+                        <!--<td class="danger" colspan="6">no data</td>-->
+                    <!--</tr>-->
+                    <!--</tbody>-->
+                <!--</table>-->
+                <sorted-table table-field="viewData.dataTable" asc-field="true" sort-field="'installs'"></sorted-table>
+            </div>
+
+            <div class="footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--TODO lazyload 会报错-->
+<script src="lib/modules/angular-daterangepicker/moment.js"></script>
+<script src="lib/modules/angular-daterangepicker/daterangepicker.js"></script>
+<script src="lib/modules/angular-daterangepicker/angular-daterangepicker.js"></script>

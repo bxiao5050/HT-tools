@@ -1,0 +1,232 @@
+<div ng-controller="oasHeaderController" ng-cloak>
+    <div class="row col-sm-12 col-md-12">
+
+        <!--<div class="col-md-12 ng-scope">-->
+
+                <div class="pull-left m-l-20" style="width:200px">
+                    <div class="form-group chose-list">
+                        <label class="chose-list-label control-label" style="margin-top: 5px">游戏： </label>
+
+                        <div style="width: 100%">
+                            <div class="menu-open" id="game_control">
+                                <div class="open_drop">
+                                    <span class="drop_head">&nbsp;<b>选择游戏</b>(单选)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pull-left m-l-20" style="width:300px">
+                    <span style="height: 28px;display: inline-block;position: relative;top: -10px;">选择系统、区服：</span>
+                    <div class="agent-open" id="agent_control">
+                        <span class="more">国内测试-百度汇总-百度1~23区.</span>
+
+                        <div class="open_drop">
+                            <span class="drop_head">&nbsp;<b>选择系统、区服</b>(多选)</span>
+
+                            <div>
+                                <div class="step_head"  style="display: none">&nbsp;第一步：选择系统</div>
+                                <div class="os_row" style="display: none">
+                <span>
+                    <label>全选</label>
+                    <input id="osAll" checked="true" type="checkbox"/>
+                 </span>
+                <span>
+                <label>IOS</label>
+                <input class="os_ios" data="0" checked="true" type="checkbox"/>
+             </span>
+                    <span>
+                <label>安卓</label>
+                <input class="os_android" data="1" checked="true" type="checkbox"/>
+                    </span>
+                                </div>
+                                <div class="step_head">&nbsp;第二步：选择区服</div>
+                                <div class="area_content">
+                                    <span>中国地区</span>
+                                    <span>海外地区</span>
+                                    <span>第七大道</span>
+                                </div>
+                                <div class="zone_content">
+                 <span class="head">
+                    <label>全选</label>
+                     <input type="checkbox" id="zone_all"/>
+                     <input type="text" class="search" placeholder="快速搜索"/>
+                 </span>
+
+                                    <div class="zone_item zone_list">
+                                        <span><label>安卓</label><input type="checkbox"/></span>
+                                        <span><label>安卓</label><input type="checkbox"/></span>
+                                        <span><label>安卓</label><input type="checkbox"/></span>
+                                    </div>
+                                </div>
+                                <div class="zone_content">
+                 <span class="head">
+                    <label>全选</label>
+                     <input type="checkbox" id="agent_all"/>
+                     <input type="text" class="search" placeholder="快速搜索"/>
+                 </span>
+
+                                    <div class="zone_item agent_list">
+                                        <span><label>安卓</label><input type="checkbox"/></span>
+                                        <span><label>安卓</label><input type="checkbox"/></span>
+                                        <span><label>安卓</label><input type="checkbox"/></span>
+                                    </div>
+                                </div>
+                                <div class="selected_content">
+                                    <div class="step_head">确认选中代理商</div>
+                                    <div class="selected_item">
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="button-control">
+                                <button class="confire_button  btn btn-primary">确定</button>
+                                <button class="canel_button  btn btn-default">取消</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="pull-left m-l-20" style="width:260px;" ng-if="!hideChannelList">
+                    <div class="form-group chose-list">
+                        <label class="chose-list-label control-label" style="margin-top: 5px">常用区服： </label>
+
+                        <div class="pull-left">
+                            <label>百度汇总</label>
+                            <label>小米汇总</label>
+                            <label>360汇总</label>
+                        </div>
+                    </div>
+                </div>
+            <!--</div>-->
+    </div>
+
+    <div class="title-group col-sm-12 col-md-12">
+    <div class="row col-sm-12 col-md-12">
+        <span class="m-l-20 title-header">{{module_name}}</span>
+        <!--<span>-->
+            <span id="question_icon"  ng-click="showModel()">
+            <img src="assets/img/question_icon.png"/>
+            </span>
+
+        <!-- 模态框（Modal） -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" style="width: 100%;top: 100px;"
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="width:850px;height:300px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"
+                                data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            {{questionTitle}}
+                        </h4>
+                    </div>
+                    <div class="modal-body" id="questionContent">
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal -->
+        </div>
+        <!--</span>-->
+    </div>
+
+
+    <div class="row col-sm-12 col-md-12 title-body">
+        <!--时间选择-->
+        <div class="pull-left m-l-20">
+            <div class="form-group chose-list">
+                <label class="chose-list-label control-label font-12">时间： </label>
+                <div class="controls" style="float: left;width:50px;" ng-if="IsShowDatetypeList">
+                    <!--<select id="datetype" theme="bootstrap" class="combobox" ng-model="datetype" ng-change="datechange()" style="padding: 6px 6px;">-->
+                    <!--<option value="1" selected="selected">日</option>-->
+                    <!--<option value="2">周</option>-->
+                    <!--<option value="3">月</option>-->
+                    <!--</select>-->
+                    <ui-select ng-model="datetype.selected" theme="bootstrap"  style=" width: 50px;">
+                        <ui-select-match placeholder="{{$select.selected.name}}">
+                            {{$select.selected.name}}
+                        </ui-select-match>
+                        <ui-select-choices repeat="item in datetypes | filter: $select.search" style="min-width:50px;">
+                            <span>{{item.name}}</span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="chose-list-content controls">
+                    <div>
+                        <input date-range-picker class="form-control date-picker" type="text"
+                               ng-model="initData.rangeDate" ng-if="!singleDatePicker"/>
+
+                        <p class="input-group" ng-if="singleDatePicker" style="margin-bottom: 0px;">
+                            <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd"
+                                   ng-model="initData.curDate"
+                                   is-open="initData.opened"
+                                   date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"
+                                   style="position: static;"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open($event)">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+                                    </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--时间选择 end-->
+
+        <!--支付渠道下拉列表-->
+        <div class="pull-left m-l-20" style="width:300px">
+            <span style="height: 28px;display: inline-block;position: relative;top: -10px;">注册渠道：</span>
+            <ul class="channel-open" id="regChannel_control">
+                <span class="more">国内测试-百度汇总-百度1~23区.</span>
+                <div class="open_drop">
+                    <div class="drop_head">
+                            <span style="display: inline-block;margin-left: 10px;">选择注册渠道（多选，已选中 <b
+                                    class="channel_count">10</b>  个）</span>
+                        <input class="search" style="margin-left: 250px" placeholder="请输入任意渠道名"/>
+                        <span class="glyphicon glyphicon-remove pull-right channel_close"></span>
+                    </div>
+                    <div class="all_selected">
+                        <label>全选</label>
+                        <span style='position: relative;'><div></div></span>
+                        <input type="checkbox"/>
+                    </div>
+                    <div class="channel_list">
+                        <div class="channel_content">
+                        </div>
+                    </div>
+                </div>
+            </ul>
+        </div>
+        <div class="pull-left m-l-20" style="width:260px;" ng-if="!hideChannelList">
+            <div class="form-group chose-list">
+                <label class="chose-list-label control-label" style="margin-top: 5px">充值渠道： </label>
+
+                <div class="chose-list-content">
+                    <ui-select ng-model="paychannel.selected" theme="bootstrap"
+                               ng-change="paychannelchanged($select.selected.channel_id)"
+                               style=" width: 200px;margin-top: 2px">
+                        <ui-select-match placeholder="Select">
+                            {{$select.selected.channel_name}}
+                        </ui-select-match>
+                        <ui-select-choices
+                                repeat="item in payChannels | filter: $select.search">
+                            <span>{{item.channel_name}}</span>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+</div>
+<!--TODO lazyload 会报错-->
+<script src="lib/modules/angular-daterangepicker/moment.js"></script>
+<script src="lib/modules/angular-daterangepicker/daterangepicker.js"></script>
+<script src="lib/modules/angular-daterangepicker/angular-daterangepicker.js"></script>

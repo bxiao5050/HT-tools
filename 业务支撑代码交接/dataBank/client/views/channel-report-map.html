@@ -1,0 +1,216 @@
+<div class="row" ng-controller="ChannelReportMapController">
+    <div class="col-lg-12 col-sm-12 col-xs-12 oa-header-row">
+        <div class="row">
+                <div class="form-inline pull-left m-l-20">
+                    <label class="control-label">选择时间: </label>
+                    <!--<div id="dateControl" class="chose-list-content controls">-->
+                        <!--<div class="form-group">-->
+                            <input id="rangDateControl" date-range-picker class="form-control date-picker" type="text"
+                                   ng-model="initData.rangeDate" ng-if="!singleDatePicker"  style="width:300px;" options = "dt_options"/>
+
+                            <p class="input-group" ng-if="singleDatePicker">
+                                <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd"
+                                       ng-model="initData.curDate"
+                                       is-open="initData.opened"
+                                       date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"
+                                       style="position: static;"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open($event)">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+                                    </span>
+                            </p>
+                        <!--</div>-->
+                <!--</div>-->
+            </div>
+            <div class="col-sm-2 pull-left">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" style="padding: 0px;margin-top: 5px;">系统: </label>
+                    <div class="col-sm-9"  style="padding: 0px;">
+                        <ui-select ng-model="os.selected" theme="bootstrap">
+                            <ui-select-match placeholder="Select">
+                                <span>{{item.name}}</span>
+                                {{$select.selected.name}}
+                                <i ng-if="$select.selected.os==1" class="fa fa-android"></i>
+                                <i ng-if="$select.selected.os==0" class="fa fa-apple"></i>
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in AppOS | filter: $select.search">
+                                <span>{{item.name}}</span>
+                                <i ng-if="item.os==1" class="fa fa-android green"></i>
+                                <i ng-if="item.os==0" class="fa fa-apple orange"></i>
+                            </ui-select-choices>
+                        </ui-select>
+
+                    </div>
+                </div>
+            </div>
+            <div class="pull-left col-sm-3" style="padding: 0px;">
+                <div class="form-group chose-list">
+                    <label class="col-sm-3 control-label" style="padding:0;margin-top: 5px">地区与游戏： </label>
+                    <!--代理商选择按钮-->
+                    <div id="choseAgentBtn" class="col-sm-9"  style="padding: 0px;">
+                        <h6   data-toggle="modal"
+                            data-target="#areaAppModel" tooltip="{{areaLevel.selected.area_app_name +'-' +
+                        countryLevel.selected.area_app_name +'-' +gameLevel.selected.area_app_name }}"
+                            style="margin: 0;cursor: pointer; width: 200px;white-space: nowrap; overflow:hidden;text-overflow: ellipsis;"
+                            class="row-title"><i
+                                class="fa fa-expand"></i>{{areaLevel.selected.area_app_name +'-' +
+                            countryLevel.selected.area_app_name +'-' +gameLevel.selected.area_app_name }}</h6>
+                    </div>
+                </div>
+                <!--代理商选择按钮 end-->
+                <!--代理商选择弹出框-->
+                <!-- Modal -->
+                <div class="modal fade" id="areaAppModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     style="width: 100%; top: 120px;">
+                    <div class="modal-dialog" role="document" style="width: 600px;height:600px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">选择地区与游戏</h4>
+                            </div>
+                            <div class="modal-body">
+                                <!--<div id="agentContent" style="display: none; width: 500px;">-->
+                                    <div >
+                                        <tabset flat="true">
+                                            <tab heading="地区" active="initData.areaActive">
+                                                <button class="btn btn-default btn-sm" ng-repeat="areaItem in areaSource"
+                                                        ng-click="ClickAreaSet(areaItem)">
+                                                    {{areaItem.area_app_name}}
+                                                </button>
+                                            </tab>
+                                            <tab heading="国家" disabled="initData.countryDisabled" active="initData.countryActive">
+                                                <button class="btn btn-default btn-sm" ng-repeat="countryItem in countrySource"
+                                                        ng-click="ClickCountrySet(countryItem)">
+                                                    {{countryItem.area_app_name}}
+                                                </button>
+                                            </tab>
+                                            <tab heading="游戏" disabled="initData.gameDisabled" active="initData.gameActive">
+                                                <button class="btn btn-default btn-sm" ng-repeat="gameItem in gameSource"
+                                                        ng-click="ClickGameSet(gameItem)">
+                                                    {{gameItem.area_app_name}}
+                                                </button>
+                                            </tab>
+                                        </tabset>
+                                    <!--</div>-->
+                                    <!--代理商选择弹出框 end-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="showImageModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     style="width: 100%; top: 120px;">
+                    <div class="modal-dialog" role="document" style="width: 1300px;height:600px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">邮件预览</h4>
+                            </div>
+                            <div class="modal-body">
+                                <!--<div id="agentContent" style="display: none; width: 500px;">-->
+                                <img ng-Src="{{mailImage}}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-group pull-left">
+                <label class="btn btn-normal" ng-click="query()"><i
+                        class="fa fa-refresh"></i>查询</label>
+                <label class="btn btn-normal" ng-if="ModelState==2" ng-click="query(true)"><i
+                        class="fa fa-refresh"></i>系统对比</label>
+				<label class="btn btn-normal" ng-click="createMail()"><i
+                        class="fa fa-refresh"></i>邮件生成</label>
+                <label class="btn btn-normal" ng-click="getMail()"><i
+                        class="fa fa-refresh"></i>邮件预览</label>
+                <label class="btn btn-normal" ng-click="sendMail()"><i
+                        class="fa fa-refresh"></i>发送邮件</label>
+            </div>
+
+            <!--<div class="col-sm-3 pull-right">-->
+                <!--<div class="form-group">-->
+                    <!--<label class="col-sm-4 control-label"  style="padding: 0px;margin-top: 5px;">快捷日期: </label>-->
+                    <!--<div class="col-sm-8"  style="padding: 0px;">-->
+                        <!--<ui-select ng-model="datetype.selected" theme="bootstrap">-->
+                            <!--<ui-select-match placeholder="{{$select.selected.name}}">-->
+                                <!--{{$select.selected.name}}-->
+                            <!--</ui-select-match>-->
+                            <!--<ui-select-choices repeat="item in dateTypes | filter: $select.search" style="min-width:50px;">-->
+                                <!--<span>{{item.name}}</span>-->
+                            <!--</ui-select-choices>-->
+                        <!--</ui-select>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="row">
+            <div class="pull-left m-l-20" style=" margin-top: 10px;width: auto;">
+                <label  style="font-size:14px;font-weight: bold;width:auto;font-family:'黑体'">
+                    <a ng-click="clickArea(titleAreaLevel.selected)">{{titleAreaLevel.selected.area_app_name}}</a>-
+                    <a ng-click="clickCountry(titleCountryLevel.selected)" ng-if="titleCountryLevel">{{titleCountryLevel.selected.area_app_name}}-</a>
+                    <a ng-click="clickGame(titleGameLevel.selected)" ng-if="titleGameLevel">{{titleGameLevel.selected.area_app_name}}-</a>{{ReportTitle}}
+                </label>
+            </div>
+
+            <div class="col-sm-4 pull-left">
+                <div class="btn-group pull-left m-l-20">
+                    <ul class="nav nav-tabs">
+                        <li id="comLabel" ng-model="radioModel" class="active" btn-radio="'ComReport'"><a data-toggle="tab">综合报表</a></li>
+                        <li id="dailyLabel"  ng-model="radioModel" btn-radio="'DailyReport'" ><a data-toggle="tab">每日报表</a></li>
+                    </ul>
+                   
+                </div>
+            </div>
+					<div>
+                        <span style="text-align: center;vertical-align: middle;line-height: 2;font-size: initial;color: brown;margin-left: 30px;">	1、激活，注册，创角 均为设备数</span>
+                        <span style="text-align: center;vertical-align: middle;line-height: 2;font-size: initial;color: brown;margin-left: 30px;">	2、选择时间为北京时间（东八区）</span>
+                    </div>
+        </div>
+<div class="tab-content">
+        <div class="show" id="ComModel" data-ng-include=" 'views/partials/report_ComprehensiveReport.html' "></div>
+        <div class="hidden" id="DailyModel"  data-ng-include=" 'views/partials/report_DailyReport.html'"></div>
+        <div class="hidden" id="MediaModel" data-ng-include=" 'views/partials/report_MediaReport.html'"></div>
+</div>
+        <div id="tipButton" style="position: fixed;width: 30px;height: 60px;right:0px;top:350px;z-index: 1000;" ng-mouseover="tipHover()">
+            <button class="btn btn-success graded"
+                    ng-class="{true:'fa fa-forward',false:'fa fa-backward'}[tipIsOpen]" ng-click="tipIsOpenChange()" style="width: 25px;height: 60px;padding: 5px;"><span
+                    style="font-size: 13px;color:black;"></span></button>
+        </div>
+
+        <div id="ShowContainer" class="game-sider" ng-mouseleave="tipOut()" onblur="this.css('display','none');"
+             style="position: fixed;width: 250px;height: 400px;right:30px;top:200px;background-color: #F2F2F2;z-index: 999;overflow-y: scroll;border: 2px solid #9BD483">
+            <label class="label label-success graded">导航</label>
+            <ul class="nav sidebar-menu">
+                    <li ng-repeat="country in tipCountry">
+                        <a href="#" class="menu-dropdown" ng-click="selectedTipItem($event)">
+                            <i class="menu-icon fa fa-dribbble"></i>
+                            <span class="menu-text"> {{country.area_app_name}} </span>
+                            <i class="menu-expand"></i>
+                        </a>
+                        <ul class="submenu" style="display: none;">
+                            <li ng-repeat="game in tipGame">
+                                <span class="menu_icon"></span>
+                                <a ng-if="game.parent_id==country.unite_id"
+                                   style="font-size: 12px;" ng-click="clickTipGame(game.unite_id)">
+                                    <span class="menu-text">{{game.area_app_name}}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+        </div>
+
+    </div>
+    <!--TODO lazyload 会报错-->
+    <script src="lib/modules/angular-daterangepicker/moment.js"></script>
+    <script src="lib/modules/angular-daterangepicker/daterangepicker.js"></script>
+    <script src="lib/modules/angular-daterangepicker/angular-daterangepicker.js"></script>
+    <script>
+
+    </script>
+
+</div>

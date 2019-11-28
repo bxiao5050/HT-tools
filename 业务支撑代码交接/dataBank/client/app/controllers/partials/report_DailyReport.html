@@ -1,0 +1,153 @@
+<div class="row" ng-controller="reportMapHeaderController">
+    <div class="col-md-12 m-t-20">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption">图表数据</span>
+                <!--<div class="btn-group">-->
+                <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'day'">日</label>-->
+                <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'week'">周</label>-->
+                <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'month'">月</label>-->
+                <!--</div>-->
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="chartcontainer">
+                    <div id="MarketReportChart1" class="chart chart-lg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="well with-header with-footer">
+            <div class="header">
+                <span class="widget-caption">表格</span>
+            </div>
+            <div class="scrollable" style="max-height: 500px;overflow-y:auto;">
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th style="font-weight: bold">国家</th>
+                        <th>游戏
+                            <a ng-click="sort_by('installs')">
+                                <i class="fa fa-unsorted"></i>
+                            </a>
+                        </th>
+                        <th>维度
+                            <a ng-click="sort_by('installs')">
+                                <i class="fa fa-unsorted"></i>
+                            </a>
+                        </th>
+                        <th>激活
+                            <a ng-click="sort_by('installs')">
+                                <i class="fa fa-unsorted"></i>
+                            </a>
+                        </th>
+                        <th>注册
+                            <a ng-click="sort_by('installs')">
+                                <i class="fa fa-unsorted"></i>
+                            </a>
+                        </th>
+                        <th>创角
+                            <a ng-click="sort_by('installs')">
+                                <i class="fa fa-unsorted"></i>
+                            </a>
+                        </th>
+                        <th>花费
+                            <a ng-click="sort_by('installs')">
+                                <i class="fa fa-unsorted"></i>
+                            </a>
+                        </th>
+                        <th>注册率
+                            <a ng-click="sort_by('installs')">
+                                <i class="fa fa-unsorted"></i>
+                            </a>
+                        </th>
+                        <th>创角率
+                            <a ng-click="sort_by('installs')">
+                                <i class="fa fa-unsorted"></i>
+                            </a>
+                        </th>
+                        <th>激活成本
+                            <a ng-click="sort_by('installs')">
+                                <i class="fa fa-unsorted"></i>
+                            </a>
+                        </th>
+                        <th>注册成本
+                            <a ng-click="sort_by('installs')">
+                                <i class="fa fa-unsorted"></i>
+                            </a>
+                        </th>
+                        <th>创角成本
+                            <a ng-click="sort_by('installs')">
+                                <i class="fa fa-unsorted"></i>
+                            </a>
+                        </th>
+                        <th>新服创角
+                            <a ng-click="sort_by('installs')">
+                                <i class="fa fa-unsorted"></i>
+                            </a>
+                        </th>
+                        <th>新服创角成本
+                            <a ng-click="sort_by('installs')">
+                                <i class="fa fa-unsorted"></i>
+                            </a>
+                        </th>
+                        <th>次日留存
+                            <a ng-click="sort_by('installs')">
+                                <i class="fa fa-unsorted"></i>
+                            </a>
+                        </th>
+                        <th>3日留存
+                            <a ng-click="sort_by('installs')">
+                                <i class="fa fa-unsorted"></i>
+                            </a>
+                        </th>
+                        <th>7日留存
+                            <a ng-click="sort_by('installs')">
+                                <i class="fa fa-unsorted"></i>
+                            </a>
+                        </th>
+                        <th>充值ROI
+                            <a ng-click="sort_by('installs')">
+                                <i class="fa fa-unsorted"></i>
+                            </a>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in tableData">
+                        <td></td>
+                        <td>{{item['日期']}}</td>
+                        <td>{{item['在线均值（ACU）']}}</td>
+                        <td>{{item['在线峰值（PCU）']}}</td>
+                        <td>{{item['在线平高比（ACU/PCU）']}}</td>
+                        <td>{{item['户均在线时长（AT）']}}</td>
+                        <td>{{item['日期']}}</td>
+                        <td>{{item['在线均值（ACU）']}}</td>
+                        <td>{{item['在线峰值（PCU）']}}</td>
+                        <td>{{item['在线平高比（ACU/PCU）']}}</td>
+                        <td>{{item['户均在线时长（AT）']}}</td>
+                        <td>{{item['日期']}}</td>
+                        <td>{{item['在线均值（ACU）']}}</td>
+                        <td>{{item['在线峰值（PCU）']}}</td>
+                        <td>{{item['在线平高比（ACU/PCU）']}}</td>
+                        <td>{{item['户均在线时长（AT）']}}</td>
+                    </tr>
+                    <tr ng-if="noData">
+                        <td class="danger"  colspan="6">no data</td></tr>
+                    </tbody>
+                </table>
+                <span>ToTal:</span>
+            </div>
+
+            <div class="footer">
+
+            </div>
+        </div>
+    </div>
+
+
+</div>

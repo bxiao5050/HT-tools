@@ -1,0 +1,160 @@
+<div class="row" ng-controller="oasStockAnalysisController" ng-cloak>
+    <div class="col-sm-12 col-md-12">
+        <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div data-ng-include=" 'views/partials/oasHeader.html' "></div>
+
+    <div class="col-md-12 m-t-20"><span style="font-size: 13px;font-weight: bold;font-family: '微软雅黑 Regular';">货币余量分析</span></div>
+    <div class="col-md-12 m-t-20">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption"></span>
+                <!--<div class="btn-group">-->
+                <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'day'">日</label>-->
+                <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'week'">周</label>-->
+                <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'month'">月</label>-->
+                <!--</div>-->
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="chartcontainer">
+                    <div id="currencyChart1" class="chart chart-lg" style="margin-right: 10px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+
+                <span class="widget-caption">表格</span>
+                <label class="export-btn pull-right" style="margin-right: 20px;" ng-click="export('1')"><i class="fa fa-download"></i>&nbsp;导出xlsx文件</label>
+            </div>
+            <div class="scrollable font-12" style="max-height: 500px;overflow-y:auto">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>日期</th>
+                        <th>金币总余量</th>
+                        <th>金币人均余量</th>
+                        <th>绑钻总余量</th>
+                        <th>绑钻人均余量</th>
+                        <th>钻石总余量</th>
+                        <th>钻石人均余量</th>
+                        <th>光晶总余量</th>
+                        <th>光晶人均余量</th>
+                        <th>魂晶总余量</th>
+                        <th>魂晶人均余量</th>
+                        <th>活跃用户数</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in currencytableData">
+                        <td>{{item['count_date']}}</td>
+                        <td>{{item['金币总余量']|number:0}}</td>
+                        <td>{{item['金币平均余量']|number:0}}</td>
+                        <td>{{item['绑钻总余量']|number:0}}</td>
+                        <td>{{item['绑钻平均余量']|number:0}}</td>
+                        <td>{{item['钻石总余量']|number:0}}</td>
+                        <td>{{item['钻石平均余量']|number:0}}</td>
+                        <td>{{item['光晶总余量']|number:0}}</td>
+                        <td>{{item['光晶平均余量']|number:0}}</td>
+                        <td>{{item['魂晶总余量']|number:0}}</td>
+                        <td>{{item['魂晶平均余量']|number:0}}</td>
+                        <td>{{item['活跃人数']|number:0}}</td>
+                    </tr>
+                    <tr ng-if="currencynoData">
+                        <td class="danger"  colspan="12">no data</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12"><span style="font-size: 13px;font-weight: bold;font-family: '微软雅黑 Regular';">魔灵余量分析</span></div>
+        <div class="col-md-12 btn-group m-l-20 my-btn-group m-t-20">
+            <label class="btn " ng-model="qualityType" btn-radio="'1'">白色品质</label>
+            <label class="btn " ng-model="qualityType" btn-radio="'2'">绿色品质</label>
+            <label class="btn " ng-model="qualityType" btn-radio="'3'">蓝色品质</label>
+            <label class="btn " ng-model="qualityType" btn-radio="'4'">紫色品质</label>
+            <label class="btn " ng-model="qualityType" btn-radio="'5'">橙色品质</label>
+        </div>
+        <div class="col-md-12 btn-group m-l-20 my-btn-group m-t-20">
+            <label class="btn " ng-model="allowanceType" btn-radio="'1'">总余量</label>
+            <label class="btn " ng-model="allowanceType" btn-radio="'2'">人均余量</label>
+        </div>
+    <
+    <div class="col-md-12 m-t-20">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+
+                <span class="widget-caption">表格</span>
+                <label class="export-btn pull-right" style="margin-right: 20px;" ng-click="export()"><i class="fa fa-download"></i>&nbsp;导出xlsx文件</label>
+            </div>
+            <div class="scrollable font-12" style="max-height: 500px;overflow-y:auto">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr ng-if="allowanceType=='1'" >
+                        <th>日期</th>
+                        <th>0星总余量</th>
+                        <th>1星总余量</th>
+                        <th>2星总余量</th>
+                        <th>3星总余量</th>
+                        <th>4星总余量</th>
+                        <th>5星总余量</th>
+                        <th>6星总余量</th>
+                        <th>7星总余量</th>
+                        <th>活跃用户数</th>
+                    </tr>
+                    <tr ng-if="allowanceType=='2'" >
+                        <th>日期</th>
+                        <th>0星人均余量</th>
+                        <th>1星人均余量</th>
+                        <th>2星人均余量</th>
+                        <th>3星人均余量</th>
+                        <th>4星人均余量</th>
+                        <th>5星人均余量</th>
+                        <th>6星人均余量</th>
+                        <th>7星人均余量</th>
+                        <th>活跃用户数</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-if="allowanceType=='1'" ng-repeat="item in magictableData">
+                        <td>{{item['日期']}}</td>
+                        <td>{{item['0星总余量']|number:0}}</td>
+                        <td>{{item['1星总余量']|number:0}}</td>
+                        <td>{{item['2星总余量']|number:0}}</td>
+                        <td>{{item['3星总余量']|number:0}}</td>
+                        <td>{{item['4星总余量']|number:0}}</td>
+                        <td>{{item['5星总余量']|number:0}}</td>
+                        <td>{{item['6星总余量']|number:0}}</td>
+                        <td>{{item['7星总余量']|number:0}}</td>
+                        <td>{{item['活跃人数']|number:0}}</td>
+                    </tr>
+                    <tr ng-if="allowanceType=='2'" ng-repeat="item in magictableData">
+                        <td>{{item['日期']}}</td>
+                        <td>{{item['0星人均余量']|number:0}}</td>
+                        <td>{{item['1星人均余量']|number:0}}</td>
+                        <td>{{item['2星人均余量']|number:0}}</td>
+                        <td>{{item['3星人均余量']|number:0}}</td>
+                        <td>{{item['4星人均余量']|number:0}}</td>
+                        <td>{{item['5星人均余量']|number:0}}</td>
+                        <td>{{item['6星人均余量']|number:0}}</td>
+                        <td>{{item['7星人均余量']|number:0}}</td>
+                        <td>{{item['活跃人数']|number:0}}</td>
+                    </tr>
+                    <tr ng-if="magicnoData">
+                        <td class="danger"  colspan="12">no data</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</div>

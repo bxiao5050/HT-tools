@@ -1,0 +1,151 @@
+<div class="row" ng-controller="oasHeaderController">
+    <div class="col-sm-12 col-md-12">
+        <div class="col-md-12 ng-scope">
+        <div class="row">
+            <!--时间选择-->
+<!--            <div class="pull-left m-l-20">
+                <div class="form-group chose-list">
+                    <label class="chose-list-label control-label">选择时间: </label>
+
+                    <div class="chose-list-content controls">
+                        <div>
+                            <input date-range-picker class="form-control date-picker" type="text" ng-model="initData.rangeDate" ng-if="!singleDatePicker"/>
+                            <p class="input-group" ng-if="singleDatePicker">
+                                <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="initData.curDate"
+                                       is-open="initData.opened"
+                                       date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open($event)">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+                                    </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+
+            <!--时间选择 end-->
+            <!--游戏选择下拉列表-->
+            <div class="pull-left m-l-20" style="width:330px">
+                <div class="form-group chose-list">
+                    <label class="chose-list-label control-label" style="margin-top: 5px">选择游戏： </label>
+
+                    <div class="chose-list-content">
+                        <ui-select ng-model="app.selected" theme="bootstrap"  style=" width: 220px;">
+                            <ui-select-match placeholder="Select">
+                                {{$select.selected.game_name}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in apps | filter: $select.search">
+                                <span>{{item.game_name}}</span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+            </div>
+            <!--游戏选择下拉列表 end-->
+            <!--代理商选择-->
+            <div class="pull-left  m-l-20" style="width:330px">
+                <div class="form-group chose-list">
+                <label class="chose-list-label control-label" style="margin-top: 5px">系统区服： </label>
+                <!--代理商选择按钮-->
+                <div id="choseAgentBtn">
+                    <h6 ng-click="showAgent($event)" tooltip="{{firstLevel.selected.agent_name +'-' +
+                        secondLevel.selected.agent_name +'-' +thirdLevel.selected.agent_name }}" style="margin: 0;cursor: pointer; width: 220px;white-space: nowrap; overflow:hidden;text-overflow: ellipsis;" class="row-title"><i
+                            class="fa fa-expand"></i>{{firstLevel.selected.agent_name +'-' +
+                        secondLevel.selected.agent_name +'-' +thirdLevel.selected.agent_name }}</h6>
+                </div>
+                    </div>
+                <!--代理商选择按钮 end-->
+                <!--代理商选择弹出框-->
+                <div id="agentContent" style="display: none; width: 500px;">
+                    <div class="well">
+                        <!--<div class="header bordered-blue">{{firstLevel.selected.agent_name +'-' + secondLevel.selected.agent_name  +'-' +thirdLevel.selected.agent_name }}</div>-->
+                        <button class="btn btn-default btn-sm" style="position: absolute;top: 10px;right: 20px;"
+                                ng-click="closeAgentContent()">关闭
+                        </button>
+                        <tabset flat="true">
+                            <tab heading="地区" active="initData.firstActive">
+                                <button class="btn btn-default btn-sm" ng-repeat="firstItem in firstLevelData"
+                                        ng-click="clickFirstLevel(firstItem)">
+                                    {{firstItem.agent_name}}
+                                </button>
+                            </tab>
+                            <tab heading="汇总" disabled="initData.secondDisabled" active="initData.secondActive">
+                                <button class="btn btn-default btn-sm" ng-repeat="secondItem in secondLevelData"
+                                        ng-click="clickSecondLevel(secondItem)">
+                                    {{secondItem.agent_name}}
+                                </button>
+                            </tab>
+                            <tab heading="区服" disabled="initData.thirdDisabled" active="initData.thirdActive">
+                                <button class="btn btn-default btn-sm" ng-repeat="thirdItem in thirdLevelData"
+                                        ng-click="clickThirdLevel(thirdItem)">
+                                    {{thirdItem.agent_name}}
+                                </button>
+                            </tab>
+                        </tabset>
+                    </div>
+                    <!--代理商选择弹出框 end-->
+                </div>
+            </div>
+        </div>
+        </div>
+            <!--代理商选择 end-->
+            <!-- 查询按钮 -->
+<!--            <div class="pull-left m-l-20">
+                <a class="btn btn-default pull-left" href="javascript:void(0);" ng-click="query()"><i
+                        class="fa fa-refresh"></i>查询</a>
+            </div>-->
+            <!-- 查询按钮 end-->
+
+            <div class="col-md-12" ng-if="!hideChannelList">
+                <div class="row">
+                    <!--支付渠道下拉列表-->
+                    <div class="pull-left  m-l-20" style="width:330px">
+                        <div class="form-group chose-list">
+                            <label class="chose-list-label control-label" style="margin-top: 5px">注册渠道： </label>
+
+                            <div class="chose-list-content">
+                                <ui-select ng-model="regchannel.selected" theme="bootstrap" ng-change="regchannelchanged($select.selected.channel_id)" style=" width: 220px;">
+                                    <ui-select-match placeholder="Select">
+                                        {{$select.selected.channel_name}}
+                                    </ui-select-match>
+                                    <ui-select-choices
+                                            repeat="item in regChannels | filter: $select.search">
+                                        <span>{{item.channel_name}}</span>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                    </div>
+                    <!--支付渠道下拉列表 end-->
+                    <!--充值渠道下拉列表-->
+                    <div class="pull-left m-l-20" style="width:330px;">
+                        <div class="form-group chose-list">
+                            <label class="chose-list-label control-label" style="margin-top: 5px">充值渠道： </label>
+
+                            <div class="chose-list-content">
+                                <ui-select ng-model="paychannel.selected" theme="bootstrap"  ng-change="paychannelchanged($select.selected.channel_id)"  style=" width: 223px;margin-top: 2px">
+                                    <ui-select-match placeholder="Select">
+                                        {{$select.selected.channel_name}}
+                                    </ui-select-match>
+                                    <ui-select-choices
+                                            repeat="item in payChannels | filter: $select.search">
+                                        <span>{{item.channel_name}}</span>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                    </div>
+                    <!--充值渠道下拉列表 end-->
+                </div>
+
+            </div>
+
+    </div>
+
+</div>
+<!--TODO lazyload 会报错-->
+<script src="lib/modules/angular-daterangepicker/moment.js"></script>
+<script src="lib/modules/angular-daterangepicker/daterangepicker.js"></script>
+<script src="lib/modules/angular-daterangepicker/angular-daterangepicker.js"></script>

@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+</head>
+<body>
+<div>
+    <style>
+        .titile{
+            text-align: center;
+            font-weight: 800;
+            color: #ff0000;
+            font-size: 24px;
+        }
+        .head {
+            color: #337ab7;;
+        }
+        .total{
+            font-weight: 800;
+        }
+        table{
+            width: 100%;
+        }
+        table td,table th{
+            text-align: center;
+        }
+        .line{
+            border-width: 2px;
+            border-color: red;
+            border-style: dashed;
+        }
+        .level1{
+            background-color: rgb(249, 104, 106);
+        }
+        .level2{
+            background-color: rgb(255, 192, 203);
+        }
+        .level3{
+            background-color: rgb(255, 235, 133);
+        }
+        .level4{
+            background-color: rgb(152, 251, 152);
+        }
+        .level5{
+            background-color: rgb(34, 139, 34);
+        }
+    </style>
+    <link href="http://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.css" rel="stylesheet">
+    <link href="http://cdn.bootcss.com/highcharts/5.0.7/css/highcharts.css" rel="stylesheet">
+    <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/highcharts/5.0.7/highcharts.js"></script>
+    <h5>统计日期：<%= totalData.count_date %></h5>
+    <table class="table">
+        <tr>
+            <th>游戏类别</th>
+            <th>游戏名</th>
+            <th>当日花费</th>
+            <th>本月累计</th>
+            <th>本月预算</th>
+            <th>占比</th>
+        </tr>
+        <% for(var j = 1;j< totalData.data.length;j++) {
+        var item = totalData.data[j];
+        %>
+        <tr>
+            <% if(j==1) { %>
+            <td rowspan="<%= totalData.data.length-1 %>" style="vertical-align: middle;">手游</td>
+            <% } %>
+            <td><%= item.game_name %></td>
+            <td><%= item.today %></td>
+            <td><%= item.pay_month %></td>
+            <td><%= item.budget_month %></td>
+            <td><%= item.percent %>%</td>
+        </tr>
+        <% } %>
+        <tr>
+            <td colspan="2"><%= totalData.total.game_name %></td>
+            <td><%= totalData.total.today %></td>
+            <td><%= totalData.total.pay_month %></td>
+            <td><%= totalData.total.budget_month %></td>
+            <td><%= totalData.total.percent %>%</td>
+        </tr>
+    </table>
+    <% for(var j = 0;j< games.length;j++) {
+    var game = games[j];
+    %>
+    <div class="line"></div>
+    <div class="titile"><%= game.game_name %></div>
+    <table class="table">
+        <tr>
+            <th>媒体</th>
+            <th>系统</th>
+            <th>激活</th>
+            <th>注册</th>
+            <th>创角</th>
+            <th>花费</th>
+            <th>注册率</th>
+            <th>创角率</th>
+            <th>激活成本</th>
+            <th>注册成本</th>
+            <% if(game.game_name == '泰国攻城掠地') {}
+            else if(game.game_name == '越南攻城掠地') { } else { %>
+            <th>创角成本</th>
+            <% } %>
+        </tr>
+        <% for(var i = 1;i< game.data.length;i++) {
+           var item = game.data[i];
+        %>
+            <tr>
+                <td class="head"><%= item.媒体 %></td>
+                <td><%= item.纬度 %></td>
+                <td><%= item.激活 %></td>
+                <td><%= item.注册 %></td>
+                <td><%= item.创角 %></td>
+                <td><%= item.花费 %></td>
+                <td class="<%= item.注册率.css %>"><%= item.注册率.data %>%</td>
+                <td class="<%= item.创角率.css %>"><%= item.创角率.data %>%</td>
+                <td class="<%= item.激活成本.css %>"><%= item.激活成本.data %></td>
+                <td class="<%= item.注册成本.css %>"><%= item.注册成本.data %></td>
+                <% if(game.game_name == '泰国攻城掠地') {}
+                else if(game.game_name == '越南攻城掠地') { } else { %>
+                <td class="<%= item.创角成本.css %>"><%= item.创角成本.data %></td>
+                <% } %>
+            </tr>
+        <% } %>
+        <tr>
+            <td class="total"><%= game.total.媒体 %></td>
+            <td class="total"><%= game.total.纬度 %></td>
+            <td class="total"><%= game.total.激活 %></td>
+            <td class="total"><%= game.total.注册 %></td>
+            <td class="total"><%= game.total.创角 %></td>
+            <td class="total"><%= game.total.花费 %></td>
+            <td class="total"><%= game.total.注册率 %>%</td>
+            <td class="total"><%= game.total.创角率 %>%</td>
+            <td class="total" ><%= game.total.激活成本 %></td>
+            <td class="total"><%= game.total.注册成本 %></td>
+            <% if(game.game_name == '泰国攻城掠地') { }
+            else if(game.game_name == '越南攻城掠地') { } else { %>
+            <td class="total"><%= game.total.创角成本 %></td>
+            <% } %>
+        </tr>
+    </table>
+    <div id="chart<%= j %>"></div>
+    <script>
+        var data<%= j %> = <%- game.chart %>;
+            $('#chart<%= j %>').highcharts({
+                title: {
+                    text: ''
+                },
+//                subtitle: {
+//                    text: '7road.com'
+//                },
+                plotOptions: {
+                    series: {
+                        animation: false
+                     }
+                },
+                xAxis: {
+                    categories: data<%= j %>.catagory,
+                    crosshair: true
+                },
+                legend:{
+                    verticalAlign:"top"
+                },
+                yAxis: [{
+                    min: 0,
+                    title: {
+                        text: ''
+                    }
+                },{
+                    min: 0,
+                    opposite: true,
+                    title: {
+                        text: ''
+                    }
+                }],
+                series:data<%= j %>.series
+            });
+    </script>
+    <% } %>
+</div>
+</body>
+</html>

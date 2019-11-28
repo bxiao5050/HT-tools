@@ -1,0 +1,79 @@
+<div class="row" ng-controller="stillLookController" ng-cloak>
+    <div class="col-sm-12 col-md-12">
+        <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div data-ng-include=" 'views/7RoadReport/Report_Header.html' "></div>
+
+    <div class="col-md-12 m-t-20">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption"></span>
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="chartcontainer">
+                    <div id="chart1" class="chart chart-lg" style="position: static;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+
+                <span class="widget-caption">表格</span>
+                <label class="export-btn pull-right" style="margin-right: 20px;" ng-click="export()"><i class="fa fa-download"></i>&nbsp;导出xlsx文件</label>
+            </div>
+            <div class="scrollable font-12">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>时间</th>
+                        <th>激活</th>
+                        <th>注册</th>
+                        <th>创角</th>
+                        <th>登录</th>
+                        <th>充值</th>
+                        <th>注册率</th>
+                        <th>创角率</th>
+                        <th>激活cpa</th>
+                        <th>注册cpa</th>
+                        <th>创角cpa</th>
+                        <th>付费人数</th>
+                        <th>付费用户成本</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in tableData">
+                        <td>{{item.count_date}}</td>
+                        <td>{{item["installs"]}}</td>
+                        <td>{{item["regs"]}}</td>
+                        <td>{{item["roles"]}}</td>
+                        <td>{{item["logins"]}}</td>
+                        <td>{{item["charges"]}}</td>
+                        <td>{{item["reg_rate"]}}</td>
+                        <td>{{item["role_rate"]}}</td>
+                        <td>{{item["install_cpa"]}}</td>
+                        <td>{{item["reg_cpa"]}}</td>
+                        <td>{{item["role_cpa"]}}</td>
+                        <td>{{item["pay_count"]}}</td>
+                        <td>{{item["pay_costs"]}}</td>
+                    </tr>
+                    <tr ng-if="noData">
+                        <td class="danger" colspan="6">no data</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>

@@ -1,0 +1,86 @@
+<div class="row" ng-controller="oasNewUserRegIncomeRateController" ng-cloak>
+    <div class="col-sm-12 col-md-12">
+        <toaster-container
+                toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div data-ng-include=" 'views/partials/oasHeader.html' "></div>
+
+    <div class="col-md-12 row m-t-20">
+        <div class="pull-left m-l-20" style="margin-top: 5px;">
+            <label> <input id="regUserID" type="radio" name="regUser" ng-model="regUser" value="1"/><label
+                    for="regUserID" style="padding-bottom: 5px;">注册用户</label></label>
+            <label> <input id="newRegUserID" type="radio" name="regUser" ng-model="regUser" value="2"/><label
+                    for="newRegUserID" style="padding-bottom: 5px;">全新注册用户</label></label>
+        </div>
+    </div>
+
+    <div class="col-md-12 m-t-20">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption">图表数据</span>
+                <!--<div class="btn-group">-->
+                <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'day'">日</label>-->
+                <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'week'">周</label>-->
+                <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'month'">月</label>-->
+                <!--</div>-->
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="chartcontainer">
+                    <div id="newUserRegIncomeRateChart" class="chart chart-lg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+
+                <span class="widget-caption">表格</span>
+                <label class="export-btn pull-right" style="margin-right: 20px;" ng-click="export()"><i
+                        class="fa fa-download"></i>&nbsp;导出xlsx文件</label>
+            </div>
+            <div class="scrollable font-12" style="max-height: 500px;overflow-y:auto">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>日期</th>
+                        <th>1日注收比</th>
+                        <th>3日注收比</th>
+                        <th>5日注收比</th>
+                        <th>7日注收比</th>
+                        <th>14日注收比</th>
+                        <th>30日注收比</th>
+                        <th><label ng-if="regUser==1" style="font-weight: bold">注册用户数</label><label ng-if="regUser==2"
+                                                                                                    style="font-weight: bold">全新注册用户数</label>
+                        </th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in tableData">
+                        <td>{{item["日期"]}}</td>
+                        <td>{{item['1日注收比'] == 0 ? '--' : item['1日注收比']}}</td>
+                        <td>{{item['3日注收比'] == 0 ? '--' : item['3日注收比']}}</td>
+                        <td>{{item['5日注收比'] == 0 ? '--' : item['5日注收比']}}</td>
+                        <td>{{item['7日注收比'] == 0 ? '--' : item['7日注收比']}}</td>
+                        <td>{{item['14日注收比'] == 0 ? '--' : item['14日注收比']}}</td>
+                        <td>{{item['30日注收比'] == 0 ? '--' : item['30日注收比']}}</td>
+                        <td>{{item['注册人数']}}</td>
+                    </tr>
+                    <tr ng-if="noData">
+                        <td class="danger" colspan="6">no data</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="footer">
+
+            </div>
+        </div>
+    </div>
+</div>

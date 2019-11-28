@@ -1,0 +1,99 @@
+﻿<div class="row" ng-controller="channelRemarkController">
+    <div class="col-sm-12 col-md-12">
+        <toaster-container
+                toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div class="col-sm-12 col-md-12 oa-header-row">
+        <div class="row">
+                <div class="form-group">
+                    <!--<label class="col-sm-2 control-label">Chose app: </label>-->
+                    <div class="col-sm-3">
+                        <ui-select ng-model="app.selected" theme="bootstrap">
+                            <ui-select-match placeholder="Select">
+                                {{$select.selected.name}}&nbsp;&nbsp;
+                                <i ng-class="{true:'fa fa-apple',false:'fa fa-android'}[$select.selected.os == 1]"></i>
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in AppAsync | filter: $select.search">
+                                <span>{{item.name}}&nbsp;&nbsp;<i
+                                        ng-class="{true:'fa fa-apple',false:'fa fa-android'}[item.os == 1]"></i></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-12" style="margin-top: 15px;">
+        <p><i class="menu-icon fa fa-pencil-square-o"></i>备注录入</p>
+        <div class="row">
+            <div class="col-md-2">
+                <p class="input-group">
+                    <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="formData.dt"
+                           is-open="opened"
+                           date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open($event)"><i
+                                                class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                </p>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group" ng-class="{true:'has-warning'}[installsValidateFail]">
+                    <div class=" input-group">
+                        <span class="input-group-addon">备注</span>
+                        <textarea type="text" class="form-control" placeholder="必填"
+                                  ng-model="formData.remark"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <a class="btn btn-default pull-left" href="javascript:void(0);" ng-click="addData()"><i
+                        class="fa fa-plus"></i>添加</a>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="col-sm-12  col-md-12">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+                表格
+            </div>
+            <div class="scrollable" style="max-height: 500px;overflow-y:auto">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th class="col-sm-1 col-md-1">备注日期</th>
+                        <th  class="col-sm-9 col-md-9">备注</th>
+                        <th  class="col-sm-1 col-md-1">创建时间</th>
+                        <th  class="col-sm-1 col-md-1">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in tableData">
+                        <td>{{item.count_date}}</td>
+                        <td>{{item.remark}}</td>
+                        <td>{{item.create_time}}</td>
+                        <td><a ng-click="deleteRemark(item)"><i class="fa fa-trash"></i></a></td>
+                    </tr>
+                    <tr ng-if="noData">
+                        <td class="danger" colspan="3">no data</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="footer">
+                <code>如没有新增备注，则后一日会默认自动复制前一日的备注</code>
+            </div>
+        </div>
+    </div>
+</div>
+<!--TODO lazyload 会报错-->
+<script src="lib/modules/angular-daterangepicker/moment.js"></script>
+<script src="lib/modules/angular-daterangepicker/daterangepicker.js"></script>
+<script src="lib/modules/angular-daterangepicker/angular-daterangepicker.js"></script>

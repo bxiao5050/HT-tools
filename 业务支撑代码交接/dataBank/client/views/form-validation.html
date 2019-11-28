@@ -1,0 +1,285 @@
+﻿<style>
+       input.ng-invalid {
+        border: 1px solid red;
+    }
+
+    input.ng-valid {
+        border: 1px solid green;
+    }
+</style>
+<div class="row">
+    <div class="col-lg-6 col-sm-6 col-xs-12">
+        <div class="widget  radius-bordered">
+            <div class="widget-header bg-blue">
+                <span class="widget-caption">Simple Validations</span>
+            </div>
+            <div class="widget-body">
+                <div>
+                    <form name="simpleForm" method="post" class="form-horizontal bv-form" novalidate="novalidate">
+                        <div class="form-group"
+                             ng-class="{ 'has-error' : simpleForm.required.$invalid && !simpleForm.required.$pristine }">
+                            <label class="col-lg-4 control-label">Required</label>
+
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" name="required" ng-model="required" required/>
+
+                                <p ng-show="simpleForm.required.$invalid && !simpleForm.required.$pristine"
+                                   class="help-block">This field is required.</p>
+                            </div>
+                        </div>
+                        <div class="form-group"
+                             ng-class="{ 'has-error' : simpleForm.minmax.$invalid && !simpleForm.minmax.$pristine}">
+                            <label class="col-lg-4 control-label">Min & Max Length</label>
+
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" name="minmax" ng-model="minmax" required
+                                       ng-minlength="4" ng-maxlength="8"/>
+                                
+                                <p ng-show="simpleForm.minmax.$invalid && !simpleForm.minmax.$pristine"
+                                   class="help-block">This field must be between 4 and 8 characters</p>
+                            </div>
+                        </div>
+                        <div class="form-group"
+                             ng-class="{ 'has-error' : simpleForm.range.$invalid && !simpleForm.range.$pristine }">
+                            <label class="col-lg-4 control-label">Number in Range</label>
+
+                            <div class="col-lg-8">
+                                <input type="number" class="form-control" name="range" ng-model="range" required
+                                       ui-validate="{ a:'$value > 100', b:'$value < 1000' }"/>
+
+                                <p ng-show="simpleForm.range.$invalid && !simpleForm.range.$pristine"
+                                   class="help-block">This field must be a number more than 100 and less than 1000</p>
+                            </div>
+                        </div>
+                        <div class="form-group"
+                             ng-class="{ 'has-error' : simpleForm.color.$invalid && !simpleForm.color.$pristine }">
+                            <label class="col-lg-4 control-label">Color (Pattern)</label>
+
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" name="color" ng-model="color"
+                                       ng-pattern="/^#(?:[0-9a-fA-F]{3}){1,2}$/" required/>
+
+                                <p ng-show="simpleForm.color.$invalid && !simpleForm.color.$pristine"
+                                   class="help-block">This field must be a hex color</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-8 col-lg-offset-4">
+                                <button type="submit" class="btn btn-blue">Validate</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-sm-6 col-xs-12">
+        <div class="widget  radius-bordered">
+            <div class="widget-header bg-danger">
+                <span class="widget-caption">DataTypes</span>
+            </div>
+            <div class="widget-body">
+                <div>
+                    <form name="typeForm" method="post" class="form-horizontal bv-form" novalidate="novalidate">
+                        <div class="form-group"
+                             ng-class="{ 'has-error' : typeForm.email.$invalid && !typeForm.email.$pristine }">
+                            <label class="col-lg-4 control-label">Email</label>
+
+                            <div class="col-lg-8">
+                                <input type="email" class="form-control" name="email" ng-model="email" required
+                                       placeholder="someone@somewhere.com"/>
+
+                                <p ng-show="typeForm.email.$invalid && !typeForm.email.$pristine" class="help-block">
+                                    This field must be a valid Email Address</p>
+                            </div>
+                        </div>
+                        <div class="form-group"
+                             ng-class="{ 'has-error' : typeForm.url.$invalid && !typeForm.url.$pristine }">
+                            <label class="col-lg-4 control-label">Url</label>
+
+                            <div class="col-lg-8">
+                                <input type="url" class="form-control" name="url" ng-model="url" required
+                                       placeholder="http://"/>
+
+                                <p ng-show="typeForm.url.$invalid && !typeForm.url.$pristine" class="help-block">This
+                                    field must be a valid url.</p>
+                            </div>
+                        </div>
+                        <div class="form-group"
+                             ng-class="{ 'has-error' : typeForm.phone.$invalid && !typeForm.phone.$pristine }">
+                            <label class="col-lg-4 control-label">Phone</label>
+
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" name="phone" ng-model="phone"
+                                       placeholder="(XXX) XXXX XXX" required
+                                       g-pattern="/\([0-9]{3}\) ([0-9]{3}) ([0-9]{3})$/"/>
+
+                                <p ng-show="typeForm.phone.$invalid && !typeForm.phone.$pristine" class="help-block">
+                                    This field must be a valid phone number</p>
+                            </div>
+                        </div>
+                        <div class="form-group"
+                             ng-class="{ 'has-error' : typeForm.datetime.$invalid && !typeForm.datetime.$pristine }">
+                            <label class="col-lg-4 control-label">DateTime</label>
+
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" name="datetime" ng-model="datetime"
+                                       placeholder="YYYY-MM-DD"
+                                       ng-pattern="/[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])$/" required/>
+
+                                <p ng-show="typeForm.datetime.$invalid && !typeForm.datetime.$pristine"
+                                   class="help-block">This field must be a valid datetime</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-8 col-lg-offset-4">
+                                <button type="submit" class="btn btn-blue">Validate</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="row" ng-controller="ValidationCtrl">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 col-xs-12">
+                <div class="widget radius-bordered">
+                    <div class="widget-header">
+                        <span class="widget-caption">Registration Form</span>
+                    </div>
+                    <div class="widget-body">
+                        <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
+
+                            <!-- NAME -->
+                            <div class="form-group"
+                                 ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }">
+                                <label>Name*</label>
+                                <input type="text" name="name" class="form-control" ng-model="user.name" required>
+
+                                <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">You
+                                    name is required.</p>
+                            </div>
+
+                            <!-- USERNAME -->
+                            <div class="form-group"
+                                 ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine }">
+                                <label>Username</label>
+                                <input type="text" name="username" class="form-control" ng-model="user.username"
+                                       ng-minlength="3" ng-maxlength="8">
+
+                                <p ng-show="userForm.username.$error.minlength" class="help-block">Username is too
+                                    short.</p>
+
+                                <p ng-show="userForm.username.$error.maxlength" class="help-block">Username is too
+                                    long.</p>
+                            </div>
+
+                            <!-- EMAIL -->
+                            <div class="form-group"
+                                 ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
+                                <label>Email</label>
+                                <input type="email" name="email" class="form-control" ng-model="user.email">
+
+                                <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">
+                                    Enter a valid email.</p>
+                            </div>
+
+                            <button type="submit" class="btn btn-azure">Submit</button>
+
+                        </form>
+                        <hr class="wide"/>
+                        <h4>Validation Tables</h4>
+
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <h3>Form</h3>
+                                <table class="table table-bordered">
+                                    <tbody>
+                                    <tr>
+                                        <td ng-class="{ success: userForm.$valid, danger: userForm.$invalid }">Valid
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td ng-class="{ success: userForm.$pristine, danger: !userForm.$pristine }">
+                                            Pristine
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td ng-class="{ success: userForm.$dirty }">Dirty</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-xs-3">
+                                <h3>Name</h3>
+                                <table class="table table-bordered">
+                                    <tbody>
+                                    <tr>
+                                        <td ng-class="{ success: userForm.name.$valid, danger: userForm.name.$invalid }">
+                                            Valid
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td ng-class="{ success: userForm.name.$pristine, danger: !userForm.name.$pristine }">
+                                            Pristine
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td ng-class="{ success: userForm.name.$dirty }">Dirty</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-xs-3">
+                                <h3>Username</h3>
+                                <table class="table table-bordered">
+                                    <tbody>
+                                    <tr>
+                                        <td ng-class="{ success: userForm.username.$valid, danger: userForm.username.$invalid }">
+                                            Valid
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td ng-class="{ success: userForm.username.$pristine, danger: !userForm.username.$pristine }">
+                                            Pristine
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td ng-class="{ success: userForm.username.$dirty }">Dirty</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-xs-3">
+                                <h3>Email</h3>
+                                <table class="table table-bordered">
+                                    <tbody>
+                                    <tr>
+                                        <td ng-class="{ success: userForm.email.$valid, danger: userForm.email.$invalid }">
+                                            Valid
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td ng-class="{ success: userForm.email.$pristine, danger: !userForm.email.$pristine }">
+                                            Pristine
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td ng-class="{ success: userForm.email.$dirty }">Dirty</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

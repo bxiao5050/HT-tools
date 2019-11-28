@@ -1,0 +1,52 @@
+
+
+--system_id = 4
+select * from (
+select system_id "node_id",description "node_name",-999 parent_id,'system' "node_type",''"node_info"  from sc_oas_db_mobile.t_oas_system
+where system_id = 4
+union
+select c.id,c.game_name,b.system_id,'game' "node_type",''"node_info" from sc_oas_db_mobile.t_oas_system_game a
+left join sc_oas_db_mobile.t_oas_system b on a.system_id = b.system_id
+left join sc_oas_db_mobile.t_oas_game c on a.game_id = c.id
+where b.system_id = 4
+union
+select c.id,c.menu_name,b.game_id,'menu',case c.menu_url when '' then a.id::varchar else c.menu_url end "node_info" 
+from sc_oas_db_mobile.t_oas_system_game_menu a
+left join sc_oas_db_mobile.t_oas_system_game b on a.game_id = b.id
+join sc_oas_db_mobile.t_oas_menu c on a.menu_id = c.id and c.parent_menu_id = 0
+where b.system_id = 4 and c.menu_status = 1
+union
+select c.id,c.menu_name,e.id,'second_menu',case c.menu_url when '' then a.id::varchar else c.menu_url end "node_info" 
+from sc_oas_db_mobile.t_oas_system_game_menu a
+left join sc_oas_db_mobile.t_oas_system_game b on a.game_id = b.id
+left join sc_oas_db_mobile.t_oas_menu c on a.menu_id = c.id
+join sc_oas_db_mobile.t_oas_menu d on c.parent_menu_id = d.id and d.parent_menu_id = 0
+join sc_oas_db_mobile.t_oas_system_game_menu e on d.id = e.menu_id and e.game_id = a.game_id
+where b.system_id = 4 and c.menu_status = 1
+union
+select DISTINCT a.channel_id,a.channel_name,a.game_id,'reg_channel',cast(b.game_id as varchar) "node_info" from sc_game_foreign_data_mobile.v_c_channel a
+join sc_oas_db_mobile.t_oas_system_game b on a.game_id = b.game_id
+where a.channel_status = 0
+union
+select DISTINCT a.sub_channel_id,a.sub_channel_name,a.channel_id,'reg_second_channel',cast(a.game_id as varchar) "node_info" from sc_game_foreign_data_mobile.v_c_channel a
+join sc_oas_db_mobile.t_oas_system_game b on a.game_id = b.game_id
+where a.channel_status = 0
+union
+select a.package_id,a.package_name,a.sub_channel_id,'reg_third_channel',cast(b.game_id as varchar)"node_info" from sc_game_foreign_data_mobile.v_c_channel a
+join sc_oas_db_mobile.t_oas_system_game b on a.game_id = b.game_id
+where a.channel_status = 0
+union
+select DISTINCT region_id,region_name,app_id,'agent',cast(b.game_id as varchar) "node_info" from sc_game_public_conf.t_c_game_zone a
+join sc_oas_db_mobile.t_oas_system_game b on a.app_id = b.game_id
+where b.system_id = 4 and a.game_zone_status in (0,1)
+union
+select DISTINCT agent_id,agent_name,region_id,'second_agent',cast(b.game_id as varchar)"node_info" from sc_game_public_conf.t_c_game_zone a
+join sc_oas_db_mobile.t_oas_system_game b on a.app_id = b.game_id
+where b.system_id = 4 and a.game_zone_status in (0,1)
+union
+select DISTINCT game_zone_id,game_zone_name,agent_id,'third_agent',cast(b.game_id as varchar)"node_info" from sc_game_public_conf.t_c_game_zone a
+join sc_oas_db_mobile.t_oas_system_game b on a.app_id = b.game_id
+where b.system_id = 4 and a.game_zone_status in (0,1)
+) a
+order by node_type,node_id
+

@@ -1,0 +1,131 @@
+﻿<div class="row" ng-controller="oas5MinDataController" ng-cloak>
+    <div class="col-sm-12 col-md-12">
+        <toaster-container
+                toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div data-ng-include=" 'views/partials/oasHeader.html' "></div>
+
+<!--    <div class="title-group">
+        <div class="row col-md-12"><span class="m-l-20 title-header">五分钟视图</span><span>
+    <span id="question_icon"  ng-click="showModel()">
+        <img src="assets/img/question_icon.png"/>
+    </span>
+
+&lt;!&ndash; 模态框（Modal） &ndash;&gt;
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" style="width: 100%;top: 100px;"
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="width:850px;height:300px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"
+                                data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            {{questionTitle}}
+                        </h4>
+                    </div>
+                    <div class="modal-body" id="questionContent">
+                    </div>
+                </div>
+                &lt;!&ndash; /.modal-content &ndash;&gt;
+            </div>
+            &lt;!&ndash; /.modal &ndash;&gt;
+        </div>
+</span>
+        </div>
+        <div class="col-md-12 row title-body">
+            &lt;!&ndash;时间选择&ndash;&gt;
+            <div class="pull-left m-l-20">
+                <div class="form-group chose-list">
+                    <label class="chose-list-label control-label font-12">时间： </label>
+
+                    <div class="chose-list-content controls">
+                        <div>
+                            <input date-range-picker class="form-control date-picker" type="text"
+                                   ng-model="initData.rangeDate" ng-if="!singleDatePicker"/>
+
+                            <p class="input-group" ng-if="singleDatePicker" style="margin-bottom: 0px;">
+                                <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd"
+                                       ng-model="initData.curDate"
+                                       is-open="initData.opened"
+                                       date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"
+                                       style="position: static;"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open($event)">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+                                    </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            &lt;!&ndash;时间选择 end&ndash;&gt;
+            &lt;!&ndash; 查询按钮 &ndash;&gt;
+      &lt;!&ndash;      <div class="pull-left m-l-20">
+                <a class="btn btn-default pull-left font-12" href="javascript:void(0);" ng-click="query()"><i
+                        class="fa fa-refresh"></i>查询</a>
+            </div>&ndash;&gt;
+            &lt;!&ndash; 查询按钮 end&ndash;&gt;
+            &lt;!&ndash; 导出按钮 &ndash;&gt;
+           &lt;!&ndash; <div class="pull-left m-l-20">
+                <a class="btn btn-default pull-left font-12" href="javascript:void(0);" ng-click="export()"><i
+                        class="fa fa-download"></i>导出</a>
+            </div>&ndash;&gt;
+            &lt;!&ndash; 导出按钮 end&ndash;&gt;
+        </div>
+    </div>-->
+
+    <div class="col-md-12 m-t-20" id="fiveMinOnline">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption">五分钟在线数据(延迟10分钟)</span>
+                <label class="export-btn" ng-click="export('1')"><i class="fa fa-download"></i>&nbsp;导出xlsx文件</label>
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="chartcontainer">
+                    <div id="realTimeOnlineChart" class="chart chart-lg" style="position: static;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" id="fiveMinRecharge">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption">五分钟充值数据(延迟10分钟)</span>
+                <label class="export-btn" ng-click="export('2')"><i class="fa fa-download"></i>&nbsp;导出xlsx文件</label>
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="chartcontainer">
+                    <div id="realTimeRechargeChart" class="chart chart-lg" style="position: static;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" id="fiveMinRegister">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption">五分钟注册数据(延迟10分钟)</span>
+                <label class="export-btn" ng-click="export('3')"><i class="fa fa-download"></i>&nbsp;导出xlsx文件</label>
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="chartcontainer">
+                    <div id="realTimeRegChart" class="chart chart-lg" style="position: static;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+.icon-arrow {
+  font-size: 14px;
+  display: block;
+  &.up {
+    transform: rotate(0deg);
+    color: #14D7B1;
+  }
+  &.down {
+    transform: rotate(180deg);
+    color: #FE5545;
+  }
+  &.right {
+    transform: rotate(90deg);
+    color: orange;
+  }
+}

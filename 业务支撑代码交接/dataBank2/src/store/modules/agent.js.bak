@@ -1,0 +1,69 @@
+// 代理商模块
+
+import { data, confirm, ply, toggle } from '../mutations/agent'
+import { selectedList, selectedConfirmList, selectedIdList } from '../getters/agent'
+import { initData } from '../actions/agent'
+
+/**
+ * ffff.
+ * 
+ * @param agent {number}
+ * @type {number}
+ */
+
+// const agent = {
+//   namespaced: true,
+//   state: {
+//     ply: null,
+//     data: null,
+//     confirm: null
+//   },
+//   mutations: {
+//     data,
+//     confirm,
+//     ply,
+//     toggle
+//   },
+//   getters: {
+//     selectedList,
+//     selectedConfirmList,
+//     selectedIdList
+//   },
+//   actions: {
+//     initData
+//   }
+// }
+
+export default class Agent {
+
+  static namespaced;
+
+  constructor() {
+    Agent.namespaced = true
+
+    Agent.state = {
+      ply: null,
+      data: null,
+      confirm: null
+    }
+
+    Agent.mutations = {
+      data,
+      confirm,
+      ply,
+      toggle
+    }
+    Agent.getters = {
+      selectedList,
+      selectedConfirmList,
+      selectedIdList
+    }
+    Agent.actions = {
+      initData
+    }
+
+  }
+
+}
+
+new Agent

@@ -1,0 +1,22 @@
+#loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 1;
+  margin: -122px 0 0 130px;
+  transition: opacity .3s;
+  animation: loading infinite .7s ease-in-out;
+}
+
+#loading.show {
+  opacity: 1;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0)
+  }
+  100% {
+    transform: rotate(360deg)
+  }
+}

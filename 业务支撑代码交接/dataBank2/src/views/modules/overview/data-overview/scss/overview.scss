@@ -1,0 +1,33 @@
+.overview-content{
+  background-color:#EEE;
+  padding:20px;
+   .overview-row{
+     width:100%;
+      display:flex;
+      justify-content:flex-start;
+      align-items:flex-start;
+      .small-card{
+        flex:1;
+        margin:10px;
+        box-sizing:border-box;
+      }
+      .middle-card{
+        flex:2;
+        margin:10px;
+        box-sizing:border-box;
+      }
+      .must-card{
+        flex:3;
+        margin:10px;
+        box-sizing:border-box;
+      }
+      .most-card{
+        flex:4;
+        margin:10px;
+        box-sizing:border-box;
+      }
+  }
+}
+
+.overview-table-content{
+}

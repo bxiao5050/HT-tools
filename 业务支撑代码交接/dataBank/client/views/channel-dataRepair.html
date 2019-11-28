@@ -1,0 +1,221 @@
+﻿<div class="row" ng-controller="channelDataRepairController" ng-cloak>
+    <div class="modal fade" id="gameAppModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         style="width: 100%; top: 120px; height: 1200px">
+        <div class="modal-dialog" role="document" style="width: 900px;height:345px;">
+            <div class="modal-content" style="height: 345px">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">选择游戏</h4>
+                </div>
+                <div class="modal-body">
+                    <div style="position: relative;left: 0px;top: 0px;width: 100%;height: 100%">
+                    <div class="country_item" ng-repeat="item in gameApps">
+                        <div class="game_head">
+                            <span>{{item.country_name}}</span>
+                            <span class="glyphicon glyphicon-chevron-right right_icon"></span>
+                        </div>
+                        <div class="game_body" ng-style="{{gi.margin}}"  ng-repeat="gi in item.games">
+                            <span class="game_item" ng-repeat="ii in gi.data"  ng-click="switchGame(ii)">{{ii.area_app_name}}</span>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-12">
+        <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div class="col-sm-12 col-md-12 oa-header-row">
+        <div class="row">
+            <div class="col-md-2">
+                <p class="input-group">
+                    <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="formData.dt" is-open="opened"
+
+                           date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open($event)"><i
+                                                class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                </p>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">Chose app: </label>
+
+                    <div class="col-md-8">
+                        <div class="pull-left col-sm-3" style="padding: 0px;">
+                            <div class="form-group chose-list">
+                                <!--代理商选择按钮-->
+                                <div id="choseAgentBtn" class="col-sm-9"  style="padding: 0px;">
+                                    <h6   data-toggle="modal"
+                                          data-target="#gameAppModel"
+                                          style="margin: 0;cursor: pointer; width: 200px;white-space: nowrap; overflow:hidden;text-overflow: ellipsis;"
+                                          class="row-title"><i
+                                            class="fa fa-expand" style="font-size:12px;">{{selectedApp.area_app_name}}</i></h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2 pull-left">
+               <label>系统：</label>
+                <div class="btn-group m-l-20">
+                    <label id="ios" class="btn btn-primary ng-pristine ng-untouched ng-valid active" ng-model="selectedOs" btn-radio="0" ng-click="switchOs(0,$event)" style="margin-right: 10px;">IOS</label>
+                    <label id="安卓" class="btn btn-default"  ng-model="selectedOs" btn-radio="1"  ng-click="switchOs(1,$event)">安卓</label>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group" ng-class="{true:'has-error'}[mediaSourceValidateFail]">
+                    <div class=" input-group">
+                        <span class="input-group-addon">渠道</span>
+                        <!--<input type="text" class="form-control" placeholder="必填" ng-model="formData.mediaSource" >-->
+                        <input list="medialist" class="form-control" placeholder="必填" ng-model="formData.mediaSource" >
+
+                        <datalist id="medialist">
+                            <option ng-repeat="item in mediaSorce">{{item.media_source}}</option>
+                        </datalist>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-sm-12 col-md-12">
+        <p >方式1：手动录入</p>
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="form-group" ng-class="{true:'has-warning'}[installsValidateFail]">
+                    <div class=" input-group">
+                        <span class="input-group-addon">激活</span>
+                        <input type="number" class="form-control" placeholder="选填,默认0" ng-model="formData.installs" >
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group" ng-class="{true:'has-warning'}[regsValidateFail]">
+                    <div class=" input-group">
+                        <span class="input-group-addon">注册</span>
+                        <input type="number" class="form-control" placeholder="选填,默认0" ng-model="formData.regs" >
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group" ng-class="{true:'has-warning'}[regsValidateFail]">
+                    <div class=" input-group">
+                        <span class="input-group-addon">创角</span>
+                        <input type="number" class="form-control" placeholder="选填,默认0" ng-model="formData.roles" >
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group" ng-class="{true:'has-warning'}[costValidateFail]">
+                    <div class=" input-group">
+                        <span class="input-group-addon">花费</span>
+                        <input type="number" class="form-control" placeholder="选填,默认0" ng-model="formData.cost" >
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1">
+                <a class="btn btn-default pull-left" href="javascript:void(0);" ng-click="addData()"><i class="fa fa-plus"></i>添加</a>
+            </div>
+            <label class="checkbox col-sm-1" style="padding-right: 0px;">
+                <input type="checkbox" ng-model="formData.addType" class="ng-pristine ng-untouched ng-valid">
+                <span class="text">抵消自然量</span>
+            </label>
+        </div>
+
+    </div>
+    <!--<div class="col-sm-12 col-md-12">-->
+        <!--<p>方式2：上传文件(.csv)  <a href="http://119.147.247.34:8081/doc/Datatables.csv">模版下载</a></p>-->
+        <!--<div class="row">-->
+            <!--<div class="col-md-1">-->
+                <!--<div class="form-group">-->
+                    <!--<div class=" input-group">-->
+                        <!--<a class="btn btn-default" href="javascript:void(0);"  ngf-select ng-model="file"   ngf-accept="'.csv'" ><i class="fa fa-plus"></i>上传文件</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-2" ng-if="showProgressBar">-->
+                <!--<div class="progress ng-isolate-scope" type="info" value="80">-->
+                    <!--<progressbar type="info" ng-model="progressPercent" value="progressPercent">已上传{{progressPercent}}%</progressbar>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="col-sm-12  col-md-12">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+                <p class="pull-left">表格</p>
+                <div class="pull-right">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" style="margin-top: 10px;">批量删除: </label>
+                        <div class="col-md-3">
+                            <div>
+                                <div class=" input-group">
+                                    <a class="btn btn-warning"  ng-click="batchDelete()">一键删除</a>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div>
+                                <div class=" input-group">
+                                    <a class="btn btn-warning"  ng-click="cancelEdit()">取消修改</a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scrollable" style="max-height: 500px;overflow-y:auto">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th><input class="selectedItem" id="selectedAll" type="checkbox" ng-click="selectAll()" />全选</th>
+                        <th>时间</th>
+                        <th>游戏</th>
+                        <th>系统</th>
+                        <th>MediaSoure</th>
+                        <th>激活</th>
+                        <th>注册</th>
+                        <th>创角</th>
+                        <th>花费</th>
+                        <th colspan="2">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in tableData" repeat-finish="repeatFinished()">
+                        <td><input class="selectedItem" name="item" type="checkbox" value="{{item['id']}}"/> </td>
+                        <td><span  class="repair-countDate">{{item.countDate}}</span></td>
+                        <td><span  class="repair-gameName">{{item.gameName}}</span></td>
+                        <td><span  class="repair-os" >{{item.os == 0 ? 'IOS' : 'Android'}}</span></td>
+                        <td><span  class="repair-mediaSource" id="{{item['id']}}" >{{item.mediaSource == item.linkMediaSource ? item.mediaSource + ' 抵消自然量' : item.mediaSource}}</span></td>
+                        <td><span  class="repair-installs" id="{{item['id']}}" >{{item.installs | number}}</span></td>
+                        <td><span  class="repair-regs" id="{{item['id']}}">{{item.regs | number}}</span></td>
+                        <td><span  class="repair-roles" id="{{item['id']}}">{{item.roles | number}}</span></td>
+                        <td><span  class="repair-cost" id="{{item['id']}}">{{item.cost | currency}}</span></td>
+                        <td ><a ng-click="delete(item['id'])"><i class="fa fa-trash"></i></a></td>
+                        <td ><a ng-click="edit(item['id'])"><i class="fa fa-pencil-square-o"></i></a></td>
+                    </tr>
+                    <tr ng-if="noData">
+                        <td class="danger"  colspan="9">无补充录入数据</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="footer">
+                <!--<code>无</code>-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--TODO lazyload 会报错-->
+<script src="lib/modules/angular-daterangepicker/moment.js"></script>
+<script src="lib/modules/angular-daterangepicker/daterangepicker.js"></script>
+<script src="lib/modules/angular-daterangepicker/angular-daterangepicker.js"></script>
+<script src="lib/modules/bootstrap3-editable/js/bootstrap-editable.min.js"></script>

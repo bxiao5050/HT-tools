@@ -1,0 +1,119 @@
+<div class="row" ng-controller="fbListAnalysisController" ng-cloak xmlns="http://www.w3.org/1999/html">
+
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-2 pull-left">
+            <div class="pull-left m-l-20" style=" margin-top: 10px;width: auto;">
+                <label  style="font-size:14px;font-weight: bold;width:auto;font-family:'黑体'">
+                    <a ng-click="clickArea(viewData.country)">{{viewData.country.name}}</a>-
+                    <a ng-click="clickCountry(viewData.game)" ng-show="viewData.showCreative" ng-if="viewData">{{viewData.game.name}}</a>
+                    <a ng-click="clickCountry(viewData.view)" ng-if="viewData">{{viewData.view.name}}</a>
+                </label>
+            </div>
+            <div class="btn-group pull-left m-l-20">
+                <ul class="nav nav-tabs">
+                    <li id="comLabel" ng-model="viewState" class="active" btn-radio="'totalView'"><a data-toggle="tab">总览</a></li>
+                    <li id="dailyLabel"  ng-model="viewState" btn-radio="'listView'" ><a data-toggle="tab">明细</a></li>
+                    <li id="dailyLabel"  ng-model="viewState" ng-show="viewData.showCreative" btn-radio="'creativeView'" ><a data-toggle="tab">素材</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="ShowContainer" class="game-sider col-sm-2" ng-mouseleave="tipOut()" onblur="this.css('display','none');"
+         style="position: relative;left:0px;top:-2px;background-color: #F2F2F2;z-index: 100;overflow-y: scroll;border: 2px solid #9BD483">
+        <label class="label label-success graded">导航</label>
+        <ul class="nav sidebar-menu">
+            <li ng-repeat="Area in AreaGame">
+                <a href="#" class="menu-dropdown" ng-click="selectedArea($event,Area)">
+                    <i class="menu-icon fa fa-dribbble"></i>
+                    <span class="menu-text"> {{Area.area_name}} </span>
+                    <i class="menu-expand"></i>
+                </a>
+                <ul class="submenu" style="display: none;">
+                    <li ng-repeat="game in Area.games">
+                        <span class="menu_icon"></span>
+                        <a style="font-size: 12px;" ng-click="clickGame(game)">
+                            <span class="menu-text">{{game.game_name}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="tab-content col-sm-10">
+        <div class="row">
+            <div class="form-inline pull-left m-l-20">
+                <label class="control-label">选择时间: </label>
+                <!--<div id="dateControl" class="chose-list-content controls">-->
+                <!--<div class="form-group">-->
+                <input id="rangDateControl" date-range-picker class="form-control date-picker" type="text"
+                       ng-model="initData.rangeDate" ng-if="!singleDatePicker"  style="width:300px;" options = "dt_options"/>
+
+                <p class="input-group" ng-if="singleDatePicker">
+                    <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd"
+                           ng-model="initData.curDate"
+                           is-open="initData.opened"
+                           date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"
+                           style="position: static;"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open($event)">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+                                    </span>
+                </p>
+                <!--</div>-->
+                <!--</div>-->
+            </div>
+            <div class="col-sm-2 pull-left">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" style="padding: 0px;margin-top: 5px;">系统: </label>
+                    <div class="col-sm-9"  style="padding: 0px;">
+                        <ui-select ng-model="viewData.os" theme="bootstrap">
+                            <ui-select-match placeholder="Select">
+                                <span>{{item.name}}</span>
+                                {{$select.selected.name}}
+                                <i ng-if="$select.selected.os==1" class="fa fa-android"></i>
+                                <i ng-if="$select.selected.os==0" class="fa fa-apple"></i>
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in AppOS | filter: $select.search">
+                                <span>{{item.name}}</span>
+                                <i ng-if="item.os==1" class="fa fa-android green"></i>
+                                <i ng-if="item.os==0" class="fa fa-apple orange"></i>
+                            </ui-select-choices>
+                        </ui-select>
+
+                    </div>
+                </div>
+            </div>
+            <div class="form col-sm-1 pull-left">
+                <div class="checkbox" ng-show="viewData.sysCompare.isShow">
+                    <label>
+                        <input type="checkbox" ng-model="viewData.sysCompare.isChecked"/>系統对比
+                    </label>
+                </div>
+            </div>
+
+            <!-- Split button -->
+            <div class="col-sm-4" ng-show="viewData.AreaCompare.isShow">
+            <div  style="display: inline-block"
+                        isteven-multi-select
+                        input-model="currentArea"
+                        output-model="viewData.area"
+                        button-label="country_name"
+                        item-label="country_name"
+                        tick-property="isChecked"
+                        helper-elements=""
+                        max-labels="3"
+                        >
+                </div>
+                <buttom class="btn btn-default" ng-click="getAreaCompare()" >地区对比</buttom>
+            </div>
+            <button class="btn btn-default col-sm-1" ng-click="export()" > 导出</button>
+        </div>
+        <div id="totalView"  data-ng-include=" 'views/fbAnalysis/totalView.html'"></div>
+        <div id="listView" style="display: none" data-ng-include=" 'views/fbAnalysis/listView.html'"></div>
+        <div id="creativeView" style="display: none" data-ng-include=" 'views/fbAnalysis/creativeView.html'"></div>
+    </div>
+    <script src="lib/modules/angular-daterangepicker/moment.js"></script>
+    <script src="lib/modules/angular-daterangepicker/daterangepicker.js"></script>
+    <script src="lib/modules/angular-daterangepicker/angular-daterangepicker.js"></script>
+</div>

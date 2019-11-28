@@ -1,0 +1,278 @@
+<!--<style>-->
+<!--.table-hide{display: none}-->
+<!--</style>-->
+
+<div class="row" ng-controller="oasVirtualCurrencyController">
+    <div class="col-sm-12 col-md-12">
+        <toaster-container
+                toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div data-ng-include=" 'views/partials/oasHeader.html' "></div>
+
+    <div class="col-md-12 row" style="margin-top: 20px;">
+        <div class="btn-group pull-left m-l-20">
+            <label class="btn btn-normal" ng-model="radioModel" btn-radio="'1'">正常玩家</label>
+            <label class="btn btn-normal" ng-model="radioModel" btn-radio="'2'">活跃玩家</label>
+            <label class="btn btn-normal" ng-model="radioModel" btn-radio="'3'">内部玩家</label>
+        </div>
+
+        <!--时间选择-->
+        <div class="pull-left m-l-20">
+            <div class="form-group chose-list">
+                <label class="chose-list-label control-label">选择时间： </label>
+
+                <div class="chose-list-content controls">
+                    <div>
+                        <input date-range-picker class="form-control date-picker" type="text"
+                               ng-model="initData.rangeDate" ng-if="!singleDatePicker"/>
+
+                        <p class="input-group" ng-if="singleDatePicker">
+                            <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd"
+                                   ng-model="initData.curDate" is-open="initData.opened"
+                                   date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                            <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open($event)">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+                                    </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--时间选择 end-->
+        <!-- 查询按钮 -->
+        <div class="pull-left m-l-20">
+            <a class="btn btn-default pull-left" href="javascript:void(0);" ng-click="query()"><i
+                    class="fa fa-refresh"></i>查询</a>
+        </div>
+        <!-- 查询按钮 end-->
+        <!-- 导出按钮 -->
+        <div class="pull-left m-l-20">
+            <a class="btn btn-default pull-left" href="javascript:void(0);" ng-click="query()"><i
+                    class="fa fa-refresh"></i>导出</a>
+        </div>
+        <!-- 导出按钮 end-->
+    </div>
+
+
+    <div class="col-md-12 m-t-20">
+        <form>
+            <label class="chose-list-label control-label">选择货币类型： </label>
+            <label class="radio-inline">
+                <input ng-model="moneytype" btn-radio="'1'" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                       value="1" ng-checked="true"> 钻石
+            </label>
+            <label class="radio-inline">
+                <input ng-model="moneytype" btn-radio="'2'" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                       value="2"> 绑钻
+            </label>
+        </form>
+    </div>
+
+
+    <div class=" col-md-12  form-group chose-list" id="jin_selectMulti" style="height: 25px;display: none">
+        <label class="chose-list-label control-label" style="margin-top: 15px">类型选择： </label>
+
+        <div id="selectMulti1">
+            <h6 data-target="#compare1" data-toggle="modal"
+                style="cursor: pointer; width: 320px;white-space: nowrap; overflow:hidden;text-overflow: ellipsis;background-color: #ffffff"
+                class="row-title">
+                <div style="display: inline-block;overflow: hidden;width: 290px;color: #c95fb4"></div>
+                <i class="caret pull-right"></i></h6>
+        </div>
+    </div>
+
+    <div class="col-md-12  form-group chose-list" id="xiao_selectMulti" style="height: 25px;display: none">
+        <label class="chose-list-label control-label" style="margin-top: 15px">类型选择： </label>
+
+        <div id="selectMulti2">
+            <h6 data-target="#compare2" data-toggle="modal"
+                style="cursor: pointer; width: 320px;white-space: nowrap; overflow:hidden;text-overflow: ellipsis;background-color: #ffffff"
+                class="row-title" tooltip="{{tooltip}}">
+                <div style="display: inline-block;overflow: hidden;width: 290px;color: #c95fb4"></div>
+                <i class="caret pull-right"></i></h6>
+        </div>
+    </div>
+    <div class="col-md-12  form-group chose-list" id="cun_selectMulti" style="height: 25px;display: none">
+        <label class="chose-list-label control-label" style="margin-top: 15px">类型选择： </label>
+
+        <div id="selectMulti3">
+            <h6 data-target="#compare3" data-toggle="modal"
+                style="cursor: pointer; width: 320px;white-space: nowrap; overflow:hidden;text-overflow: ellipsis;background-color: #ffffff"
+                class="row-title">
+                <div style="display: inline-block;overflow: hidden;width: 290px;color: #c95fb4"></div>
+                <i class="caret pull-right"></i></h6>
+        </div>
+    </div>
+
+
+    <div class="col-md-12 m-t-20">
+        <div id="checkBox" style="width: 100%;height: 90px;">
+            <button id="chae" type="button" class="checkBox checkBox-selected" data-mastertypeid="4"></button>
+            <button id="jin" type="button" class="checkBox checkBox-shadow" data-mastertypeid="1"></button>
+            <button id="xiao" type="button" class="checkBox checkBox-shadow" data-mastertypeid="2"></button>
+            <button id="cun" type="button" class="checkBox checkBox-shadow" data-mastertypeid="3"></button>
+        </div>
+    </div>
+
+    <div class="col-md-12 m-t-20">
+        <div class="widget">
+            <div class="widget-header">
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body" style="height: 330px">
+                <div class="chartcontainer">
+                    <!-- <div id="VirtualCurrency" class="chart chart-lg"></div>-->
+                    <div id="chart1" class="chart chart-lg" style="width: 98%;display: none;">
+                        <div class="chart1" style="width: 40%;float:left;height: 300px"></div>
+                        <div class="chart2" style="width: 60%;float:left;height:300px"></div>
+                    </div>
+                    <div id="chart2" class="chart chart-lg" style="width: 98%;display: none;">
+                        <div class="chart1" style="width: 40%;float:left;height: 300px"></div>
+                        <div class="chart2" style="width: 60%;float:left;height: 300px"></div>
+                    </div>
+                    <div id="chart3" class="chart chart-lg" style="width: 98%;display: none;">
+                        <div class="chart1" style="width: 40%;float:left;height: 300px"></div>
+                        <div class="chart2" style="width: 60%;float:left;height: 300px"></div>
+                    </div>
+
+                    <div id="chart4" class="chart chart-lg" style="width: 98%;display: block;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="chaeTable" class="col-md-12" style="display:block">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+
+                <span class="widget-caption">表格</span>
+            </div>
+            <div class="scrollable" style="max-height: 500px;overflow-y:auto">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th style="text-align: center;width: 120px; ">日期</th>
+                        <th style="text-align: center; ">开存</th>
+                        <th style="text-align: center; ">进</th>
+                        <th style="text-align: center; ">销</th>
+                        <th style="text-align: center; ">收存</th>
+                        <th style="text-align: center; ">差额</th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="dataBody1">
+                    <tr ng-if="noData">
+                        <td class="danger" colspan="6">no data</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="footer">
+
+            </div>
+        </div>
+    </div>
+
+    <div id="NormalTable" class="col-md-12" style="display: none">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+
+                <span class="widget-caption">表格</span>
+            </div>
+            <div class="scrollable" style="max-height: 500px;overflow-y:auto">
+                <table class="table table-bordered table-hover">
+                    <thead id="table_head">
+                            </thead>
+                    <tbody id="dataBody2">
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--模态-->
+
+<div id="compare1" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">选择类型</h4>
+            </div>
+            <div class="modal-body" id="compareCopyBody1" style="height: 400px;overflow:auto">
+                <table class="table table-bordered">
+                    <tbody id="compareTbody1"></tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <div style="float: left">
+                    <input id="selectAll1" type="checkbox"/>全选
+                </div>
+                <button id="compareSure1">确认</button>
+                <button data-dismiss="modal" aria-hidden="true">取消</button>
+                <button id="compareReset1">重置</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="compare2" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><<<<<>>>>>>>>>>
+                <h4 class="modal-title">选择类型</h4>
+            </div>
+            <div class="modal-body" id="compareCopyBody2" style="height: 400px;overflow:auto">
+                <table class="table table-bordered">
+                    <tbody id="compareTbody2"></tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <div style="float: left">
+                    <input id="selectAll2" type="checkbox"/>全选
+                </div>
+                <button id="compareSure2">确认</button>
+                <button data-dismiss="modal" aria-hidden="true">取消</button>
+                <button id="compareReset2">重置</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="compare3" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">选择类型</h4>
+            </div>
+            <div class="modal-body" id="compareCopyBody3" style="height: 400px;overflow:auto">
+                <table class="table table-bordered">
+                    <tbody id="compareTbody3"></tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <div style="float: left">
+                    <input id="selectAll3" type="checkbox"/>全选
+                </div>
+                <button id="compareSure3">确认</button>
+                <button data-dismiss="modal" aria-hidden="true">取消</button>
+                <button id="compareReset3">重置</button>
+            </div>
+        </div>
+    </div>
+</div>

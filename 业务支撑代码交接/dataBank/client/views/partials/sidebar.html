@@ -1,0 +1,62 @@
+﻿    <!-- Page Sidebar Header-->
+<div class="sidebar-header-wrapper">
+    <div class="searchinput">
+        <span>系统:</span>
+        <select class="search-select" ng-model="system.selected" ng-options="item.system_name for item in systems">
+    </select>
+    </div>
+    <div id="systemChangeGroup" class="modal fade" tabindex="-1" role="dialog" aria-
+         labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width:1300px;height:500px;top:70px;">
+            <div class="modal-content">
+                <div class="modal-header" style="width:1300px;">
+                    <label>系统选择</label>
+                </div>
+                <div class="modal-body" style="width:1300px;height: 500px; padding: 0px;">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ul class="nav sidebar-menu">
+    <li ng-repeat="firstMenu in menus" ng-class="{true:'active open'}[$index==0]">
+        <a ng-if="!firstMenu.menu_url" href="#" class="menu-dropdown"  style="background-color: #3D3971;">
+            <i class="menu-icon glyphicon glyphicon-tasks"></i>
+            <span class="menu-text"> {{firstMenu.menu_name}} </span>
+            <i class="menu-expand"></i>
+        </a>
+        <ul  ng-if="!firstMenu.menu_url" class="submenu">
+
+            <li ng-repeat="secondMenu in firstMenu.children" >
+                <!--<span class="menu_icon"  ng-class="{true:'showColor',false:'hideColor'}[secondMenu.menu_url==defaultMenuUrl]"></span>-->
+                <span class="menu_icon"  ng-class="{true:'showColor',false:'hideColor'}[secondMenu.menu_url==defaultMenuUrl]"></span>
+                <a ui-sref="{{secondMenu.menu_url}}" ng-if="secondMenu.menu_url"  ng-style=" {color:secondMenu.menu_url==defaultMenuUrl ?'#fb6e52':'#ffffff'}"  ng-click="selectedMenu($event)" style="font-size: 12px;">
+                    <span class="menu-text" >{{secondMenu.menu_name}}</span>
+                </a>
+                <!--<a ui-sref="{{secondMenu.menu_url}}" ng-if="secondMenu.menu_url" ng-class="{true:'siderBarTip',false:'hideBarTip'}[$index==0]" ng-click="selectedMenu($event)" style="font-size: 12px;">
+                    <span class="menu-text">{{secondMenu.menu_name}}</span>
+                </a>-->
+                <a href="#"  ng-if="!secondMenu.menu_url" class="menu-dropdown">
+                    <span class="menu-text">{{secondMenu.menu_name}}</span>
+                    <i class="menu-expand"></i>
+                </a>
+                <ul ng-if="!secondMenu.menu_url" class="submenu">
+                    <li ng-repeat="thirdMenu in secondMenu.children">
+                        <span class="menu_icon"></span>
+                        <a ui-sref="{{thirdMenu.menu_url}}"  ng-click="selectedMenu($event)"  style="font-size: 12px;">
+                            <i class="menu-icon fa fa-pencil-square-o"></i>
+                            <span class="menu-text">{{thirdMenu.menu_name}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <a  ng-if="firstMenu.menu_url" ui-sref="{{firstMenu.menu_url}}" ng-click="selectedParentMenu($event,firstMenu.menu_url)"  style="background-color: #3D3971;">
+            <span class="menu_icon"  ng-class="{true:'showColor',false:'hideColor'}[firstMenu.menu_url==defaultMenuUrl]"></span>
+            <i ng-class="{true:'showColor',false:'hideColor'}[firstMenu.menu_url==defaultMenuUrl]" class="menu-icon glyphicon glyphicon-home"></i>
+            <span class="menu-text" ng-style=" {color:firstMenu.menu_url==defaultMenuUrl ?'#fb6e52':'#ffffff'}">  {{firstMenu.menu_name}} </span>
+        </a>
+    </li>
+</ul>
+<!-- /Sidebar Menu -->

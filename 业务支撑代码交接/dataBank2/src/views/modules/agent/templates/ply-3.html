@@ -1,0 +1,68 @@
+<!-- <div class="ag-group"> -->
+<div class="agent-list" v-if="data">
+  <Row>
+    <div class="title-list">代理商列表</div>
+  </Row>
+  <Row>
+    <OSGroup></OSGroup>
+  </Row>
+  <Row>
+    <Navi class="navi" :data="{list:data,itemName:'grandname',cur:curGrandid,curName:'grandid',click:naviClick}"></Navi>
+  </Row>
+  <Row>
+    <Card class="card">
+      <Row>
+        <div @click="toggle(data[curGrandid])">
+          <Checkbox :state="data[curGrandid].select">
+            <label>全选</label>
+          </Checkbox>
+        </div>
+        <Search class="search"></Search>
+      </Row>
+      <div class="box box-fixed">
+        <li class="btn" :class="{'box-item':curParentid===e.parentid,'btn-secondary':curParentid!=e.parentid}" v-for="(e, i) in data[curGrandid]"
+          @click="data[curGrandid].default=e.parentid" v-if="typeof(e)==='object'">
+          <div @click="toggle(data[e.grandid][e.parentid])">
+            <Checkbox :state="data[e.grandid][e.parentid].select"></Checkbox>
+          </div>
+          <span class="title" :title="e.parentname">{{e.parentname}}</span>
+        </li>
+      </div>
+    </Card>
+    <Card class="card">
+      <Row>
+        <div @click="toggle(data[curGrandid][curParentid])">
+          <Checkbox :state="data[curGrandid][curParentid].select">
+            <label>全选</label>
+          </Checkbox>
+        </div>
+        <Search class="search"></Search>
+      </Row>
+      <div class="box box-fixed">
+        <li class="btn" :class="{'box-item':curId===e.id,'btn-secondary':curId!=e.id}" v-for="(e, i) in data[curGrandid][curParentid]"
+          @click="curId=e.id" v-if="typeof(e)==='object'">
+          <div @click="toggle(e)">
+            <Checkbox :state="e.select"></Checkbox>
+          </div>
+          <span class="title" :title="e.name">{{e.name}}</span>
+        </li>
+      </div>
+    </Card>
+    <Card class="card">
+      <p>已选中列表({{selectedList?selectedList.length:0}})</p>
+      <div class="selected">
+        <span class="line" v-for="(e, i) in selectedList">
+          <span v-html="e.name?e.name:e.parentname?e.parentname:e.grandname?e.grandname:''"></span><i class="icon-close"
+          @click="toggle(e)"></i>
+        </span>
+      </div>
+    </Card>
+  </Row>
+  <Row>
+    <button class="btn confirm" @click="toConfirm">确 定</button>
+  </Row>
+  <!-- <Row class="confirm">
+    
+  </Row> -->
+</div>
+<!-- </div> -->

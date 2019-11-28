@@ -1,0 +1,429 @@
+﻿    <!-- Page Sidebar Header-->
+<div class="sidebar-header-wrapper">
+    <input type="text" class="searchinput" />
+    <i class="searchicon fa fa-search"></i>
+    <div class="searchhelper">ایمیل خود را جستجو کنید</div>
+</div>
+<!-- /Page Sidebar Header -->
+<!-- Sidebar Menu -->
+<ul class="nav sidebar-menu">
+    <!--Dashboard-->
+    <li ui-sref-active="active">
+        <a ui-sref="app.dashboard">
+            <i class="menu-icon glyphicon glyphicon-home"></i>
+            <span class="menu-text"> داشبورد </span>
+        </a>
+    </li>
+    <!--Databoxes-->
+    <li ui-sref-active="active">
+        <a ui-sref="app.databoxes">
+            <i class="menu-icon glyphicon glyphicon-tasks"></i>
+            <span class="menu-text"> باکس داده‌ها </span>
+        </a>
+    </li>
+    <!--Widgets-->
+    <li ui-sref-active="active">
+        <a ui-sref="app.widgets">
+            <i class="menu-icon fa fa-th"></i>
+            <span class="menu-text"> ابزارک‌ها </span>
+        </a>
+    </li>
+    <!--UI Elements-->
+    <li >
+        <a href="#" class="menu-dropdown">
+            <i class="menu-icon fa fa-desktop"></i>
+            <span class="menu-text"> عناصر گرافیکی </span>
+
+            <i class="menu-expand"></i>
+        </a>
+
+        <ul class="submenu">
+            <li ui-sref-active="active">
+                <a ui-sref="app.elements">
+                    <span class="menu-text">عناصر عمومی</span>
+                </a>
+            </li>
+            <li >
+                <a href="#" class="menu-dropdown">
+                    <span class="menu-text">
+                        آیکون ها
+                    </span>
+                    <i class="menu-expand"></i>
+                </a>
+
+                <ul class="submenu">
+                    <li ui-sref-active="active">
+                        <a ui-sref="app.fontawesome">
+                            <i class="menu-icon fa fa-rocket"></i>
+                            <span class="menu-text">Font Awesome</span>
+                        </a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="app.glyphicons">
+                            <i class="menu-icon glyphicon glyphicon-stats"></i>
+                            <span class="menu-text">Glyph Icons</span>
+                        </a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="app.typicons">
+                            <i class="menu-icon typcn typcn-location-outline"></i>
+                            <span class="menu-text"> Typicons</span>
+                        </a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a ui-sref="app.weathericons">
+                            <i class="menu-icon wi wi-hot"></i>
+                            <span class="menu-text">Weather Icons</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.tabs">
+                    <span class="menu-text">زبانه ها و آکوردئون ها</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.alerts">
+                    <span class="menu-text">هشدارها و راهنماها</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.modals">
+                    <span class="menu-text">مدال و Wells</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.buttons">
+                    <span class="menu-text">دکمه‌ها</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.nestablelist">
+                    <span class="menu-text"> لیست های تو در تو</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.treeview">
+                    <span class="menu-text">درخت‌ها</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <!--Tables-->
+    <li>
+        <a href="#" class="menu-dropdown">
+            <i class="menu-icon fa fa-table"></i>
+            <span class="menu-text"> جداول </span>
+
+            <i class="menu-expand"></i>
+        </a>
+
+        <ul class="submenu">
+            <li ui-sref-active="active">
+                <a ui-sref="app.simpletables">
+                    <span class="menu-text">ساده و واکنش‌گرا</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.datatables">
+                    <span class="menu-text">جداول داده‌ها</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <!--Forms-->
+    <li>
+        <a href="#" class="menu-dropdown">
+            <i class="menu-icon fa fa-pencil-square-o"></i>
+            <span class="menu-text"> فرم‌ها </span>
+
+            <i class="menu-expand"></i>
+        </a>
+
+        <ul class="submenu">
+            <li ui-sref-active="active">
+                <a ui-sref="app.formlayout">
+                    <span class="menu-text">چینش فرم‌ها</span>
+                </a>
+            </li>
+
+            <li ui-sref-active="active">
+                <a ui-sref="app.forminputs">
+                    <span class="menu-text">Form Inputs</span>
+                </a>
+            </li>
+
+            <li ui-sref-active="active">
+                <a ui-sref="app.formpickers">
+                    <span class="menu-text">Data Pickers</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.formwizard">
+                    <span class="menu-text">Wizard</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.formvalidation">
+                    <span class="menu-text">اعتبارسنجی</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.formeditors">
+                    <span class="menu-text">ویرایشگرها</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <!--Charts-->
+    <li>
+        <a href="#" class="menu-dropdown">
+            <i class="menu-icon fa fa-bar-chart-o"></i>
+            <span class="menu-text"> نمودارها </span>
+            <i class="menu-expand"></i>
+        </a>
+        <ul class="submenu">
+            <li ui-sref-active="active">
+                <a ui-sref="app.flot">
+                    <span class="menu-text">نمودار فلوت</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.morris">
+                    <span class="menu-text"> نمودار موریس</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.sparkline">
+                    <span class="menu-text">نمودار اسپارکلاین</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.easypiechart">
+                    <span class="menu-text">نمودار ایزی‌پای</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.chartjs">
+                    <span class="menu-text"> چارت جی‌اس</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <!--Profile-->
+    <li ui-sref-active="active">
+        <a ui-sref="app.profile">
+            <i class="menu-icon fa fa-picture-o"></i>
+            <span class="menu-text">پروفایل</span>
+        </a>
+    </li>
+    <!--Mail-->
+    <li>
+        <a href="#" class="menu-dropdown">
+            <i class="menu-icon fa fa-envelope-o"></i>
+            <span class="menu-text"> ایمیل </span>
+
+            <i class="menu-expand"></i>
+        </a>
+
+        <ul class="submenu">
+            <li ui-sref-active="active">
+                <a ui-sref="app.inbox">
+                    <span class="menu-text">اینباکس</span>
+                </a>
+            </li>
+
+            <li ui-sref-active="active">
+                <a ui-sref="app.messageview">
+                    <span class="menu-text">مشاهده ایمیل</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.messagecompose">
+                    <span class="menu-text">ایجاد ایمیل</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <!--Calendar-->
+    <li ui-sref-active="active">
+        <a ui-sref="app.calendar">
+            <i class="menu-icon fa fa-calendar"></i>
+            <span class="menu-text">
+                تقویم
+            </span>
+        </a>
+    </li>
+    <!--Pages-->
+    <li>
+        <a href="#" class="menu-dropdown">
+            <i class="menu-icon glyphicon glyphicon-paperclip"></i>
+            <span class="menu-text"> صفحات </span>
+
+            <i class="menu-expand"></i>
+        </a>
+        <ul class="submenu">
+            <li ui-sref-active="active">
+                <a ui-sref="app.timeline">
+                    <span class="menu-text">تایم لاین</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.pricing">
+                    <span class="menu-text">جدول قیمت‌گذاری</span>
+                </a>
+            </li>
+
+            <li ui-sref-active="active">
+                <a ui-sref="app.invoice">
+                    <span class="menu-text">صورت حساب</span>
+                </a>
+            </li>
+
+            <li ui-sref-active="active">
+                <a ui-sref="login">
+                    <span class="menu-text">ورود به سیستم</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="register">
+                    <span class="menu-text">ثبت نام</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="lock">
+                    <span class="menu-text">صفحه قفل</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.typography">
+                    <span class="menu-text"> تایپوگرافی </span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <!--More Pages-->
+    <li>
+        <a href="#" class="menu-dropdown">
+            <i class="menu-icon glyphicon glyphicon-link"></i>
+
+            <span class="menu-text">
+                دیگر صفحات
+            </span>
+
+            <i class="menu-expand"></i>
+        </a>
+
+        <ul class="submenu">
+            <li ui-sref-active="active">
+                <a ui-sref="error404">
+                    <span class="menu-text">خطای ۴۰۴</span>
+                </a>
+            </li>
+
+            <li ui-sref-active="active">
+                <a ui-sref="error500">
+                    <span class="menu-text"> خطای ۵۰۰</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.blank">
+                    <span class="menu-text">صفحه خالی</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.grid">
+                    <span class="menu-text"> گرید</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="menu-dropdown">
+                    <span class="menu-text">
+                        منوی چندسطحی
+                    </span>
+                    <i class="menu-expand"></i>
+                </a>
+
+                <ul class="submenu">
+                    <li>
+                        <a href="#">
+                            <i class="menu-icon fa fa-camera"></i>
+                            <span class="menu-text">سطح سوم</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="menu-dropdown">
+                            <i class="menu-icon fa fa-asterisk"></i>
+
+                            <span class="menu-text">
+                                سطح چهارم
+                            </span>
+                            <i class="menu-expand"></i>
+                        </a>
+
+                        <ul class="submenu">
+                            <li>
+                                <a href="#">
+                                    <i class="menu-icon fa fa-bolt"></i>
+                                    <span class="menu-text">یک آیتم</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    <i class="menu-icon fa fa-bug"></i>
+                                    <span class="menu-text">آیتمی دیگر</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <!--Right to Left-->
+    <li>
+        <a href="#" class="menu-dropdown">
+            <i class="menu-icon fa fa-align-right"></i>
+            <span class="menu-text"> راست چین </span>
+
+            <i class="menu-expand"></i>
+        </a>
+        <ul class="submenu">
+            <li>
+                <a ng-click="settings.rtl = !settings.rtl" href="">
+                    <span class="menu-text" ng-if="settings.rtl">Left to Right</span>
+                    <span class="menu-text" ng-if="!settings.rtl">Right to Left</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.dashboard">
+                    <span class="menu-text">Back to English</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="persian.dashboard">
+                    <span class="menu-text">چینش فارسی</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="arabic.dashboard">
+                    <span class="menu-text">چینش عربی</span>
+                </a>
+            </li>
+
+            
+        </ul>
+    </li>
+    <li ui-sref-active="active">
+        <a ui-sref="app.versions">
+            <i class="menu-icon glyphicon glyphicon-fire themesecondary"></i>
+            <span class="menu-text">
+                نسخه‌های BeyondAdmin
+            </span>
+        </a>
+    </li>
+</ul>
+<!-- /Sidebar Menu -->

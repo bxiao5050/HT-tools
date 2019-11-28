@@ -1,0 +1,19 @@
+select DISTINCT a.media_source,b.count_date from (
+select DISTINCT media_source from sc_sdk_databank.t_p_app_install where install_time::date >= (#count_date#::TIMESTAMP - 150 * '1 day'::interval) and app_id in (
+select area_app_id from sc_sdk_databank.t_c_area_app where unite_id = #in_unite_id#) and os = #in_os#
+union ALL
+select DISTINCT media_source from  sc_sdk_databank.t_c_repair_data_copy where app_id in (
+select area_app_id from sc_sdk_databank.t_c_area_app where unite_id = #in_unite_id#) and os = #in_os#
+) a left join (
+select media_source,max(count_date) count_date from sc_sdk_databank.t_c_repair_data_copy where  app_id in (
+select area_app_id from sc_sdk_databank.t_c_area_app where unite_id = #in_unite_id#) and os = #in_os#
+group by media_source
+) b on a.media_source = b.media_source
+
+select DISTINCT * from (
+select DISTINCT media_source from sc_sdk_databank.t_p_app_install where install_time::date = #count_date# and app_id in (
+select area_app_id from sc_sdk_databank.t_c_area_app where unite_id = #in_unite_id#) and os = #in_os#
+union ALL
+select DISTINCT media_source from  sc_sdk_databank.t_c_repair_data_copy where count_date = #count_date# and app_id in (
+select area_app_id from sc_sdk_databank.t_c_area_app where unite_id = #in_unite_id#) and os = #in_os#
+) a 

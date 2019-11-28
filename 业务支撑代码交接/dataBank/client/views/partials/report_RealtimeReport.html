@@ -1,0 +1,156 @@
+<div class="row" ng-controller="RealTimeReportController">
+
+    <div class="col-lg-12 col-sm-12 col-xs-12  oa-header-row">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="reservation">选择时间: </label>
+
+                    <div class="chose-list-content controls col-sm-9">
+                        <div class="form-group">
+                            <input date-range-picker class="form-control date-picker" type="text"
+                                   ng-model="initData.rangeDate" ng-if="!singleDatePicker"/>
+
+                            <p class="input-group" ng-if="singleDatePicker">
+                                <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd"
+                                       ng-model="initData.curDate"
+                                       is-open="initData.opened"
+                                       date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"
+                                       style="position: static;"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open($event)">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+                                    </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">系统: </label>
+
+                    <div class="col-sm-9">
+                        <ui-select ng-model="os.selected" theme="bootstrap">
+                            <ui-select-match placeholder="Select">
+                                <span>{{item.name}}</span>
+                                {{$select.selected.name}}
+                                <i ng-if="$select.selected.os==1" class="fa fa-android"></i>
+                                <i ng-if="$select.selected.os==0" class="fa fa-apple"></i>
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in AppOS | filter: $select.search">
+                                <span>{{item.name}}</span>
+                                <i ng-if="item.os==1" class="fa fa-android green"></i>
+                                <i ng-if="item.os==0" class="fa fa-apple orange"></i>
+                            </ui-select-choices>
+                        </ui-select>
+
+                    </div>
+                </div>
+            </div>
+            <div class="pull-left col-sm-3  m-l-20">
+                <div class="form-group chose-list">
+                    <label class="col-sm-3 control-label" style="margin-top: 5px">选择范围： </label>
+                    <!--代理商选择按钮-->
+                    <div id="choseAgentBtn" class="col-sm-9">
+                        <h6 ng-click="showSelectDIV($event)" tooltip="{{areaLevel.selected.area_app_name +'-' +
+                        countryLevel.selected.area_app_name +'-' +gameLevel.selected.area_app_name }}"
+                            style="margin: 0;cursor: pointer; width: 220px;white-space: nowrap; overflow:hidden;text-overflow: ellipsis;"
+                            class="row-title"><i
+                                class="fa fa-expand"></i>{{areaLevel.selected.area_app_name +'-' +
+                            countryLevel.selected.area_app_name +'-' +gameLevel.selected.area_app_name }}</h6>
+                    </div>
+                </div>
+                <!--代理商选择按钮 end-->
+                <!--代理商选择弹出框-->
+                <div id="agentContent" style="display: none; width: 500px;">
+                    <div class="well" style="margin-top: 20px;">
+                        <!--<div class="header bordered-blue">{{firstLevel.selected.agent_name +'-' + secondLevel.selected.agent_name  +'-' +thirdLevel.selected.agent_name }}</div>-->
+                        <button class="btn btn-default btn-sm" style="position: absolute;top: 10px;right: 50px;"
+                                ng-click="closeSelectDIV()">关闭
+                        </button>
+                        <tabset flat="true">
+                            <tab heading="地区" active="initData.areaActive">
+                                <button class="btn btn-default btn-sm" ng-repeat="areaItem in areaSource"
+                                        ng-click="clickArea(areaItem)">
+                                    {{areaItem.area_app_name}}
+                                </button>
+                            </tab>
+                            <tab heading="国家" disabled="initData.countryDisabled" active="initData.countryActive">
+                                <button class="btn btn-default btn-sm" ng-repeat="countryItem in countrySource"
+                                        ng-click="clickCountry(countryItem)">
+                                    {{countryItem.area_app_name}}
+                                </button>
+                            </tab>
+                            <tab heading="游戏" disabled="initData.gameDisabled" active="initData.gameActive">
+                                <button class="btn btn-default btn-sm" ng-repeat="gameItem in gameSource"
+                                        ng-click="clickGame(gameItem)">
+                                    {{gameItem.area_app_name}}
+                                </button>
+                            </tab>
+                        </tabset>
+                    </div>
+                    <!--代理商选择弹出框 end-->
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="btn-group pull-left m-l-20">
+                    <label class="btn btn-normal" ng-click="query()">查询</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 m-t-20" >
+            <div class="widget">
+                <div class="widget-header">
+                    <span class="widget-caption">实时激活数据(延迟1小时)</span>
+                    <label class="export-btn" ng-click="export('3')"><i class="fa fa-download"></i>&nbsp;导出xlsx文件</label>
+                    <div class="widget-buttons">
+                        <a href="" widget-collapse></a>
+                        <a href="" widget-maximize></a>
+                    </div>
+                </div>
+                <div class="widget-body">
+                    <div class="chartcontainer">
+                        <div id="realTimeInstallChart" class="chart chart-lg" style="position: static;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 m-t-20"  >
+            <div class="widget">
+                <div class="widget-header">
+                    <span class="widget-caption">实时注册数据(延迟1小时)</span>
+                    <label class="export-btn" ng-click="export('3')"><i class="fa fa-download"></i>&nbsp;导出xlsx文件</label>
+                    <div class="widget-buttons">
+                        <a href="" widget-collapse></a>
+                        <a href="" widget-maximize></a>
+                    </div>
+                </div>
+                <div class="widget-body">
+                    <div class="chartcontainer">
+                        <div id="realTimeRegChart" class="chart chart-lg" style="position: static;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 m-t-20"  >
+            <div class="widget">
+                <div class="widget-header">
+                    <span class="widget-caption">实时创角数据(延迟1小时)</span>
+                    <label class="export-btn" ng-click="export('3')"><i class="fa fa-download"></i>&nbsp;导出xlsx文件</label>
+                    <div class="widget-buttons">
+                        <a href="" widget-collapse></a>
+                        <a href="" widget-maximize></a>
+                    </div>
+                </div>
+                <div class="widget-body">
+                    <div class="chartcontainer">
+                        <div id="realTimeActChart" class="chart chart-lg" style="position: static;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,56 @@
+
+<div class="row" ng-controller="budgetManageController" ng-cloak>
+<div class="row  oa-header-row">
+    <div class="col-md-2 col-md-offset-1">
+        <p class="input-group">
+            <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="formData.dt" is-open="opened"
+
+                   date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+            <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open($event)"><i
+                                                class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+        </p>
+    </div>
+    <div class="col-md-4 col-md-offset-2">
+        <div class="btn-group pull-left">
+            <label class="btn btn-normal" ng-click="download()"><i
+                    class="fa fa-refresh"></i>下载模板</label>
+            <label class="btn btn-normal" ngf-select ng-model="file" name="file" ngf-max-size="20MB" ngf-min-height="100" ><i
+                    class="fa fa-refresh">上传预算</i></label>
+            <label class="btn btn-normal" ng-click="query()"><i
+                    class="fa fa-refresh"></i>查询</label>
+        </div>
+    </div>
+</div>
+<div class="well">
+    <div class="widget">
+        <div class="widget-header">
+            <span class="widget-caption">表格</span>
+            <div class="widget-buttons">
+                <a href="" widget-collapse=""><i class="fa fa-minus"></i></a>
+                <a href="" widget-maximize=""><i class="fa fa-expand"></i></a>
+            </div>
+        </div>
+        <div class="widget-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>时间</th>
+                    <th>游戏</th>
+                    <th>预算</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in tableData">
+                    <td>{{item.count_date}}</td>
+                    <td>{{item.game_name}}</td>
+                    <td>{{item.costs}}</td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+</div>

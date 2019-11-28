@@ -1,0 +1,30 @@
+#login {
+  color: #fff;
+  width: 100%;//1920px;
+  height: 100%;//1080px;
+  // position: fixed;
+  // left: 50%;
+  // top: 50%;
+  // margin: 1080px*-0.5 0 0 1920px*-0.5;
+  .login-box {
+    width: $loginWidth;
+    height: $loginHeight;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    // margin: $loginHeight*-0.55 0 0 $loginWidth*-0.5;
+    transform: translate(-50%,-50%);
+    padding: 15px;
+    .btn.btn-secondary {
+      width: 100%;
+    }
+    .input-group-addon,
+    .form-control {
+      border: 0;
+      border-radius: 0;
+    }
+  }
+  .icon-login-username, .icon-login-password {
+    color: #000;
+  }
+}

@@ -1,0 +1,59 @@
+<div class="row" ng-controller="userRetainController" ng-cloak>
+    <div class="col-sm-12 col-md-12">
+        <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div data-ng-include=" 'views/7RoadReport/Report_Header.html' "></div>
+
+    <div class="col-md-12 m-t-20">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+
+                <span class="widget-caption">表格</span>
+                <label class="export-btn pull-right" style="margin-right: 20px;" ng-click="export()"><i class="fa fa-download"></i>&nbsp;导出xlsx文件</label>
+            </div>
+            <div class="scrollable font-12">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>日期</th>
+                        <th>用户数</th>
+                        <th>+1日</th>
+                        <th>+2日</th>
+                        <th>+3日</th>
+                        <th>+4日</th>
+                        <th>+5日</th>
+                        <th>+6日</th>
+                        <th>+7日</th>
+                        <th>+14日</th>
+                        <th>+30日</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in tableData">
+                        <td>{{item.reg_date}}</td>
+                        <td>{{item.reg_count}}</td>
+                        <td>{{item["day1"]!=0?item["day1"]:'-'}}</td>
+                        <td>{{item["day2"]!=0?item["day2"]:'-'}}</td>
+                        <td>{{item["day3"]!=0?item["day3"]:'-'}}</td>
+                        <td>{{item["day4"]!=0?item["day4"]:'-'}}</td>
+                        <td>{{item["day5"]!=0?item["day5"]:'-'}}</td>
+                        <td>{{item["day6"]!=0?item["day6"]:'-'}}</td>
+                        <td>{{item["day7"]!=0?item["day7"]:'-'}}</td>
+                        <td>{{item["day14"]!=0?item["day14"]:'-'}}</td>
+                        <td>{{item["day30"]!=0?item["+ay30"]:'-'}}</td>
+                    </tr>
+                    <tr ng-if="noData">
+                        <td class="danger" colspan="6">no data</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>

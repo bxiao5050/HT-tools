@@ -1,0 +1,89 @@
+import template from "src/components/system/language/language.hbs"
+import api from 'src/services/api'
+
+export default class language {
+  static id = 'language-container';
+  static packs = [
+    {
+      value: 'CHS',
+      language: require('./packs/chs'),
+      txt: '简体中文'
+    }, {
+      value: 'Tradition',
+      language: require('./packs/tradition'),
+      txt: '繁体中文'
+    }, {
+      value: 'EN',
+      language: require('./packs/en'),
+      txt: 'English'
+    }
+  ];
+
+  static languages = {
+    CHS: require('src/components/system/language/packs/chs'),
+    Tradition: require('src/components/system/language/packs/tradition'),
+    EN: require('src/components/system/language/packs/en')
+  }
+  static
+  default = 'CHS';
+
+  static packsLen = language.packs.length;
+  static language = language.initLanguage();
+
+  static getTemplate() {
+    return template({language: this.packs})
+  }
+
+  static initLanguage() {
+    let language
+    if (!localStorage.languageDefault && !this.current) {
+      this.current = localStorage.languageDefault = this.default
+    } else {
+      localStorage.languageDefault
+        ? this.current = localStorage.languageDefault
+        : localStorage.languageDefault = this.current
+    }
+    this
+      .packs
+      .forEach((e, i) => {
+        if (e.value === this.current) {
+          this.packs[i].default = true
+          language = e.language
+        } else {
+          this.packs[i].default = false
+        }
+      })
+    return language;
+  }
+
+  static changeLanguage(val) {
+    localStorage.languageDefault = val
+    this.language = this.initLanguage()
+    var param = {
+      language: val
+    }
+    api
+      .user
+      .changeLanguage(param, (data) => {
+        if (data.code == 303) {
+          console.info("切换语言成功!")
+        } else {
+          alert("切换语言失败!")
+        }
+      })
+  }
+
+  static watchOptionChange(cb) {
+    self['language-options-select'].onchange = (e) => {
+      for (let i = 0; i < this.packsLen; i++) {
+        if (e.target[i].selected) {
+          this.changeLanguage(e.target[i].value)
+          this.initLanguage()
+          if (cb) 
+            cb(this.language)
+        }
+      }
+    }
+  }
+
+}

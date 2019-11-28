@@ -1,0 +1,166 @@
+﻿<div class="row" ng-controller="oas5liDataController">
+    <div class="col-sm-12 col-md-12">
+        <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div data-ng-include=" 'views/partials/oasHeader.html' "></div>
+    <div class="col-md-12 m-t-20">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption">{{dates[0]}} 数据</span>
+                <div class="btn-group">
+                    <label class="btn btn-normal" ng-model="radioModel" btn-radio="'day'">日</label>
+                    <label class="btn btn-normal" ng-model="radioModel" btn-radio="'week'">周</label>
+                    <label class="btn btn-normal" ng-model="radioModel" btn-radio="'month'">月</label>
+                </div>
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+               <div class="row m-t-20  m-l-20">
+                   <div class="col-md-2 block">
+                       <label>注册角色数</label>
+                       <div>
+                           <label>{{todayData.regCount}}</label>
+                           <label class="m-l-20 success" ng-class="{true:'success', false:'warning'}[todayData.regCount >= yesterData.regCount]">
+                               <i class="fa" ng-class="{true:'fa-arrow-up', false:'fa-arrow-down'}[todayData.regCount >= yesterData.regCount]"></i>
+                               {{((yesterData.regCount ? (todayData.regCount -yesterData.regCount) * 100 / yesterData.regCount : 0 ) | number) + '%'}}
+                           </label>
+                       </div>
+                   </div>
+                   <div class="col-md-1 line"></div>
+                   <div class="col-md-2 block">
+                       <label>新活跃角色数</label>
+                       <div>
+                           <label>{{todayData.newUserActiveCount}}</label>
+                           <label class="m-l-20 success" ng-class="{true:'success', false:'warning'}[todayData.newUserActiveCount >= yesterData.newUserActiveCount]">
+                               <i class="fa" ng-class="{true:'fa-arrow-up', false:'fa-arrow-down'}[todayData.newUserActiveCount >= yesterData.newUserActiveCount]"></i>
+                               {{((yesterData.newUserActiveCount ? (todayData.newUserActiveCount -yesterData.newUserActiveCount) * 100 / yesterData.newUserActiveCount :0)|number) + '%'}}
+                           </label>
+                       </div>
+                   </div>
+               </div>
+                <div class="row  m-t-20 m-l-20">
+                    <div class="col-md-2 block">
+                        <label>登录角色数</label>
+                        <div>
+                            <label>{{todayData.loginCount}}</label>
+                            <label class="m-l-20 success" ng-class="{true:'success', false:'warning'}[todayData.loginCount >= yesterData.loginCount]">
+                                <i class="fa" ng-class="{true:'fa-arrow-up', false:'fa-arrow-down'}[todayData.loginCount >= yesterData.loginCount]"></i>
+                                {{((yesterData.loginCount ? (todayData.loginCount -yesterData.loginCount) * 100 / yesterData.loginCount : 0 )|number) + '%' }}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-1 line"></div>
+                    <div class="col-md-2  block">
+                        <label>老用户活跃数</label>
+                        <div>
+                            <label>{{todayData.oldUserActiveCount}}</label>
+                            <label class="m-l-20 success" ng-class="{true:'success', false:'warning'}[todayData.oldUserActiveCount >= yesterData.oldUserActiveCount]">
+                                <i class="fa" ng-class="{true:'fa-arrow-up', false:'fa-arrow-down'}[todayData.oldUserActiveCount >= yesterData.oldUserActiveCount]"></i>
+                                {{((yesterData.oldUserActiveCount ? (todayData.oldUserActiveCount -yesterData.oldUserActiveCount) * 100 / yesterData.oldUserActiveCount : 0 )|number)+ '%' }}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-1 line"></div>
+                    <div class="col-md-2  block">
+                        <label>活跃角色数</label>
+                        <div>
+                            <label>{{todayData.activeCount}}</label>
+                            <label class="m-l-20 success" ng-class="{true:'success', false:'warning'}[todayData.activeCount >= yesterData.activeCount]">
+                                <i class="fa" ng-class="{true:'fa-arrow-up', false:'fa-arrow-down'}[todayData.activeCount >= yesterData.activeCount]"></i>
+                                {{((yesterData.activeCount ? (todayData.activeCount -yesterData.activeCount) * 100 / yesterData.activeCount : 0)|number) + '%' }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row  m-t-20 m-l-20">
+                    <div class="col-md-2 block">
+                        <label>活跃付费率</label>
+                        <div>
+                            <label>{{todayData.payRate + '%' }}</label>
+                            <label class="m-l-20 success" ng-class="{true:'success', false:'warning'}[todayData.payRate >= yesterData.payRate]">
+                                <i class="fa" ng-class="{true:'fa-arrow-up', false:'fa-arrow-down'}[todayData.payRate >= yesterData.payRate]"></i>
+                                {{((yesterData.payRate ? (todayData.payRate -yesterData.payRate) * 100 / yesterData.payRate :0)|number)+ '%' }}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-4 line"></div>
+                    <div class="col-md-2 block">
+                        <label>付费人数</label>
+                        <div>
+                            <label>{{todayData.payCount}}</label>
+                            <label class="m-l-20 success" ng-class="{true:'success', false:'warning'}[todayData.payCount >= yesterData.payCount]">
+                                <i class="fa" ng-class="{true:'fa-arrow-up', false:'fa-arrow-down'}[todayData.payCount >= yesterData.payCount]"></i>
+                                {{ ((yesterData.payCount ? (todayData.payCount -yesterData.payCount) * 100 / yesterData.payCount :0)|number) + '%' }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row  m-t-20 m-l-20">
+                    <div class="col-md-2 block">
+                        <label>付费金额</label>
+                        <div>
+                            <label>{{todayData.payMoney}}</label>
+                            <label class="m-l-20 success" ng-class="{true:'success', false:'warning'}[todayData.payMoney >= yesterData.payMoney]">
+                                <i class="fa" ng-class="{true:'fa-arrow-up', false:'fa-arrow-down'}[todayData.payMoney >= yesterData.payMoney]"></i>
+                                {{((yesterData.payMoney ? (todayData.payMoney -yesterData.payMoney) * 100 / yesterData.payMoney :0)|number) + '%' }}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-7 line"></div>
+                    <div class="col-md-2  block">
+                        <label>付费ARPU</label>
+                        <div>
+                            <label>{{todayData.arpu}}</label>
+                            <label class="m-l-20 success" ng-class="{true:'success', false:'warning'}[todayData.arpu >= yesterData.arpu]">
+                                <i class="fa" ng-class="{true:'fa-arrow-up', false:'fa-arrow-down'}[todayData.arpu >= yesterData.arpu]"></i>
+                                {{ ((yesterData.arpu ? (todayData.arpu -yesterData.arpu) * 100 / yesterData.arpu :0)|number) + '%' }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+
+                <span class="widget-caption">表格</span>
+            </div>
+            <div class="scrollable">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>指标</th>
+                        <th ng-repeat="item in dates">{{item}}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in tableData">
+                        <td>{{item.point_name}}</td>
+                        <td>{{item.date8_value}}</td>
+                        <td>{{item.date7_value}}</td>
+                        <td>{{item.date6_value}}</td>
+                        <td>{{item.date5_value}}</td>
+                        <td>{{item.date4_value}}</td>
+                        <td>{{item.date3_value}}</td>
+                        <td>{{item.date2_value}}</td>
+                        <td>{{item.date1_value}}</td>
+                    </tr>
+                    <tr ng-if="noData">
+                        <td class="danger"  colspan="6">no data</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>

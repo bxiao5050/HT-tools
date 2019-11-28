@@ -1,0 +1,107 @@
+﻿<div class="row" ng-controller="oasKanpanDataController" ng-cloak>
+    <div class="col-sm-12 col-md-12">
+        <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div data-ng-include=" 'views/partials/oasHeader.html' "></div>
+
+    <div class="col-md-12 row">
+        <!--时间选择-->
+        <div class="pull-left m-l-20">
+            <div class="form-group chose-list">
+                <label class="chose-list-label control-label">选择时间： </label>
+
+                <div class="chose-list-content controls">
+                    <div>
+                        <input date-range-picker class="form-control date-picker" type="text" ng-model="initData.rangeDate" ng-if="!singleDatePicker"/>
+                        <p class="input-group" ng-if="singleDatePicker">
+                            <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="initData.curDate"
+                                   is-open="initData.opened"
+                                   date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open($event)">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+                                    </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--时间选择 end-->
+        <!-- 查询按钮 -->
+        <div class="pull-left m-l-20">
+            <a class="btn btn-default pull-left font-12" href="javascript:void(0);" ng-click="query()"><i
+                    class="fa fa-refresh"></i>查询</a>
+        </div>
+        <!-- 查询按钮 end-->
+        <!-- 导出按钮 -->
+        <div class="pull-left m-l-20">
+            <a class="btn btn-default pull-left font-12" href="javascript:void(0);" ng-click="query()"><i
+                    class="fa fa-download"></i>导出</a>
+        </div>
+        <!-- 导出按钮 end-->
+    </div>
+
+    <div class="col-md-12 m-t-20">
+        <div class="widget">
+            <div class="widget-header">
+                <div class="btn-group">
+                    <label class="btn btn-normal" ng-model="radioModel" btn-radio="'day'">日</label>
+                    <label class="btn btn-normal" ng-model="radioModel" btn-radio="'week'">周</label>
+                    <label class="btn btn-normal" ng-model="radioModel" btn-radio="'month'">月</label>
+                </div>
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="chartcontainer">
+                    <div id="kanpanChart1" class="chart chart-lg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+
+                <span class="widget-caption">表格</span>
+            </div>
+            <div class="scrollable" style="max-height: 500px;overflow-y:auto">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>日期</th>
+                        <th>注册角色数</th>
+                        <th>登录角色数</th>
+                        <th>活跃角色数</th>
+                        <th>在线峰值</th>
+                        <th>总付费人数</th>
+                        <th>总付费金额</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in tableData">
+                        <td>{{item.count_date}}</td>
+                        <td>{{item.reg_count | number}}</td>
+                        <td>{{item.login_count |number}}</td>
+                        <td>{{item.active_count | number}}</td>
+                        <td>{{item.max_online | number}}</td>
+                        <td>{{item.pay_count | number}}</td>
+                        <td>{{item.pay_money | currency}}</td>
+                    </tr>
+                    <tr ng-if="noData">
+                        <td class="danger"  colspan="6">no data</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="footer">
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+</div>

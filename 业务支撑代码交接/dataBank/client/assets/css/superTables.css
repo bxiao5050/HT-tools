@@ -1,0 +1,170 @@
+/*
+///////////////////////////////////////////////////////////////////////////////////////// 
+// Super Tables v0.30 - MIT Style License
+// Copyright (c) 2008 Matt Murphy --- www.matts411.com
+//
+// Contributors:
+// Joe Gallo
+///////////////////////////////////////////////////////////////////////////////////////// 
+*/
+.sBase {
+	position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* HEADERS */
+.sHeader {
+	position: absolute;
+	z-index: 3;
+	background-color: #ffffff;
+}
+.sHeaderInner {
+	position: relative;
+}
+.sHeaderInner table {
+	border-spacing: 0px 0px !important;
+	border-collapse: collapse !important;
+	width: 1px !important;
+	table-layout: fixed !important;
+	background-color: #ffffff; /* Here b/c of Opera 9.25 :( */
+}
+
+/* HEADERS - FIXED */
+.sFHeader {
+	position: absolute;
+	z-index: 4;
+	overflow: hidden;
+}
+.sFHeader table {
+	border-spacing: 0px 0px !important;
+	border-collapse: collapse !important;
+	width: 1px !important;
+	table-layout: fixed !important;
+	background-color: #ffffff; /* Here b/c of Opera 9.25 :( */
+}
+
+/* BODY */
+.sData {
+	position: absolute;
+	z-index: 2;
+	overflow: auto;
+	background-color: #ffffff;
+}
+.sData table {
+	border-spacing: 0px 0px !important;
+	border-collapse: collapse !important;
+	width: 1px !important;
+	table-layout: fixed !important;
+}
+
+/* BODY - FIXED */
+.sFData {
+	position: absolute;
+	z-index: 1;
+	background-color: #ffffff;
+}
+.sFDataInner {
+	position: relative;
+}
+.sFData table {
+	border-spacing: 0px 0px !important;
+	border-collapse: collapse !important;
+	width: 1px !important;	
+	table-layout: fixed !important;
+}
+
+
+/*
+///////////////////////////////////////////////////////////////////////////////////////// 
+// Super Tables - Skin Classes
+// Remove if not needed
+///////////////////////////////////////////////////////////////////////////////////////// 
+*/
+
+/* sDefault */
+.sDefault {
+	margin: 0px;
+	padding: 0px;
+	border: none;
+	font-family: Verdana, Arial, sans serif;
+	font-size: 0.8em;
+}
+.sDefault th, .sDefault td {
+	border: 1px solid #cccccc;
+	padding: 3px 6px 3px 4px;
+	white-space: nowrap;
+}
+.sDefault th {
+	background-color: #e5e5e5;
+	border-color: #c5c5c5;
+}
+.sDefault-Fixed {
+	background-color: #eeeeee;
+	border-color: #c5c5c5;
+}
+
+/* sSky */
+.sSky {
+	margin: 0px;
+	padding: 0px;
+	border: none;
+	font-family: Verdana, Arial, sans serif;
+	font-size: 0.8em;
+}
+.sSky th, .sSky td {
+	border: 1px solid #9eb6ce;
+	padding: 3px 6px 3px 4px;
+	white-space: nowrap;
+}
+.sSky th {
+	background-color: #CFDCEE;
+}
+.sSky-Fixed {
+	background-color: #e4ecf7;
+}
+
+/* sOrange */
+.sOrange {
+	margin: 0px;
+	padding: 0px;
+	border: none;
+	font-family: Verdana, Arial, sans serif;
+	font-size: 0.8em;
+}
+.sOrange th, .sOrange td {
+	border: 1px solid #cebb9e;
+	padding: 3px 6px 3px 4px;
+	white-space:normal;/*nowrap,normal*/
+}
+.sOrange th {
+	background-color: #ECD8C7;
+}
+.sOrange-Fixed {
+	background-color: #f7ede4;
+}
+
+/* sDark */
+.sDark {
+	margin: 0px;
+	padding: 0px;
+	border: none;
+	font-family: Verdana, Arial, sans serif;
+	font-size: 0.8em;
+	color: #ffffff;
+}
+.sDark th, .sDark td {
+	border: 1px solid #555555;
+	padding: 3px 6px 3px 4px;
+	white-space: nowrap;
+}
+.sDark th {
+	background-color: #000000;
+}
+.sDark-Fixed {
+	background-color: #222222;
+}
+.sDark-Main {
+	background-color: #333333;
+}

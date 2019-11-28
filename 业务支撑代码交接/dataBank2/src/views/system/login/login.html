@@ -1,0 +1,16 @@
+<div id="login" :style="'background:url('+background+')'">
+  <div class="login-box">
+    <h2>整合分析系统</h2>
+    <br>
+    <div class="input-group mb-3">
+      <span class="input-group-addon"><i class="icon-login-username"></i></span>
+      <input id="login-username" type="text" class="form-control" :placeholder="language.username">
+    </div>
+    <div class="input-group mb-4">
+      <span class="input-group-addon"><i class="icon-login-password"></i></span>
+      <input id="login-password" type="password" class="form-control" :placeholder="language.password">
+    </div>
+    <button class="btn btn-secondary" @click="toLogin">{{language.submit}}</button>
+  </div>
+  <change></change>
+</div>

@@ -1,0 +1,82 @@
+<div class="row" ng-controller="oasNewUserController" ng-cloak>
+    <div class="col-sm-12 col-md-12">
+        <toaster-container
+                toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div data-ng-include=" 'views/partials/oasHeader.html' "></div>
+
+    <div class="col-md-12 row m-t-20">
+        <div class="btn-group pull-left m-l-20 my-btn-group">
+            <label class="btn" ng-model="radioModel" btn-radio="'newUserDevice'">新增用户和设备</label>
+            <label class="btn" ng-model="radioModel" btn-radio="'newActiveRate'">新增活跃比</label>
+        </div>
+    </div>
+
+    <div class="col-md-12 m-t-20">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption">图表数据</span>
+                <!--<div class="btn-group">-->
+                <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'day'">日</label>-->
+                <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'week'">周</label>-->
+                <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'month'">月</label>-->
+                <!--</div>-->
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="chartcontainer">
+                    <div id="newUserChart1" class="chart chart-lg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+
+                <span class="widget-caption">表格</span>
+                <label class="export-btn pull-right" style="margin-right: 20px;" ng-click="export()"><i
+                        class="fa fa-download"></i>&nbsp;导出xlsx文件</label>
+            </div>
+            <div class="scrollable font-12" style="max-height: 500px;overflow-y:auto">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>日期</th>
+                        <th>注册用户</th>
+                        <th>全新注册用户</th>
+                        <th>活跃用户</th>
+                        <th>新增设备(去重)</th>
+                        <th>新增活跃比</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in tableData">
+                        <td>{{item.count_date}}</td>
+                        <td>{{item['注册用户']}}</td>
+                        <td>{{item['全新注册用户']}}</td>
+                        <td>{{item['活跃用户']}}</td>
+                        <td>{{item['新增设备（去重）']}}</td>
+                        <td><span
+                                style="position:relative;width:100%;height:100%;display:inline-block;border:1px solid #47BD53;">
+                            <span style="position:absolute;top:0px;background-color:rgba(71, 189, 83,0.23);height:100%;width:{{item['新增活跃比']*100}}}%;"></span>{{item['新增活跃比']*100}}%
+                                </span></td>
+                    </tr>
+                    <tr ng-if="noData">
+                        <td class="danger" colspan="6">no data</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>

@@ -1,0 +1,48 @@
+// Import Bootstrap source files
+@import "bootstrap/bootstrap";
+// Import vendors styles
+@import "chart.js/chart";
+@import "simple-line-icons/simple-line-icons";
+@import "./icomoon/index";
+// @import "perfect-scrollbar";
+@import "daterangepicker";
+// Custom styles
+@import "/core/index";
+// // element-ui
+// @import "element-ui/icon";
+// @import "element-ui/notification";
+// @import "element-ui/select";
+// @import "element-ui/option";
+.el-range-separator {
+  width: auto !important;
+}
+
+.el-radio {
+  margin-bottom: 0 !important;
+}
+
+.el-input__inner {
+  text-align: center !important;
+}
+
+.el-range-editor,
+.el-range-input {
+  cursor: pointer !important;
+}
+
+.el-notification__content {
+  margin: 0 !important;
+}
+
+.el-notification {
+  display: flex;
+  align-items: center;
+}
+
+.cell {
+  text-align: center;
+}
+
+.hide {
+  display: none;
+}

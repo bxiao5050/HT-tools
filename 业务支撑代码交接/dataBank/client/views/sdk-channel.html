@@ -1,0 +1,353 @@
+<div class="row" ng-controller="sdkChannelController">
+    <div class="col-sm-12 col-md-12">
+        <toaster-container
+                toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div class="col-sm-12 col-md-12">
+        <div class="scrollable">
+            <div class="widget flat radius-bordered">
+                <div class="widget-header bg-blue">
+                    <span class="widget-caption">渠道管理:</span>
+                </div>
+                <div class="widget-body">
+                    <div class="portlet-body">
+                        <span class="col-md-1 col">选择游戏：</span>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <div class="btn-group">
+                                    <a class="btn btn-default shiny">
+                                        {{choseApp.appName}}
+                                    </a>
+                                    <a class="btn btn-default  dropdown-toggle shiny" data-toggle="dropdown"
+                                       href="javascript:void(0);" aria-expanded="false"><i class="fa fa-angle-down"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li ng-repeat="item in apps">
+                                            <a ng-click="setChoseApp(item)"
+                                               href="javascript:void(0);">{{item.appName}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <button href="" class="btn blue" ng-click="open('','channelList.html')">
+                            <i class="fa fa-plus"></i> 添加Android渠道
+                        </button>
+                        <button href="" class="btn blue" ng-click="open2('','channelSDK.html')">
+                            <i class="fa fa-plus"></i>上传SDK资源包
+                        </button>
+                    </div>
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>渠道</th>
+                            <th>渠道参数配置</th>
+                            <th>游戏参数配置</th>
+                            <th>闪屏</th>
+                            <th>游戏图标</th>
+                            <!--<th>回调地址</th>-->
+                            <th>签名</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in gameChannels">
+                            <td> {{item.name}}({{item.channelVersion}})</td>
+                            <td><a ng-click="setConfig(item,'openConfigModal','','channelConfig.html')">配置</a></td>
+                            <td>
+                                <a ng-click="setConfig(item,'openAppParameterConfigModal','','appParameterConfig.html')">配置</a>
+                            </td>
+                            <td>
+                                <a ng-click="setConfig(item,'openSplashConfigModal','','channelSplashConfig.html')">配置</a>
+                            </td>
+                            <td><a ng-click="setConfig(item,'openIconConfigModal','','channelIconConfig.html')">配置</a>
+                            </td>
+                            <td><a ng-click="setConfig(item,'openCertConfigModal','','channelCert.html')">配置</a></td>
+                            <td>{{item.state == 0 ?'初始化':(item.state==1?'调试中':'发布')}}</td>
+                            <td><a ng-click="synchronousChannel(item)"><i class="fa fa-cube"></i>同步渠道</a>&emsp;
+                                <a ng-click="synchronousChannelDetail(item)"><i class="fa">同步渠道详情</i></a>
+                            </td>
+                        </tr>
+                        <tr ng-if="noData">
+                            <td class="danger" colspan="5">无数据</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--添加渠道-->
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="widget">
+                    <script type="text/ng-template" id="channelList.html">
+                        <div class="modal-header">
+                            <h3 class="modal-title">渠道列表</h3>
+                        </div>
+                        <div class="modal-body">
+                            <div class="tab_select" ng-repeat="itemType in channels">
+                                <dt>{{itemType.channelPinYin}}</dt>
+                                <dl ng-repeat="channel in itemType.channels">
+                                    <dd class="pinyin">
+                                        <a ng-click="choseChannel(channel)">
+                                            {{channel.channelName}}
+                                        </a>
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div class="form-group">
+                                <label><span class="tip">*</span>渠道SDK名称:</label>
+                                <input type="text" class="form-control ng-binding" ng-model="newChannelName"
+                                       placeholder="请输入渠道名称" value="{{newChannelName}}">
+                            </div>
+                            <div class="form-group">
+                                <label><span class="tip">*</span>渠道SDK版本:</label>
+                                <input type="number" class="form-control ng-binding" ng-model="channelVersion"
+                                       placeholder="渠道SDK版本" value="{{channelVersion}}">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-blue" ng-click="save()" ng-disabled="!isAllowSave">保存</button>
+                            <button class="btn btn-warning" ng-click="cancel()">取消</button>
+                        </div>
+                    </script>
+                </div>
+            </div>
+            <!--上传SDK-->
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div lass="widget">
+                    <script type="text/ng-template" id="channelSDK.html">
+                        <div class="modal-header">
+                            <h3 class="modal-title">上传SDK资源包</h3>
+                        </div>
+                        <div class="modal-body">
+                            <label><span class="tip">*</span>上传SDK资源包:</label>
+                            <input class="" type="file" ngf-select="" name="file" ng-model="zipFile"
+                                   accept="zip/*"
+                                   required="">
+                            <hr>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-blue" ng-click="save()">上传</button>
+                            <button class="btn btn-warning" ng-click="cancel()">取消</button>
+                        </div>
+                    </script>
+                </div>
+            </div>
+            <!--渠道参数配置-->
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="widget">
+                    <script type="text/ng-template" id="channelConfig.html">
+                        <div class="modal-header">
+                            <h3 class="modal-title">渠道包名、参数配置-{{channel.channelName}}</h3>
+                        </div>
+                        <div class="modal-body">
+                            <div ng-repeat="item in configs" class="form-group" id="{{item.key}}">
+                                <label><span class="tip">*</span>{{item.name}}</label>
+                                <input ng-if="item.inputType == 'input'" type="text" class="form-control ng-binding"
+                                       value="{{item.value}}"
+                                       required="required">
+
+                                <label id="{{item.key}}" ng-if="item.inputType=='radio'">
+                                    <label>
+                                        <input type="checkbox" ng-checked="{{item.value === 'true'? true : false }}"
+                                               data-value="true">
+                                        <span class="text">是</span>
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" ng-checked="{{item.value === 'false' ? true : false}}"
+                                               data-value="false">
+                                        <span class="text">否</span>
+                                    </label>
+                                </label>
+                                <span style="color:green;font-size: 80%;">
+                                    {{item.desc}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-blue" ng-click="save()">保存</button>
+                            <button class="btn btn-warning" ng-click="cancel()">取消</button>
+                        </div>
+                    </script>
+                </div>
+            </div>
+            <!--渠道闪屏配置-->
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div lass="widget">
+                    <script type="text/ng-template" id="channelSplashConfig.html">
+                        <div class="modal-header">
+                            <h3 class="modal-title">闪屏配置-{{channel.channelName}}</h3>
+                        </div>
+                        <div class="modal-body">
+                            <label><span class="tip">*</span>上传闪屏:</label>
+                            <input class="" type="file" ngf-select="" name="file" ng-model="splash"
+                                   accept="images/*"
+                                   required="">
+                            <hr>
+                            <div class="splashList">
+                                <div ng-repeat="splashUrl in splashList" class="view third-effect">
+                                    <img src="{{splashUrl}}" class="screen-img">
+
+                                    <div class="mask">
+                                        <a class="deleteIcon" ng-click="deleteSplash(splashUrl)">
+                                            <i class="fa fa-large fa-trash-o"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-blue" ng-click="save()">保存</button>
+                            <button class="btn btn-warning" ng-click="cancel()">取消</button>
+                        </div>
+                    </script>
+                </div>
+            </div>
+            <!--渠道ICON配置-->
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div lass="widget">
+                    <script type="text/ng-template" id="channelIconConfig.html">
+                        <div class="modal-header">
+                            <h3 class="modal-title">ICON配置-{{channel.channelName}}</h3>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="clearfix">
+                                <label><span class="tip">*</span>上传36*36 ICON:</label>
+                                <input class="" type="file" ngf-select="" name="file" ng-model="ldpiIcon"
+                                       accept="image/png"
+                                       required="">
+                                <img src="{{iconList[0] ? iconList[0] : 'assets/img/default-icon.png'}}"
+                                     class="img-thumbnail"
+                                     style="position: relative;width: 36px; height: 36px;float: right;top: -44px;">
+                            </div>
+
+                            <hr>
+                            <div class="clearfix">
+                                <label><span class="tip">*</span>上传48*48 ICON:</label>
+                                <input class="" type="file" ngf-select="" name="file" ng-model="mdpiIcon"
+                                       accept="image/png"
+                                       required="">
+                                <img src="{{iconList[1] ? iconList[1] : 'assets/img/default-icon.png'}}"
+                                     class="img-thumbnail"
+                                     style="position: relative;width: 48px; height: 48px;float: right;top: -44px;">
+                            </div>
+                            <hr>
+                            <div class="clearfix">
+                                <label><span class="tip">*</span>上传72*72 ICON:</label>
+                                <input class="" type="file" ngf-select="" name="file" ng-model="hdpiIcon"
+                                       accept="image/png"
+                                       required="">
+                                <img src="{{iconList[2] ? iconList[2] : 'assets/img/default-icon.png'}}"
+                                     class="img-thumbnail"
+                                     style="position: relative;width: 72px; height: 72px;float: right;top: -44px;">
+                            </div>
+                            <hr>
+                            <div class="clearfix">
+                                <label><span class="tip">*</span>上传96*96 ICON:</label>
+                                <input class="" type="file" ngf-select="" name="file" ng-model="xhdpiIcon"
+                                       accept="image/png"
+                                       required="">
+                                <img src="{{iconList[3] ? iconList[3] : 'assets/img/default-icon.png'}}"
+                                     class="img-thumbnail"
+                                     style="position: relative;width: 96px; height: 96px;float: right;top: -44px;">
+                            </div>
+                            <hr>
+                            <div class="clearfix">
+                                <label><span class="tip">*</span>上传144*144 ICON:</label>
+                                <input class="" type="file" ngf-select="" name="file" ng-model="xxhdpiIcon"
+                                       accept="image/png"
+                                       required="">
+                                <img src="{{iconList[4] ? iconList[4] : 'assets/img/default-icon.png'}}"
+                                     class="img-thumbnail"
+                                     style="position: relative;width: 144px; height: 144px;float: right;top: -44px;">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <progressbar type="success" class="progress-striped active" ng-if="showUploadProgress"
+                                         model="uploadProgress" value="uploadProgress"></progressbar>
+                            <button class="btn btn-blue" ng-click="save()">保存</button>
+                            <button class="btn btn-warning" ng-click="cancel()">取消</button>
+                        </div>
+                    </script>
+                </div>
+            </div>
+            <!--游戏参数配置-->
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="widget">
+                    <script type="text/ng-template" id="appParameterConfig.html">
+                        <div class="modal-header">
+                            <h3 class="modal-title">游戏参数配置-{{channel.channelName}}</h3>
+                        </div>
+                        <div class="modal-body">
+                            <div ng-repeat="item in configs" class="form-group" id="{{item.key}}">
+                                <label><span class="tip">*</span>{{item.name}}</label>
+                                <input ng-if="item.inputType == 'input'" type="text" class="form-control ng-binding"
+                                       value="{{item.value}}"
+                                       required="required">
+                                <label id="{{item.key}}" ng-if="item.inputType=='radio'">
+                                    <label>
+                                        <input type="checkbox" ng-checked="{{item.value === 'true'? true : false }}"
+                                               data-value="true">
+                                        <span class="text">是</span>
+                                    </label>
+                                    <label>
+                                        <input type="checkbox" ng-checked="{{item.value === 'false' ? true : false}}"
+                                               data-value="false">
+                                        <span class="text">否</span>
+                                    </label>
+                                </label>
+                                <span style="color:green;font-size: 80%;">
+                                    {{item.desc}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-warning" ng-click="save()">保存</button>
+                            <button class="btn btn-warning" ng-click="cancel()">关闭</button>
+                        </div>
+                    </script>
+                </div>
+            </div>
+            <!--签名配置-->
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="widget">
+                    <script type="text/ng-template" id="channelCert.html">
+                        <div class="modal-header">
+                            <h3 class="modal-title">签名配置-{{channel.channelName}}</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p>当前签名:{{currentCert.certName ? currentCert.certName :'无'}}</p>
+
+                            <div class="form-group">
+                                <div class="btn-group">
+                                    <a class="btn btn-default " href="javascript:void(0);">{{choseCert.certName}}</a>
+                                    <a class="btn btn-default  dropdown-toggle" data-toggle="dropdown"
+                                       href="javascript:void(0);"><i class="fa fa-angle-down"></i></a>
+                                    <ul class="dropdown-menu dropdown-inverse">
+                                        <li ng-repeat="item in certs">
+                                            <a ng-click="setChoseCert(item)" href="javascript:void(0);">{{item.certName}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p class="error">当前选中签名:
+                                <input value="{{choseCert.certName}}">
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-warning" ng-click="save()">保存</button>
+                            <button class="btn btn-warning" ng-click="cancel()">关闭</button>
+                        </div>
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

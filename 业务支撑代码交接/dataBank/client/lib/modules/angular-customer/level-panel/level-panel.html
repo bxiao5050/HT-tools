@@ -1,0 +1,44 @@
+
+<div>
+    <style>
+        .level-panel>.left-panel{
+           width: 30%;
+            display: inline-block;
+
+        }
+        .level-panel>.middle-panel{
+            width: 30%;
+            display: inline-block;
+        }
+        .level-panel>.left-panel span {
+            display: block;
+            cursor: pointer;;
+        }
+        .level-panel>.middle-panel span{
+            display: inline-block;
+            cursor: pointer;
+            width: 50%;
+        }
+        .level-panel span.active{
+            background-color: blue;
+            color:#ffffff;
+        }
+    </style>
+    <div class="level-panel">
+            <div class="left-panel">
+                <span ng-repeat="sonNode in root.children" ng-class="{true:'active'}[sonNode == root.selectedNode]" ng-click="selectedItem(sonNode)">
+                    <input type="checkbox"  ng-indetemine="sonNode.state.indetemine" ng-checked="sonNode.state.checked" ng-model="sonNode.state.checked" ng-change="stateOnChanged(sonNode)">{{sonNode.nodeInfo[labelField]}}</input>
+                </span>
+            </div>
+         <div class="middle-panel">
+             <span ng-repeat="sonNode in root.selectedNode.children" ng-class="{true:'active'}[sonNode == root.selectedNode.selectedNode]" ng-click="selectedItem(sonNode)">
+                 <input type="checkbox" ng-indetemine="sonNode" ng-checked="sonNode.state.checked" ng-model="sonNode.state.checked"  ng-change="stateOnChanged(sonNode)">{{sonNode.nodeInfo[labelField]}}</input>
+             </span>
+         </div>
+         <div class="middle-panel">
+             <span ng-repeat="sonNode in root.selectedNode.selectedNode.children" ng-click="selectedItem(sonNode)">
+                 <input type="checkbox" ng-indetemine="sonNode.state.indetemine" ng-checked="sonNode.state.checked" ng-model="sonNode.state.checked"  ng-change="stateOnChanged(sonNode)">{{sonNode.nodeInfo[labelField]}}</input>
+             </span>
+         </div>
+    </div>
+</div>

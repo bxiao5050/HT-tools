@@ -1,0 +1,82 @@
+@mixin sidebar-small {
+  overflow: visible;
+  width: $sidebar-small-width;
+  header {
+    flex-direction: column;
+    justify-content: center;
+    .toggle-sm {
+      top: 12px;
+      left: 50%;
+      margin: 0 0 0 -12px;
+    }
+    .logoCotainer {
+      cursor: pointer;
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+    .icon-system {
+      font-size: 18px
+    }
+    .logo {
+      width: 28px;
+      height: 28px;
+      top: 6px;
+      left: 50%;
+      margin: 0 0 0 -28px*.5;
+    }
+    .system {
+      padding: 0;
+      margin: 0;
+      button {
+        display: none;
+      }
+      .dropdown-menu {
+        margin-top: -37px;
+        margin-left: 26px;
+      }
+    }
+  }
+  .deliver {
+    padding-left: 3px;
+    font-size: 12px;
+  }
+  .wrap {
+    overflow: visible !important;
+    .list-nav {
+      .list-head {
+        line-height: 48px;
+        margin: 3px 0 0 0;
+        &:before {
+          margin-left: 19px;
+        }
+        &:after {
+          display: none;
+        }
+        span {
+          display: none;
+        }
+      }
+      .list-item {
+        position: absolute;
+        left: $sidebar-small-width;
+        top: 6px;
+        width: 160px;
+        background: #000;
+        .list-items {
+          // color: #000;
+          text-align: center;
+          &.open.active {
+            border: 0;
+            background: rgb(32, 168, 216);
+            color: #fff;
+          }
+          &:before {
+            padding: 0;
+          }
+        }
+      }
+    }
+  }
+}

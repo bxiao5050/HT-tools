@@ -1,0 +1,79 @@
+<div class="row " ng-controller="homeController">
+    <div class="col-lg-12 col-sm-12 col-xs-12 oa-header-row">
+        <div class="row">
+            <div class="col-md-2">
+                <p class="input-group">
+                    <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="formData.dt"
+                           is-open="opened"
+                           date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open($event)"><i
+                                                class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="well with-header with-footer">
+                    <div class="header bordered-sky">
+                        表格
+                    </div>
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>游戏</th>
+                            <th>当月花费预算</th>
+                            <th>当天花费</th>
+                            <th>当月已用花费</th>
+                            <th>当月花费占比</th>
+                            <th>当天充值</th>
+                            <th>当月充值</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in tableData" ng-class="{true:'warning'}[item.game_name == '合计']">
+                            <td>{{item.game_name}}</td>
+                            <td>{{item.currencyMonthBudget | currency}}</td>
+                            <td>{{item.todayCost | currency}}</td>
+                            <td>{{item.useCost | currency}}</td>
+                            <td>{{item.usedBudgetRate}}%</td>
+                            <td>{{item.todayRecharge | currency}}</td>
+                            <td>{{item.currencyMonthRecharge | currency}}</td>
+                        </tr>
+                        <tr ng-if="noPriceData">
+                            <td class="danger" colspan="6">no data</td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                    <div class="footer">
+                        <code>所有游戏自然量的激活和注册7.28起采用我们后台去重后的数据，而之前使用的Appslfyer的自然量注册没有去重，个别游戏（全民主公、超级英雄、泰国攻城略地iOS）由于Facebook广告没有用Appslfyer跟踪，计算自然量时需要取两者数据之差，导致7.28起看到的自然量激活和注册与之前差异较大，请运营同学关注下。</code>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="well with-header with-footer">
+                    <div class="header bordered-palegreen">游戏权限列表</div>
+                    <div class="game-list">
+                        <ul>
+                            <!--<li title="胜利足球"><img src="../assets/img/icon/game_icon_10001.png"></li>-->
+                            <li title="国际版LOL"><img src="../assets/img/icon/game_icon_10005.png"></li>
+                            <li title="越南攻城掠地"><img src="../assets/img/icon/game_icon_1004.png"></li>
+                            <li title="泰国攻城掠地"><img src="../assets/img/icon/game_icon_1006.png"></li>
+                            <li title="全民主公"><img src="../assets/img/icon/game_icon_10009.png"></li>
+                            <!--<li title="全民主公"><img src="../assets/img/icon/game_icon_10010.png"></li>-->
+                            <li title="圣火英雄传2"><img src="../assets/img/icon/game_icon_10013.png"></li>
+                            <li title="暗黑战神"><img src="../assets/img/icon/game_icon_1022.png"></li>
+                            <li title="天天LOL"><img src="../assets/img/icon/game_icon_1020.png"></li>
+                        </ul>
+                    </div>
+                    <div class="footer">权限分配问题请 RTX <code>@cg</code></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

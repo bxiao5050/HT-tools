@@ -1,0 +1,114 @@
+<div class="row" ng-controller="sdkVersionController">
+    <div class="col-sm-12 col-md-12">
+        <toaster-container
+                toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div class="col-sm-12 col-md-12">
+        <div class="scrollable">
+            <div class="widget flat radius-bordered" ng-if="showVersionList">
+                <div class="widget-header bg-blue">
+                    <span class="widget-caption">版本维护</span>
+                </div>
+                <div class="widget-body">
+                    <div class="portlet-body">
+                            <span class="col-md-1 col">选择游戏：</span>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <div class="btn-group">
+                                    <a class="btn btn-default shiny">
+                                        {{choseApp.appName}}
+                                    </a>
+                                    <a class="btn btn-default  dropdown-toggle shiny" data-toggle="dropdown"
+                                       href="javascript:void(0);" aria-expanded="false"><i class="fa fa-angle-down"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li ng-repeat="item in apps">
+                                            <a ng-click="setChoseApp(item)"
+                                               href="javascript:void(0);">{{item.appName}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="" class="btn blue" ng-click="addVersionListner()">
+                            <i class="fa fa-cloud-upload"></i> 添加版本
+                        </a>
+                    </div>
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>版本名称</th>
+                        <th>版本号</th>
+                        <th>APK更新时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in Versions">
+                        <td>{{item.versionName}}</td>
+                        <td>{{item.versionCode}}</td>
+                        <td>{{item.lastUpdateTime}}</td>
+                        <td>
+                            <a href="{{item.path}}"><i class="fa fa-download">下载</i></a>&nbsp;
+                            <a ng-click="updateVersionListener(item)"><i class="fa fa-edit">修改版本</i></a></td>
+                    </tr>
+                    <tr ng-if="noData">
+                        <td class="danger" colspan="5">无数据</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12" ng-if="!showVersionList">
+            <div class="row">
+                <div class="widget">
+                    <div class="widget-body">
+                        <div class="collapse in">
+                            <form role="form" class="ng-pristine ng-valid">
+                                <div class="form-group">
+                                    <label>版本名称 <span style="color: red">*</span>:</label>
+                                    <input class="form-control"
+                                           ng-model="choseVersion.versionName"
+                                           value="{{choseVersion.versionName}}">
+                                    <span style="color:#737373">游戏升级时，会提示玩家 "有新的版本 versionName"</span>
+                                </div>
+                                <div class="form-group">
+                                    <label>上传APK<span style="color: red">*</span>:</label>
+                                    <input type="file" ngf-select="" ng-model="choseVersion.apk" name="apk"
+                                           required="">
+                                </div>
+                                <div class="form-group">
+                                    <label>版本号*:</label>
+                                    <input type="number" class="form-control"
+                                           ng-model="choseVersion.versionCode"
+                                           value="{{choseVersion.versionCode}}">
+                                    <span style="color:#737373">versionCode会作为游戏是否升级的依据</span>
+                                </div>
+                                <div class="form-group">
+                                    <label>版本备注：</label>
+                                    <textarea class="form-control" rows="3"
+                                              ng-model="choseVersion.versionDesc"
+                                              value="{{choseVersion.versionDesc}}">
+                                    </textarea>
+                                </div>
+                                <div class="form-group"><label>版本包名：</label>
+                                    <input class="form-control"
+                                           ng-model="choseVersion.versionPackage"
+                                           value="{{choseVersion.versionPackage}}">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class=" col-md-8">
+                <button class="btn" ng-click="backVersion()"><i class="fa fa-arrow-left"></i>返回
+                </button>
+                <button class="btn" ng-click="addVersion()" ng-if="showSaveBtn"><i class="fa fa-save"></i>保存版本
+                </button>
+                <button class="btn" ng-click="updateVersion()" ng-if="showEditBtn"><i class="fa fa-save"></i>保存版本
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

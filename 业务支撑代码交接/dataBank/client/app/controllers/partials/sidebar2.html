@@ -1,0 +1,105 @@
+﻿    <!-- Page Sidebar Header-->
+<div class="sidebar-header-wrapper">
+    <input type="text" class="searchinput" />
+    <i class="searchicon fa fa-search"></i>
+    <div class="searchhelper">搜索菜单</div>
+</div>
+<!-- /Page Sidebar Header -->
+<!-- Sidebar Menu -->
+<ul class="nav sidebar-menu">
+    <!--Dashboard-->
+    <li ui-sref-active="active">
+        <a ui-sref="app.home">
+            <i class="menu-icon glyphicon glyphicon-home"></i>
+            <span class="menu-text"> 首页 </span>
+        </a>
+    </li>
+    <!--Databoxes-->
+    <li>
+        <a href="#"  class="menu-dropdown">
+            <i class="menu-icon glyphicon glyphicon-tasks"></i>
+            <span class="menu-text"> 自研业务分析 </span>
+            <i class="menu-expand"></i>
+        </a>
+        <ul class="submenu">
+            <li>
+                <a ui-sref="app.oas5MinData">
+                    <span class="menu-text">五分钟视图</span>
+                </a>
+            </li>
+            <li>
+                <a ui-sref="app.fiveForcesModel">
+                    <span class="menu-text">五力模型</span>
+                </a>
+            </li>
+            <li>
+                <a ui-sref="app.trendOfWagner">
+                    <span class="menu-text">指标趋势看盘</span>
+                </a>
+            </li>
+            <li>
+                <a ui-sref="app.userRetention">
+                    <span class="menu-text">新用户留存</span>
+                </a>
+            </li>
+            <li>
+                <a ui-sref="app.R">
+                    <span class="menu-text">大R查询</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a  href="#"  class="menu-dropdown">
+            <i class="menu-icon fa fa-bar-chart-o"></i>
+            <span class="menu-text"> 投放分析 </span>
+            <i class="menu-expand"></i>
+        </a>
+        <ul class="submenu">
+            <li>
+                <a href="#" class="menu-dropdown">
+                    <span class="menu-text">
+                        常用配置
+                    </span>
+                    <i class="menu-expand"></i>
+                </a>
+
+                <ul class="submenu">
+                    <li>
+                        <a ui-sref="app.channelAppList">
+                            <i class="menu-icon fa fa-pencil-square-o"></i>
+                            <span class="menu-text">APP包管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="app.channelPrice">
+                            <i class="menu-icon fa fa-pencil-square-o"></i>
+                            <span class="menu-text">单价配置</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="app.channelDataRepair">
+                            <i class="menu-icon fa fa-pencil-square-o"></i>
+                            <span class="menu-text">数据补充</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="app.budget">
+                            <i class="menu-icon fa fa-pencil-square-o"></i>
+                            <span class="menu-text">预算录入</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <li>
+                <a ui-sref="app.channelDetail">
+                    <span class="menu-text">渠道分析</span>
+                </a>
+            </li>
+
+        </ul>
+    </li>
+    <!--Widgets-->
+</ul>
+<!-- /Sidebar Menu -->

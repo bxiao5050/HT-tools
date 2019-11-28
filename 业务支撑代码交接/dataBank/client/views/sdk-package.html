@@ -1,0 +1,143 @@
+<div class="row" ng-controller="sdkPackageController">
+    <div class="col-sm-12 col-md-12">
+        <toaster-container
+                toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div class="col-sm-12 col-md-12">
+        <div class="scrollable">
+            <div class="widget flat radius-bordered">
+                <div class="widget-header bg-blue">
+                    <span class="widget-caption">打包渠道:</span>
+                </div>
+                <div class="widget-body">
+                    <div class="portlet-body">
+                        <span class="col-md-1 col">选择游戏：</span>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <div class="btn-group">
+                                    <a class="btn btn-default shiny">
+                                        {{choseApp.appName}}
+                                    </a>
+                                    <a class="btn btn-default  dropdown-toggle shiny" data-toggle="dropdown"
+                                       href="javascript:void(0);" aria-expanded="false"><i class="fa fa-angle-down"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li ng-repeat="item in apps">
+                                            <a ng-click="setChoseApp(item)"
+                                               href="javascript:void(0);">{{item.appName}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>渠道名称</th>
+                            <th>打包任务ID</th>
+                            <th>打包时间</th>
+                            <th>打包状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in package">
+                            <td>{{item.name}}</td>
+                            <td>{{item.taskId}}</td>
+                            <td>{{item.packageTime}}</td>
+                            <td>{{item.packageStatus == 0 ? '初始化': (item.packageStatus == 1 ?'打包成功':(item.packageStatus
+                                ==
+                                2?'打包失败':(item.packageStatus == -1 ? '正在打包':'未知错误')))}}
+                            </td>
+                            <td class="list_base td">
+                                <a class="btn default btn-xs blue"
+                                   ng-click="setConfig(item,'openPackageModal','','PackageConfig.html','small',$index)">
+                                    <i class="fa fa-folder"></i> APK打包
+                                </a>
+
+                                <a class="btn default btn-xs dark" target="_blank" href="{{item.packagePath}}">
+                                    <i class="fa fa-cloud-download"></i>
+                                    下载
+                                </a>
+
+                                <a class="btn default btn-xs yellow"
+                                   ng-click="setConfig(item,'openHistoryModal','','packageHistroy.html','small',$index)">
+                                    <i class="fa fa-folder-open"></i> 历史记录
+                                </a>
+                                <a class="btn default btn-xs red">
+                                    <i class="fa fa-folder-o"></i> 删除
+                                </a>
+                            </td>
+                        </tr>
+                        <tr ng-if="noData">
+                            <td class="danger" colspan="5">无数据</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--打包弹框配置-->
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="widget">
+                    <script type="text/ng-template" id="PackageConfig.html">
+                        <div class="modal-header">
+                            <h3 class="modal-title">请选择游戏版本后打包</h3>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <div class="btn-group">
+                                    <a class="btn btn-default shiny">
+                                        {{choseVersion.versionName}}
+                                    </a>
+                                    <a class="btn btn-default  dropdown-toggle shiny" data-toggle="dropdown"
+                                       href="javascript:void(0);" aria-expanded="false"><i class="fa fa-angle-down"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li ng-repeat="item in Versions">
+                                            <a ng-click="setChoseVersion(item)"
+                                               href="javascript:void(0);">{{item.versionName}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-info" ng-click="save()">打包</button>
+                            <button class="btn btn-warning" ng-click="cancel()">关闭</button>
+                        </div>
+                    </script>
+                </div>
+            </div>
+            <!--历史记录弹框配置打包弹框配置-->
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="widget">
+                    <script type="text/ng-template" id="packageHistroy.html">
+                        <div class="modal-header">
+                            <h3 class="modal-title">打包历史记录</h3>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <div class="btn-group">
+                                    <a class="btn btn-default shiny">
+                                        {{choseVersion.versionName}}
+                                    </a>
+                                    <a class="btn btn-default  dropdown-toggle shiny" data-toggle="dropdown"
+                                       href="javascript:void(0);" aria-expanded="false"><i class="fa fa-angle-down"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li ng-repeat="item in Versions">
+                                            <a ng-click="setChoseVersion(item)"
+                                               href="javascript:void(0);">{{item.versionName}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-info" ng-click="save()">保存</button>
+                            <button class="btn btn-warning" ng-click="cancel()">关闭</button>
+                        </div>
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

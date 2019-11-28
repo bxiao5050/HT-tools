@@ -1,0 +1,502 @@
+<div ng-controller="oasHeaderController" ng-cloak style="margin-left: -5px;margin-right: -5px;">
+    <div class="row col-sm-12 col-md-12 oa-header-row">
+        <!--<div class="col-md-12 ng-scope">-->
+        <div class="pull-left m-l-20" style="width:350px">
+            <div class="form-group chose-list">
+                <label class="chose-list-label control-label" style="margin-top: 5px">游戏： </label>
+
+                <div class="chose-list-content" style="width:300px;">
+                    <div ng-repeat="item in apps" ng-if="$index<3" class="game-list-item"
+                         ng-class="{true:'active',false:''}[ item.id==app.selected.id]" ng-click="selectedGame(item)">
+                        {{item.game_name}}
+                    </div>
+                    <div class="pull-left  game-list-item-more" ng-if="apps.length>=3" ng-click="toggelGameGroup()"><i
+                            class="fa fa-sort-desc"></i></div>
+                    <div id="gameMoreGroup" class="col-md-12 game-more">
+                        <div ng-repeat="item in apps" ng-if="$index>=3" class="game-more-item col-md-4"
+                             ng-click="selectedGame(item)">{{item.game_name}}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="pull-left m-l-20" style="width:265px">
+            <div class="form-group chose-list">
+                <label class="chose-list-label control-label" style="margin-top: 5px">系统、区服： </label>
+
+                <div class="chose-list-content">
+                    <input type="text" class="sys-server-text-input" readonly="readonly" value="{{AgentParamsStrName}}" title="{{AgentParamsStrName}}" data-placement="bottom"
+                           data-toggle="modal"
+                           data-target="#agentList"/>
+                    <i class="fa fa-sort-desc down-select-icon"  data-toggle="modal" data-target="#agentList"></i>
+                    <div id="agentList" class="modal fade" tabindex="-1" role="dialog" aria-
+                         labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" style="width:1000px;height:420px;top:70px;">
+                            <div class="modal-content">
+                                <div class="modal-body" style="width:1000px;height: 420px; padding: 0px;">
+                                    <div class="col-md-10 sys-server-header">
+                                        <div class="group-title-icon"></div>
+                                        <div class="group-title-label">
+                                            <span><b>系统</b></span></div>
+                                    </div>
+                                    <div class="col-md-10" style="padding-top: 10px;">
+                                        <div class="os-item-div pull-left"
+                                             ng-class="{true:'active',false:''}[osLevel.selected.id==item.id]"
+                                             ng-repeat="item in osSource">
+                                            <input type="checkbox" ng-checked="item.selected" ng-model="item.selected"
+                                                   ng-click="osClick(item)"/>
+                                            <label class="os-item" data-toggle="tooltip" data-placement="bottom"
+                                                   title="{{item.name}}" ng-click="osClick(item)">
+                                                {{item.name}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10 sys-server-header">
+                                            <div class="group-title-icon"></div>
+                                            <div class="group-title-label">
+                                            <span><b>自定义区服</b></span></div>
+                                        <div class="small-tip-group">
+                                            <i class="fa fa-exclamation-circle small-tip-icon"></i>
+                                            <label class="small-tip-label">小贴士:鼠标单击渠道名称,可自定义区服;勾选选中复选框的渠道则加入备选区服列表哦</label>
+                                        </div>
+                                    </div>
+                                    <div class="row col-md-12" style="margin-left: -5px;margin-top: 0px;padding-right: 5px;">
+                                        <div class="group-list pull-left" style="width:15%;">
+                                            <div class="area-ul free-scroll" style="height:250px;">
+                                                <li ng-repeat="item in agentArrData" class="area-items"
+                                                    data-toggle="tooltip" data-placement="bottom"
+                                                    title="{{item.agent_name}}"
+                                                    ng-class="{true:'active',false:''}[firstLevel.selected.agent_id==item.agent_id]"
+                                                    ng-click="areaClick(item)">{{item.agent_name}}
+                                                </li>
+                                            </div>
+                                        </div>
+                                        <div class="group-list pull-left" style="width:32%;">
+                                            <div style="height:250px;">
+                                                <div class="col-md-12 row list-header">
+                                                    <div id="agentParentAll" class="col-md-5"><input id="agentParentAllInput" type="checkbox"
+                                                                                                       value="全选"
+                                                                                                       ng-model="firstLevel.selected.selected"
+                                                                                                       ng-click="selectedAllSecond()"/><label style="padding-bottom: 3px;">全选</label></div>
+
+                                                    <div class="col-md-7">
+                                                        <input class="search-textbox" type="text" placeholder="输入渠道名称" ng-model="agentParentSearchText"
+                                                               ng-keydown="($event.which === 13)?searchAgentParent():0"/>
+                                                        <i class="fa fa-search search-icon" ng-click="searchAgentParent()"></i>
+                                                    </div>
+                                                </div>
+                                                <div id="agentParentGroup" class="col-md-12 row list-body free-scroll">
+                                                    <div ng-repeat="item in parentAgentArrData"
+                                                         class="col-md-5 channel-item-div"
+                                                         ng-class="{true:'active',false:''}[secondLevel.selected.agent_id==item.agent_id]">
+                                                        <input type="checkbox" ng-model="item.selected" id="parent-agent-ck-{{item.agent_id}}"
+                                                               ng-click="parentCheck(item)"
+                                                               ng-checked="item.selected"
+                                                               value="{{item.agent_id}}"/>
+                                                        <label class="channel-item" data-toggle="tooltip"
+                                                               data-placement="bottom"
+                                                               title="{{item.agent_name}}"
+                                                               ng-click="parentClick(item)">{{item.agent_name}}</label>
+                                                    </div>
+                                                </div>
+                                                <div id="agentParentSearchGroup"
+                                                     class="col-md-12 row list-body free-scroll" style="display: none;">
+                                                    <div class="col-md-12 search-header-title">
+                                                        <label class="col-md-11">搜索结果:</label>
+                                                        <button type="button" class="close" aria-hidden="true"
+                                                                style="font-size: 17px;"
+                                                                ng-click="closeParentAgentSearchGroup()">x
+                                                        </button>
+                                                    </div>
+                                                    <div ng-repeat="item in parentAgentArrSearched"
+                                                         class="col-md-5 channel-item-div "
+                                                         ng-class="{true:'active',false:''}[secondLevel.selected.agent_id==item.agent_id]">
+                                                        <input type="checkbox" ng-model="item.selected" id="parent-agent-ck-find-{{item.agent_id}}"
+                                                               ng-click="parentAgentArrSearchedClick(item)"
+                                                               ng-checked="item.selected"
+                                                               value="{{item.agent_id}}"/>
+                                                        <label class="channel-item" data-toggle="tooltip"
+                                                               data-placement="bottom"
+                                                               title="{{item.agent_name}}"
+                                                               ng-click="parentAgentArrSearchedClick(item)">{{item.agent_name}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="group-list pull-left" style="width:32%;">
+                                            <div style="height:250px;">
+                                                <div class="col-md-12 row list-header">
+                                                    <div id="agentSonAll" class="col-md-5"><input type="checkbox" id="agentSonAllInput"
+                                                                                                    ng-model="secondLevel.selected.selected"
+                                                                                                    ng-click="selectedAllThird()"
+                                                                                                    value="全选"/><label style="padding-bottom: 3px;">全选</label></div>
+
+                                                    <div class="col-md-7">
+                                                        <input class="search-textbox" type="text" placeholder="输入区服名称" ng-model="agentSonSearchText"
+                                                               ng-keydown="($event.which === 13)?searchAgentSon():0"/>
+                                                        <i class="fa fa-search search-icon" ng-click="searchAgentSon()"></i>
+                                                    </div>
+                                                </div>
+                                                <div id="agentSonGroup" class="col-md-12 row list-body free-scroll">
+                                                    <div ng-repeat="item in sonAgentArrData"
+                                                         class="col-md-5 channel-item-div"
+                                                         ng-class="{true:'active',false:''}[thirdLevel.selected.agent_id==item.agent_id]">
+                                                        <input type="checkbox"
+                                                               ng-checked="item.selected" ng-model="item.selected"
+                                                               ng-click="sonCheck(item)" value="{{item.agent_id}}"/>
+                                                        <label class="channel-item" data-toggle="tooltip"
+                                                               data-placement="bottom"
+                                                               title="{{item.agent_name}}"
+                                                               ng-click="sonClick(item)">{{item.agent_name}}</label>
+                                                    </div>
+                                                </div>
+                                                <div id="agentSonSearchGroup"
+                                                     class="col-md-12 row list-body free-scroll" style="display: none;">
+                                                    <div class="col-md-12 search-header-title">
+                                                        <label class="col-md-11">搜索结果:</label>
+                                                        <button type="button" class="close" aria-hidden="true"
+                                                                style="font-size: 17px;"
+                                                                ng-click="closeSonAgentSearchGroup()">x
+                                                        </button>
+                                                    </div>
+                                                    <div ng-repeat="item in sonAgentArrSearched"
+                                                         class="col-md-5 channel-item-div"
+                                                         ng-class="{true:'active',false:''}[thirdLevel.selected.agent_id==item.agent_id]">
+                                                        <input type="checkbox" ng-model="item.selected"
+                                                               ng-click="sonAgentArrSearchedClick(item)"
+                                                               ng-checked="item.selected"
+                                                               value="{{item.agent_id}}"/>
+                                                        <label class="channel-item" data-toggle="tooltip"
+                                                               data-placement="bottom"
+                                                               title="{{item.agent_name}}"
+                                                               ng-click="sonAgentArrSearchedClick(item)">{{item.agent_name}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="group-list pull-left" style="width:21%;">
+                                            <div class="list-item-header">选中区服列表(<label style="color:#fb6e52;"><b>{{agentSelectedList.length}}</b></label>个)
+                                            </div>
+                                            <div class="area-ul free-scroll" style="height:185px;overflow-y: scroll;">
+                                                <li class="area-list-items" ng-repeat="item in agentSelectedList"
+                                                    data-toggle="tooltip" data-placement="bottom"
+                                                    ng-click="agentGiveUpSelected(item)"
+                                                    title="{{item.agent_name}}"><label class="selected-area-list-item">{{item.agent_name}}</label><i
+                                                        class="fa fa-times-circle selected-area-close-icon"></i></li>
+                                            </div>
+                                        </div>
+                                            <div style="height: 30px;margin-top: 5px;text-align: center">
+                                                <a class="btn modal-btn-yes"
+                                                   ng-click="agentOK()">确 定</a>
+                                                <a class="btn modal-btn-close"
+                                                   data-dismiss="modal" ng-click="agentCancel()">取 消</a>
+                                            </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pull-left m-l-20" style="width:459px;">
+            <div class="form-group chose-list">
+                <label class="chose-list-label control-label" style="margin-top: 5px">最近选择区服： </label>
+
+                <div class="pull-left chose-list-content">
+                    <div class="row col-md-12" style="width:410px;">
+                        <div ng-repeat="item in oftenAgentList" class=" pull-left">
+                            <label class="often-agent-item" data-toggle="tooltip" data-placement="bottom"
+                                   title="{{item.RealName}}" ng-click="oftenAgent_click(item)">{{item.RealName}}</label>
+                        </div>
+                        <!--<label class="col-md-2" ng-click="oftenAgentDelCookie()" style="cursor: pointer;padding-top: 5px;">清除cookie</label>-->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--</div>-->
+    </div>
+
+    <div class="title-group col-sm-12 col-md-12">
+        <div class="row col-sm-12 col-md-12">
+            <span class="title-header">{{module_name}}</span>
+            <!--<span>-->
+            <span id="question_icon" ng-click="showModel()">
+            <img src="assets/img/question_icon.png"/>
+            </span>
+
+            <!-- 模态框（Modal） -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" style="width: 100%;top: 100px;"
+                 aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="width:850px;height:300px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close"
+                                    data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">
+                                {{questionTitle}}
+                            </h4>
+                        </div>
+                        <div class="modal-body" id="questionContent">
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal -->
+            </div>
+            <!--</span>-->
+        </div>
+
+
+        <div class="row col-sm-12 col-md-12 title-body">
+            <!--时间选择-->
+            <div class="pull-left m-l-20">
+                <div class="form-group chose-list">
+                    <label class="chose-list-label control-label font-12">时间： </label>
+
+                    <div class="controls" style="float: left;width:50px;" ng-if="IsShowDatetypeList">
+                        <ui-select ng-model="datetype.selected" theme="bootstrap" style=" width: 50px;">
+                            <ui-select-match placeholder="{{$select.selected.name}}">
+                                {{$select.selected.name}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in datetypes | filter: $select.search"
+                                               style="min-width:50px;">
+                                <span>{{item.name}}</span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <div class="chose-list-content controls">
+                        <div>
+                            <input date-range-picker class="form-control date-picker" type="text"
+                                   ng-model="initData.rangeDate" ng-if="!singleDatePicker"/>
+
+                            <p class="input-group" ng-if="singleDatePicker" style="margin-bottom: 0px;">
+                                <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd"
+                                       ng-model="initData.curDate"
+                                       is-open="initData.opened"
+                                       date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"
+                                       style="position: static;"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open($event)">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+                                    </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--时间选择 end-->
+
+            <div class="pull-right m-l-20" style="width:300px">
+                <div class="form-group chose-list">
+                    <label class="chose-list-label control-label" style="margin-top: 5px">充值渠道： </label>
+
+                    <div class="chose-list-content">
+                        <input type="text" readonly="readonly" value="{{PayChannelParamsStr.Name}}"
+                               data-placement="bottom"
+                               title="{{PayChannelParamsStr.Name}}" data-toggle="modal" data-target="#payChannelList"
+                               ng-click="closePayChannelSearchGroup()"
+                               style="padding-left:10px;margin-right: -15px;float:left;padding-right:20px;cursor: pointer; width: 170px;height:33px;white-space: nowrap; overflow:hidden;text-overflow: ellipsis;"/>
+                        <i class="fa fa-sort-desc down-select-icon" data-toggle="modal" data-target="#payChannelList"></i>
+                        <div id="payChannelList" class="modal fade" tabindex="-1" role="dialog" aria-
+                             labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" style="width:800px;height:300px;top:155px;">
+                                <div class="modal-content">
+                                    <div class="modal-body" style="width:800px;height: 300px; padding: 0px;">
+                                        <div class="col-md-12 row list-header m-t-20">
+                                            <div style="width: 70%;float: left">
+                                            <div class="group-title-icon"></div>
+                                            <div class="group-title-label">
+                                                <span><b>充值渠道</b></span></div>
+                                            </div>
+                                            <div id="payChannelAll" class="pull-left"><input type="checkbox" value="全选" id="payChannelAllInput"
+                                                                                              ng-model="allCheckedPayChannel"
+                                                                                              ng-click="payCheckedAll()"/><label style="padding-bottom: 3px;">全选</label></div>
+
+                                            <div class="col-md-3">
+                                                <input id="payChannelSearch" class="search-textbox" type="text" ng-model="payChannelSearchText"
+                                                       placeholder="输入渠道名称" ng-keydown="($event.which === 13)?searchPayChannel():0"/>
+                                                <i class="fa fa-search search-icon" ng-click="searchPayChannel()"></i>
+                                            </div>
+                                        </div>
+                                        <div class="row col-md-12" style="margin-left: -5px;margin-top: 10px;">
+                                            <div class="col-md-3 group-list">
+                                                <div class="area-ul free-scroll" style="height:230px;">
+                                                    <div ng-repeat="item in payChannels" class="area-items"
+                                                         ng-class="{true:'active',false:''}[payChannelLevel.selected.channel_id==item.channel_id]"
+                                                         ng-click="payChannelClick(item)">
+                                                        <input type="checkbox" value="{{item.channel_id}}" id="paychannel-parent-{{item.channel_id}}"
+                                                               ng-click="payChannelSelected(item)"
+                                                               ng-model="item.selected"/>
+                                                        <label class="channel-item" ng-click="payChannelClick(item)"
+                                                               data-toggle="tooltip" data-placement="bottom"
+                                                               title="{{item.channel_name}}">{{item.channel_name}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9 group-list">
+                                                <div style="height:230px;">
+                                                    <div class="col-md-12 row list-body free-scroll">
+                                                        <div ng-repeat="item in payChannelBagArr" class="col-md-4 channel_item-group">
+                                                            <input type="checkbox" value="{{item.channel_id}}"
+                                                                   ng-model="item.selected" ng-checked="item.selected"
+                                                                   ng-click="paySonChecked(item)"/>
+                                                            <label class="channel-item" data-toggle="tooltip"
+                                                                   data-placement="bottom"
+                                                                   title="{{item.channel_name}}">{{item.channel_name}}</label>
+                                                        </div>
+                                                    </div>
+                                                    <div id="paySonSearchGroup"
+                                                         class="col-md-12 row list-body free-scroll"
+                                                         style="display: none;">
+                                                        <!--充值渠道搜索面板-->
+                                                        <div class="col-md-12 search-header-title">
+                                                            <label class="col-md-11">搜索结果:</label>
+                                                            <button type="button" class="close" aria-hidden="true"
+                                                                    style="font-size: 17px;"
+                                                                    ng-click="closePayChannelSearchGroup()">x
+                                                            </button>
+                                                        </div>
+                                                        <div ng-repeat="item in payChannelBagArrSearched"
+                                                             class="col-md-4 channel_item-group">
+                                                            <input type="checkbox" value="{{item.channel_id}}"
+                                                                   ng-model="item.selected" ng-checked="item.selected"
+                                                                   ng-click="payChannelBagArrSearchedClick(item)"/>
+                                                            <label class="channel-item" data-toggle="tooltip"
+                                                                   data-placement="bottom"
+                                                                   title="{{item.channel_name}}">{{item.channel_name}}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer"
+                                         style="padding: 5px 20px; margin-top: 0; text-align: center">
+                                        <a class="btn modal-btn-yes"
+                                           ng-click="payChannel_OK()">确 定</a>
+                                        <a class="btn modal-btn-close"
+                                           data-dismiss="modal" ng-click="payChannel_Cancel()">取 消</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--支付渠道下拉列表-->
+            <div class="pull-right m-l-20" style="width:300px">
+                <div class="form-group chose-list">
+                    <label class="chose-list-label control-label" style="margin-top: 5px">注册渠道： </label>
+
+                    <div class="chose-list-content">
+                        <input type="text" readonly="readonly" value="{{RegChannelParamsStr.Name}}"
+                               data-placement="bottom"
+                               title="{{RegChannelParamsStr.Name}}" data-toggle="modal" data-target="#regChannelList"
+                               ng-click="closeRegChannelSearchGroup()"
+                               style="padding-left:10px;margin-right: -15px;float:left;padding-right:20px;cursor: pointer; width: 170px;height:33px;white-space: nowrap; overflow:hidden;text-overflow: ellipsis;"/>
+                        <i class="fa fa-sort-desc down-select-icon" data-toggle="modal" data-target="#regChannelList"></i>
+                        <div id="regChannelList" class="modal fade" tabindex="-1" role="dialog" aria-
+                             labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" style="width:800px;height:300px;top:155px;">
+                                <div class="modal-content">
+                                    <div class="modal-body" style="width:800px;height: 300px; padding: 0px;">
+                                        <div class="col-md-12 row list-header m-t-20">
+                                            <div style="width: 70%;float: left">
+                                                <div class="group-title-icon"></div>
+                                                <div class="group-title-label">
+                                                    <span><b>注册渠道</b></span></div>
+                                            </div>
+                                            <div id="regChannelAll" class="pull-left"><input type="checkbox" value="全选" id="regChannelAllInput"
+                                                                                              ng-model="allCheckedRegChannel"
+                                                                                              ng-click="regCheckedAll()"/><label style="padding-bottom: 3px;">全选</label></div>
+
+                                            <div class="col-md-3">
+                                                <input id="regChannelSearch" class="search-textbox" type="text" ng-model="regChannelSearchText"
+                                                       placeholder="输入渠道名称" ng-keydown="($event.which === 13)?searchRegChannel():0"/>
+                                                <i class="fa fa-search search-icon"  ng-click="searchRegChannel()"></i>
+                                            </div>
+                                        </div>
+                                        <div class="row col-md-12" style="margin-left: -5px;margin-top: 10px;">
+                                            <div class="col-md-3 group-list">
+                                                <div class="area-ul free-scroll" style="height:230px;">
+                                                    <div ng-repeat="item in regChannels" class="area-items"
+                                                         ng-class="{true:'active',false:''}[regChannelLevel.selected.channel_id==item.channel_id]"
+                                                         ng-click="regChannelClick(item)">
+                                                        <input type="checkbox" value="{{item.channel_id}}" id="regchannel-parent-{{item.channel_id}}"
+                                                               ng-click="regChannelSelected(item)"
+                                                               ng-model="item.selected"/>
+                                                        <label class="channel-item" ng-click="regChannelClick(item)"
+                                                               data-toggle="tooltip" data-placement="bottom"
+                                                               title="{{item.channel_name}}">{{item.channel_name}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9 group-list">
+                                                <div style="height:230px;">
+                                                    <div id="regSonGroup" class="col-md-12 row list-body free-scroll">
+                                                        <!--子级注册渠道-->
+                                                        <div ng-repeat="item in regChannelBagArr" class="col-md-4 channel_item-group">
+                                                            <input type="checkbox" value="{{item.channel_id}}"
+                                                                   ng-model="item.selected" ng-checked="item.selected"
+                                                                   ng-click="regSonChecked(item)"/>
+                                                            <label class="channel-item" data-toggle="tooltip"
+                                                                   data-placement="bottom"
+                                                                   title="{{item.channel_name}}">{{item.channel_name}}</label>
+                                                        </div>
+                                                    </div>
+                                                    <div id="regSonSearchGroup"
+                                                         class="col-md-12 row list-body free-scroll"
+                                                         style="display: none;">
+                                                        <!--付费渠道搜索面板-->
+                                                        <div class="col-md-12 search-header-title">
+                                                            <label class="col-md-11">搜索结果:</label>
+                                                            <button type="button" class="close" aria-hidden="true"
+                                                                    style="font-size: 17px;"
+                                                                    ng-click="closeRegChannelSearchGroup()">x
+                                                            </button>
+                                                        </div>
+                                                        <div ng-repeat="item in regChannelBagArrSearched"
+                                                             class="col-md-4 channel_item-group">
+                                                            <input type="checkbox" value="{{item.channel_id}}"
+                                                                   ng-model="item.selected" ng-checked="item.selected"
+                                                                   ng-click="regChannelBagArrSearchedClick(item)"/>
+                                                            <label class="channel-item" data-toggle="tooltip"
+                                                                   data-placement="bottom"
+                                                                   title="{{item.channel_name}}">{{item.channel_name}}</label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer"
+                                         style="padding: 5px 20px; margin-top: 0; text-align: center">
+                                        <a  class="btn modal-btn-yes"
+                                           ng-click="regChannel_OK()">确 定</a>
+                                        <a  class="btn modal-btn-close"
+                                           data-dismiss="modal" ng-click="regChannel_Cancel()">取 消</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--TODO lazyload 会报错-->
+<script src="lib/modules/angular-daterangepicker/moment.js"></script>
+<script src="lib/modules/angular-daterangepicker/daterangepicker.js"></script>
+<script src="lib/modules/angular-daterangepicker/angular-daterangepicker.js"></script>

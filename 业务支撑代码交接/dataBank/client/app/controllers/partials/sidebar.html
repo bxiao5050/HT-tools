@@ -1,0 +1,104 @@
+﻿    <!-- Page Sidebar Header-->
+<div class="sidebar-header-wrapper">
+    <input type="text" class="searchinput" />
+    <i class="searchicon fa fa-search"></i>
+    <div class="searchhelper">搜索菜单</div>
+</div>
+<!-- /Page Sidebar Header -->
+<!-- Sidebar Menu -->
+<ul class="nav sidebar-menu">
+    <!--Dashboard-->
+    <!--<li ui-sref-active="active">-->
+        <!--<a ui-sref="app.home">-->
+            <!--<i class="menu-icon glyphicon glyphicon-home"></i>-->
+            <!--<span class="menu-text"> 首页 </span>-->
+        <!--</a>-->
+    <!--</li>-->
+    <!--Databoxes-->
+    <li ng-repeat="firstMenu in menus" ng-class="{true:'active open'}[$index==0]">
+        <a ng-if="!firstMenu.menu_url" href="#" class="menu-dropdown">
+            <i class="menu-icon glyphicon glyphicon-tasks"></i>
+            <span class="menu-text"> {{firstMenu.menu_name}} </span>
+            <i class="menu-expand"></i>
+        </a>
+        <ul  ng-if="!firstMenu.menu_url" class="submenu">
+            <li ng-repeat="secondMenu in firstMenu.children" >
+                <a ui-sref="{{secondMenu.menu_url}}" ng-if="secondMenu.menu_url">
+                    <span class="menu-text">{{secondMenu.menu_name}}</span>
+                </a>
+                <a href="#"  ng-if="!secondMenu.menu_url" class="menu-dropdown">
+                    <span class="menu-text">{{secondMenu.menu_name}}</span>
+                    <i class="menu-expand"></i>
+                </a>
+                <ul ng-if="!secondMenu.menu_url" class="submenu">
+                    <li ng-repeat="thirdMenu in secondMenu.children">
+                        <a ui-sref="{{thirdMenu.menu_url}}">
+                            <i class="menu-icon fa fa-pencil-square-o"></i>
+                            <span class="menu-text">{{thirdMenu.menu_name}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <a  ng-if="firstMenu.menu_url" ui-sref="{{firstMenu.menu_url}}">
+            <i class="menu-icon glyphicon glyphicon-home"></i>
+            <span class="menu-text">  {{firstMenu.menu_name}} </span>
+        </a>
+    </li>
+
+    <li>
+        <a href="#" class="menu-dropdown">
+            <i class="menu-icon fa fa-pencil-square-o"></i>
+            <span class="menu-text"> 常用 </span>
+
+            <i class="menu-expand"></i>
+        </a>
+
+        <ul class="submenu">
+            <li ui-sref-active="active">
+                <a ui-sref="app.elements">
+                    <span class="menu-text">Basic Elements</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.formlayout">
+                    <span class="menu-text">Form Layouts</span>
+                </a>
+            </li>
+
+            <li ui-sref-active="active">
+                <a ui-sref="app.forminputs">
+                    <span class="menu-text">Form Inputs</span>
+                </a>
+            </li>
+
+            <li ui-sref-active="active">
+                <a ui-sref="app.formwizard">
+                    <span class="menu-text">Wizard</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.formvalidation">
+                    <span class="menu-text">Validation</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.fontawesome">
+                    <span class="menu-text">Font awesome</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.buttons">
+                    <span class="menu-text">Buttons</span>
+                </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.modals">
+                    <span class="menu-text">Modals & Wells</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <!--Widgets-->
+</ul>
+<!-- /Sidebar Menu -->

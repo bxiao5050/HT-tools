@@ -1,0 +1,68 @@
+﻿<div class="row" ng-controller="channelAppListController">
+    <div class="col-sm-12 col-md-12">
+        <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div class="col-sm-12 col-md-12 oa-header-row">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">选择游戏: </label>
+                    <div class="col-sm-6">
+                        <ui-select ng-model="app.selected" theme="bootstrap">
+                            <ui-select-match placeholder="Select">
+                                {{$select.selected.name}}&nbsp;&nbsp;
+                                <i ng-class="{true:'fa fa-apple',false:'fa fa-android'}[$select.selected.os == 0]"></i>
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in AppAsync | filter: $select.search">
+                                <span>{{item.name}}&nbsp;&nbsp;<i ng-class="{true:'fa fa-apple',false:'fa fa-android'}[item.os == 0]"></i></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group" ng-class="{true:'has-error'}[packageNameValidateFail]">
+                    <div class=" input-group">
+                        <span class="input-group-addon">包名</span>
+                        <input type="text" class="form-control" placeholder="必填" ng-model="formData.packageName" >
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <a class="btn btn-default" href="javascript:void(0);" ng-click="addApp()"><i class="fa fa-plus"></i>添加</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+                表格
+            </div>
+            <div class="scrollable" style="max-height: 500px;overflow-y:auto">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>游戏</th>
+                        <th>系统</th>
+                        <th>包名</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in tableData">
+                        <td>{{item.gameName}}</td>
+                        <td>{{item.os == 0 ? 'IOS':'Android'}}</td>
+                        <td>{{item.packageName}}</td>
+                        <td>
+                            <a><i class="fa fa-trash-o" ng-click="deleteApp(item)"></i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="footer">
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+﻿<div class="row" ng-controller="oasStepLostController">
+    <div class="col-sm-12 col-md-12">
+        <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div data-ng-include=" 'views/partials/oasHeader.html' "></div>
+    <div class="col-md-12 m-t-20">
+        <div class="widget">
+            <div class="widget-header">
+                <div class="btn-group">
+                    <label class="btn btn-normal" ng-model="radioModel" btn-radio="'one'">1日留存</label>
+                    <label class="btn btn-normal" ng-model="radioModel" btn-radio="'two'">2日留存</label>
+                    <label class="btn btn-normal" ng-model="radioModel" btn-radio="'seven'">7日留存</label>
+                </div>
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="chartcontainer">
+                    <div id="stepLostChart1" class="chart chart-lg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+
+                <span class="widget-caption">表格</span>
+            </div>
+            <div class="scrollable" style="max-height: 500px;overflow-y:auto">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>节点ID</th>
+                        <th>节点名称</th>
+                        <th>留存人数</th>
+                        <th>绝对留存率</th>
+                        <th>相对留存率</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in tableData">
+                        <td>{{item.step_id}}</td>
+                        <td>{{item.step_name}}</td>
+                        <td>{{item.user_count |number}}</td>
+                        <td>{{item.absolute_rate + '%'}}</td>
+                        <td>{{item.relative_rate + '%'}}</td>
+                    </tr>
+                    <tr ng-if="noData">
+                        <td class="danger"  colspan="6">no data</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="footer">
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+</div>

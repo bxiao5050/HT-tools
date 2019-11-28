@@ -1,0 +1,77 @@
+<div class="row" ng-controller="oasOnlineUserController" ng-cloak>
+    <div class="col-sm-12 col-md-12">
+        <toaster-container
+                toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div data-ng-include=" 'views/partials/oasHeader.html' "></div>
+
+    <div class="col-md-12 row m-t-20">
+        <div class="btn-group pull-left m-l-20 my-btn-group">
+            <label class="btn " ng-model="radioModel" btn-radio="'ACU'">ACU</label>
+            <label class="btn " ng-model="radioModel" btn-radio="'PCU'">PCU</label>
+            <label class="btn " ng-model="radioModel" btn-radio="'ACU/PCU'">ACU/PCU</label>
+            <label class="btn " ng-model="radioModel" btn-radio="'AT'">AT</label>
+        </div>
+    </div>
+    <div class="col-md-12 m-t-20">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption">图表数据</span>
+                <!--<div class="btn-group">-->
+                <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'day'">日</label>-->
+                <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'week'">周</label>-->
+                <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'month'">月</label>-->
+                <!--</div>-->
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="chartcontainer">
+                    <div id="onlineUserChart1" class="chart chart-lg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+
+                <span class="widget-caption">表格</span>
+                <label class="export-btn pull-right" style="margin-right: 20px;" ng-click="export()"><i
+                        class="fa fa-download"></i>&nbsp;导出xlsx文件</label>
+            </div>
+            <div class="scrollable  font-12" style="max-height: 500px;overflow-y:auto">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>日期</th>
+                        <th>在线均值(ACU)</th>
+                        <th>在线峰值(PCU)</th>
+                        <th>在线平高比(ACU/PCU)</th>
+                        <th>户均在线时长（AT）</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in tableData">
+                        <td>{{item['日期']}}</td>
+                        <td>{{item['在线均值（ACU）']}}</td>
+                        <td>{{item['在线峰值（PCU）']}}</td>
+                        <td>{{item['在线平高比（ACU/PCU）']}}</td>
+                        <td>{{item['户均在线时长（AT）']}}</td>
+                    </tr>
+                    <tr ng-if="noData">
+                        <td class="danger" colspan="6">no data</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+

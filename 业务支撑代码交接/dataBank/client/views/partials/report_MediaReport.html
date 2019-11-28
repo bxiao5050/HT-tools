@@ -1,0 +1,162 @@
+<div class="row" ng-controller="MediaReportController">
+    <div class="col-md-12 m-t-20">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption">图表数据</span>
+
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" class="btn btn-default" ng-click="selecedAllLegent()">全选</button>
+                    <button type="button" class="btn btn-default" ng-click="unselecedAllLegent()">全不选</button>
+                </div>
+                <div class="chartcontainer">
+                    <div id="MediaReportChart1" class="chart chart-lg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="well with-header with-footer">
+            <div class="header">
+                <span class="widget-caption">
+                    选择媒体:
+                    <select id="mediaSelect" ng-model="media" ng-change="mediaChange()"
+                            ng-options="item for item in mediaList">
+                    </select>
+                </span>
+            </div>
+            <div class="scrollable" style="max-height: 500px;overflow-y:auto;">
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th nowrap ng-click="col='count_date';desc=!desc">日期
+                                  <span ng-if="col=='count_date'"
+                                        ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+
+                        <th nowrap ng-click="col='source';desc=!desc">系统
+                            <span ng-if="col=='source'"
+                                  ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                        <th nowrap ng-click="col='active';desc=!desc">激活
+                             <span ng-if="col=='active'"
+                                   ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                        <th nowrap ng-click="col='register';desc=!desc">注册
+                            <span ng-if="col=='register'"
+                                  ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                        <th nowrap ng-click="col='createRole';desc=!desc">创角
+                            <span ng-if="col=='createRole'"
+                                  ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                        <th nowrap ng-click="col='costDisplay';desc=!desc">花费
+                             <span ng-if="col=='costDisplay'"
+                                   ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                        <th nowrap ng-click="col='registerRate';desc=!desc">注册率
+                            <span ng-if="col=='registerRate'"
+                                  ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                        <th nowrap ng-click="col='createRoleRate';desc=!desc">创角率
+                            <span ng-if="col=='createRoleRate'"
+                                  ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+
+                        <th nowrap ng-click="col='activationCost';desc=!desc">激活成本
+                              <span ng-if="col=='activationCost'"
+                                    ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                        <th nowrap ng-click="col='registerCost';desc=!desc">注册成本
+                            <span ng-if="col=='registerCost'"
+                                  ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                        <th nowrap ng-click="col='createRoleCost';desc=!desc">创角成本
+                            <span ng-if="col=='createRoleCost'"
+                                  ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                        <th nowrap ng-click="col='rechargeSort';desc=!desc">充值
+                              <span ng-if="col=='rechargeSort'"
+                                    ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                        <th nowrap ng-click="col='roi';desc=!desc">ROI
+                            <span ng-if="col=='roi'"
+                                  ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                        <th nowrap ng-click="col='LTV';desc=!desc">LTV
+                            <span ng-if="col=='LTV'"
+                                  ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                        <th nowrap ng-click="col='oneDayRetainRate';desc=!desc">次日留存率
+                             <span ng-if="col=='oneDayRetainRate'"
+                                   ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                        <th nowrap ng-click="col='threeDayRetainRate';desc=!desc">3日留存率
+                              <span ng-if="col=='threeDayRetainRate'"
+                                    ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                        <th nowrap ng-click="col='sevenDayRetainRate';desc=!desc">7日留存率
+                              <span ng-if="col=='sevenDayRetainRate'"
+                                    ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in tableData | orderBy : col : desc">
+                        <td ng-bind="item.count_date">{{item['count_date']}}</td>
+                        <td ng-bind="item.source">{{item['source']}}</td>
+                        <td ng-bind="item.active|number:0">{{item['active']}}</td>
+                        <td ng-bind="item.register|number:0">{{item['register']}}</td>
+                        <td ng-bind="item.createRole|number:0">{{item['createRole']}}</td>
+                        <td ng-bind="item.costDisplay|number:2">{{item['costDisplay']}}</td>
+                        <td ng-bind="item.registerRate|number:2|rateItems:item.registerRate" ng-style="createTableStyle(item['registerRate'],styleMma.registerRate,'r2g')">{{item['registerRate'] | number:2}}%</td>
+                        <td ng-bind="item.createRoleRate|number:2|rateItems:item.createRoleRate" ng-style="createTableStyle(item['createRoleRate'],styleMma.createRoleRate,'r2g')">{{item['createRoleRate'] | number:2}}%</td>
+                        <td ng-bind="item.activationCost|number:2" ng-style="createTableStyle(item['activationCost'],styleMma.activationCost,'g2r')">{{item['activationCost'] | number:2}}</td>
+                        <td ng-bind="item.registerCost|number:2" ng-style="createTableStyle(item['registerCost'],styleMma.registerCost,'g2r')">{{item['registerCost'] | number:2}}</td>
+                        <td ng-bind="item.createRoleCost|number:2" ng-style="createTableStyle(item['createRoleCost'],styleMma.createRoleCost,'g2r')">{{item['createRoleCost'] | number:2}}</td>
+                        <td ng-bind="item.rechargeDisplay|number:2">{{item['rechargeDisplay']}}</td>
+                        <td ng-bind="item.roi|number:2|rateItems:item.roi" ng-style="createTableStyle(item['roi'],styleMma.roi,'r2g')">{{item['roi'] | number:2}}%</td>
+                        <td ng-bind="item.LTV|number:2" ng-style="createTableStyle(item['LTV'],styleMma.LTV,'r2g')">{{item['LTV'] | number:2}}</td>
+                        <td ng-bind="item.oneDayRetainRate * 100|number:2|rateItems:item.oneDayRetainRate" ng-style="createTableStyle(item['oneDayRetainRate'],styleMma.oneDayRetainRate,'r2g')">{{item['oneDayRetainRate']}}</td>
+                        <td ng-bind="item.threeDayRetainRate * 100|number:2|rateItems:item.threeDayRetainRate" ng-style="createTableStyle(item['threeDayRetainRate'],styleMma.threeDayRetainRate,'r2g')">{{item['threeDayRetainRate']}}</td>
+                        <td ng-bind="item.sevenDayRetainRate * 100|number:2|rateItems:item.sevenDayRetainRate" ng-style="createTableStyle(item['sevenDayRetainRate'],styleMma.sevenDayRetainRate,'r2g')">{{item['sevenDayRetainRate']}}</td>
+                    </tr>
+                    <tr  style="font-weight: bold;">
+                        <td ng-if="!noData">Total:</td>
+                        <td>{{totalData['source']}}</td>
+                        <td>{{totalData['active']}}</td>
+                        <td>{{totalData['register']}}</td>
+                        <td>{{totalData['createRole']}}</td>
+                        <td>{{totalData['costDisplay']}}</td>
+                        <td>{{totalData['registerRate'] * 100 | number:2}}%</td>
+                        <td>{{totalData['createRoleRate'] * 100 | number:2}}%</td>
+                        <td>{{totalData['activeCost'] | number:2}}</td>
+                        <td>{{totalData['registerCost'] | number:2}}</td>
+                        <td>{{totalData['createRoleCost'] | number:2}}</td>
+                        <td>{{totalData['rechargeDisplay']}}</td>
+                        <td>{{totalData['roi'] * 100 | number:2}}%</td>
+                        <td>{{totalData['LTV'] | number:2}}</td>
+                        <td>{{totalData['oneDayRetainRate'] * 100 |number:2}}%</td>
+                        <td>{{totalData['threeDayRetainRate'] * 100 |number:2}}%</td>
+                        <td>{{totalData['sevenDayRetainRate'] * 100 |number:2}}%</td>
+                    </tr>
+                    <tr ng-if="noData">
+                        <td class="danger" colspan="6">no data</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="footer">
+
+            </div>
+        </div>
+    </div>
+
+
+</div>

@@ -1,0 +1,64 @@
+// header component stylesheet
+#header {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100vw;
+  height: $header-height;
+  background: #fff;
+  color: #000;
+  .logo {
+    margin-left: 5vw;
+    margin-right: 5vw;
+    height: $header-height *.85;
+    img {
+      height: 100%;
+    }
+  }
+  .item-lr {
+    display: flex;
+    align-items: center;
+    margin-right: 3vw;
+    min-width: 356px;
+    height: $header-height *.85;
+    line-height: $header-height;
+    font-size: 15px;
+    .items {
+      display: flex;
+      align-items: center;
+      margin-right: 25px;
+      cursor: pointer;
+      position: relative;
+      padding-left: 5px;
+      span {
+        width: auto;
+      }
+    }
+    .icon {
+      margin-right: 5px;
+      width: $header-height *.5;
+      height: $header-height *.5;
+      &.logout {
+        height: $header-height *.565;
+      }
+    }
+    .user-avatar {
+      img {
+        height: $header-height *.8;
+        width: $header-height *.8;
+        border-radius: 50%;
+      }
+      .userAvater {
+        position: absolute;
+        transform: translate(-90px, -45px);
+        width: 228px;
+        height: 190px;
+        background: #000;
+        opacity: 0;
+      }
+    }
+  }
+}

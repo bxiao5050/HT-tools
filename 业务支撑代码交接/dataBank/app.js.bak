@@ -1,0 +1,68 @@
+//定义全局变量:项目根目录
+"use strict";
+global.APP_PATH = __dirname;
+console.log(APP_PATH);
+var express = require('express');
+var path = require('path');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var ejs = require('ejs');
+var domain = require('domain');
+var express = require('express');
+var session = require('express-session');
+var redisStore = require('connect-redis')(session);
+var Route = require('./src/route/route');
+var env = require('./src/envConfig')();
+var log = require('./src/utils/logUtil');
+var sessionUtil =require('./src/utils/sessionUtil');
+var redisConfig = require('./src/config/dbConfig').redisTestConfig;
+
+var app = express();
+log.use(app);
+app.set('port', env == 'production' ? 4600 : 10001);
+app.set('views', path.join(__dirname, 'views'));
+/**
+ * 设置模板解析
+ * **/
+app.set('view engine', 'ejs');
+app.use(logger('dev'));
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(session({
+    store: new redisStore(redisConfig),
+    secret: 'mobile_game'
+}));
+app.use('/api/*',sessionUtil.check());
+app.use(express.static(path.join(__dirname, 'public')));
+
+// API接口路由
+Route(app);
+var server = require('http').createServer(app)
+var ip = '0.0.0.0';
+if (app.get('env') === 'production') {
+    console.log('正式环境');
+}
+
+server.listen(4600, ip, function () {
+    console.log(ip + ',Express server listening on port ' + 4600);
+});
+
+app.use(function (req,res,next){
+    var serverDomain = domain.create();
+    //监听domain的错误时间
+    serverDomain.on('error',function(err){
+        res.statusCode =500;
+        log.error('服务器异常:'+err);
+        res.json({success : false,message : '服务器异常',err : err.message});
+        serverDomain.dispose();
+    });
+    serverDomain.add(req);
+    serverDomain.add(res);
+    serverDomain.run(next);
+});
+process.on('uncaughtException', function(err) {
+    console.error('uncaughtException:', err);
+});
+
+global.app = app;

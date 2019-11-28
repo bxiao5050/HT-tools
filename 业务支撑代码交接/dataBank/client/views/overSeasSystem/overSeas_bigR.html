@@ -1,0 +1,67 @@
+<div class="row" ng-controller="overSeasBigRController" ng-cloak>
+    <div class="col-sm-12 col-md-12">
+        <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div data-ng-include=" 'views/overSeasSystem/overSeasHeader.html' "></div>
+
+    <div class="col-md-12 row m-t-20">
+        <div class="btn-group pull-left m-l-20 my-btn-group">
+            <label class="btn " ng-model="radioModel" btn-radio="'1'">区间新增大R</label>
+            <label class="btn " ng-model="radioModel" btn-radio="'2'">充值大R</label>
+        </div>
+    </div>
+
+    <div class="col-md-12 m-t-20">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+
+                <span class="widget-caption">表格</span>
+                <label class="export-btn pull-right" style="margin-right: 20px;" ng-click="export()"><i class="fa fa-download"></i>&nbsp;导出xlsx文件</label>
+            </div>
+            <div class="scrollable font-12" style="max-height: 500px;overflow-y:auto">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>国家</th>
+                        <th>游戏名</th>
+                        <th>区服</th>
+                        <th>用户id</th>
+                        <th>角色id</th>
+                        <th>用户名</th>
+                        <th>帐号创建时间</th>
+                        <th>累计充值</th>
+                        <th>近7天充值</th>
+                        <th>近30天充值</th>
+                        <th>末次充值距今</th>
+                        <th>末次登录距今</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in tableData">
+                        <td>{{item.row_num}}</td>
+                        <td>{{item['country']}}</td>
+                        <td>{{item['game_name']}}</td>
+                        <td>{{item['game_zone_name']}}</td>
+                        <td>{{item['user_id']}}</td>
+                        <td>{{item['role_id']}}</td>
+                        <td>{{item['user_name']}}</td>
+                        <td>{{item['reg_time']}}</td>
+                        <td>{{item['amount']}}</td>
+                        <td>{{item['last_pay_7days']}}</td>
+                        <td>{{item['last_pay_30days']}}</td>
+                        <td>{{item['last_pay']}}</td>
+                        <td>{{item['last_login']}}</td>
+                    </tr>
+                    <tr ng-if="noData">
+                        <td class="danger"  colspan="6">no data</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="footer">
+
+            </div>
+        </div>
+    </div>
+</div>

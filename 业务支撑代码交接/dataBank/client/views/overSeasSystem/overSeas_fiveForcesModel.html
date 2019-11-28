@@ -1,0 +1,194 @@
+﻿<div class="row" ng-controller="overSeas5liDataController" ng-cloak>
+    <div class="col-sm-12 col-md-12">
+        <toaster-container
+                toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div data-ng-include=" 'views/overSeasSystem/overSeasHeader.html' "></div>
+
+    <div class="col-md-12 m-t-20">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption">{{dates[7]}} 数据</span>
+
+                <!--<div class="btn-group">
+                    <label class="btn btn-normal" ng-model="radioModel" btn-radio="'day'">日</label>
+                    <label class="btn btn-normal" ng-model="radioModel" btn-radio="'week'">周</label>
+                    <label class="btn btn-normal" ng-model="radioModel" btn-radio="'month'">月</label>
+                </div>-->
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body" style="height: 406px;">
+                <div class="col-sm-12 col-xs-12 col-md-12 data-container">
+                    <div class="data-div l1 bg-green">
+                        <div class="col-sm-12 col-xs-12 col-md-12">日注册用户数</div>
+                        <div class="col-sm-12 col-xs-12 col-md-12" id="newUserRegister">
+                            <div class="col-sm-6 col-xs-6 col-md-6">{{todayData.regCount.count}}</div>
+                            <div class="col-sm-6 col-xs-6 col-md-6">
+                                <label class="m-l-20 success"
+                                       ng-class="{true:'success', false:'warning'}[todayData.regCount.trend >=0]">{{todayData.regCount.trend}}%<i
+                                        class="fa"
+                                        ng-class="{true:'fa-arrow-up', false:'fa-arrow-down'}[todayData.regCount.trend>=0]"></i></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="data-div l2 bg-green">
+                        <div class="col-sm-12 col-xs-12 col-md-12">登录用户数</div>
+                        <div class="col-sm-12 col-xs-12 col-md-12" id="loginCount">
+                            <div class="col-sm-6 col-xs-6 col-md-6">{{todayData.loginCount.count}}</div>
+                            <div class="col-sm-6 col-xs-6 col-md-6">
+                                <label class="m-l-20 success"
+                                       ng-class="{true:'success', false:'warning'}[todayData.loginCount.trend >=0]">{{todayData.loginCount.trend}}%<i
+                                        class="fa"
+                                        ng-class="{true:'fa-arrow-up', false:'fa-arrow-down'}[todayData.loginCount.trend>=0]"></i></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="data-div l4 bg-green">
+                        <div class="col-sm-12 col-xs-12 col-md-12">活跃付费率</div>
+                        <div class="col-sm-12 col-xs-12 col-md-12" id="activePayRate">
+                            <div class="col-sm-6 col-xs-6 col-md-6">{{todayData.activePayRate.count}}</div>
+                            <div class="col-sm-6 col-xs-6 col-md-6">
+                                <label class="m-l-20 success"
+                                       ng-class="{true:'success', false:'warning'}[todayData.activePayRate.trend >=0]">{{todayData.activePayRate.trend}}%<i
+                                        class="fa"
+                                        ng-class="{true:'fa-arrow-up', false:'fa-arrow-down'}[todayData.activePayRate.trend>=0]"></i></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="data-div l5 bg-green">
+                        <div class="col-sm-12 col-xs-12 col-md-12">付费金额</div>
+                        <div class="col-sm-12 col-xs-12 col-md-12" id="totalPay">
+                            <div class="col-sm-6 col-xs-6 col-md-6">{{todayData.payMoney.count}}</div>
+                            <div class="col-sm-6 col-xs-6 col-md-6">
+                                <label class="m-l-20 success"
+                                       ng-class="{true:'success', false:'warning'}[todayData.payMoney.trend >=0]">{{todayData.payMoney.trend}}%<i
+                                        class="fa"
+                                        ng-class="{true:'fa-arrow-up', false:'fa-arrow-down'}[todayData.payMoney.trend>=0]"></i></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="data-div ml1 bg-blue">
+                        <div class="col-sm-12 col-xs-12 col-md-12">新用户活跃人数</div>
+                        <div class="col-sm-12 col-xs-12 col-md-12" id="newUserActive">
+                            <div class="col-sm-6 col-xs-6 col-md-6">{{todayData.newUserActiveCount.count}}</div>
+                            <div class="col-sm-6 col-xs-6 col-md-6">
+                                <label class="m-l-20 success"
+                                       ng-class="{true:'success', false:'warning'}[todayData.newUserActiveCount.trend >=0]">{{todayData.newUserActiveCount.trend}}%<i
+                                        class="fa"
+                                        ng-class="{true:'fa-arrow-up', false:'fa-arrow-down'}[todayData.newUserActiveCount.trend>=0]"></i></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="data-div ml2 bg-blue"  ng-click="drawChart('老用户活跃人数')"  data-placement="bottom" data-toggle="modal" data-target="#fiveForcesGroup">
+                        <div class="col-sm-12 col-xs-12 col-md-12">老用户活跃人数</div>
+                        <div class="col-sm-12 col-xs-12 col-md-12" id="oldUserActiveLogin">
+                            <div class="col-sm-6 col-xs-6 col-md-6">{{todayData.oldUserActiveCount.count}}</div>
+                            <div class="col-sm-6 col-xs-6 col-md-6">
+                                <label class="m-l-20 success"
+                                       ng-class="{true:'success', false:'warning'}[todayData.oldUserActiveCount.trend >=0]">{{todayData.oldUserActiveCount.trend}}%<i
+                                        class="fa"
+                                        ng-class="{true:'fa-arrow-up', false:'fa-arrow-down'}[todayData.oldUserActiveCount.trend>=0]"></i></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="data-div mr1 bg-blue">
+                        <div class="col-sm-12 col-xs-12 col-md-12">活跃用户数</div>
+                        <div class="col-sm-12 col-xs-12 col-md-12" id="userActive">
+                            <div class="col-sm-6 col-xs-6 col-md-6">{{todayData.activeCount.count}}</div>
+                            <div class="col-sm-6 col-xs-6 col-md-6">
+                                <label class="m-l-20 success"
+                                       ng-class="{true:'success', false:'warning'}[todayData.activeCount.trend >=0]">{{todayData.activeCount.trend}}%<i
+                                        class="fa"
+                                        ng-class="{true:'fa-arrow-up', false:'fa-arrow-down'}[todayData.activeCount.trend>=0]"></i></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="data-div r1 bg-blue">
+                        <div class="col-sm-12 col-xs-12 col-md-12">付费人数</div>
+                        <div class="col-sm-12 col-xs-12 col-md-12" id="userPayNum">
+                            <div class="col-sm-6 col-xs-6 col-md-6">{{todayData.payPeople.count}}</div>
+                            <div class="col-sm-6 col-xs-6 col-md-6">
+                                <label class="m-l-20 success"
+                                       ng-class="{true:'success', false:'warning'}[todayData.payPeople.trend >=0]">{{todayData.payPeople.trend}}%<i
+                                        class="fa"
+                                        ng-class="{true:'fa-arrow-up', false:'fa-arrow-down'}[todayData.payPeople.trend>=0]"></i></label>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="data-div r2 total">
+                        <div class="col-sm-12 col-xs-12 col-md-12">付费ARPU</div>
+                        <div class="col-sm-12 col-xs-12 col-md-12" id="payARPU">
+                            <div class="col-sm-6 col-xs-6 col-md-6">{{todayData.payArpu.count}}</div>
+                            <div class="col-sm-6 col-xs-6 col-md-6">
+                                <label class="m-l-20 success"
+                                       ng-class="{true:'success', false:'warning'}[todayData.payArpu.trend >=0]">{{todayData.payArpu.trend}}%<i
+                                        class="fa"
+                                        ng-class="{true:'fa-arrow-up', false:'fa-arrow-down'}[todayData.payArpu.trend>=0]"></i></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="arrow-l-11"></div>
+                    <div class="arrow-l-12"></div>
+                    <div class="arrow-l-21"></div>
+                    <div class="arrow-l-22"></div>
+                    <div class="arrow-l-14"></div>
+                    <div class="arrow-l-15"></div>
+                    <div class="arrow-bri"></div>
+                    <div class="arrow-down-r"></div>
+                    <div class="arrow-down-total"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+
+                <span class="widget-caption">表格</span>
+                <label class="export-btn pull-right" style="margin-right: 20px;" ng-click="export()"><i class="fa fa-download"></i>&nbsp;导出xlsx文件</label>
+            </div>
+            <div class="scrollable font-12">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>指标</th>
+                        <th ng-repeat="item in dates">{{item}}</th>
+                        <th>趋势</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in tableData">
+                        <td>{{item.pointertype_name}}</td>
+                        <td>{{item[dates[0]]}}</td>
+                        <td>{{item[dates[1]]}}</td>
+                        <td>{{item[dates[2]]}}</td>
+                        <td>{{item[dates[3]]}}</td>
+                        <td>{{item[dates[4]]}}</td>
+                        <td>{{item[dates[5]]}}</td>
+                        <td>{{item[dates[6]]}}</td>
+                        <td>{{item[dates[7]]}}</td>
+                        <td><label class="m-l-20 success" ng-class="{true:'success', false:'warning'}[item.trend >=0]">{{item.trend}}%<i
+                                class="fa"
+                                ng-class="{true:'fa-arrow-up', false:'fa-arrow-down'}[item.trend >=0]"></i></label></td>
+                    </tr>
+                    <tr ng-if="noData">
+                        <td class="danger" colspan="6">no data</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>

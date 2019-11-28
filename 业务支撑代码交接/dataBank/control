@@ -1,0 +1,100 @@
+#!/bin/bash
+
+cwd=$(cd $(dirname $0); pwd)
+port=3002
+
+function show() {
+    flag="$1"
+    shift
+    content="$*"
+    if [ ${flag} == "error" ];then
+        echo -e "\033[1;31m${content}\033[0m"
+    elif [ ${flag} == "success" ];then
+        echo -e "\033[1;32m${content}\033[0m"
+    elif [ ${flag} == "tips" ];then
+        echo -e "\033[1;33m${content}\033[0m"
+    elif [ ${flag} == "view" ];then
+        echo -e "\033[1;35m${content}\033[0m"
+    else
+        echo -e "\033[1;31m${content}\033[0m"
+    fi
+}
+
+function getPid() {
+    pid=$(netstat -nltp 2>/dev/null | grep -i node | grep ${port} | awk -F'[ /]+' '{print $7}')
+    echo ${pid}
+}
+
+function status() {
+    pid=$(getPid)
+    if [[ ${pid} -gt 0 ]];then
+        show "tips" "program is running now, pid=${pid}"
+        return 0
+    else
+        show "tips" "program is stop now"
+        return 1
+    fi
+}
+
+function start() {
+    pid=$(getPid)
+    if [[ ${pid} -gt 0 ]];then
+        show "tips" "program is running already, pid=${pid}"
+    else
+        npm install >/dev/null 2>&1
+        nohup node app.js >/dev/null 2>&1 &
+        sleep 3
+        pid=$(getPid)
+        if [[ ${pid} -gt 0 ]];then
+            show "success" "program start success, pid=${pid}"
+        else
+            show "error" "program start failed"
+        fi
+    fi
+}
+
+function stop() {
+    pid=$(getPid)
+    if [[ ${pid} -le 0 ]];then
+        show "tips" "program is stop already"
+    else
+        pid=$(getPid)
+        kill -9 ${pid} 2>/dev/null
+        sleep 3
+        pid=$(getPid)
+        if [[ ${pid} -le 0 ]];then
+            show "success" "program stop success"
+        else
+            show "error" "program stop failed"
+        fi
+    fi
+}
+
+function restart() {
+    stop
+    sleep 1
+    start
+}
+
+function help() {
+    show "view" "$0 status|stop|start|restart"
+    exit 1
+}
+
+function main() {
+   options=$1 
+   case ${options} in
+       status)
+           status;;
+       stop)
+           stop;;
+       start)
+           start;;
+       restart)
+           restart;;
+       *)
+           help;;
+   esac
+}
+
+main $*

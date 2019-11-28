@@ -1,0 +1,17 @@
+﻿<div class="login-container animated fadeInDown" ng-controller="loginController">
+    <div class="loginbox bg-white">
+        <div class="loginbox-title">7Road OAS <i class="fa fa-line-chart fa-large info"></i></div>
+        <div class="loginbox-textbox">
+            <input id="username" type="text" class="form-control" placeholder="Username" ng-model="username"/>
+        </div>
+        <div class="loginbox-textbox">
+            <input id="pwd" type="password" class="form-control" placeholder="Password" ng-model="password"/>
+        </div>
+        <div class="loginbox-forgot">
+            <a href="#" onclick="alert('请RTX联系@xiaoyi @cg')">忘记密码？密码错误</a>
+        </div>
+        <div class="loginbox-submit">
+            <input type="button" class="btn btn-primary btn-block" value="登录" ng-click="login()">
+        </div>
+    </div>
+</div>

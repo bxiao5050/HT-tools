@@ -1,0 +1,197 @@
+<div ng-controller="ROIchannelStatus"  ng-cloak>
+    <div class="row col-md-12 oa-header-row" style="margin-top: 10px;">
+        <label class="pull-left col-md-1 m-l-20">游戏(单选):</label>
+
+        <div class="pull-left col-md-10">
+                <!--<li class="list-group-item btn btn-sm" ng-repeat="gameItem in gameSource"-->
+                    <!--ng-class="{true:'btn-warning',false:'btn-default'}[gameItem.game_id==gameLevel.selected.game_id]"-->
+                    <!--style="cursor: pointer;height: 30px;float: left;margin: 2px;border: 0;border-radius: 2px;"-->
+                    <!--ng-click="gameClick(gameItem)">-->
+                    <!--{{gameItem.game_name}}-->
+                <!--</li>-->
+            <li ng-repeat="gameItem in gameSource"  class="button button-small"
+                ng-class="{true:'button-highlight',false:''}[gameItem.game_id==gameLevel.selected.game_id]"
+                ng-click="gameClick(gameItem)">
+                {{gameItem.game_name}}
+            </li>
+        </div>
+    </div>
+    <div class="row col-md-12" style="margin-top: 10px;">
+        <div class="pull-left col-md-1 m-l-20">区服(单选):</div>
+        <button ng-if="!areaServerNoData" class="btn btn-default pull-left" data-toggle="modal"
+                data-target="#areaServerModel">
+            {{selectedAreaServer.name}}
+        </button>
+        <button ng-if="areaServerNoData" class="btn btn-default pull-left" data-toggle="modal"
+                data-target="#areaServerModel" disabled="disabled">
+            游戏未配置区服
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="areaServerModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             style="width: 100%; top: 100px;">
+            <div class="modal-dialog" role="document" style="width: 800px;height:600px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">选择区服</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="header">选择地区</div>
+                                <ul class="list-group areaGroup" style="height:200px;">
+                                    <li ng-repeat="areaItem in areaSource" class="list-items"
+                                        ng-class="{true:'active',false:''}[areaItem.id==areaLevel.selected.id]"
+                                        ng-click="areaClick(areaItem)">{{areaItem.name}}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="header">选择代理商</div>
+                                <div class="body" style="height:200px;overflow-y: scroll;">
+                                    <li ng-repeat="agentItem in agentSource" class="list-items areaServerItem"
+                                        ng-class="{true:'active',false:''}[agentItem.id==agentLevel.selected.id]"
+                                        ng-click="agentClick(agentItem)"  data-toggle="tooltip" data-placement="bottom" title="{{agentItem.name}}"><span>{{agentItem.name}}</span>
+                                    </li>
+                                    <!--</div>-->
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="header">选择区服</div>
+                                <div class="body" style="height:200px;overflow-y: scroll;">
+                                    <li ng-repeat="serverItem in serverSource" class="list-items areaServerItem"
+                                        ng-class="{true:'active',false:''}[serverItem.id==serverLevel.selected.id]"
+                                        ng-click="serverClick(serverItem)"  data-toggle="tooltip" data-placement="bottom" title="{{serverItem.name}}"><span>{{serverItem.name}}</span>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" ng-click="clickModelYes()">选择</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row col-md-12" style="margin-top: 10px;">
+        <!--时间选择-->
+        <div class="pull-left m-l-20">
+            <div class="form-group chose-list"  style="margin-left: 15px;">
+                <label class="pull-left control-label">选择时间:</label>
+
+                <div class="pull-left m-l-20 controls">
+                        <input date-range-picker class="form-control date-picker" type="text" ng-model="initData.rangeDate" ng-if="!singleDatePicker"/>
+                        <p class="input-group" ng-if="singleDatePicker" style="width:170px;">
+                            <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="initData.curDate"
+                                   is-open="initData.opened"
+                                   date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open($event)">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+                                    </span>
+                        </p>
+                    </div>
+            </div>
+        </div>
+        <!--时间选择 end-->
+        <!-- 查询按钮 -->
+        <div class="pull-left m-l-20">
+            <a class="btn btn-default pull-left font-12" href="javascript:void(0);" ng-click="query()"><i
+                    class="fa fa-refresh"></i>查询</a>
+        </div>
+        <!-- 查询按钮 end-->
+        <!-- 导出按钮 -->
+        <div class="pull-left m-l-20">
+            <a class="btn btn-default pull-left font-12" href="javascript:void(0);" ng-click="export()"><i
+                    class="fa fa-download"></i>导出</a>
+        </div>
+        <div>
+            <span style="text-align: center;vertical-align: middle;line-height: 2;font-size: initial;color: brown;margin-left: 30px;">	1、假期期间的ROI数据可在假期后的第二个工作日正常查看</span>
+            <span style="text-align: center;vertical-align: middle;line-height: 2;font-size: initial;color: brown;margin-left: 30px;">	2、选择时间为北京时间（东八区）</span>
+        </div>
+        <!-- 导出按钮 end-->
+    </div>
+
+    <div class="col-md-12">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+
+                <span class="widget-caption">表格</span>
+            </div>
+            <div class="scrollable font-12">
+                <table class="table table-bordered table-hover colorTable" >
+                    <thead>
+                    <!--<tr>-->
+                        <!--<th rowspan="2" style="text-align: center;">渠道名</th>-->
+                        <!--<th colspan="4" style="text-align: center;">日注册</th>-->
+                        <!--<th rowspan="2" style="text-align: center;">日活跃</th>-->
+                        <!--<th rowspan="2" style="text-align: center;">日付费人数</th>-->
+                        <!--<th rowspan="2" style="text-align: center;">日收入</th>-->
+                        <!--<th rowspan="2" style="text-align: center;">总收入</th>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<th style="text-align: center;">IOS</th>-->
+                        <!--<th style="text-align: center;">安卓</th>-->
+                        <!--<th style="text-align: center;">其他</th>-->
+                        <!--<th style="text-align: center;">总数</th>-->
+                    <!--</tr>-->
+                    <tr>
+                        <th nowrap ng-click="col='channel_name';desc=!desc">渠道名
+                            <span ng-if="col=='channel_name'"
+                                  ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                        <th nowrap ng-click="col='all_num';desc=!desc">日注册
+                            <span ng-if="col=='all_num'"
+                                  ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                        <th nowrap ng-click="col='login_num';desc=!desc">日活跃
+                            <span ng-if="col=='login_num'"
+                                  ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                        <th nowrap ng-click="col='pay_num';desc=!desc">日付费人数
+                            <span ng-if="col=='pay_num'"
+                                  ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                        <th nowrap ng-click="col='day_pay';desc=!desc">日收入
+                            <span ng-if="col=='day_pay'"
+                                  ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                        <th nowrap ng-click="col='all_pay';desc=!desc">总收入
+                            <span ng-if="col=='all_pay'"
+                                  ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in tableData |orderBy:col:desc">
+                        <td ng-bind="item.channel_name">{{item.channel_name}}</td>
+                        <!--<td>{{item['ios']}}</td>-->
+                        <!--<td>{{item['android']}}</td>-->
+                        <!--<td>{{item['other_num']}}</td>-->
+                        <td ng-bind="item.all_num|number:2">{{item['all_num']}}</td>
+                        <td ng-bind="item.login_num|number:2">{{item['login_num']}}</td>
+                        <td ng-bind="item.pay_num|number:2">{{item['pay_num']}}</td>
+                        <td ng-bind="item.day_pay|number:2">{{item['day_pay']}}</td>
+                        <td ng-bind="item.all_pay|number:2">{{item['all_pay']}}</td>
+                    </tr>
+                    <tr ng-if="tableNoData">
+                        <td class="danger" colspan="9">no data</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="footer">
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>

@@ -1,0 +1,233 @@
+<div class="row" ng-controller="costManageController" ng-cloak>
+    <div class="col-sm-12 col-md-12">
+        <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div class="col-md-12 oa-header-row">
+        <div class="row">
+            <div class="col-md-3">
+                <label class="col-md-3" style="margin-top: 10px;">日期: </label>
+                <p class="col-md-8 input-group">
+                    <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="initData.curDate" is-open="initData.opened"
+                           ng-click="open_1($event)"
+                           date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open_1($event)"><i
+                                                class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                </p>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="control-label">游戏: </label>
+                    <div class="m-l-20 btn-group">
+                        <ui-select ng-model="game.selected" theme="bootstrap" style=" width: 170px;">
+                            <ui-select-match placeholder="Select">
+                                {{$select.selected.game_name}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in games | filter: $select.search">
+                                <span>{{item.game_name}}</span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label>系统：</label>
+                <div class="btn-group m-l-20">
+                    <label id="ios" class="btn btn-primary ng-pristine ng-untouched ng-valid active" ng-model="selectedOs" btn-radio="0" ng-click="switchOs(0,$event)" style="margin-right: 10px;">IOS</label>
+                    <label id="安卓" class="btn btn-default"  ng-model="selectedOs" btn-radio="1"  ng-click="switchOs(1,$event)">安卓</label>
+                </div>
+            </div>
+            <!-- 导入按钮 -->
+            <div class="col-md-2">
+                <div class="form-group">
+                    <div class=" input-group">
+                        <a class="btn btn-default pull-left" href="javascript:void(0);" ng-click="toggleAddGroup()"><i class="fa fa-plus"></i>新增</a>
+                        <a class="btn btn-default pull-left" href="javascript:void(0);"  ngf-select ng-model="file"   ngf-accept="'.csv,.xls,.xlsx'" >上传文件</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 " ng-if="showProgressBar">
+                <div class="progress ng-isolate-scope" type="info" value="80">
+                    <progressbar type="info" ng-model="progressPercent" value="progressPercent">已上传{{progressPercent}}%</progressbar>
+                </div>
+            </div>
+            <!-- 导入按钮 end-->
+        </div>
+
+    </div>
+    <div class="col-md-12 m-t-20" id="addGroup" ng-class="{true:'show-group',false:'hide-group'}[IsShowaddGroup]">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption">新增</span>
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="form-group" ng-class="{true:'has-warning'}[channelsValidateFail]">
+                            <div class=" input-group">
+                                <span class="input-group-addon">渠道</span>
+                                <!-- <input list="channellist" class="form-control" placeholder="必填" ng-model="formData.channels" >
+
+                                 <datalist id="channellist">
+                                     <option ng-repeat="item in channels">{{item.name}}</option>
+                                 </datalist>-->
+
+                                <ui-select ng-model="channel.selected" theme="bootstrap" >
+                                    <ui-select-match placeholder="{{$select.selected}}">
+                                        {{$select.selected}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="item in channels  track by $index | filter: $select.search" style="min-width:50px;">
+                                        <span>{{item}}</span>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <div class=" input-group">
+                                <span class="input-group-addon">推广活动</span>
+                               <!-- <input type="text" class="form-control"   placeholder="必填" ng-model="formData.ads" >-->
+                                <ui-select ng-model="ad.selected" theme="bootstrap" >
+                                    <ui-select-match placeholder="{{$select.selected}}">
+                                        {{$select.selected}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="item in ads  track by $index | filter: $select.search" style="min-width:50px;">
+                                        <span>{{item}}</span>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <div class=" input-group">
+                                <span class="input-group-addon">计费方式</span>
+                                <!-- <input list="caculateTypes" class="form-control" placeholder="必填" ng-model="formData.caculateType" >
+                                 <datalist id="caculateTypes">
+                                     <option ng-repeat="item in caculateType">{{item.name}}</option>
+                                 </datalist>-->
+                                <ui-select ng-model="selectedCaculateType.selected" theme="bootstrap" >
+                                    <ui-select-match placeholder="{{$select.selected.name}}">
+                                        {{$select.selected.name}}
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="item in caculateType | filter: $select.search" style="min-width:50px;">
+                                        <span>{{item.name}}</span>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group" ng-class="{true:'has-warning'}[moneysValidateFail]">
+                            <div class=" input-group">
+                                <span class="input-group-addon">金额</span>
+                                <input type="number" class="form-control" placeholder="选填,默认0" ng-model="formData.moneys">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group" ng-class="{true:'has-warning'}[curDateValidateFail]">
+                            <div class=" input-group">
+                                <span class="input-group-addon">日期</span>
+                                <div class="chose-list-content controls">
+                                    <div>
+                                        <p class="input-group" style="margin-bottom: 0px;">
+                                            <input type="text" class="form-control"  placeholder="必填" datepicker-popup="yyyy-MM-dd" ng-model="formData.curDate"
+                                                   is-open="formData.opened" ng-click="open_2($event)"
+                                                   date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default"   ng-click="open_2($event)">
+                                            <i class="glyphicon glyphicon-calendar" ></i>
+                                        </button>
+                                    </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <a class="btn btn-primary pull-left" href="javascript:void(0);" ng-click="addData()">确定</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="well with-header with-footer">
+                <div class="header bordered-sky">
+                    <p class="pull-left">表格</p>
+                    <div class="pull-right">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" style="margin-top: 10px;">批量删除: </label>
+                            <div class="col-md-3">
+                                <div>
+                                    <div class=" input-group">
+                                        <a class="btn btn-warning"  ng-click="batchDelete()">一键删除</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div>
+                                    <div class=" input-group">
+                                        <a class="btn btn-warning"  ng-click="cancelEdit()">取消修改</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div  class="scrollable" style="max-height: 500px;overflow-y:auto">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th><input class="selectedItem" id="selectedAll" type="checkbox" ng-click="selectAll()" />全选</th>
+                        <th>渠道名称</th>
+                        <th>广告名称</th>
+                        <th>付费方式</th>
+                        <th>金额</th>
+                        <th>日期</th>
+                        <th colspan="2">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in tableData"  repeat-finish="repeatFinished()">
+                        <td><input class="selectedItem" name="item" type="checkbox" value="{{item['id']}}"/> </td>
+                        <td>{{item.channel_name}}</td>
+                        <td>{{item["media_source"]}}</td>
+                        <td>{{item["pay_way"]}}</td>
+                        <td><span  class="repair-cost" id="{{item['id']}}">￥{{item["costs"] | number:2}}</span></td>
+                        <td>{{item["count_date"]}}</td>
+                        <td ><a ng-click="delete(item['id'])"><i class="fa fa-trash"></i></a></td>
+                        <td ><a ng-click="edit(item['id'])"><i class="fa fa-pencil-square-o"></i></a></td>
+                    </tr>
+                    <tr ng-if="noData">
+                        <td class="danger" colspan="8">no data</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="footer">
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!--TODO lazyload 会报错-->
+<script src="lib/modules/angular-daterangepicker/moment.js"></script>
+<script src="lib/modules/angular-daterangepicker/daterangepicker.js"></script>
+<script src="lib/modules/angular-daterangepicker/angular-daterangepicker.js"></script>
+<script src="lib/modules/bootstrap3-editable/js/bootstrap-editable.min.js"></script>

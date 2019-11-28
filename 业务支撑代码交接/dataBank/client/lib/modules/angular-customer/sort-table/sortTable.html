@@ -1,0 +1,28 @@
+<div class="row">
+    <table class="table">
+    <thead><tr>
+        <th ng-repeat="item in headField"  ng-click="changeSort(item)" style="cursor: pointer">
+            {{item.trim()}}
+            <span ng-if="sortField == item"
+                  ng-class="{true:'glyphicon glyphicon-sort-by-attributes',false:'glyphicon glyphicon-sort-by-attributes-alt'}[ascField]"></span>
+        </th>
+        <th ng-if="handleField">操作</th>
+    </tr></thead>
+    <tbody>
+    <tr ng-repeat="row in currentData">
+        <td ng-repeat="prop in headField">{{row[prop]}}</td>
+        <td  ng-if="handleField"><a ng-repeat="doHandle in handleField" ng-click="doHandle.handle(row)"><i ng-class="doHandle.icon"></i></a></td>
+    </tr>
+    <tr ng-if="totalField">
+        <td ng-repeat="prop in headField">{{totalField[prop]}}</td>
+    </tr>
+    </tbody>
+</table>
+    <nav ng-if="pageCountField" class="text-center">
+        <ul class="pagination">
+            <li ng-click="pageChanged($event,pageMode.current-1)"><a >&laquo;</a></li>
+            <li ng-repeat="pi in  pageMode.pageList" ng-click="pageChanged($event,pi.pageIndex)" ng-class="{true:'active'}[pi.isActive]"><a>{{pi.pageIndex+1}}</a></li>
+            <li><a ng-click="pageChanged($event,pageMode.current+1)">&raquo;</a></li>
+        </ul>
+    </nav>
+</div>

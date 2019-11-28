@@ -1,0 +1,83 @@
+﻿<div class="row" ng-controller="oasStepLostController" ng-cloak>
+    <div class="col-sm-12 col-md-12">
+        <toaster-container
+                toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div data-ng-include=" 'views/partials/oasHeader.html' "></div>
+
+    <div class="col-md-12 row m-t-20">
+        <div class="btn-group pull-left m-l-20 my-btn-group">
+            <label class="btn" ng-model="radioModel" btn-radio="'1'">1日留存</label>
+            <label class="btn" ng-model="radioModel" btn-radio="'2'">2日留存</label>
+            <label class="btn" ng-model="radioModel" btn-radio="'3'">7日留存</label>
+        </div>
+    </div>
+
+
+    <div class="col-md-12 m-t-20">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption">图表数据</span>
+
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="chartcontainer">
+                    <div id="stepLostChart1" class="chart chart-lg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+
+                <span class="widget-caption">新手阶段留存数据</span>
+                <label class="export-btn pull-right" style="margin-right: 20px;" ng-click="export()"><i
+                        class="fa fa-download"></i>&nbsp;导出xlsx文件</label>
+            </div>
+            <div class="scrollable font-12" style="max-height: 500px;overflow-y:auto">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>节点ID</th>
+                        <th>节点名称</th>
+                        <th>留存人数</th>
+                        <th>相对留存率</th>
+                        <th>流失人数</th>
+                        <th>流失率</th>
+                        <th>绝对留存率</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in tableData">
+                        <td>{{item['节点id']}}</td>
+                        <td>{{item['节点名称']}}</td>
+                        <td>{{item['留存人数'] |number}}</td>
+                        <td>{{item['相对留存率'] + '%'}}</td>
+                        <td>{{item['流失人数']}}</td>
+                        <td>{{item['流失率']}}</td>
+                        <td style="width: 33%; text-align: left">
+                            <div style="width: {{item['绝对留存率'] * 0.8}}%;clear: both;height: 14px;background-color: #F8A987;display: inline-block;position: relative;left: -8px;top: 2px;"></div>
+                            {{item['绝对留存率']}}%
+                        </td>
+
+                    </tr>
+                    <tr ng-if="noData">
+                        <td class="danger" colspan="6">no data</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>

@@ -1,0 +1,128 @@
+<div class="row" ng-controller="adGroupManageController" ng-cloak>
+    <div class="col-sm-12 col-md-12">
+        <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div class="col-md-12 m-t-20">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption" ng-bind="viewData.viewState" >新增</span>
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="row">
+
+                    <div class="col-sm-2">
+                        <div class=" input-group">
+                            <span class="input-group-addon">游戏</span>
+                                  <ui-select ng-model="game.selected" theme="bootstrap" style=" width: 170px;" on-select="gameChange()">
+                            <ui-select-match placeholder="Select">
+                                {{$select.selected.game_name}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in games | filter: $select.search">
+                                <span>{{item.game_name}}</span>
+                            </ui-select-choices>
+                        </ui-select>
+                            </div>
+                    </div>
+                    <div class="col-sm-2" >
+                        <div class="input-group">
+                            <span class="input-group-addon">系统</span>
+                            <ui-select ng-model="formData.os" theme="bootstrap" style=" width: 170px;" on-select="osChange()">
+                                    <ui-select-match placeholder="Select">
+                                        {{$select.selected.name}}
+                                        <i ng-if="$select.selected.os==1" class="fa fa-android"></i>
+                                        <i ng-if="$select.selected.os==0" class="fa fa-apple"></i>
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="item in viewData.os | filter: $select.search">
+                                        <span>{{item.name}}</span>
+                                        <i ng-if="item.os==1" class="fa fa-android green"></i>
+                                        <i ng-if="item.os==0" class="fa fa-apple orange"></i>
+                                    </ui-select-choices>
+                                </ui-select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2" >
+                        <div class="input-group">
+                            <span class="input-group-addon">渠道</span>
+                            <ui-select ng-model="formData.channel" theme="bootstrap" style=" width: 170px;" on-select="channelChange()">
+                                <ui-select-match placeholder="Select">
+                                    {{$select.selected.name}}
+                                </ui-select-match>
+                                <ui-select-choices repeat="item in viewData.channels | filter: $select.search">
+                                    <span>{{item.name}}</span>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class=" input-group">
+                            <span class="input-group-addon">活动</span>
+                            <div  style="display: inline-block"
+                              isteven-multi-select
+                              input-model="channelData"
+                              output-model="formData.adnets"
+                              button-label="os spread_name"
+                              item-label="os spread_name"
+                              tick-property="isChecked"
+                              helper-elements="filter"
+                              max-labels="1"
+                                >
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class=" input-group">
+                            <span class="input-group-addon">推广活动组</span>
+                            <input type="text" class="form-control" placeholder="活动组名称" ng-model="formData.adGroup_name">
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <a class="btn btn-primary pull-left" href="javascript:void(0);" ng-click="controlData()">确定</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12 m-t-20">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+
+                <span class="widget-caption">表格</span>
+                <label class="export-btn pull-right" style="margin-right: 20px;" ng-click="switchViewState(1)"><i class="fa fa-download"></i>新增</label>
+            </div>
+            <div class="scrollable font-12">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>推广活动组</th>
+                        <th>活动</th>
+                        <th>创建时间</th>
+                        <th colspan="2">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in viewData.dataTable">
+                        <td>{{item.ad_group_name}}</td>
+                        <td>{{item.spread_name}}</td>
+                        <td>{{item.create_time}}</td>
+                        <td ><a ng-click="delete(item['id'])"><i class="fa fa-trash"></i></a></td>
+                        <td ><a ng-click="edit(item)"><i class="fa fa-pencil-square-o"></i></a></td>
+                    </tr>
+                    <tr ng-if="noData">
+                        <td class="danger" colspan="6">no data</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="footer">
+
+            </div>
+        </div>
+    </div>
+
+</div>

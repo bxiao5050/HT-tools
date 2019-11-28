@@ -1,0 +1,58 @@
+﻿<div class="row" ng-controller="overSeas5MinDataController" ng-cloak>
+    <div class="col-sm-12 col-md-12">
+        <toaster-container
+                toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div data-ng-include=" 'views/overSeasSystem/overSeasHeader.html' "></div>
+    <div class="col-md-12 m-t-20" id="fiveMinOnline" ng-if="onlineModel.isShow">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption">五分钟在线数据(延迟10分钟)</span>
+                <label class="export-btn" ng-click="export('3')"><i class="fa fa-download"></i>&nbsp;导出xlsx文件</label>
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="chartcontainer">
+                    <div id="realTimeOnlineChart" class="chart chart-lg" style="position: static;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 m-t-20" id="fiveMinRecharge">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption">五分钟充值数据(延迟10分钟)</span>
+                <label class="export-btn" ng-click="export('1')"><i class="fa fa-download"></i>&nbsp;导出xlsx文件</label>
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="chartcontainer">
+                    <div id="realTimeRechargeChart" class="chart chart-lg" style="position: static;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" id="fiveMinRegister">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption">五分钟注册数据(延迟10分钟)</span>
+                <label class="export-btn" ng-click="export('2')"><i class="fa fa-download"></i>&nbsp;导出xlsx文件</label>
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="chartcontainer">
+                    <div id="realTimeRegChart" class="chart chart-lg" style="position: static;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

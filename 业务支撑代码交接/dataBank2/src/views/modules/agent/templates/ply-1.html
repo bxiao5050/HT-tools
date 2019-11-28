@@ -1,0 +1,34 @@
+<div class="agent-list" v-if="data">
+  <Row>
+    <div class="title-list">代理商列表</div>
+  </Row>
+  <Row>
+    <Navi class="navi" :data="{list:effConfig.list,itemName:'name',cur:effConfig.default,curName:'id',click:(item,index)=>{effConfig.default=item.id}}"></Navi>
+    <div @click="toggle(data)">
+      <Checkbox class="checkbox" :state="data.len===data.selected?2:data.selected===0?0:1">
+        <label>全选</label>
+      </Checkbox>
+    </div>
+    <Search class="search" :params="{click: searching}"></Search>
+
+  </Row>
+  <Card class="card">
+
+    <Row>
+      <div class="box box-fixed">
+        <div class="btn btn-secondary" v-for="e in data" v-if="typeof(e)==='object'&&searchFilter(e.name.toLowerCase())">
+          <div @click="toggle(e)">
+            <Checkbox :state="data.len===data.selected?2:data.selected===0?0:e.select"></Checkbox>
+          </div>
+          <span :title="e.name">{{e.name}}</span>
+        </div>
+      </div>
+    </Row>
+  </Card>
+  <Row>
+    <button class="btn confirm" @click="toConfirm">确 定</button>
+  </Row>
+  <!-- <Row class="confirm">
+    
+  </Row> -->
+</div>

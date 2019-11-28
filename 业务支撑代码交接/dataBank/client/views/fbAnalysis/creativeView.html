@@ -1,0 +1,90 @@
+<div class="row" ng-controller="fbCreativeViewController" ng-cloak xmlns="http://www.w3.org/1999/html">
+    <div class="col-md-12 m-t-20">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption">图表数据</span>
+                <!--<div class="btn-group">-->
+                <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'day'">日</label>-->
+                <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'week'">周</label>-->
+                <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'month'">月</label>-->
+                <!--</div>-->
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" ng-class="{'btn-primary':viewData.currentPoint == 1,'btn-default':viewData.currentPoint != 1}" class="btn" ng-click="switchPoint(1)">花费</button>
+                    <button type="button" ng-class="{'btn-primary':viewData.currentPoint == 2,'btn-default':viewData.currentPoint != 2}"  class="btn" ng-click="switchPoint(2)">CPI</button>
+                    <button type="button" ng-class="{'btn-primary':viewData.currentPoint == 3,'btn-default':viewData.currentPoint != 3}" class="btn" ng-click="switchPoint(3)">CPA</button>
+                    <button type="button" ng-class="{'btn-primary':viewData.currentPoint == 4,'btn-default':viewData.currentPoint != 4}" class="btn" ng-click="switchPoint(4)">激活率</button>
+                    <button type="button" ng-class="{'btn-primary':viewData.currentPoint == 5,'btn-default':viewData.currentPoint != 5}" class="btn" ng-click="switchPoint(5)">点击率</button>
+                    <button type="button" ng-class="{'btn-primary':viewData.currentPoint == 6,'btn-default':viewData.currentPoint != 6}" class="btn" ng-click="switchPoint(6)">注册率</button>
+                </div>
+                <div class="chartcontainer">
+                    <div id="creativeViewChart" class="chart chart-lg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 m-t-20">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption">表格数据</span>
+                <!--<div class="btn-group">-->
+                <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'day'">日</label>-->
+                <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'week'">周</label>-->
+                <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'month'">月</label>-->
+                <!--</div>-->
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="chartcontainer">
+                    <div class="scrollable table-responsive" style="overflow-y: scroll;height: 1100px;">
+                        <table class="table table-striped table-hover ">
+                            <thead>
+                            <tr >
+                                <th ng-repeat="column in dataSource.columns">{{column}}</th>
+                            </tr>
+                            </thead>
+                            <tbody >
+                            <tr ng-repeat="item in dataSource.data" class="middle-td">
+                                <!--http://23.91.100.196:4601/web_app/getImage?image_url=-->
+                                <td><img width="200" height="100" src="{{item[1].value}}">
+                                    {{item[0].value}}
+                                </td>
+                                <td>{{item[2].value}}</td>
+                                <td>{{item[3].value}}</td>
+                                <td>{{item[4].value}}</td>
+                                <td>{{item[5].value}}</td>
+                                <td>{{item[6].value}}</td>
+                                <td>{{item[7].value}}</td>
+                                <td>{{item[8].value}}</td>
+                                <td>{{item[9].value}}</td>
+                                <td>{{item[10].value}}</td>
+                                <td>{{item[11].value}}</td>
+                                <td>{{item[12].value}}</td>
+                                <td>{{item[13].value}}</td>
+                                <td>{{item[14].value}}</td>
+                                <td>{{item[15].value}}</td>
+                            </tr>
+                            <tr>
+                                <td ng-repeat="item in dataSource.total"  class="middle-td">
+                                    {{item.value}}
+                                </td>
+                            </tr>
+                            <tr ng-if="noData">
+                                <td class="danger" colspan="19">no data</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="app" ng-controller="AppCtrl">
+
+<!-- Head -->
+<head ng-cloak class="ng-cloak">
+    <meta charset="utf-8"/>
+    <title page-title></title>
+    <meta name="description" content="千奇业务支撑"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
+    <!--Basic Styles-->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link ng-if="settings.rtl" ng-href="assets/css/bootstrap-rtl.min.css" rel="stylesheet"/>
+    <link href="lib/modules/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="assets/css/weather-icons.min.css" rel="stylesheet"/>
+    <link href="lib/angular/loading-bar/loading-bar.css" rel="stylesheet"/>
+    <!--Fonts-->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300"
+          rel="stylesheet" type="text/css">
+    <!--Control Styles-->
+    <link rel="stylesheet" href="assets/css/buttons.css">
+    <!--Beyond styles-->
+    <link ng-if="!settings.rtl" href="assets/css/databank.css" rel="stylesheet"/>
+    <!--<link ng-if="settings.rtl" href="assets/css/beyond-rtl.css" rel="stylesheet" />-->
+    <link href="assets/css/main.css" rel="stylesheet"/>
+    <link href="assets/css/typicons.css" rel="stylesheet"/>
+    <link href="assets/css/animate.min.css" rel="stylesheet"/>
+    <!--<link ng-href="{{settings.skin}}" rel="stylesheet" type="text/css" />-->
+    <link href="lib/modules/isteven-multi-select/isteven-multi-select.css" rel="stylesheet"/>
+</head>
+<!-- /Head -->
+
+<!-- Body -->
+<body>
+<div ui-view></div>
+<div id="mask_loading" style="z-index: 1000;position: absolute;top: 0px;left: 0px;width: 100%;height: 100%;">
+    <div style="width: 100%;height: 100%;position: absolute;top: 0px;left: 0px;background-color: #151515;opacity: 0.6;">
+    </div>
+    <div style="position: relative;left: 40%;top: 40%; width: 20%;height: 20%; text-align: center">
+        <img src="assets/img/gif-load.gif">
+    </div>
+</div>
+<!-- Scripts -->
+<script src="lib/jquery/jquery.min.js"></script>
+<script src="lib/jquery/bootstrap.js"></script>
+<script src="lib/angular/angular.js"></script>
+
+<script src="lib/utilities.js"></script>
+
+<script src="lib/angular/angular-animate/angular-animate.js"></script>
+<script src="lib/angular/angular-cookies/angular-cookies.js"></script>
+<script src="lib/angular/angular-resource/angular-resource.js"></script>
+<script src="lib/angular/angular-sanitize/angular-sanitize.js"></script>
+<script src="lib/angular/angular-touch/angular-touch.js"></script>
+
+<script src="lib/angular/angular-ui-router/angular-ui-router.js"></script>
+<script src="lib/angular/angular-ocLazyLoad/ocLazyLoad.js"></script>
+<script src="lib/angular/angular-ngStorage/ngStorage.js"></script>
+<script src="lib/angular/angular-ui-utils/angular-ui-utils.js"></script>
+<script src="lib/angular/angular-breadcrumb/angular-breadcrumb.js"></script>
+<script src="lib/angular/angular-file-upload/ng-file-upload-all.min.js"></script>
+<script src="lib/angular/angular-ui-bootstrap/ui-bootstrap.js"></script>
+<script src="lib/angular/loading-bar/loading-bar.js"></script>
+<script src="lib/jquery/slimscroll/jquery.slimscroll.js"></script>
+<script src="lib/modules/isteven-multi-select/isteven-multi-select.js"></script>
+<script  src="lib/modules/angular-customer/sort-table/sort-table.js"></script>
+<script  src="lib/modules/angular-customer/level-panel/level-panel.js"></script>
+
+<script src="lib/jquery/jquery.cookie.js"></script>
+<script src="app/app.js"></script>
+<script src="app/config.js"></script>
+<script src="app/config.lazyload.js"></script>
+<script src="app/config.router.js"></script>
+<script src="app/databank.js"></script>
+
+
+<!-- Layout Related Directives -->
+<script src="app/directives/loading.js"></script>
+<script src="app/directives/sidebar.js"></script>
+<script src="app/directives/header.js"></script>
+<script src="app/directives/navbar.js"></script>
+<script src="app/directives/widget.js"></script>
+<script src="app/directives/utildirect.js"></script>
+<!-- Layout Related Factorys -->
+<script src="app/factorys/access.js"></script>
+<script src="app/factorys/params.js"></script>
+<script src="app/filters/accessFilter.js"></script>
+<script src="app/factorys/localstorage.js"></script>
+<script src="app/factorys/appendparams.js"></script>
+</body>
+<!--  /Body -->
+</html>

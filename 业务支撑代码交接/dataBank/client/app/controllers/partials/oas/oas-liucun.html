@@ -1,0 +1,76 @@
+﻿<div class="row" ng-controller="oasLiucunDataController">
+    <div class="col-sm-12 col-md-12">
+        <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div data-ng-include=" 'views/partials/oasHeader.html' "></div>
+    <div class="col-md-12 m-t-20">
+        <div class="widget">
+            <div class="widget-header">
+                <!--<div class="btn-group">-->
+                    <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'day'">日</label>-->
+                    <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'week'">周</label>-->
+                    <!--<label class="btn btn-normal" ng-model="radioModel" btn-radio="'month'">月</label>-->
+                <!--</div>-->
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="chartcontainer">
+                    <div id="liucunChart1" class="chart chart-lg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+
+                <span class="widget-caption">表格</span>
+            </div>
+            <div class="scrollable" style="max-height: 500px;overflow-y:auto">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>日期</th>
+                        <th>+1日留存</th>
+                        <th>+2日留存</th>
+                        <th>+3日留存</th>
+                        <th>+4日留存</th>
+                        <th>+5日留存</th>
+                        <th>+6日留存</th>
+                        <th>+7日留存</th>
+                        <th>+14日留存</th>
+                        <th>+30日留存</th>
+                        <th>注册数</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in tableData">
+                        <td>{{item.reg_date}}</td>
+                        <td>{{item.date1_value == '-1%' ? '--' : item.date1_value}}</td>
+                        <td>{{item.date2_value == '-1%' ? '--' : item.date2_value}}</td>
+                        <td>{{item.date3_value == '-1%' ? '--' : item.date3_value}}</td>
+                        <td>{{item.date4_value == '-1%' ? '--' : item.date4_value}}</td>
+                        <td>{{item.date5_value == '-1%' ? '--' : item.date5_value}}</td>
+                        <td>{{item.date6_value == '-1%' ? '--' : item.date6_value}}</td>
+                        <td>{{item.date7_value == '-1%' ? '--' : item.date7_value}}</td>
+                        <td>{{item.date14_value == '-1%' ? '--' : item.date14_value}}</td>
+                        <td>{{item.date30_value == '-1%' ? '--' : item.date30_value}}</td>
+                        <td>{{item.reg_count | number}}</td>
+                    </tr>
+                    <tr ng-if="noData">
+                        <td class="danger"  colspan="6">no data</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="footer">
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+</div>

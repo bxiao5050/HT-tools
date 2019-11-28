@@ -1,0 +1,78 @@
+﻿<div class="row" ng-controller="channelAppBudgetController">
+    <div class="col-sm-12 col-md-12">
+        <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">游戏: </label>
+            <div class="col-sm-9">
+                <ui-select ng-model="app.selected" theme="bootstrap">
+                    <ui-select-match placeholder="Select">
+                        {{$select.selected.name}}&nbsp;&nbsp;
+
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in AppAsync | filter: $select.search">
+                        <span>{{item.name}}</span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label  class="col-sm-3 control-label">日期: </label>
+            <div class="col-sm-9 controls">
+                <div>
+                    <input date-range-picker class="form-control date-picker" type="text" ng-model="formData.date" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group" ng-class="{true:'has-error'}[budgetValidateFail]">
+            <div class=" input-group">
+                <span class="input-group-addon">预算</span>
+                <input type="number" class="form-control" placeholder="必填" ng-model="formData.budget" >
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-2">
+        <a class="btn btn-default" href="javascript:void(0);" ng-click="addBudget()"><i class="fa fa-plus"></i>添加</a>
+    </div>
+    <div class="col-sm-12">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+                {{app.selected.name}} -预算数据
+            </div>
+            <div class="scrollable" style="max-height: 500px;overflow-y:auto">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>时间范围</th>
+                        <th>预算</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in tableData">
+                        <td>{{item.beginDate}} ~ {{item.endDate}}</td>
+                        <td>{{item.budget | currency}}</td>
+                        <td><a ng-click="delete(item)"><i class="fa fa-trash"></i></a></td>
+                    </tr>
+                    <tr ng-if="noData">
+                        <td colspan="3" class="danger" >no data</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--TODO lazyload 会报错-->
+<script src="lib/modules/angular-daterangepicker/moment.js"></script>
+<script src="lib/modules/angular-daterangepicker/daterangepicker.js"></script>
+<script src="lib/modules/angular-daterangepicker/angular-daterangepicker.js"></script>

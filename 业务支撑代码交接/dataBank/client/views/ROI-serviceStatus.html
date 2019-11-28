@@ -1,0 +1,179 @@
+<div ng-controller="ROIServiceStatus" ng-cloak>
+    <div class="row col-md-12 oa-header-row" style="margin-top: 10px;">
+        <label class="pull-left col-md-1 m-l-20">游戏(单选):</label>
+
+        <div class="pull-left col-md-10" style="padding-left: 0px;">
+            <li ng-repeat="gameItem in gameSource" class="button button-small"
+                ng-class="{true:'button-highlight',false:''}[gameItem.game_id==gameLevel.selected.game_id]"
+                ng-click="gameClick(gameItem)">
+                {{gameItem.game_name}}
+            </li>
+        </div>
+    </div>
+
+    <div class="row col-md-12">
+        <!--时间选择-->
+        <div class="pull-left m-l-20">
+            <div class="form-group chose-list"  style="margin-left: 10px;">
+                <label class="chose-list-label  control-label">选择时间： </label>
+
+                <div class="chose-list-content controls">
+                    <div>
+                        <input date-range-picker class="form-control date-picker" type="text"
+                               ng-model="initData.rangeDate" ng-if="!singleDatePicker"/>
+
+                        <p class="input-group" ng-if="singleDatePicker">
+                            <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd"
+                                   ng-model="initData.curDate"
+                                   is-open="initData.opened"
+                                   date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open($event)">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+                                    </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--时间选择 end-->
+        <!-- 查询按钮 -->
+        <div class="pull-left m-l-20">
+            <a class="btn btn-default pull-left font-12" href="javascript:void(0);" ng-click="query()"><i
+                    class="fa fa-refresh"></i>查询</a>
+        </div>
+        <!-- 查询按钮 end-->
+        <!-- 导出按钮 -->
+        <div class="pull-left m-l-20">
+            <a class="btn btn-default pull-left font-12" href="javascript:void(0);" ng-click="export()"><i
+                    class="fa fa-download"></i>导出</a>
+        </div>
+        <div>
+            <span style="text-align: center;vertical-align: middle;line-height: 2;font-size: initial;color: brown;margin-left: 30px;">	1、假期期间的ROI数据可在假期后的第二个工作日正常查看</span>
+            <span style="text-align: center;vertical-align: middle;line-height: 2;font-size: initial;color: brown;margin-left: 30px;">	2、选择时间为北京时间（东八区）</span>
+        </div>
+        <!-- 导出按钮 end-->
+    </div>
+
+    <div class="col-md-12 m-t-20">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+
+                <span class="widget-caption">汇总数据</span>
+            </div>
+            <div class="scrollable font-12">
+                <table class="table table-bordered table-hover ">
+                    <thead>
+                    <tr>
+                        <th style="text-align: center;">当日总收入</th>
+                        <th style="text-align: center;">当日总花费</th>
+                        <th style="text-align: center;">总收入</th>
+                        <th style="text-align: center;">总成本</th>
+                        <th style="text-align: center;">总ROI</th>
+                        <th style="text-align: center;">总收益</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in totalTableData">
+                        <td style="text-align: center;">{{item['日收入']}}</td>
+                        <td style="text-align: center;">{{item['日花费']}}</td>
+                        <td style="text-align: center;">{{item['总收入']}}</td>
+                        <td style="text-align: center;">{{item['总成本']}}</td>
+                        <td ng-bind="item['总ROI']*100|number:2|rateItems:item['总ROI']" style="text-align: center;">
+                            {{item['总ROI']}}
+                        </td>
+                        <td style="text-align: center;">{{item['总收益']}}</td>
+                    </tr>
+                    <tr ng-if="totalNoData">
+                        <td class="danger" colspan="6">no data</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="footer">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+
+                <span class="widget-caption">表格</span>
+            </div>
+            <div class="scrollable font-12">
+                <table class="table table-bordered table-hover colorTable">
+                    <thead>
+                    <tr>
+                        <th nowrap>区服
+                        </th>
+                        <th nowrap ng-click="col='openServerDate';desc=!desc">开服日期
+                            <span ng-if="col=='openServerDate'"
+                                  ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                        <th nowrap ng-click="col='openServerDays';desc=!desc">开服天数
+                            <span ng-if="col=='openServerDays'"
+                                  ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                        <th nowrap ng-click="col='inCome';desc=!desc">收入
+                            <span ng-if="col=='inCome'"
+                                  ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                        <th nowrap ng-click="col='TotalInCome';desc=!desc">总收入
+                            <span ng-if="col=='TotalInCome'"
+                                  ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                        <th nowrap ng-click="col='TotalROI';desc=!desc">总ROI
+                            <span ng-if="col=='TotalROI'"
+                                  ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                        <th nowrap ng-click="col='throwCost';desc=!desc">投放成本
+                            <span ng-if="col=='throwCost'"
+                                  ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                        <th nowrap ng-click="col='predictRecoveryDays';desc=!desc">预计回本天数
+                            <span ng-if="col=='predictRecoveryDays'"
+                                  ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                        <th nowrap ng-click="col='surplusRecoveryDays';desc=!desc">剩余回本天数
+                            <span ng-if="col=='surplusRecoveryDays'"
+                                  ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                        <th nowrap ng-click="col='gains';desc=!desc">盈利
+                            <span ng-if="col=='gains'"
+                                  ng-class="{true:'fa fa-sort-asc',false:'fa fa-sort-desc'}[!desc]"></span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in tableData |orderBy:col:desc">
+                        <td ng-bind="item.game_zone_name" style="width:30%;">{{item['game_zone_name']}}</td>
+                        <td ng-bind="item.openServerDate" style="width:10%;">{{item['openServerDate']}}</td>
+                        <td ng-bind="item.openServerDays|number:0">{{item['openServerDays']}}</td>
+                        <td ng-bind="item.inCome|number:2">{{item['inCome']}}</td>
+                        <td ng-bind="item.TotalInCome|number:2">{{item['TotalInCome']}}</td>
+                        <td ng-bind="item.TotalROI * 100|number:2|rateItems:item.TotalROI">{{item['TotalROI']}}</td>
+                        <td ng-bind="item.throwCost|number:2">{{item['throwCost']}}</td>
+                        <td ng-bind="item.predictRecoveryDays|number:0">{{item['predictRecoveryDays']}}</td>
+                        <td ng-bind="item['surplusRecoveryDays']<=0?'已回本':(item['surplusRecoveryDays']|number:0)">
+                            {{item['surplusRecoveryDays']<0?'已回本':item['surplusRecoveryDays']|number:0}}
+                        </td>
+                        <td ng-bind="item.gains|number:2">{{item['gains']}}</td>
+                    </tr>
+                    <tr ng-if="tableNoData">
+                        <td class="danger" colspan="10">no data</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="footer">
+
+            </div>
+        </div>
+    </div>
+
+
+</div>

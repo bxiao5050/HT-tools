@@ -1,0 +1,283 @@
+<div class="row" ng-controller="ChannelDetailController">
+    <div data-ng-include=" 'views/partials/adCheckHeader.html' "></div>
+    <div class="col-cs-12 col-md-12" >
+        <ul class="list-unstyled" style="overflow: hidden; border-bottom: 1px solid #2dc3e8;">
+            <li class="pull-left m-r-20"><h3><small>总设备激活数：</small>{{installs || number}}</h3></li>
+            <li class="pull-left m-r-20"><h3><small>总设备注册数</small>：{{regs || number}}</h3></li>
+            <li class="pull-left m-r-20"><h3><small>总设备创角数：</small>{{roles || number}}</h3></li>
+            <li class="pull-left m-r-20"><h3><small>新服创角数：</small>{{newServerregs ? newServerregs || number : 'N/A'}}</h3></li>
+            <li class="pull-left m-r-20"><h3><small>总花费：</small>${{costs ? costs || currency : 'N/A'}}</h3></li>
+            <li class="pull-left m-r-20"><h3><small>激活充值：</small>{{recharge ? recharge || currency : 'N/A'}}</h3></li>
+            <li class="pull-left m-r-20">
+                <h3>
+                    <i class="fa fa-info-circle" ata-titleclass="bordered-purple" tooltip-placement="bottom"  tooltip-html-unsafe="
+                    激活：激活设备数<br>
+                    注册：注册设备数<br>
+                    花费：投放费用<br>
+                    激活成本：花费/激活<br>
+                    注册成本：花费/注册<br>
+                    创角成本：花费/创角<br>
+                    新服创角成本：花费/新服创角数<br>
+                    创角：设备注册帐号的创角数(去重)<br>
+                    新服创角数：新服创角数(不去重)<br>
+                    激活充值：选择时间内激活的设备截至目前的充值
+                    "></i>
+                </h3>
+            </li>
+        </ul>
+    </div>
+    <!--<div class="col-xs-12 col-md-12 m-t-20">-->
+        <!--<div class="widget">-->
+            <!--<div class="widget-header">-->
+                <!--<span class="widget-caption">投放数据趋势图</span>-->
+
+                <!--<div class="widget-buttons">-->
+                    <!--<a href="" widget-collapse></a>-->
+                    <!--<a href="" widget-maximize></a>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="widget-body">-->
+                <!--<div class="chartcontainer">-->
+                    <!--<div id="chart1" class="chart chart-lg"></div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="col-xs-12 col-md-12 m-t-20">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption">投放数据成本趋势</span>
+
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="chartcontainer">
+                    <div id="channelDetailChart2" class="chart chart-lg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-12">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption">每天激活数据</span>
+
+                <div class="widget-buttons">
+                    <a href="" widget-collapse></a>
+                    <a href="" widget-maximize></a>
+                </div>
+            </div>
+            <div class="widget-body">
+                <div class="chartcontainer">
+                    <div id="channelDetailChart3" class="chart chart-lg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-12">
+        <div class="well with-header with-footer">
+            <div class="header bordered-sky">
+                表格
+            </div>
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th class="MediaSoure">MediaSoure</th>
+                    <th class="installs">
+                        激活
+                        <a ng-click="sort_by('installs')">
+                            <i class="fa fa-unsorted"></i>
+                        </a>
+                    </th>
+                    <th class="regs">
+                        注册
+                        <a ng-click="sort_by('regs')">
+                            <i class="fa fa-unsorted"></i>
+                        </a>
+                    </th>
+                    <th class="roles">
+                        创角
+                        <a ng-click="sort_by('roles')">
+                            <i class="fa fa-unsorted"></i>
+                        </a>
+                    </th>
+                    <th class="costs">
+                        花费
+                        <a ng-click="sort_by('costs')">
+                            <i class="fa fa-unsorted"></i>
+                        </a>
+                    </th>
+                    <th class="recharge">
+                        充值
+                        <a ng-click="sort_by('recharge')">
+                            <i class="fa fa-unsorted"></i>
+                        </a>
+                    </th>
+                    <th class="ROI">
+                        ROI
+                        <a ng-click="sort_by('ROI')">
+                            <i class="fa fa-unsorted"></i>
+                        </a>
+                    </th>
+                    <th class="per_installs">
+                        激活成本
+                        <a ng-click="sort_by('per_installs')">
+                            <i class="fa fa-unsorted"></i>
+                        </a>
+                        <br><small>(avg:{{avgInstalls| currency}})</small>
+
+                    </th>
+                    <th class="per_regs">
+                        注册成本
+                        <a ng-click="sort_by('per_regs')">
+                            <i class="fa fa-unsorted"></i>
+                        </a>
+                        <br><small>(avg:{{avgRegs| currency}})</small>
+
+                    </th>
+                    <th class="per_roles">
+                        创角成本
+                        <a ng-click="sort_by('per_roles')">
+                            <i class="fa fa-unsorted"></i>
+                        </a>
+                        <br><small>(avg:{{avgRoles | currency}})</small>
+
+                    </th>
+                    <th class="rate_regs">
+                        注册率
+                        <a ng-click="sort_by('rate_regs')">
+                            <i class="fa fa-unsorted"></i>
+                        </a>
+                        <br><small>(avg:{{avgRateRegs}})</small>
+
+                    </th>
+                    <th class="rate_roles">
+                        创角率
+                        <a ng-click="sort_by('rate_roles')">
+                            <i class="fa fa-unsorted"></i>
+                        </a>
+                        <br><small>(avg:{{avgRateRoles}})</small>
+
+                    </th>
+                    <th class="liucun">
+                        +1留存
+                        <a ng-click="sort_by('liucun')">
+                            <i class="fa fa-unsorted"></i>
+                        </a>
+                    </th>
+                    <th class="rate_liucun">
+                        +1留存率
+                        <a ng-click="sort_by('rate_liucun')">
+                            <i class="fa fa-unsorted"></i>
+                        </a>
+                        <br><small>(avg:{{avgRateLiucun}})</small>
+
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in tableData |  orderBy:sortingOrder:reverse">
+                    <td>{{item.categories =='Organic' ? '自然量':item.categories}}</td>
+                    <td>{{item.installs | number}}</td>
+                    <td>{{item.regs | number}}</td>
+                    <td>{{item.roles | number}}</td>
+                    <td >{{item.costs ? '$'+item.costs  :'N/A'}}</td>
+                    <td >{{item.recharge ? '$'+item.recharge  :'N/A'}}</td>
+                    <td >{{item.ROI ? item.ROI + '%' :'N/A'}}</td>
+                    <!--<td ng-class="{true:'warning'}[item.per_installs > item.avg_installs]">{{item.per_installs ? '$'+item.per_installs :'N/A'}}</td>&ndash;&gt;-->
+                    <td style="{{getColor(item.per_installs,item.avg_installs,false )}}" class="warning" ng-class="{true:'warning'}[item.per_installs > item.avg_installs]">{{item.per_installs ? '$'+item.per_installs :'N/A'}}</td>
+                    <td style="{{getColor(item.per_regs,item.avg_regs,false )}}">{{item.per_regs  ? '$'+item.per_regs :'N/A'}}</td>
+                    <td style="{{getColor(item.per_roles,item.avg_roles,false )}}">{{item.per_roles  ? '$'+item.per_roles :'N/A'}}</td>
+                    <td style="{{getColor(item.rate_regs,item.avg_rate_reg,true )}}">{{item.rate_regs}}%</td>
+                    <td style="{{getColor(item.rate_roles,item.avg_rate_roles,true,true )}}">{{item.rate_roles}}%</td>
+                    <td>{{item.liucun}}</td>
+                    <td style="{{getColor(item.rate_liucun,item.avg_rate_liucun,true )}}">{{item.rate_liucun}}%</td>
+                </tr>
+                <tr>
+                    <td>自然量</td>
+                    <td>{{Organic.installs | number}}</td>
+                    <td>{{Organic.regs | number}}</td>
+                    <td>{{Organic.roles | number}}</td>
+                    <td >{{Organic.costs ? '$'+Organic.costs  :'N/A'}}</td>
+                    <td >{{item.recharge ? '$'+item.recharge  :'N/A'}}</td>
+                    <td >{{item.ROI ? item.ROI + '%'  :'N/A'}}</td>
+                    <td style="{{getColor(Organic.per_installs,Organic.avg_installs,false)}}" class="warning">{{Organic.per_installs ? '$'+Organic.per_installs :'N/A'}}</td>
+                    <td style="{{getColor(Organic.per_regs,Organic.avg_regs,false )}}">{{Organic.per_regs  ? '$'+Organic.per_regs :'N/A'}}</td>
+                    <td style="{{getColor(Organic.per_roles,Organic.avg_roles,false )}}">{{Organic.per_roles  ? '$'+Organic.per_roles :'N/A'}}</td>
+                    <td style="{{getColor(Organic.rate_regs,Organic.avg_rate_reg,true )}}">{{Organic.rate_regs}}%</td>
+                    <td style="{{getColor(Organic.rate_roles,Organic.avg_rate_roles,true )}}">{{Organic.rate_roles}}%</td>
+                    <td>{{Organic.liucun}}</td>
+                    <td style="{{getColor(Organic.rate_liucun,Organic.avg_rate_liucun,true )}}">{{Organic.rate_liucun}}%</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="footer">
+                <code>{{remark}}</code>
+            </div>
+        </div>
+    </div>
+    <!--<div class="col-xs-12 col-md-12">-->
+        <!--<div class="widget">-->
+            <!--<div class="widget-header ">-->
+                <!--<span class="widget-caption">Simple DataTable</span>-->
+
+                <!--<div class="widget-buttons">-->
+                    <!--<a href="" widget-maximize></a>-->
+                    <!--<a href="" widget-collapse></a>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="widget-body">-->
+                <!--<table ui-jq="dataTable" ui-options="simpleTableOptions" class="table table-striped cell-border">-->
+                    <!--<thead>-->
+                    <!--<tr>-->
+                        <!--<th>MediaSoure</th>-->
+                        <!--<th>激活</th>-->
+                        <!--<th>注册</th>-->
+                        <!--<th>创角</th>-->
+                        <!--<th>花费</th>-->
+                        <!--<th>激活成本</th>-->
+                        <!--<th>注册成本</th>-->
+                        <!--<th>创角成本</th>-->
+                        <!--<th>注册率</th>-->
+                        <!--<th>创角率</th>-->
+                        <!--<th>+1留存</th>-->
+                        <!--<th>+1留存率</th>-->
+                    <!--</tr>-->
+                    <!--</thead>-->
+                    <!--<tbody></tbody>-->
+                <!--</table>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-xs-12 col-md-12">-->
+        <!--<div class="widget">-->
+            <!--<div class="widget-header">-->
+                <!--<span class="widget-caption">份额图</span>-->
+
+                <!--<div class="widget-buttons">-->
+                    <!--<a href="" widget-collapse></a>-->
+                    <!--<a href="" widget-maximize></a>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="widget-body">-->
+                <!--<div class="chartcontainer">-->
+                    <!--<div class="row">-->
+                        <!--<div class="col-xs-12 col-md-12">-->
+                            <!--<div id="Schart" class="chart chart-lg"></div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+    <!--</div>-->
+</div>
+<!--TODO lazyload 会报错-->
+<script src="lib/modules/angular-daterangepicker/moment.js"></script>
+<script src="lib/modules/angular-daterangepicker/daterangepicker.js"></script>
+<script src="lib/modules/angular-daterangepicker/angular-daterangepicker.js"></script>
+

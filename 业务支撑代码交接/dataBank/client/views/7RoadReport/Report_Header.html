@@ -1,0 +1,191 @@
+<div class="row" ng-controller="reportHeaderController" ng-cloak>
+    <div class="col-sm-12 col-md-12 oa-header-row">
+        <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+    </div>
+    <div class="col-sm-12 col-md-12">
+        <div class="row">
+            <!--时间选择-->
+            <div class="pull-left m-l-20">
+                <div class="form-group chose-list">
+                    <label class="chose-list-label control-label">时间: </label>
+
+                    <div class="chose-list-content controls">
+                        <div>
+                            <input date-range-picker class="form-control date-picker" type="text"  ng-if="!singleDatePicker"
+                                   ng-model="initData.rangeDate"/>
+                            <p class="input-group" ng-if="singleDatePicker">
+                                <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="initData.curDate"
+                                       is-open="initData.opened_1"
+                                       date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="open_1($event)">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+                                    </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--时间选择 end-->
+            <!-- 日周月 -->
+            <div class="controls pull-left" style="width:50px;" ng-if="!hideDateType">
+                <ui-select ng-model="datetype.selected" theme="bootstrap" style=" width: 50px;">
+                    <ui-select-match placeholder="{{$select.selected.name}}">
+                        {{$select.selected.name}}
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in datetypes | filter: $select.search" style="min-width:50px;">
+                        <span>{{item.name}}</span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+
+            <!--统计日期-->
+            <div class="pull-left" ng-if="!hideCountDate">
+                <div class="form-group chose-list">
+                    <label class="chose-list-label control-label" ng-if="!realtimeCompareDate">统计日期: </label>
+                    <label class="chose-list-label control-label" ng-if="realtimeCompareDate">对比日期: </label>
+                    <div class="chose-list-content controls">
+                        <div>
+                            <p class="input-group">
+                                <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd"
+                                       ng-model="caculateData.count_date"
+                                       is-open="caculateData.opened_2"
+                                       date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/>
+                                                    <span class="input-group-btn">
+                                                        <button type="button" class="btn btn-default"
+                                                                ng-click="open_2($event)">
+                                                            <i class="glyphicon glyphicon-calendar"></i>
+                                                        </button>
+                                                    </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--媒体下拉列表-->
+            <!--            <div class="pull-left" style="width:230px">
+                            <div class="form-group chose-list">
+                                <label class="chose-list-label control-label" style="margin-top: 5px">媒体： </label>
+
+                                <div class="chose-list-content controls">
+                                    <ui-select ng-model="media.selected" theme="bootstrap" style=" width: 170px;">
+                                        <ui-select-match placeholder="Select">
+                                            {{$select.selected.name}}
+                                        </ui-select-match>
+                                        <ui-select-choices
+                                                repeat="item in medias | filter: $select.search">
+                                            <span>{{item.name}}</span>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                        </div>-->
+
+            <!--渠道下拉列表-->
+            <div class="pull-left" style="width:230px">
+                <div class="form-group chose-list">
+                    <label class="chose-list-label control-label" style="margin-top: 5px">渠道： </label>
+
+                    <div class="chose-list-content controls">
+                        <!--     <ui-select ng-model="channel.selected" theme="bootstrap" style=" width: 170px;">
+                                 <ui-select-match placeholder="Select">
+                                    {{$select.selected.name}}
+                                 </ui-select-match>
+                                 <ui-select-choices
+                                         repeat="item in channels | filter: $select.search">
+                                     <span>{{item.name}}</span>
+                                 </ui-select-choices>
+                             </ui-select>
+                             -->
+                        <div id="choseChannelBtn" style="width:170px;padding: 0;">
+                            <!--                            <h6 id="channelBtnText" data-toggle="modal"
+                                                            data-target="#channelModel"
+                                                            style="margin: 0;cursor: pointer; width: 170px;white-space: nowrap; overflow:hidden;text-overflow: ellipsis;"
+                                                            class="row-title"><i
+                                                                class="fa fa-expand"></i><label>{{ SelectedChannelName }}</label></h6>-->
+                            <input id="channelBtnText" type="text" readonly="readonly" data-toggle="modal"
+                                   value="{{ SelectedChannelName }}" tooltip="{{ SelectedChannelName }}"
+                                   data-target="#channelModel"
+                                   style="padding-left:10px;margin: 0;cursor: pointer; width: 170px;height:33px;white-space: nowrap; overflow:hidden;text-overflow: ellipsis;"/>
+                        </div>
+                        <div class="modal fade" id="channelModel" tabindex="-1" role="dialog"
+                             aria-labelledby="myModalLabel"
+                             style="width: 100%;">
+                            <div class="modal-dialog" role="document" style="width: 600px;height:300px;top:120px;">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close"><span
+                                                aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">选择渠道</h4>
+                                    </div>
+                                    <div class="modal-body"
+                                         style="width: 600px;padding-left: 40px;padding-right: 40px;">
+                                        <level-panel tree-nodes="channelData" label-field="'name'" out-selected="selectedChanel" evt-on-selected="onSelected" out-handle="channelHandle"></level-panel>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="#" class="btn btn-success" ng-click="channelOK()">确定</a>
+                                        <a href="#" class="btn" data-dismiss="modal" ng-click="channelCancel()">取消</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!--游戏选择下拉列表-->
+            <div class="pull-left" style="width:230px">
+                <div class="form-group chose-list">
+                    <label class="chose-list-label control-label" style="margin-top: 5px">游戏： </label>
+
+                    <div class="chose-list-content">
+                        <ui-select ng-model="game.selected" theme="bootstrap" style=" width: 170px;">
+                            <ui-select-match placeholder="Select">
+                                {{$select.selected.game_name}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in games | filter: $select.search">
+                                <span>{{item.game_name}}</span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+            </div>
+            <!--游戏选择下拉列表 end-->
+
+            <!--系统选择下拉列表-->
+            <div class="pull-left" style="width:230px">
+                <div class="form-group chose-list">
+                    <label class="chose-list-label control-label" style="margin-top: 5px;">系统: </label>
+
+                    <div class="chose-list-content">
+                        <ui-select ng-model="os.selected" theme="bootstrap" style=" width: 170px;">
+                            <ui-select-match placeholder="Select">
+                                <span>{{item.name}}</span>
+                                {{$select.selected.name}}
+                                <i ng-if="$select.selected.os==1" class="fa fa-android"></i>
+                                <i ng-if="$select.selected.os==0" class="fa fa-apple"></i>
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in AppOS | filter: $select.search">
+                                <span>{{item.name}}</span>
+                                <i ng-if="item.os==1" class="fa fa-android green"></i>
+                                <i ng-if="item.os==0" class="fa fa-apple orange"></i>
+                            </ui-select-choices>
+                        </ui-select>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--TODO lazyload 会报错-->
+<script src="lib/modules/angular-daterangepicker/moment.js"></script>
+<script src="lib/modules/angular-daterangepicker/daterangepicker.js"></script>
+<script src="lib/modules/angular-daterangepicker/angular-daterangepicker.js"></script>

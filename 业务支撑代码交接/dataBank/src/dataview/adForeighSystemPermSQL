@@ -1,0 +1,23 @@
+
+
+--system_id = 2
+select * from (
+select system_id "node_id",description "node_name",-999 parent_id,'system' "node_type",''"node_info"  from sc_oas_db_mobile.t_oas_system
+where system_id = 2
+union
+select b.id,b.menu_name,a.system_id,'menu',case menu_url when '' then b.id::varchar else menu_url end  from sc_oas_db_mobile.t_oas_system_menu a 
+join  sc_oas_db_mobile.t_oas_menu b on a.menu_id = b.id and b.parent_menu_id = 0
+where system_id = 2
+union
+select c.id,c.menu_name,b.id,'second_menu',case c.menu_url when '' then c.id::varchar else c.menu_url end from sc_oas_db_mobile.t_oas_system_menu a 
+join  sc_oas_db_mobile.t_oas_menu b on a.menu_id = b.id and b.parent_menu_id = 0
+join sc_oas_db_mobile.t_oas_menu c on b.id = c.parent_menu_id
+where system_id = 2
+union
+select d.id,d.menu_name,c.id,'third_menu',d.menu_url from sc_oas_db_mobile.t_oas_system_menu a 
+join  sc_oas_db_mobile.t_oas_menu b on a.menu_id = b.id and b.parent_menu_id = 0
+join sc_oas_db_mobile.t_oas_menu c on b.id = c.parent_menu_id
+join sc_oas_db_mobile.t_oas_menu d on c.id = d.parent_menu_id
+where system_id = 2
+) a
+order by node_type,node_id
