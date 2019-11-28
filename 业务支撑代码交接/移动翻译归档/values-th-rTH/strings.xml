@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mg_txt_status_tip" >แนะนำใช้ไวไฟในการดาวน์โหลด</string>
+    <string name="mg_txt_dialog_keyback_tips">ดาวน์โหลดเกมยังไม่เสร็จ ตกลงจะออก?</string>
+    
+    <string name="mg_txt_warn">แจ้งเตือน</string>
+    <string name="mg_txt_not_get_special_permission">ต้องอนุญาตให้แสดงแท็บ โปรดเปิดให้อนุญาต</string>
+    <string name="mg_txt_please_open_permission">ต้องเปิดการเข้าถึง กด \"ตั้งค่า\">\"แอปพลิเคชั่น\">\"การอนุญาต\"เพื่อแก้ไข</string>
+    <string name="mg_txt_confirm">ยืนยัน</string>
+    <string name="mg_txt_cancel">ยกเลิก</string>
+    <string name="mg_tip_update">พบเวอร์ชั่นใหม่ อัพเดทเลย</string>
+    <string name="mg_tip_first_launch">อาจจะดำเนินกการช้าบนเครื่องบางเครื่อง โปรดรอสักครู่</string>
+    <string name="mg_tip_question">ถ้าพบปัญหาเวลาโหลดเกม, </string>
+    <string name="mg_tip_press">กดที่นี่</string>
+    <string name="mg_facebook">Facebook</string>
+    <string name="mg_res_destroy_warn">ไฟล์เสีย โปรดดาวน์โหลดใหม่</string>
+    <string name="mg_net_wrong">ข้อผิดพลาดในการเชื่อมต่ออินเทอร์เน็ต</string>
+    <string name="mg_retry">ลองใหม่</string>
+</resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mg_txt_status_tip" >다운로드하려면</string>
+    <string name="mg_txt_dialog_keyback_tips">아직 다운로드하지 않았습니다. 종료를 확인하시겠습니까?</string>
+    <string name="mg_txt_warn">경보</string>
+    <string name="mg_txt_not_get_special_permission">탭을 표시 할 수있는 권한을 부여해야합니다. 권한을 부여하세요.</string>
+    <string name="mg_txt_please_open_permission">응용 프로그램에 대한 권한을 부여하려면 \ "설치 \"> \ "응용 프로그램 \"> \ "권한 \"을 클릭하여 편집하세요.</string>
+    <string name="mg_txt_confirm">확인</string>
+    <string name="mg_txt_cancel">취소</string>
+    <string name="mg_tip_update">새 버전이 있습니다. 빨리 업데이트하세요</string>
+    <string name="mg_tip_first_launch">일부 디바이스가 느리게 시작합니다. 기다려주세요</string>
+    <string name="mg_tip_question">게임 다운로드에 문제가 있는 경우, </string>
+    <string name="mg_tip_press">여기를 클릭하세요</string>
+    <string name="mg_facebook">페이스북</string>
+    <string name="mg_res_destroy_warn">파일이 손상되었습니다. 다시로드하세요</string>
+    <string name="mg_net_wrong">인터넷 연결 오류</string>
+    <string name="mg_retry">재 시도</string>
+</resources>

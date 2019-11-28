@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mg_txt_status_tip" >推荐在wifi网络下载</string>
+    <string name="mg_txt_dialog_keyback_tips">游戏内容还未下载完成，你确定退出吗？</string>
+    <string name="mg_txt_warn">提示</string>
+    <string name="mg_txt_not_get_special_permission">悬浮按钮显示需要权限，请授权</string>
+    <string name="mg_txt_please_open_permission">应用运行需要开通权限，请在\"设置\">\"应用\">\"权限\"中配置</string>
+    <string name="mg_txt_confirm">确定</string>
+    <string name="mg_txt_cancel">取消</string>
+    <string name="mg_tip_update">有新版本发布了，赶快更新吧</string>
+    <string name="mg_tip_first_launch">部分机型可能启动较慢，请耐心等待</string>
+    <string name="mg_tip_question">如果下载遇到问题，</string>
+    <string name="mg_tip_press">请点击这里</string>
+    <string name="mg_facebook">Facebook</string>
+    <string name="mg_res_destroy_warn">资源损坏，请重新下载</string>
+    <string name="mg_net_wrong">网络连接异常</string>
+    <string name="mg_retry">重试</string>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mg_txt_status_tip" >Nên kết nối wifi để tải</string>
+    <string name="mg_txt_dialog_keyback_tips">Vẫn chưa tải xong nội dung game, xác nhận thoát?</string>
+    
+    <string name="mg_txt_warn">Nhắc nhở</string>
+    <string name="mg_txt_not_get_special_permission">Cần phải cấp quyền hiển thị tab nổi, xin hãy cấp quyền</string>
+    <string name="mg_txt_please_open_permission">Cần cấp quyền để ứng dụng vận hành, nhấp \"Cài đặt\">\"Ứng dụng\">\"cấp quyền\" để chỉnh sửa</string>
+    <string name="mg_txt_confirm">Xác nhận</string>
+    <string name="mg_txt_cancel">Hủy</string>
+    <string name="mg_tip_update">Có phiên bản mới rồi, mau cập nhật nào</string>
+    <string name="mg_tip_first_launch">Một số dòng máy khởi động khác chậm, hãy kiên nhẫn chờ</string>
+    <string name="mg_tip_question">Nếu gặp vấn đề khi tải game, </string>
+    <string name="mg_tip_press">Hãy nhấp đây</string>
+    <string name="mg_facebook">Facebook</string>
+    <string name="mg_res_destroy_warn">File hỏng, hãy tải lại</string>
+    <string name="mg_net_wrong">Lỗi kết nối mạng</string>
+    <string name="mg_retry">Thử lại</string>
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mg_txt_status_tip" >Download with Wifi network is recommended</string>
+    <string name="mg_txt_dialog_keyback_tips">Resources download is not finished, confirm to quit?</string>
+    
+    <string name="mg_txt_warn">Tips</string>
+    <string name="mg_txt_not_get_special_permission">Pop up permission is needed</string>
+    <string name="mg_txt_please_open_permission">Permission is needed, please allow it in \"setting\">\"app manage\">\"permission\"</string>
+    <string name="mg_txt_confirm">Confirm</string>
+    <string name="mg_txt_cancel">Cancel</string>
+    <string name="mg_tip_update">New version have released, please download it.</string>
+    <string name="mg_tip_first_launch">Please be patient, it will take some time to launch.</string>
+    <string name="mg_tip_question">If you have any problem in downloading, </string>
+    <string name="mg_tip_press">Please tap here</string>
+    <string name="mg_facebook">Facebook</string>
+    <string name="mg_res_destroy_warn">Resource error, please redownload it</string>
+    <string name="mg_net_wrong">Network connection error</string>
+    <string name="mg_retry">Retry</string>
+</resources>

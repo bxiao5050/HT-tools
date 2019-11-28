@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mg_txt_status_tip" >Il faut se connecter à un réseau WiFi pour télécharger</string>
+    <string name="mg_txt_dialog_keyback_tips">Des données de jeu sont en cours de téléchargement, confirmez pour quitter?</string>
+    <string name="mg_txt_warn">Avertissement</string>
+    <string name="mg_txt_not_get_special_permission">Non autorisé à afficher l\'onglet flottant, veuillez accorder l'autorisation!</string>
+    <string name="mg_txt_please_open_permission">Non autorisé à fonctionner l\'application, veuillez accorder l\'autorisation en cliquant sur \" Installer \">\" Application \">\" Autorisation \" pour établir</string>
+    <string name="mg_txt_confirm">Confirmer</string>
+    <string name="mg_txt_cancel">Annuler</string>
+    <string name="mg_tip_update">La nouvelle version est disponible, veuillez mettre à jour!</string>
+    <string name="mg_tip_first_launch">Le démarrage de certains modèles d\'appareil est assez lent, alors soyez patient!</string>
+    <string name="mg_tip_question">Si vous avez des problèmes lors du téléchargement de votre jeu, </string>
+    <string name="mg_tip_press">Cliquez ici</string>
+    <string name="mg_facebook">Facebook</string>
+    <string name="mg_res_destroy_warn">Fichier corrompu, veuillez re-télécharger!</string>
+    <string name="mg_net_wrong">Erreur de connexion</string>
+    <string name="mg_retry">Essayez à nouveau</string>
+</resources>

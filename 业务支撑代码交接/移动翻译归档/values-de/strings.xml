@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mg_txt_status_tip">Sollte wifi zum Herunterladen verbinden</string>
+    <string name="mg_txt_dialog_keyback_tips">Spielinhalt noch nicht geladen, Verlassen bestätigen?</string>
+    <string name="mg_txt_warn">Warnung</string>
+    <string name="mg_txt_not_get_special_permission">Um die Berechtigung für das schwebende Tab zu erlauben, erteilen Sie bitte die Erlaubnis</string>
+    <string name="mg_txt_please_open_permission">Um die Berechtigung zum Ausführen der Anwendung zu erteilen, klicken Sie zum Bearbeiten auf \ "Installieren \"> \ "Anwendung \"> \ "Berechtigung \".</string>
+    <string name="mg_txt_confirm">Bestätigen</string>
+    <string name="mg_txt_cancel">Abbrechen</string>
+    <string name="mg_tip_update">Neue Version kommt, aktualisieren Sie schnell</string>
+    <string name="mg_tip_first_launch">Einige Modelle beginnen langsam, bitte warten Sie geduldig</string>
+    <string name="mg_tip_question">Wenn Sie Probleme beim Herunterladen von Spielen haben, </string>
+    <string name="mg_tip_press">Klicken Sie hier</string>
+    <string name="mg_facebook">Fan Page</string>
+    <string name="mg_res_destroy_warn">Datei beschädigt, laden Sie bitte wieder</string>
+    <string name="mg_net_wrong">Netzwerkverbindungs Fehler</string>
+    <string name="mg_retry">Wiederholen</string>
+</resources>
