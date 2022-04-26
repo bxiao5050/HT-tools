@@ -40,7 +40,7 @@ preprocessing tool. Background subtraction, phase identification, element compos
 **List of key features**
 
 <div>
-   <img width = "30%" align = "right" src = "/assets/image2.jpg">
+   <img width = "25%" align = "right" src = "/assets/image2.jpg">
 <ul aling = "left">
   <li>Automate routine tasks for quick and easy analysis</li>
   <li>Mouse click to acquire and report data</li>
