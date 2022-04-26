@@ -2,7 +2,9 @@
 
 ## Overview
 
-The complete analytical GUI tools for fast **data processing**, **analysis** and **visualization** used in the group of MDI (Materials Discovery and Interfaces). Afterwards, all kinds of data including raw data, intermediate data and processed data could be saved/exported for further analysis.
+The complete analytical GUI tools used for **data processing**, **analysis** and **visualization** in experimental material science
+
+in the group of MDI (Materials Discovery and Interfaces). Afterwards, all kinds of data including raw data, intermediate data and processed data could be saved/exported for further analysis.
 
 ## Tools that are included in this project:
 1. ### EDX measurement related tools
