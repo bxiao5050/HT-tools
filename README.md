@@ -16,7 +16,7 @@ The complete analytical GUI tools for fast **data processing**, **analysis** and
   - Baseline subtraction: subtract baseline for XRD data.
   - Phase identification: XRD data analysis and phase determination based on comparison of data with ICSD database.
   - Reference (.cif) rename: rename and reformat XRD data.
-4. ### Band gap and resistence related tools
+4. ### Band gap and resistance related tools
   - Band gap determination: automated calculate band gap.
   - Room-temperature resistance: visualize resistance data.
   - Temperature-dependent resistance: analysis and view of multiple reisitance data.
