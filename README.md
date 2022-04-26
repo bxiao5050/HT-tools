@@ -29,8 +29,8 @@ The complete software tools (HT-tools) for high-throughput characterization of m
   - Wafer photo RGB: view and extract wafer image from photos
 
 
-### Features
----------------
+## Features
+
 <div align = "center">
   <img align = "center" width = "1000" src = "/assets/image1.jpg">
 <p align = "left">Example of visualization the coordinated tool chain for high-throughput data analysis. Multiple diffraction data files are imported to a
@@ -40,7 +40,7 @@ preprocessing tool. Background subtraction, phase identification, element compos
 **List of key features**
 
 <div>
-   <img width = "22%" align = "right" src = "/assets/image2.jpg">
+   <img width = "25%" align = "right" src = "/assets/image2.jpg">
 <ul aling = "left">
   <li>Automate routine tasks for quick and easy analysis</li>
   <li>Mouse click to acquire and report data</li>
