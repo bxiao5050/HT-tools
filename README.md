@@ -29,7 +29,7 @@ The complete software tools (HT-tools) for high-throughput characterization of m
   - Wafer photo RGB: view and extract wafer image from photos
 
 
-### Main features
+### Features
 ---------------
 <div align = "center">
   <img align = "center" width = "1000" src = "/assets/image1.jpg">
@@ -37,8 +37,10 @@ The complete software tools (HT-tools) for high-throughput characterization of m
 preprocessing tool. Background subtraction, phase identification, element composition visualization are automated performed and the results are saved in database.</p> 
 </div><br>
 
+**List of key features**
+
 <div>
-   <img width = "20%" align = "right" src = "/assets/image3.jpg">
+   <img width = "22%" align = "right" src = "/assets/image2.jpg">
 <ul aling = "left">
   <li>Automate routine tasks for quick and easy analysis</li>
   <li>Mouse click to acquire and report data</li>
@@ -50,11 +52,9 @@ preprocessing tool. Background subtraction, phase identification, element compos
   <li>Simultaneously perform analysis during data processing</li>
 </ul>
 </div>
+<br>
 
  
- OS Requirements
----------------
-This package has been tested exclusively on Windows 10 operating systems.
 
 Python dependencies
 -------------------
