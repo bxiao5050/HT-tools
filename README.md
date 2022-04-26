@@ -27,21 +27,20 @@ The complete software tools (HT-tools) for high-throughput characterization of m
 6. ### Other tools
   - Sputter concentration: get a first impression of sputtering results
   - Wafer photo RGB: view and extract wafer image from photos
-
+<br>
 <div align = "center">
-  <img align = "center" width = "800" src = "/assets/image1.jpg">
+  <img align = "center" width = "1000" src = "/assets/image1.jpg">
 <p align = "center">Example of visualization the coordinated tool chain for high-throughput data analysis. Multiple diffraction data files are imported to a
 preprocessing tool. Background subtraction, phase identification, element composition visualization are automated performed and the results are saved in database.</p> 
-</div>
-
-<ul>
+</div><br>
+<div>
+<ul aling = "left">
   <li>li1</li>
   <li>li1</li>
   <li>li1</li>
   <li>li1</li>
 </ul>
-<div style = "width:50%; float: right">
-  <img src = "/assets/image2.jpg">
+  <img width = "50%" align = "right" src = "/assets/image2.jpg">
 </div>
 
  
