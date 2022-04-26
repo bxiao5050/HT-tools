@@ -30,7 +30,7 @@ The complete software tools (HT-tools) for high-throughput characterization of m
 
 
 ## Features
----------------
+
 <div align = "center">
   <img align = "center" width = "1000" src = "/assets/image1.jpg">
 <p align = "left">Example of visualization the coordinated tool chain for high-throughput data analysis. Multiple diffraction data files are imported to a
