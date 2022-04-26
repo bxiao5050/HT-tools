@@ -29,7 +29,7 @@ The complete software tools (HT-tools) for high-throughput characterization of m
   - Wafer photo RGB: view and extract wafer image from photos
 
 
-### Features
+## Features
 ---------------
 <div align = "center">
   <img align = "center" width = "1000" src = "/assets/image1.jpg">
