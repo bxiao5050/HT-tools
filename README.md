@@ -4,6 +4,12 @@
 
 The complete software tools (HT-tools) for high-throughput characterization of materials libraries in experimental material science. HT tools contain a series of GUI tools for **data processing**, **analysis** and **visualization** with high-quality and increased productivity. These tools have easy to use interface, and ensure live-time graphical display, and simultaneous review mode analysis.
 
+<p align="center">
+    <a href="https://ruhr-uni-bochum.sciebo.de/s/kKlMF7rXFwJeYIr" target="_blank">
+        <img align="center" width = "200" alt="download" src="/assets/downloadx86.jpg"/>
+      <img align="center" width = "200" alt="download" src="/assets/downloadmacos.jpg"/>
+    </a>
+</p>
 
 ## Tools that are included in this project:
 1. ### EDX measurement related tools
