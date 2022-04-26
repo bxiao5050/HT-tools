@@ -30,7 +30,7 @@ The complete software tools (HT-tools) for high-throughput characterization of m
 
 
 ### Main features
-____
+---------------
 <div align = "center">
   <img align = "center" width = "1000" src = "/assets/image1.jpg">
 <p align = "left">Example of visualization the coordinated tool chain for high-throughput data analysis. Multiple diffraction data files are imported to a
@@ -38,6 +38,7 @@ preprocessing tool. Background subtraction, phase identification, element compos
 </div><br>
 
 <div>
+   <img width = "20%" align = "right" src = "/assets/image3.jpg">
 <ul aling = "left">
   <li>Automate routine tasks for quick and easy analysis</li>
   <li>Mouse click to acquire and report data</li>
@@ -46,8 +47,8 @@ preprocessing tool. Background subtraction, phase identification, element compos
   <li>Flexibility to search, select, and combine data</li>
   <li>Easily compare data from multiple samples in the same report</li>
   <li>Save and recall data processing procedures to automate data analysis and visualization</li>
+  <li>Simultaneously perform analysis during data processing</li>
 </ul>
-  <img width = "50%" align = "right" src = "/assets/image3.jpg">
 </div>
 
  
