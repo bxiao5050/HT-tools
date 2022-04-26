@@ -58,7 +58,7 @@ preprocessing tool. Background subtraction, phase identification, element compos
 
 Python dependencies
 -------------------
-The list of required python packages is contained in the `requirements.txt <requirements.txt>`_ file in this repository. 
+The list of required python packages is contained in the [requirements.txt](requirements.txt) file in this repository. 
 
 Install the requirements from PyPI using pip.
 ::
