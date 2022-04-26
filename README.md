@@ -2,9 +2,8 @@
 
 ## Overview
 
-The complete analytical GUI tools used for **data processing**, **analysis** and **visualization** in experimental material science
+The complete software tools (HT-tools) for high-throughput characterization of materials libraries in experimental material science. HT tools contain a series of GUI tools for **data processing**, **analysis** and **visualization** with high-quality and increased productivity. These tools have easy to use interface, and ensure live-time graphical display, and simultaneous review mode analysis.
 
-in the group of MDI (Materials Discovery and Interfaces). Afterwards, all kinds of data including raw data, intermediate data and processed data could be saved/exported for further analysis.
 
 ## Tools that are included in this project:
 1. ### EDX measurement related tools
@@ -28,6 +27,15 @@ in the group of MDI (Materials Discovery and Interfaces). Afterwards, all kinds 
 6. ### Other tools
   - Sputter concentration: get a first impression of sputtering results
   - Wafer photo RGB: view and extract wafer image from photos
+
+<div align = "center">
+  <img align = "center" width = "600" src = "/assets/image1.gif">
+<p align = "center">Visualization of the coordinated tool chain for high-throughput data analysis. Multiple diffraction data files are imported to a
+preprocessing tool. Background subtraction, phase identification, element composition visualization are performed.</p> <br>
+    <img align = "center" width = "600" src = "/assets/image2.png"/>
+        <p align = "center"> Dfferent visualization modes to perform point sampling quickly click</p><br>     
+</div>
+
  
  OS Requirements
 ---------------
