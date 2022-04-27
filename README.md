@@ -1,8 +1,10 @@
-# High-throughput analytical tools
+<img align = "right" src = "/assets/logo.png">
+
+# HT-tools: a comprehensive suite of automated tools for high-throughput characterization of thin-film materials libraries.
 
 ## Overview
 
-The complete software tools (HT-tools) for high-throughput characterization of materials libraries in experimental material science. HT tools contain a series of GUI tools for **data processing**, **analysis** and **visualization** with high-quality and increased productivity. These tools have easy to use interface, and ensure live-time graphical display, and simultaneous review mode analysis.
+HT tools is an automated **data-analysis** and **visualization** software with high-quality and increased productivity. It has easy to use interface, and ensure live-time graphical display and simultaneous review mode analysis. This software implements automated high-quality high-throughput characterization algorithms to determine the compositional, structural and (multi)functional properties of materials contained in the libraries.
 
 <p align="center">
     <a href="https://ruhr-uni-bochum.sciebo.de/s/es3rYvyqqGUOcxY" target="_blank">
@@ -36,6 +38,12 @@ The complete software tools (HT-tools) for high-throughput characterization of m
   - Sputter concentration: get a first impression of sputtering results
   - Wafer photo RGB: view and extract wafer image from photos
 
+## News
+:boom: [2022-01-03] HT-tools now supports visualization of multi-dimensional compositions in 3D polyhedron. <br/>
+:boom: [2021-12-22] HT-tools adds SECCM data analytic software. <br/>
+:boom: [2021-05-20] HT-tools adds band gap determination software. <br/>
+:boom: [2029-12-04] HT-tools adds phase identification software. <br/>
+:boom: [2019-11-14] HT-tools v0.1.0 is released!
 
 ## Features
 
