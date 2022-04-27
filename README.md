@@ -2,8 +2,8 @@
 
 # HT-tools: a comprehensive suite of automated tools for high-throughput characterization of thin-film materials libraries.
 
-## Overview
-### What is HT-tools?
+
+## What is HT-tools?
 HT tools is an automated **data-analysis** and **visualization** software for Windows and MacOS that enables fast analyze your experimental materials library data
 with high-quality and increased productivity. It has easy to use interface, and ensure live-time graphical display and simultaneous review mode analysis. This software implements automated high-quality high-throughput characterization algorithms to determine the compositional, structural and (multi)functional properties of materials contained in the libraries.
 
