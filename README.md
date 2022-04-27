@@ -70,15 +70,15 @@ HT tools is an automated **data-analysis** and **visualization** software with h
 preprocessing tool. Background subtraction, phase identification, element composition visualization are automated performed and the results are saved in database.</p> 
 </div><br>
  
-### Feedback
-Please provide feedback on how to improve XGBoostLSS, or if you request additional distributions to be implemented, by opening a new issue.
 
+## Python dependencies
 
-Python dependencies
--------------------
 The list of required python packages is contained in the [requirements.txt](requirements.txt) file in this repository. 
 
 Install the requirements from PyPI using pip.
 ::
 
     $ python3 -m pip install -r requirements.txt
+
+## Feedback
+Please provide feedback on how to improve XGBoostLSS, or if you request additional distributions to be implemented, by opening a new issue.
