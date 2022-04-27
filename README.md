@@ -45,15 +45,7 @@ HT tools is an automated **data-analysis** and **visualization** software with h
 :boom: [2029-12-04] HT-tools adds phase identification software. <br/>
 :boom: [2019-11-14] HT-tools v0.1.0 is released!
 
-## Features
-
-<div align = "center">
-  <img align = "center" width = "1000" src = "/assets/image1.jpg">
-<p align = "left">Example of visualization the coordinated tool chain for high-throughput data analysis. Multiple diffraction data files are imported to a
-preprocessing tool. Background subtraction, phase identification, element composition visualization are automated performed and the results are saved in database.</p> 
-</div><br>
-
-**List of key features**
+## List of key features
 
 <div>
    <img width = "25%" align = "right" src = "/assets/image2.jpg">
@@ -70,6 +62,11 @@ preprocessing tool. Background subtraction, phase identification, element compos
 </div>
 <br>
 
+<div align = "center">
+  <img align = "center" width = "1000" src = "/assets/image1.jpg">
+<p align = "left">Example of visualization the coordinated tool chain for high-throughput data analysis. Multiple diffraction data files are imported to a
+preprocessing tool. Background subtraction, phase identification, element composition visualization are automated performed and the results are saved in database.</p> 
+</div><br>
  
 
 Python dependencies
