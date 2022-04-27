@@ -45,7 +45,7 @@ HT tools is an automated **data-analysis** and **visualization** software with h
 :boom: [2029-12-04] HT-tools adds phase identification software. <br/>
 :boom: [2019-11-14] HT-tools v0.1.0 is released!
 
-## List of key features
+<br/>
 
 <div>
    <img width = "25%" align = "right" src = "/assets/image2.jpg">
