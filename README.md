@@ -47,6 +47,16 @@ HT tools is an automated **data-analysis** and **visualization** software with h
 
 <br/>
 
+## Features
+
+<div align = "center">
+  <img align = "center" width = "1000" src = "/assets/image1.jpg">
+<p align = "left">Example of visualization the coordinated tool chain for high-throughput data analysis. Multiple diffraction data files are imported to a
+preprocessing tool. Background subtraction, phase identification, element composition visualization are automated performed and the results are saved in database.</p> 
+</div><br>
+
+### List of key features
+
 <div>
    <img width = "25%" align = "right" src = "/assets/image2.jpg">
 <div aling = "left">
@@ -63,12 +73,6 @@ HT tools is an automated **data-analysis** and **visualization** software with h
 </div>
 <br/>
 
-
-<div align = "center">
-  <img align = "center" width = "1000" src = "/assets/image1.jpg">
-<p align = "left">Example of visualization the coordinated tool chain for high-throughput data analysis. Multiple diffraction data files are imported to a
-preprocessing tool. Background subtraction, phase identification, element composition visualization are automated performed and the results are saved in database.</p> 
-</div><br>
  
 
 ## Python dependencies
@@ -81,4 +85,4 @@ Install the requirements from PyPI using pip.
     $ python3 -m pip install -r requirements.txt
 
 ## Feedback
-Please provide feedback on how to improve XGBoostLSS, or if you request additional distributions to be implemented, by opening a new issue.
+Please provide feedback on how to improve HT-tools, or if you request additional distributions to be implemented, by opening a new issue.
