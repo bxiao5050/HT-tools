@@ -57,16 +57,16 @@ preprocessing tool. Background subtraction, phase identification, element compos
 
 <div>
    <img width = "25%" align = "right" src = "/assets/image2.jpg">
-<ul aling = "left">
-  <li>Automate routine tasks for quick and easy analysis</li>
-  <li>Mouse click to acquire and report data</li>
-  <li>Display configuration options for reporting according journal's requirement</li>
-  <li>Dynamically view for the most accurate and efficient analysis</li>
-  <li>Flexibility to search, select, and combine data</li>
-  <li>Easily compare data from multiple samples in the same report</li>
-  <li>Save and recall data processing procedures to automate data analysis and visualization</li>
-  <li>Simultaneously perform analysis during data processing</li>
-</ul>
+<div aling = "left">
+  :white_check_mark: Automate routine tasks for quick and easy analysis<br/>
+  :white_check_mark: Mouse click to acquire and report data<br/>
+  :white_check_mark: Display configuration options for reporting according journal's requirement<br/>
+  :white_check_mark: Dynamically view for the most accurate and efficient analysis<br/>
+  :white_check_mark: Flexibility to search, select, and combine data<br/>
+  :white_check_mark: Easily compare data from multiple samples in the same report<br/>
+  :white_check_mark: Save and recall data processing procedures to automate data analysis and visualization<br/>
+  :white_check_mark: Simultaneously perform analysis during data processing<br/>
+</div>
 </div>
 <br>
 
