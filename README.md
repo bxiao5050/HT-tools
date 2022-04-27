@@ -59,8 +59,10 @@ HT tools is an automated **data-analysis** and **visualization** software with h
   :white_check_mark: Save and recall data processing procedures to automate data analysis and visualization<br/>
   :white_check_mark: Simultaneously perform analysis during data processing<br/>
 </div>
+    <br>
 </div>
-<br>
+<br/>
+
 
 <div align = "center">
   <img align = "center" width = "1000" src = "/assets/image1.jpg">
@@ -68,6 +70,9 @@ HT tools is an automated **data-analysis** and **visualization** software with h
 preprocessing tool. Background subtraction, phase identification, element composition visualization are automated performed and the results are saved in database.</p> 
 </div><br>
  
+### Feedback
+Please provide feedback on how to improve XGBoostLSS, or if you request additional distributions to be implemented, by opening a new issue.
+
 
 Python dependencies
 -------------------
